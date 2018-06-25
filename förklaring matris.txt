@@ -1,0 +1,7 @@
+Hej
+•	Kolumn F-I styr fördelningen av vilka stimuli (audiovisuellt tema, ex "Starburst") som ska visas vid varje trial i varje moment: i exempelfilen rad 4, exempelvis, är tanken att varje stimuli (S1, S2, S3 och S4) visas i 25% av trialsen. Vilket stimuli som visas ska vara slumpmässigt, men i detta fall sk sampling without replacement (dvs senare är utfall är beroende av tidigare utfall).
+•	Kolumn L och M styr sannolikheten för vinst -- vilket vid Pavlovian_acq och _extinct är kopplat till vilket S som visas, styrt av kolumn Q-T (S1-O1 exempelvis). Win_O1 och _O2 styr i sin tur vinstsumman.
+•	Kolumner U-X är särskilda variabler som krävs för att kunna styra exempelvis (rad 5) att trots att både S1 och S2 tidigare ledde till O1 (kolumn Q och R) så innebär S2 nu noll procent chans för O1.
+•	När det gäller sannolikhet för utfall (O) vill vi att det ska vara slumpmässig sampling with replacement (dvs varje utfall är oberende av tidigare utfall).
+•	Vad menar ni med beräkning på ett spel? I ett spel specificerat enligt rad 4 får deltagaren spela enarmadbandit med ett av fyra teman, varav två teman är kopplad till att ge vinst i 40% av spelen, och de andra två i 20% av spelen, med samma vinst (20 krediter). I nästa speltyp (rad 5), kommer två av fyra teman att ha noll procent chans att vinna. 
+Se designmatrisen framför allt som ett exempel på variabler som vi behöver kunna manipulera experimentellt -- exakt hur den ska utformas bestäms i samråd med utvecklarna.
