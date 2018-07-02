@@ -16,100 +16,110 @@ namespace SU_Casino
         {
             if (!IsPostBack)
             {
-                //card2.ImageUrl = randomStartCard();
-                //card1.ImageUrl = randomCard(CheckCard);
+
+                setCards();
                 money = 1500;
                 lblMoney.Text = money.ToString();
             }
 
         }
 
-        public string randomCard(int min)
+        public int randomCard(int min)
         {
             Random rnd = new Random();
 
             int randomcard = rnd.Next(min, min + 5);
-            string url = "src/images/cards/" + randomcard + "C.png";
-            return url;
+           // string url = "src/images/cards/" + randomcard + "C.png";
+            return randomcard;
         }
 
-        public string randomStartCard()
+        public int randomStartCard()
         {
             Random rnd = new Random();
 
-            int randomcard = rnd.Next(1, 9);
+            int randomcard = rnd.Next(0, 53);
             //string url = "~/Cards/" + randomcard + ".png";
-            string url = "src/images/cards/" + randomcard + "C.png";
             CheckCard = randomcard;
-            return url;
+            return randomcard;
         }
 
-       /* protected void card1_back_Click(object sender, ImageClickEventArgs e)
+        public void setCards()
         {
-            money = Convert.ToInt32(lblMoney.Text);
-            //card1.ImageUrl = randomCard(CheckCard);
-            //card2.Visible = false;
-            checkCards(1);
-            Savedata(1, 100);
+            HiddenField_card3.Value = randomStartCard().ToString();
+            HiddenField_card2.Value = randomCard(CheckCard).ToString();
+            HiddenField_card1.Value = randomCard(CheckCard).ToString();
+        }
+        protected void btnPlay_Click(object sender, EventArgs e)
+        {
+            setCards();
         }
 
-        protected void card3_Click(object sender, ImageClickEventArgs e)
-        {
-            money = Convert.ToInt32(lblMoney.Text);
-            card3.ImageUrl = randomCard(CheckCard);
-            //card1.Visible = false;
-            checkCards(2);
-            Savedata(2, 50);
-        }
+        /* protected void card1_back_Click(object sender, ImageClickEventArgs e)
+         {
+             money = Convert.ToInt32(lblMoney.Text);
+             //card1.ImageUrl = randomCard(CheckCard);
+             //card2.Visible = false;
+             checkCards(1);
+             Savedata(1, 100);
+         }
 
-        public void checkCards(int card)
-        {
-            string imgUrl = "src/images/";
-            imgWinner.Visible = true;
-            if (card == 1)
-            {
-                if (card1.ImageUrl == card2.ImageUrl)
-                {
-                    imgWinner.ImageUrl = imgUrl + "coins.gif";
-                    money = money + 50;
-                }
-                else
-                {
-                    imgWinner.ImageUrl = "~/Cards/youlose.png";
-                    money = money - 20;
-                }
-            }
-            else
-            {
-                if (card2.ImageUrl == card2.ImageUrl)
-                {
-                    imgWinner.ImageUrl = imgUrl + "coins.gif";
-                    money = money + 200;
-                }
-                else
-                {
-                    imgWinner.ImageUrl = "~/Cards/youlose.png";
-                    money = money - 100;
-                }
-            }
-            lblMoney.Text = money.ToString();
-            // NextRound();
-        }
+         protected void card3_Click(object sender, ImageClickEventArgs e)
+         {
+             money = Convert.ToInt32(lblMoney.Text);
+             card3.ImageUrl = randomCard(CheckCard);
+             //card1.Visible = false;
+             checkCards(2);
+             Savedata(2, 50);
+         }
 
-        public void NextRound()
-        {
-            Thread.Sleep(1);
-            card1.Visible = true;
-            card1.ImageUrl = "~/Cards/TopCardQuestion.png";
-            card2.Visible = true;
-            card2.ImageUrl = "~/Cards/TopCardQuestion.png";
-            card3.ImageUrl = randomStartCard();
-        }
-        public void Savedata(int card, int bet)
-        {
+         public void checkCards(int card)
+         {
+             string imgUrl = "src/images/";
+             imgWinner.Visible = true;
+             if (card == 1)
+             {
+                 if (card1.ImageUrl == card2.ImageUrl)
+                 {
+                     imgWinner.ImageUrl = imgUrl + "coins.gif";
+                     money = money + 50;
+                 }
+                 else
+                 {
+                     imgWinner.ImageUrl = "~/Cards/youlose.png";
+                     money = money - 20;
+                 }
+             }
+             else
+             {
+                 if (card2.ImageUrl == card2.ImageUrl)
+                 {
+                     imgWinner.ImageUrl = imgUrl + "coins.gif";
+                     money = money + 200;
+                 }
+                 else
+                 {
+                     imgWinner.ImageUrl = "~/Cards/youlose.png";
+                     money = money - 100;
+                 }
+             }
+             lblMoney.Text = money.ToString();
+             // NextRound();
+         }
+
+         public void NextRound()
+         {
+             Thread.Sleep(1);
+             card1.Visible = true;
+             card1.ImageUrl = "~/Cards/TopCardQuestion.png";
+             card2.Visible = true;
+             card2.ImageUrl = "~/Cards/TopCardQuestion.png";
+             card3.ImageUrl = randomStartCard();
+         }
+         public void Savedata(int card, int bet)
+         {
 
 
-        }*/
+         }*/
 
     }
 }

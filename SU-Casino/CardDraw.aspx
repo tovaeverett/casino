@@ -48,7 +48,7 @@
                 <asp:HiddenField ID="HiddenField_card2" runat="server" /> 
                 <asp:HiddenField ID="HiddenField_card3" runat="server" /> 
                 <asp:Label ID="lblMoney" runat="server"></asp:Label>
-                <asp:Button ID="btnPlay" runat="server" Text="PLAY" />
+                <asp:Button ID="btnPlay" runat="server" Text="PLAY" OnClick="btnPlay_Click" />
             </form>
     </div>
     <script src="src/js/card_game.js"></script>
