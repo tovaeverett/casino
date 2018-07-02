@@ -16,7 +16,8 @@ namespace SU_Casino
         {
             if (!IsPostBack)
             {
-                card3.ImageUrl = randomStartCard();
+                //card2.ImageUrl = randomStartCard();
+                //card1.ImageUrl = randomCard(CheckCard);
                 money = 1500;
                 lblMoney.Text = money.ToString();
             }
@@ -28,7 +29,7 @@ namespace SU_Casino
             Random rnd = new Random();
 
             int randomcard = rnd.Next(min, min + 5);
-            string url = "~/Cards/" + randomcard + ".png";
+            string url = "src/images/cards/" + randomcard + "C.png";
             return url;
         }
 
@@ -37,37 +38,39 @@ namespace SU_Casino
             Random rnd = new Random();
 
             int randomcard = rnd.Next(1, 9);
-            string url = "~/Cards/" + randomcard + ".png";
+            //string url = "~/Cards/" + randomcard + ".png";
+            string url = "src/images/cards/" + randomcard + "C.png";
             CheckCard = randomcard;
             return url;
         }
 
-        protected void card1_Click(object sender, ImageClickEventArgs e)
+       /* protected void card1_back_Click(object sender, ImageClickEventArgs e)
         {
             money = Convert.ToInt32(lblMoney.Text);
-            card1.ImageUrl = randomCard(CheckCard);
-            card2.Visible = false;
+            //card1.ImageUrl = randomCard(CheckCard);
+            //card2.Visible = false;
             checkCards(1);
             Savedata(1, 100);
         }
 
-        protected void card2_Click(object sender, ImageClickEventArgs e)
+        protected void card3_Click(object sender, ImageClickEventArgs e)
         {
             money = Convert.ToInt32(lblMoney.Text);
-            card2.ImageUrl = randomCard(CheckCard);
-            card1.Visible = false;
+            card3.ImageUrl = randomCard(CheckCard);
+            //card1.Visible = false;
             checkCards(2);
             Savedata(2, 50);
         }
 
         public void checkCards(int card)
         {
+            string imgUrl = "src/images/";
             imgWinner.Visible = true;
             if (card == 1)
             {
-                if (card1.ImageUrl == card3.ImageUrl)
+                if (card1.ImageUrl == card2.ImageUrl)
                 {
-                    imgWinner.ImageUrl = "~/Cards/youwin.png";
+                    imgWinner.ImageUrl = imgUrl + "coins.gif";
                     money = money + 50;
                 }
                 else
@@ -78,9 +81,9 @@ namespace SU_Casino
             }
             else
             {
-                if (card2.ImageUrl == card3.ImageUrl)
+                if (card2.ImageUrl == card2.ImageUrl)
                 {
-                    imgWinner.ImageUrl = "~/Cards/youwin.png";
+                    imgWinner.ImageUrl = imgUrl + "coins.gif";
                     money = money + 200;
                 }
                 else
@@ -106,7 +109,7 @@ namespace SU_Casino
         {
 
 
-        }
+        }*/
 
     }
 }
