@@ -27,10 +27,14 @@
                 </tr>
                 <tr>
                     <td>
-                       <asp:Image ID="imgWin" runat="server"  />
+                       <asp:Label ID="lblMoney" runat="server"></asp:Label>
                     </td>
                 </tr>
             </table>
+            <asp:HiddenField ID="HiddenField_Spin1" runat="server" />
+            <asp:HiddenField ID="HiddenField_Spin2" runat="server" />
+            <asp:HiddenField ID="HiddenField_Spin3" runat="server" />
+            <asp:HiddenField ID="HiddenField_WinLose" runat="server" />
         </div>
     </form>
 </body>

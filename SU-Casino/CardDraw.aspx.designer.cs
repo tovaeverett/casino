@@ -58,13 +58,13 @@ namespace SU_Casino {
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_card3;
         
         /// <summary>
-        /// HiddenFieldWinLose control.
+        /// HiddenField_WinLose control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenFieldWinLose;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_WinLose;
         
         /// <summary>
         /// lblMoney control.

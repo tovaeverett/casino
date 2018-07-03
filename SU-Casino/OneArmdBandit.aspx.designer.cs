@@ -58,12 +58,48 @@ namespace SU_Casino {
         protected global::System.Web.UI.WebControls.Image IMGslot3;
         
         /// <summary>
-        /// imgWin control.
+        /// lblMoney control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgWin;
+        protected global::System.Web.UI.WebControls.Label lblMoney;
+        
+        /// <summary>
+        /// HiddenField_Spin1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_Spin1;
+        
+        /// <summary>
+        /// HiddenField_Spin2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_Spin2;
+        
+        /// <summary>
+        /// HiddenField_Spin3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_Spin3;
+        
+        /// <summary>
+        /// HiddenField_WinLose control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_WinLose;
     }
 }
