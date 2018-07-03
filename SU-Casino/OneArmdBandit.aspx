@@ -31,6 +31,9 @@
                     </td>
                 </tr>
             </table>
+            <asp:HiddenField ID="HiddenField1" runat="server" />
+            <asp:HiddenField ID="HiddenField2" runat="server" />
+            <asp:HiddenField ID="HiddenField3" runat="server" />
         </div>
     </form>
 </body>

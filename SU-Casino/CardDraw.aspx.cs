@@ -73,14 +73,32 @@ namespace SU_Casino
         {
            int CardPressed = 0; 
            var winLose = HiddenField_WinLose.Value;
+
            if(HiddenField_card1.Value != null)
             {
                 CardPressed = 1;
+                if(winLose == "win")
+                {
+                    money = + 100;
+                }
+                else
+                {
+                    money = -100;
+                }
             }
            else
             {
                 CardPressed = 2;
+                if (winLose == "win")
+                {
+                    money = +50;
+                }
+                else
+                {
+                    money = -50;
+                }
             }
+            lblMoney.Text = money.ToString();
             SaveToDB(CardPressed, winLose);
         }
         public void SaveToDB(int card, string WinLose)
