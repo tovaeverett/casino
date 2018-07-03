@@ -6,9 +6,9 @@
 <head runat="server">
     <title>Roulette</title>
     <link rel="stylesheet" href="/src/css/bootstrap.css"></link>
-	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css">
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css"/>
 	<link rel="stylesheet" href="/src/css/bootstrap-responsive.css"></link>
-	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css">
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css"/>
     <link rel="stylesheet" href="/src/css/roulette_wheel.css"></link>
 </head>
 <body>
