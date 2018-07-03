@@ -33,6 +33,7 @@ namespace SU_Casino
             return randomcard;
         }
 
+
         public int randomStartCard()
         {
             Random rnd = new Random();
