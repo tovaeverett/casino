@@ -1,8 +1,8 @@
 var cards = {};
 var disable = false;
 
-var card1 = document.querySelector('#betCard1');
-card1.addEventListener('click', function () {
+var card1 = $('#betCard1');
+card1.click(function () {
     if (!disable) {
         card1.classList.toggle('is-flipped');
         setTimeout(function () { cardClicked(card1) }, 2000);
@@ -10,7 +10,7 @@ card1.addEventListener('click', function () {
     }
 });
 
-var card2 = document.querySelector('#betCard2');
+var card2 = $('#betCard2');
 card2.addEventListener( 'click', function() {
     if (!disable) {
         card2.classList.toggle('is-flipped');
@@ -44,17 +44,21 @@ function initGame() {
 function cardClicked(selectedCard) {
     console.log(selectedCard, $(card1).find('img')[1].id);
     disable = true;
+    var isWinner = false;
     if (selectedCard.id === 'betCard1') {
         if (cards.card1 === cards.card2) {
             alert('winner!');
+            isWinner = true;
         }
         else {
             alert('Sorry!');
         }
     }
     else {
+
         if (cards.card3 === cards.card2) {
             alert('winner!');
+            isWinner = true;
         }
         else {
             alert('Sorry!');

@@ -47,6 +47,7 @@
                 <asp:HiddenField ID="HiddenField_card1" runat="server" Value="5"/>
                 <asp:HiddenField ID="HiddenField_card2" runat="server" Value="3"/> 
                 <asp:HiddenField ID="HiddenField_card3" runat="server" Value="3"/> 
+                <asp:HiddenField ID="HiddenFieldWinLose" runat="server" />
                 <asp:Label ID="lblMoney" runat="server"></asp:Label>
                 <asp:Button ID="btnPlay" runat="server" Text="PLAY" />
             </form>

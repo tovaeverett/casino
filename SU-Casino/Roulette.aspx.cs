@@ -11,41 +11,19 @@ namespace SU_Casino
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                HiddenFieldrouletteNr.Value = RandomSpin().ToString();
+            }
         } 
 
-        public string RandomSpin()
+        public int RandomSpin()
         {
             Random rnd = new Random();
 
             int randomNr = rnd.Next(0, 37);
             lblNr.Text = randomNr.ToString();
-            if (IsEven(randomNr) == true)
-            {
-                if (RadioButtonList1.SelectedValue == "Black")
-                {
-                    imgWinLose.ImageUrl = "~/Cards/youwin.png";
-                }
-                else
-                {
-                    imgWinLose.ImageUrl = "~/Cards/youlose.png";
-                } 
-                return "Black";
-            }
-            else
-            {
-                if (RadioButtonList1.SelectedValue == "Red")
-                { 
-                    imgWinLose.ImageUrl = "~/Cards/youwin.png";
-                }
-                else
-                {
-                    imgWinLose.ImageUrl = "~/Cards/youlose.png";
-                }
-                return "Red";
-            }
-
-
+            return randomNr;
         }
 
         public static bool IsEven(int value)
@@ -55,7 +33,7 @@ namespace SU_Casino
 
         protected void btnSpin_Click(object sender, EventArgs e)
         {
-            lblColor.Text = RandomSpin();
+            RandomSpin();
         }
     }
 }

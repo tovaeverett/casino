@@ -19,6 +19,8 @@
             
             <asp:Image ID="imgWinLose" runat="server" />
         </div>
+        <asp:HiddenField ID="HiddenFieldrouletteNr" runat="server" />
+         <asp:HiddenField ID="HiddenFieldWinLose" runat="server" />
     </form>
 </body>
 </html>
