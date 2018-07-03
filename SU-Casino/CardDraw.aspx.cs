@@ -24,13 +24,27 @@ namespace SU_Casino
 
         }
 
-        public int randomCard(int min)
+        public string randomCard(int min)
         {
+            int max = 0;
             Random rnd = new Random();
+            if(min < 8)
+            {
+                max = min +5;
+            }
+            else if(min >= 8)
+            {
+                min = 8;
+                max = 13;
+            }
 
-            int randomcard = rnd.Next(min, min + 5);
-           // string url = "src/images/cards/" + randomcard + "C.png";
-            return randomcard;
+            int randomcard = rnd.Next(min, max);
+            Random letter = new Random();
+            int num = letter.Next(0, 3); // Zero to 25
+            char let = (char)('a' + num);
+            // string url = "src/images/cards/" + randomcard + "C.png";
+            string card = randomcard.ToString()+ let;
+            return card;
         }
 
 
@@ -38,7 +52,7 @@ namespace SU_Casino
         {
             Random rnd = new Random();
 
-            int randomcard = rnd.Next(0, 53);
+            int randomcard = rnd.Next(0, 12);
             //string url = "~/Cards/" + randomcard + ".png";
             CheckCard = randomcard;
             return randomcard;
@@ -52,7 +66,26 @@ namespace SU_Casino
         }
         protected void btnPlay_Click(object sender, EventArgs e)
         {
+            checkForWin();
             setCards();
+        }
+        private void checkForWin()
+        {
+           int CardPressed = 0; 
+           var winLose = HiddenField_WinLose.Value;
+           if(HiddenField_card1.Value != null)
+            {
+                CardPressed = 1;
+            }
+           else
+            {
+                CardPressed = 2;
+            }
+            SaveToDB(CardPressed, winLose);
+        }
+        public void SaveToDB(int card, string WinLose)
+        {
+
         }
 
         /* protected void card1_back_Click(object sender, ImageClickEventArgs e)
