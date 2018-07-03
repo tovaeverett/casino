@@ -1,8 +1,8 @@
 var cards = {};
 var disable = false;
 
-var card1 = $('#betCard1');
-card1.click(function () {
+var card1 = document.querySelector('#betCard1');
+card1.addEventListener('click', function () {
     if (!disable) {
         card1.classList.toggle('is-flipped');
         setTimeout(function () { cardClicked(card1) }, 2000);
@@ -10,12 +10,11 @@ card1.click(function () {
     }
 });
 
-var card2 = $('#betCard2');
-card2.addEventListener( 'click', function() {
+var card2 = document.querySelector('#betCard1');
+card2.addEventListener('click', function () {
     if (!disable) {
         card2.classList.toggle('is-flipped');
-        setTimeout(function () { cardClicked(card1) }, 2000);
-        cardClicked(card2);
+        setTimeout(function () { cardClicked(card2) }, 2000);
     }
 });
 
