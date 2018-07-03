@@ -74,6 +74,7 @@
     <Content Include="src\css\bootstrap-responsive.css" />
     <Content Include="src\css\bootstrap.css" />
     <Content Include="src\css\card_game.css" />
+    <Content Include="src\css\roulette_wheel.css" />
     <Content Include="src\images\cards\10C.png" />
     <Content Include="src\images\cards\10D.png" />
     <Content Include="src\images\cards\10H.png" />
@@ -141,7 +142,12 @@
     <Content Include="src\images\cards\yellow_back.png" />
     <Content Include="src\images\coins.gif" />
     <Content Include="src\js\card_game.js" />
-    <Content Include="Web.config" />
+    <Content Include="src\js\jquery.keyframes.mini.js" />
+    <Content Include="src\js\roulette.js" />
+    <Content Include="src\js\roulette_wheel.js" />
+    <Content Include="Web.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CardDraw.aspx.cs">
@@ -171,9 +177,11 @@
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup />

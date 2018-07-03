@@ -1,21 +1,20 @@
 var cards = {};
 var disable = false;
 
-var card1 = $('#betCard1');
-card1.click(function () {
+var card1 = document.querySelector('#betCard1');
+card1.addEventListener('click', function () {
     if (!disable) {
         card1.classList.toggle('is-flipped');
-        setTimeout(function () { cardClicked(card1) }, 2000);
+        //setTimeout(function () { cardClicked(card1) }, 2000);
         console.log($(this).find('img'));
     }
 });
 
-var card2 = $('#betCard2');
-card2.addEventListener( 'click', function() {
+var card2 = document.querySelector('#betCard1');
+card2.addEventListener('click', function () {
     if (!disable) {
         card2.classList.toggle('is-flipped');
-        setTimeout(function () { cardClicked(card1) }, 2000);
-        cardClicked(card2);
+        //setTimeout(function () { cardClicked(card2) }, 2000);
     }
 });
 
@@ -29,14 +28,14 @@ $(document).ready(function () {
 function initGame() {
     var baseUrl = "src/images/cards/";
     cards = {
-        card1: $("#HiddenField_card1").val(),
-        card2: $("#HiddenField_card2").val(),
-        card3: $("#HiddenField_card3").val()
+        card1:'2', //$("#HiddenField_card1").val(),
+        card2:'3', //$("#HiddenField_card2").val(),
+        card3:'3', //$("#HiddenField_card3").val()
     };
     $("[id ^= 'notEqual']").hide();
-    $("#imgCard1").attr("src", baseUrl + cards.card1 + "C.png");
+   /* $("#imgCard1").attr("src", baseUrl + cards.card1 + "C.png");
     $("#imgCard2").attr("src", baseUrl + cards.card2 + "C.png");
-    $("#imgCard3").attr("src", baseUrl + cards.card3 + "C.png");
+    $("#imgCard3").attr("src", baseUrl + cards.card3 + "C.png");*/
    
     disable = false;
 }

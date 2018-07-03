@@ -167,7 +167,11 @@ C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\bin\roslyn\VBCSCompiler.
 C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\obj\Debug\SU-Casino.csprojAssemblyReference.cache
 C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\obj\Debug\SU-Casino.csproj.CoreCompileInputs.cache
 C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\obj\Debug\SU-Casino.csproj.CopyComplete
 C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\obj\Debug\SU-Casino.dll
 C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\obj\Debug\SU-Casino.pdb
+C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\bin\Web.config
+C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\bin\Web.Debug.config
+C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\bin\Web.Release.config
