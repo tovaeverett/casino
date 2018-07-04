@@ -175,6 +175,3 @@ C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\obj\Debug\SU-Casino.pdb
 C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\bin\Web.config
 C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\bin\Web.Debug.config
 C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\bin\Web.Release.config
-C:\Users\Hugosson\source\repos\SU-Casino2\SU-Casino\bin\Web.config
-C:\Users\Hugosson\source\repos\SU-Casino2\SU-Casino\bin\Web.Debug.config
-C:\Users\Hugosson\source\repos\SU-Casino2\SU-Casino\bin\Web.Release.config
