@@ -11,15 +11,23 @@
  body {
   font-size: 16px;
   background-image: url('/src/images/bg-caribbean.jpg');
-  background-repeat: repeat;
-  background-position: center;
+  background-size: 100% auto;
  }
+
+ dialog::backdrop {
+    /* make the backdrop a semi-transparent black */
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  dialog + .backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
 
  #winnerAnnouncer{
    z-index: 2000;
   position: absolute;
-  top: 50%;
-  left: 30%;
+  top: 30%;
+  left: 40%;
   color: yellow;
   display:none;
   animation: blinker 1s linear 10s;
@@ -45,6 +53,21 @@
     margin-bottom: 10px;
 }
 
+#roulette-wrapper {
+    border-radius: 20px;
+    background: green;
+    /* padding: 20px; */
+    /* padding-left: 10px; */
+    border: 10px solid lightgreen;
+    border-top-left-radius: 39% 65%;
+    border-bottom-left-radius: 39% 65%;
+    /* background-color: white; */
+}
+
+#roulette-wrapper .btn_container {
+    padding-top: 10px;
+}
+
 @keyframes blinker {
   50% {
     opacity: 0.1;
@@ -62,7 +85,7 @@
 
  #btnRed{
    background: lemonchiffon;
-   color: black;
+   color: red;
  }
  
  #btnSpin {
