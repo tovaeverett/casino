@@ -5,16 +5,16 @@ var card1 = document.querySelector('#betCard1');
 card1.addEventListener('click', function () {
     if (!disable) {
         card1.classList.toggle('is-flipped');
-        //setTimeout(function () { cardClicked(card1) }, 2000);
+        setTimeout(function () { cardClicked(card1); }, 2000);
         console.log($(this).find('img'));
     }
 });
 
-var card2 = document.querySelector('#betCard1');
+var card2 = document.querySelector('#betCard2');
 card2.addEventListener('click', function () {
     if (!disable) {
         card2.classList.toggle('is-flipped');
-        //setTimeout(function () { cardClicked(card2) }, 2000);
+        setTimeout(function () { cardClicked(card2); }, 2000);
     }
 });
 
@@ -22,20 +22,22 @@ card2.addEventListener('click', function () {
 
 $(document).ready(function () {
     initGame();
+    $("#winchance-container").hide();
+    $("#message-container").hide();
     console.log(cards);
 });
 
 function initGame() {
     var baseUrl = "src/images/cards/";
     cards = {
-        card1:'2', //$("#HiddenField_card1").val(),
-        card2:'3', //$("#HiddenField_card2").val(),
-        card3:'3', //$("#HiddenField_card3").val()
+        card1:'3', //$("#HiddenField_card1").val(),
+        card2:'2', //$("#HiddenField_card2").val(),
+        showCard:'2' //$("#HiddenField_card3").val()
     };
     $("[id ^= 'notEqual']").hide();
-   /* $("#imgCard1").attr("src", baseUrl + cards.card1 + "C.png");
+    $("#imgCard1").attr("src", baseUrl + cards.card1 + "C.png");
     $("#imgCard2").attr("src", baseUrl + cards.card2 + "C.png");
-    $("#imgCard3").attr("src", baseUrl + cards.card3 + "C.png");*/
+    $("#imgCard3").attr("src", baseUrl + cards.showCard + "C.png");
    
     disable = false;
 }
@@ -45,24 +47,21 @@ function cardClicked(selectedCard) {
     disable = true;
     var isWinner = false;
     if (selectedCard.id === 'betCard1') {
-        if (cards.card1 === cards.card2) {
-            alert('winner!');
+        $("#HiddenField_card2").val("null");
+        if (cards.card1 === cards.showCard) {
+            $("#message-container").show();
             isWinner = true;
-        }
-        else {
-            alert('Sorry!');
         }
     }
     else {
-
-        if (cards.card3 === cards.card2) {
-            alert('winner!');
+        $("#HiddenField_card1").val("null");
+        if (cards.card2 === cards.showCard) {
+            $("#message-container").show();
             isWinner = true;
         }
-        else {
-            alert('Sorry!');
-        }
     }
+    isWinner ? $("#HiddenFieldWinLose").val("win") : $("#HiddenFieldWinLose").val("lose"); 
+    console.log($("#HiddenFieldWinLose").val());
 }
 
 function resetGame() {

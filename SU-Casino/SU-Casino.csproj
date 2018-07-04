@@ -74,6 +74,7 @@
     <Content Include="src\css\bootstrap-responsive.css" />
     <Content Include="src\css\bootstrap.css" />
     <Content Include="src\css\card_game.css" />
+    <Content Include="src\css\index.css" />
     <Content Include="src\css\roulette_wheel.css" />
     <Content Include="src\images\cards\10C.png" />
     <Content Include="src\images\cards\10D.png" />

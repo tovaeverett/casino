@@ -10,6 +10,7 @@ namespace SU_Casino
     public partial class OneArmdBandit : System.Web.UI.Page
     {
         Random rnd = new Random();
+        int money;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -17,30 +18,30 @@ namespace SU_Casino
 
         protected void btnPull_Click(object sender, EventArgs e)
         {
-            IMGslot1.ImageUrl = randomStartCard();
-            IMGslot2.ImageUrl = randomStartCard();
-            IMGslot3.ImageUrl = randomStartCard();
+            HiddenField_Spin1.Value = randomStartCard().ToString();
+            HiddenField_Spin2.Value = randomStartCard().ToString();
+            HiddenField_Spin3.Value = randomStartCard().ToString();
             checkIfWin();
         }
         public void checkIfWin()
         {
-            if (IMGslot1.ImageUrl == IMGslot2.ImageUrl && IMGslot1.ImageUrl == IMGslot3.ImageUrl)
+            if (HiddenField_Spin1.Value == HiddenField_Spin2.Value && HiddenField_Spin1.Value == HiddenField_Spin3.Value)
             {
-                imgWin.ImageUrl = "~/Cards/youwin.png";
+                HiddenField_WinLose.Value = "Win";
+                money = 100;
             }
             else
             {
-                imgWin.ImageUrl = "~/Cards/youlose.png";
+                HiddenField_WinLose.Value = "Lose";
+                money = -100;
             }
+            lblMoney.Text = money.ToString();
         }
-        public string randomStartCard()
+        public int randomStartCard()
         {
-
-
             int randomfruit = rnd.Next(0, 6);
-            string url = "~/Fruit/" + randomfruit + ".png";
 
-            return url;
+            return randomfruit;
         }
     }
 }

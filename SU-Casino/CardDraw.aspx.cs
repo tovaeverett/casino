@@ -12,6 +12,8 @@ namespace SU_Casino
     {
         private int CheckCard;
         public int money;
+       
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -26,8 +28,16 @@ namespace SU_Casino
 
         public string randomCard(int min)
         {
-            int max = 0;
+            Random letter = new Random();
+            char[] Array = "SHDC".ToCharArray();
+
+           
+            int num = letter.Next(0, 4); 
+            char let = Array[num];
+            
             Random rnd = new Random();
+            int max = 0;
+        
             if(min < 8)
             {
                 max = min +5;
@@ -39,9 +49,7 @@ namespace SU_Casino
             }
 
             int randomcard = rnd.Next(min, max);
-            Random letter = new Random();
-            int num = letter.Next(0, 3); // Zero to 25
-            char let = (char)('a' + num);
+           
             // string url = "src/images/cards/" + randomcard + "C.png";
             string card = randomcard.ToString()+ let;
             return card;
@@ -51,10 +59,10 @@ namespace SU_Casino
         public int randomStartCard()
         {
             Random rnd = new Random();
-
             int randomcard = rnd.Next(0, 12);
             //string url = "~/Cards/" + randomcard + ".png";
             CheckCard = randomcard;
+           
             return randomcard;
         }
 
