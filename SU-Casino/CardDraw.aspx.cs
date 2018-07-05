@@ -12,8 +12,8 @@ namespace SU_Casino
     {
         private int CheckCard;
         public int money;
-       
 
+        Database database = new Database();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -22,6 +22,7 @@ namespace SU_Casino
                 setCards();
                 money = 1500;
                 lblMoney.Text = money.ToString();
+             
             }
 
         }
