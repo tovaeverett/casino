@@ -10,6 +10,15 @@
     color:yellow
 }
 
+#panel1 {
+    /* width: 49*/
+    float: right;
+}
+#panel2 {
+    /* width: 33%;
+    float: right;*/
+}
+
 #winchance-container {
     background: rgba(90, 82, 82, 0.79);
     position: absolute;
@@ -44,9 +53,96 @@
     border-radius: 5px;
 }
 
+.cash-sum{
+    display: block;
+    background: #fff;
+    padding: 5px 10px;
+    border: 2px solid #000;
+    border-radius: 3px;
+    width: 70px;
+    color:black;
+    text-align: center;
+}
+
+#moneyLable {
+    display: inline-block;
+    text-align: left;
+}
+
+.round span.round {
+    display: block;
+    opacity: 0;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    font-size: 1px;
+    border: none;
+    padding: 40% 20% 0 20%;
+    color: #fff;
+}
+
+.play-btn {
+    padding: 10px;
+    background: #08c;
+    border-width: 2px;
+    border-style: none;
+    border-color: buttonface;
+    border-image: initial;
+    border-radius: 50%;
+    height: 70px;
+    width: 70px !important;
+    box-shadow: 2px 2px 7px rgba(0,0,0,.2);
+    text-shadow: 0 1px 0 rgba(255,255,255,.7);
+    border-color: #333;
+    border: 4px solid;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: "Hammersmith One", sans-serif;
+    margin-bottom: 5px;
+}
+
+.div-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#message-content{
+    padding-top: 200px;
+}
+/*@media (min-width: 1800px) {
+    .div-center {
+        width: 50%;
+        margin: 0 auto;
+    }
+}*/
 @media (max-width: 767px) {
     .winchance-btn {
-        font-size: 1em;
-        padding: 10px;
+            font-size: 1em;
+            padding: 10px;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .playground {
+            height: 700px;
+            padding-top: 200px;
+        }
+
+        .cardSpan {
+            max-width: 190px;
+        }
+    }
+
+@media (max-width: 510px) {
+    .cardSpan {
+        float: left;
+        width: 130px;
+        padding-right: 2px;
+        padding-left: 2px;
+    }
+    .playground-cards {
+        height: 200px !important;
     }
 }

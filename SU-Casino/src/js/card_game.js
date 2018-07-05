@@ -5,7 +5,7 @@ var card1 = document.querySelector('#betCard1');
 card1.addEventListener('click', function () {
     if (!disable) {
         card1.classList.toggle('is-flipped');
-        setTimeout(function () { cardClicked(card1); }, 2000);
+        setTimeout(function () { cardClicked(card1); }, 500);
         console.log($(this).find('img'));
     }
 });
@@ -14,7 +14,7 @@ var card2 = document.querySelector('#betCard2');
 card2.addEventListener('click', function () {
     if (!disable) {
         card2.classList.toggle('is-flipped');
-        setTimeout(function () { cardClicked(card2); }, 2000);
+        setTimeout(function () { cardClicked(card2); }, 500);
     }
 });
 
@@ -25,6 +25,10 @@ $(document).ready(function () {
     $("#winchance-container").hide();
     $("#message-container").hide();
     console.log(cards);
+});
+
+$("#btnClose").click(function () {
+    $("#message-container").hide();
 });
 
 function initGame() {
