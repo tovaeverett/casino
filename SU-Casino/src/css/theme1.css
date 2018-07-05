@@ -1,0 +1,42 @@
+﻿body {
+    background: #000;
+    background-size: cover;
+}
+
+.header {
+    color: #0088cc;
+    padding-top: 25px;
+    padding-bottom: 15px;
+    text-align: center;
+    padding-left: 30px;
+}
+
+.playground {
+    background: #000 url("/src/images/backgrounds/body_theme1.jpg") no-repeat center;
+    background-size: cover;
+    
+}
+
+.playground-cards {
+    background-color: rgba(221, 221, 221, 0.48); 
+    border-radius: 30px;
+    display: block;
+    height: 300px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.game-panel {
+    text-align: center;
+    border-radius: 3px;
+    background: #114959;
+    padding-top: 15px;
+    color: #fff;
+    border: 2px solid rgba(221, 221, 221, 0.48);
+   margin-top:15px;
+}
+
+    .game-panel > ul {
+        list-style-type: none;
+        display: inline-flex;
+    }

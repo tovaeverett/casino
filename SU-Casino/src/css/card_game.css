@@ -1,5 +1,12 @@
 body { font-family: sans-serif; }
 
+
+.cardSpan {
+    float: left;
+    max-width: 150px;
+    /*margin: 20px;*/
+}
+
 .scene {
   width: 100%;
   /*height: 260px;*/
@@ -10,6 +17,7 @@ body { font-family: sans-serif; }
 .card {
   width: 100%;
   height: 100%;
+  max-width:150px;
   transition: transform 1s;
   transform-style: preserve-3d;
   cursor: pointer;
@@ -21,15 +29,15 @@ body { font-family: sans-serif; }
 }
 
 .card__face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  line-height: 260px;
-  color: white;
-  text-align: center;
-  font-weight: bold;
-  font-size: 40px;
-  backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /*line-height: 260px;*/
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+    backface-visibility: hidden;
 }
 
 .card__face--front {
@@ -53,3 +61,45 @@ body { font-family: sans-serif; }
     padding-top: 180px;
     font-size: 100px;
 }
+
+/*.div-center {
+    width: 100%;
+    margin-left: 10%;
+}
+
+@media (min-width: 1880px) {
+    .cardSpan {
+        margin: 20px;
+    }
+    .div-center{
+        width:50%;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 1400px) {
+    .cardSpan {
+        margin: 20px;
+    }
+
+    .div-center {
+        width: 100%;
+        margin: 20%;
+    }
+}
+
+@media (max-width: 767px) {
+    .cardSpan {
+        float: left;
+        width: 130px;
+        margin: 3px;
+    }
+    .div-center {
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+*/
+
+
+
