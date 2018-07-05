@@ -5,12 +5,13 @@
     <html xmlns="http://www.w3.org/1999/xhtml">
 
     <head runat="server">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <title>Roulette</title>
-        <link rel="stylesheet" href="/src/css/bootstrap.css"></link>
-        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css">
-        <link rel="stylesheet" href="/src/css/bootstrap-responsive.css"></link>
-        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css">
-        <% if (GetCssRandom() == 0)
+        <link rel="stylesheet" href="/src/css/bootstrap.css" />
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css" />
+        <link rel="stylesheet" href="/src/css/bootstrap-responsive.css" />
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css" />
+        <% if (this.GetCssRandom() == 0)
             { %>
             <link rel="stylesheet" href="/src/css/roulette_wheel.css" />
             <% } else { %>
@@ -70,9 +71,9 @@
                 </div>
             </div>
         </div> -->
-        <div class="container top-pad50">
+        <div class="container">
             <div class="row">
-                <div class="span4 offset4">
+                <div class="span8 offset4" id="roulette-wrapper">
                     <div class="spinner text-center">
                         <div class="ball">
                             <span></span>
@@ -91,30 +92,24 @@
                             <div class="pieBackground"></div>
                         </div>
                     </div>
+                    <div class="btn_container">
+                        <p>
+                            <button id="btnBlack" class="btn btn-large btn-primary "> Black </button>
+                        </p>
+                        <p>
+                            <button id="btnRed" class="btn btn-large btn-primary "> Red </button>
+                        </p>
+                        <p style="display: inline;">You've selected: </p>
+                        <p style="display: inline;" id="selected-color"></p>
+                        <p id="selected-winning-chance"></p>
+                    </div>
                 </div>
-                <div class="span4"></div>
             </div>
-            <div class="row top-pad50">
-                <div class="row">
-                    <div class="span9">
-                        <h2 style="display: inline;">You've selected: </h2>
-                        <span style="display: inline;" id="selected-color">
-                        </span>
-                        <h2 id="selected-winning-chance"></h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="span4">
-                        <div class="btn_container">
-                            <p>
-                                <button id="btnBlack" class="btn btn-large btn-primary "> Black </button>
-                                <button id="btnRed" class="btn btn-large btn-primary "> Red </button>
-                            </p>
-                            <p>
-                                <button id="btnSpin" class="btn btn-large btn-primary start"> Spin </button>
-                            </p>
-                        </div>
-                    </div>
+            <div class="row">
+                <div class="row text-center">
+                    <p>
+                        <button id="btnSpin" class="btn btn-large btn-primary start"> Spin </button>
+                    </p>
                 </div>
             </div>
             <div id="winnerAnnouncer">
