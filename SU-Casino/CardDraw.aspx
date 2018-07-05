@@ -105,6 +105,7 @@
            
             <div class="winchance-div">
                  <h2>What are your chances of winning?</h2>
+                <br />
                 <ul>
                     <li class="winchance-btn">High</li>
                     <li class="winchance-btn">Low</li>

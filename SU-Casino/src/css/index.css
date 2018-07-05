@@ -33,12 +33,16 @@
     padding-left: 1px;
     margin-top: 20%;
     padding: 30px 1px 30px 1px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
-.winchance-div > ul {
-   list-style-type: none;
-   display: inline-flex;
-   margin-left: 20px;
-}
+    .winchance-div > ul {
+        list-style-type: none;
+        display: inline-flex;
+        margin: 5px;
+       cursor:pointer;
+    }
 
 
 .winchance-btn {
@@ -124,16 +128,17 @@
         }
     }
 
-    @media (min-width: 1024px) {
+    @media (max-width: 1600px) {
         .playground {
-            height: 700px;
-            padding-top: 200px;
+            height: 400px;
+            padding-top: 10px;
         }
 
         .cardSpan {
             max-width: 190px;
         }
     }
+
 
 @media (max-width: 510px) {
     .cardSpan {

@@ -22,14 +22,20 @@ card2.addEventListener('click', function () {
 
 $(document).ready(function () {
     initGame();
-    $("#winchance-container").hide();
+    $("#winchance-container").show();
     $("#message-container").hide();
     console.log(cards);
 });
 
 $("#btnClose").click(function () {
     $("#message-container").hide();
+
 });
+
+$(".winchance-btn").click(function () {
+    $("#winchance-container").hide();
+});
+
 
 function initGame() {
     var baseUrl = "src/images/cards/";
