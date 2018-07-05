@@ -56,21 +56,23 @@ function cardClicked(selectedCard) {
     console.log(selectedCard, $(card1).find('img')[1].id);
     disable = true;
     var isWinner = false;
+    $(".lost").hide();
+    $(".winner").hide();
     if (selectedCard.id === 'betCard1') {
         $("#HiddenField_card2").val("null");
         if (cards.card1 === cards.showCard) {
-            $("#message-container").show();
             isWinner = true;
         }
     }
     else {
         $("#HiddenField_card1").val("null");
         if (cards.card2 === cards.showCard) {
-            $("#message-container").show();
             isWinner = true;
         }
     }
-    isWinner ? $("#HiddenFieldWinLose").val("win") : $("#HiddenFieldWinLose").val("lose"); 
+    isWinner ? $("#HiddenFieldWinLose").val("win") : $("#HiddenFieldWinLose").val("lose");
+    isWinner ? $(".winner").show() : $(".lost").show() 
+    $("#message-container").show();
     console.log($("#HiddenFieldWinLose").val());
 }
 
