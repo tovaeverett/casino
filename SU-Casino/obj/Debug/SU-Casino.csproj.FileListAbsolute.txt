@@ -176,3 +176,4 @@ C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\obj\Debug\SU-Casino.cspr
 C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\obj\Debug\SU-Casino.csproj.CopyComplete
 C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\obj\Debug\SU-Casino.dll
 C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\obj\Debug\SU-Casino.pdb
+C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\obj\Debug\SU-Casino.csprojAssemblyReference.cache

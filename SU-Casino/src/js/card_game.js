@@ -40,14 +40,14 @@ $(".winchance-btn").click(function () {
 function initGame() {
     var baseUrl = "src/images/cards/";
     cards = {
-        card1:'3', //$("#HiddenField_card1").val(),
-        card2:'2', //$("#HiddenField_card2").val(),
-        showCard:'2' //$("#HiddenField_card3").val()
+        card1: $("#HiddenField_card1").val(),
+        card2: $("#HiddenField_card2").val(),
+        showCard: $("#HiddenField_card3").val()
     };
     $("[id ^= 'notEqual']").hide();
-    $("#imgCard1").attr("src", baseUrl + cards.card1 + "C.png");
-    $("#imgCard2").attr("src", baseUrl + cards.card2 + "C.png");
-    $("#imgCard3").attr("src", baseUrl + cards.showCard + "C.png");
+    $("#imgCard1").attr("src", baseUrl + cards.card1 + ".png");
+    $("#imgCard2").attr("src", baseUrl + cards.card2 + ".png");
+    $("#imgCard3").attr("src", baseUrl + cards.showCard + ".png");
    
     disable = false;
 }
@@ -70,10 +70,10 @@ function cardClicked(selectedCard) {
             isWinner = true;
         }
     }
-    isWinner ? $("#HiddenFieldWinLose").val("win") : $("#HiddenFieldWinLose").val("lose");
-    isWinner ? $(".winner").show() : $(".lost").show() 
+    isWinner ? $("#HiddenField_WinLose").val("win") : $("#HiddenField_WinLose").val("lose");
+    isWinner ? $(".winner").show() : $(".lost").show();
     $("#message-container").show();
-    console.log($("#HiddenFieldWinLose").val());
+    console.log($("#HiddenField_WinLose").val());
 }
 
 function resetGame() {

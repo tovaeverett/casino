@@ -85,8 +85,9 @@ namespace SU_Casino
         {
            int CardPressed = 0; 
            var winLose = HiddenField_WinLose.Value;
+           var credit = Int32.Parse(lblMoney.Text);
 
-           if(HiddenField_card1.Value != null)
+           if (HiddenField_card1.Value != null)
             {
                 CardPressed = 1;
                 if(winLose == "win")
@@ -110,6 +111,7 @@ namespace SU_Casino
                     money = -50;
                 }
             }
+            money = money + credit;
             lblMoney.Text = money.ToString();
             SaveToDB(CardPressed, winLose);
         }
