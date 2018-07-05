@@ -145,6 +145,7 @@
     <Content Include="src\images\cards\red_back_0.png" />
     <Content Include="src\images\cards\yellow_back.png" />
     <Content Include="src\images\coins.gif" />
+    <Content Include="src\images\logos\theme1Logo.png" />
     <Content Include="src\images\slot\chomp.png" />
     <Content Include="src\images\slot\coin.png" />
     <Content Include="src\images\slot\flower.png" />

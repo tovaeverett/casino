@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="src/css/bootstrap.css"/>
     <link rel="stylesheet" href="src/css/bootstrap-responsive.css"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"/>
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css"/>
 	<link rel="stylesheet" href="src/css/card_game.css"/>
     <link rel="stylesheet" href="src/css/index.css"/>
@@ -18,7 +18,7 @@
     
     <div id="main-container" class="container-fluid">
         <div class="row header">
-           <h1> image for : Casino theme 1</h1>
+           <h1> image for : Casino theme 1</h1><!--img src="src/images/logos/theme1Logo.png" class="img-responsive" /-->
         </div>
         <div class="row playground">
             <div class="col-md-2 col-sm-1 "></div>
@@ -66,14 +66,14 @@
                     <asp:HiddenField ID="HiddenField_WinLose" runat="server" />
 
                     <div id="panel1">
-                    <div id="moneyLable">Money left:&nbsp; 
+                    <div id="moneyLable">Credit left:&nbsp; 
                         <span class="cash-sum"> 
                            <asp:Label ID="lblMoney" runat="server"> </asp:Label>
                         </span>
                     </div>
                 </div>
                     <div id="panel2">
-                     
+                     To play, click on the right or left card of the center card.
                     </div>
                
             </div>
@@ -83,24 +83,25 @@
         <div id="message-container" class="container-fluid overlayer">
         <div class="row">
         <div class="col-md-2"></div>
-        <div class="col-md-8 text-center winner" id="message-content">
-            <h1> WINNER!!!! </h1>
-            <h2> You got <span id="winCredit">+100</span> !!!!</h2>
-            <br />
-            <br />
-            <br />
-            <asp:Button ID="btnPlay" runat="server" Text="PLAY" CssClass="play-btn" />
-            <!--button id="btnClose" class="btn"> Close </button-->
-        </div>
-        <div class="col-md-8 text-center lost" id="message-content">
-            <h1> You lost... </h1>
-            <h2 id="lostCredit"> -100</h2>
-            <br />
-            <br />
-            <br />
-            <asp:Button ID="Button1" runat="server" Text="PLAY" CssClass="play-btn" />
-            <!--button id="btnClose" class="btn"> Close </button-->
-        </div>
+         <div class="col-md-8 text-center" id="message-content">
+                            <div class="winner">
+                                <h1> WINNER!!!! </h1>
+                                <h2> You got <span id="winCredit">+100</span> !!!!</h2>
+                                <br />
+                                <br />
+                                <br />
+                            </div>
+                            <div class="lost">
+                                <h1> You lost... </h1>
+                                <h2 id="lostCredit"> -100</h2>
+                                <br />
+                                <br />
+                                <br />
+                            </div>
+                        <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play again!" class="btn btn-large btn-primary" />
+                        <asp:Button ID="btnQuit" runat="server" Text="Quit game" class="btn btn-large btn-primary" />
+                    </div>
+        
         <div class="col-md-2"></div>
         </div>
             <div class="row text-center">
