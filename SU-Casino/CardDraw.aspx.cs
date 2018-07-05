@@ -22,9 +22,7 @@ namespace SU_Casino
                 setCards();
                 money = 1500;
                 lblMoney.Text = money.ToString();
-             
             }
-
         }
 
         public string randomCard(int min)
@@ -68,7 +66,6 @@ namespace SU_Casino
             int randomcard = rnd.Next(1, 13);
             //string url = "~/Cards/" + randomcard + ".png";
             CheckCard = randomcard;
-           
             return randomcard.ToString() + let;
         }
 
