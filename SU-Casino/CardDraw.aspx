@@ -73,9 +73,9 @@
                     </div>
                 </div>
                     <div id="panel2">
-                     <asp:Button ID="btnPlay" runat="server" Text="PLAY" CssClass="play-btn" />
+                     
                     </div>
-                </form>
+               
             </div>
             <div class="col-md-2 col-sm-1"></div>
          </div>
@@ -83,13 +83,23 @@
         <div id="message-container" class="container-fluid overlayer">
         <div class="row">
         <div class="col-md-2"></div>
-        <div class="col-md-8 text-center" id="message-content">
+        <div class="col-md-8 text-center winner" id="message-content">
             <h1> WINNER!!!! </h1>
-            <h2> You got +100 !!!!</h2>
+            <h2> You got <span id="winCredit">+100</span> !!!!</h2>
             <br />
             <br />
             <br />
-            <button id="btnClose" class="btn"> Close </button>
+            <asp:Button ID="btnPlay" runat="server" Text="PLAY" CssClass="play-btn" />
+            <!--button id="btnClose" class="btn"> Close </button-->
+        </div>
+        <div class="col-md-8 text-center lost" id="message-content">
+            <h1> You lost... </h1>
+            <h2 id="lostCredit"> -100</h2>
+            <br />
+            <br />
+            <br />
+            <asp:Button ID="Button1" runat="server" Text="PLAY" CssClass="play-btn" />
+            <!--button id="btnClose" class="btn"> Close </button-->
         </div>
         <div class="col-md-2"></div>
         </div>
@@ -97,7 +107,7 @@
                 
             </div>
         </div>
-                
+              
            
     </div>
     <div id="winchance-container" class="container-fluid overlayer">
@@ -105,6 +115,7 @@
            
             <div class="winchance-div">
                  <h2>What are your chances of winning?</h2>
+                <br />
                 <ul>
                     <li class="winchance-btn">High</li>
                     <li class="winchance-btn">Low</li>
@@ -114,6 +125,7 @@
             </div>
         </div>
     </div>
+    </form> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <script src="src/js/card_game.js"></script>
 </body>

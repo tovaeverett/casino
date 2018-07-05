@@ -57,7 +57,7 @@ namespace SU_Casino
         }
 
 
-        public int randomStartCard()
+        public string randomStartCard()
         {
             Random letter = new Random();
             char[] Array = "SHDC".ToCharArray();
@@ -69,7 +69,7 @@ namespace SU_Casino
             //string url = "~/Cards/" + randomcard + ".png";
             CheckCard = randomcard;
            
-            return randomcard +let;
+            return randomcard.ToString() + let;
         }
 
         public void setCards()
