@@ -13,17 +13,26 @@ $(function() {
 
   var $guessChange = $("#firstShow");
   $guessChange[0].showModal();
+  // dialogPolyfill.registerDialog($guessChange);
 
-  // document
-  //   .getElementById("selected-color")
-  //   .addEventListener("change", function(event) {
-  //     console.log(event);
-  //   });
+  btnSpin.prop("disabled", true);
 
-  $("#selected-color").on("change", function() {
-    console.log("Handler for .change() called." + event);
-    console.log(this);
-  });
+  // $("#selected-color").on("DOMSubtreeModified", function(event) {
+  //   console.log(event);
+  //   var changedColor = event.currentTarget.innerText
+  //     ? event.currentTarget.innerText
+  //     : event.srcElement.innerText;
+  //   console.log(changedColor);
+  //   if (changedColor === "") {
+  //     console.log("tom text");
+  //     if (!btnSpin[0].disabled) {
+  //       btnSpin.prop("disabled", true);
+  //     }
+  //   } else {
+  //     console.log("inte tom text");
+  //     btnSpin.prop("disabled", false);
+  //   }
+  // });
 });
 
 var rotationsTime = 8;
@@ -169,11 +178,13 @@ function createWheel() {
 btnRed.click(function() {
   betOption = "red";
   setSelectedColor();
+  btnSpin.prop("disabled", false);
 });
 
 btnBlack.click(function() {
   betOption = "black";
   setSelectedColor();
+  btnSpin.prop("disabled", false);
 });
 
 btnHigh.click(function() {
@@ -236,6 +247,8 @@ function finishSpin() {
   betOption = "";
   setSelectedColor();
   switchButtons(false);
+
+  btnSpin.prop("disabled", true);
 }
 
 function resetAni() {

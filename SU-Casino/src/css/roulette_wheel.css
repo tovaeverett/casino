@@ -12,10 +12,20 @@
   font-size: 16px;
   background-image: url('/src/images/bg.png');
   background-repeat: repeat;
+  color: whitesmoke;
  }
 
+ dialog::backdrop {
+    /* make the backdrop a semi-transparent black */
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  dialog + .backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
  #winnerAnnouncer{
-   z-index: 2000;
+  z-index: 2000;
   position: absolute;
   top: 50%;
   left: 30%;
@@ -39,6 +49,17 @@
 
 #firstShow .row:last-of-type{
     margin-bottom: 10px;
+}
+
+#roulette-wrapper {
+    border-radius: 20px;
+    background: green;
+    /* padding: 20px; */
+    /* padding-left: 10px; */
+    border: 10px solid lightgreen;
+    border-top-left-radius: 39% 65%;
+    border-bottom-left-radius: 39% 65%;
+    /* background-color: white; */
 }
 
 @keyframes blinker {
