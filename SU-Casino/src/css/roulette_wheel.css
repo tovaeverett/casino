@@ -24,9 +24,8 @@
     background-color: rgba(0, 0, 0, 0.4);
   }
 
-
  #winnerAnnouncer{
-   z-index: 2000;
+  z-index: 2000;
   position: absolute;
   top: 50%;
   left: 30%;

@@ -5,6 +5,7 @@
     <html xmlns="http://www.w3.org/1999/xhtml">
 
     <head runat="server">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <title>Roulette</title>
         <link rel="stylesheet" href="/src/css/bootstrap.css" />
         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css" />
@@ -70,7 +71,7 @@
                 </div>
             </div>
         </div> -->
-        <div class="container top-pad50">
+        <div class="container">
             <div class="row">
                 <div class="span8 offset4" id="roulette-wrapper">
                     <div class="spinner text-center">
@@ -98,23 +99,17 @@
                         <p>
                             <button id="btnRed" class="btn btn-large btn-primary "> Red </button>
                         </p>
+                        <p style="display: inline;">You've selected: </p>
+                        <p style="display: inline;" id="selected-color"></p>
+                        <p id="selected-winning-chance"></p>
                     </div>
                 </div>
             </div>
-            <div class="row top-pad50">
-                <div class="row">
-                    <div class="span9">
-                        <h2 style="display: inline;">You've selected: </h2>
-                        <h2 style="display: inline;" id="selected-color"></h2>
-                        <h2 id="selected-winning-chance"></h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="span4">
-                        <p>
-                            <button id="btnSpin" class="btn btn-large btn-primary start"> Spin </button>
-                        </p>
-                    </div>
+            <div class="row">
+                <div class="row text-center">
+                    <p>
+                        <button id="btnSpin" class="btn btn-large btn-primary start"> Spin </button>
+                    </p>
                 </div>
             </div>
             <div id="winnerAnnouncer">
