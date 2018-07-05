@@ -58,12 +58,17 @@ namespace SU_Casino
 
         public int randomStartCard()
         {
+            Random letter = new Random();
+            char[] Array = "SHDC".ToCharArray();
+            int num = letter.Next(0, 4);
+            char let = Array[num];
+
             Random rnd = new Random();
-            int randomcard = rnd.Next(0, 12);
+            int randomcard = rnd.Next(1, 13);
             //string url = "~/Cards/" + randomcard + ".png";
             CheckCard = randomcard;
            
-            return randomcard;
+            return randomcard +let;
         }
 
         public void setCards()
@@ -74,8 +79,9 @@ namespace SU_Casino
         }
         protected void btnPlay_Click(object sender, EventArgs e)
         {
-            checkForWin();
             setCards();
+            checkForWin();
+           
         }
         private void checkForWin()
         {
