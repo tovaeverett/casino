@@ -17,6 +17,15 @@ namespace SU_Casino
             }
         } 
 
+        public int GetCssRandom()
+        {
+            Random rnd = new Random();
+
+            var rndNr = rnd.Next(0, 2);
+
+            return rndNr;
+        }
+
         public int RandomSpin()
         {
             Random rnd = new Random();

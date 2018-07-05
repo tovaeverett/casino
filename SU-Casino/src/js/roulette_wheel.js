@@ -1,24 +1,129 @@
+$(function() {
+  document.addEventListener("keydown", function(event) {
+    if (event.keyCode === 81) {
+      setSelectedWinningChange("high");
+    } else if (event.keyCode === 87) {
+      setSelectedWinningChange("low");
+    } else if (event.keyCode === 69) {
+      setSelectedWinningChange("zero");
+    } else if (event.keyCode === 82) {
+      setSelectedWinningChange("dont know");
+    }
+  });
+
+  var $guessChange = $("#firstShow");
+  $guessChange[0].showModal();
+
+  // document
+  //   .getElementById("selected-color")
+  //   .addEventListener("change", function(event) {
+  //     console.log(event);
+  //   });
+
+  $("#selected-color").on("change", function() {
+    console.log("Handler for .change() called." + event);
+    console.log(this);
+  });
+});
+
 var rotationsTime = 8;
 var wheelSpinTime = 6;
 var ballSpinTime = 5;
 var numorder = [
-  0,  32,  15, 19, 4, 2, 25, 17, 34,  6,  27,  13,  36,  11,  30,  8,  23,  10,  5,  24,  16,  33,  1,  20,  14,  31,
-  9, 22, 18, 29, 7, 28, 12,  35,  3,  26
+  0,
+  32,
+  15,
+  19,
+  4,
+  2,
+  25,
+  17,
+  34,
+  6,
+  27,
+  13,
+  36,
+  11,
+  30,
+  8,
+  23,
+  10,
+  5,
+  24,
+  16,
+  33,
+  1,
+  20,
+  14,
+  31,
+  9,
+  22,
+  18,
+  29,
+  7,
+  28,
+  12,
+  35,
+  3,
+  26
 ];
-var numred = [ 32,  19,  21,  25,  34,  27,  36,  30,  23,  5,  16,  1,  14,  9,  18,  7,  12,  3];
-var numblack = [15,  4,  2,  17,  6,  13,  11,  8,  10,  24,  33,  20,  31,  22,  29,  28,  35,  26];
+var numred = [
+  32,
+  19,
+  21,
+  25,
+  34,
+  27,
+  36,
+  30,
+  23,
+  5,
+  16,
+  1,
+  14,
+  9,
+  18,
+  7,
+  12,
+  3
+];
+var numblack = [
+  15,
+  4,
+  2,
+  17,
+  6,
+  13,
+  11,
+  8,
+  10,
+  24,
+  33,
+  20,
+  31,
+  22,
+  29,
+  28,
+  35,
+  26
+];
 var numgreen = [0];
 var numbg = $(".pieContainer");
 var ballbg = $(".ball");
 var btnSpin = $("#btnSpin");
 var btnBlack = $("#btnBlack");
 var btnRed = $("#btnRed");
+var btnHigh = $("#btnHigh");
+var btnLow = $("#btnLow");
+var btnZero = $("#btnZero");
+var btnDontKnow = $("#btnDontKnow");
 var toppart = $("#toppart");
 var pfx = $.keyframe.getVendorPrefix();
 var transform = pfx + "transform";
 var rinner = $("#rcircle");
 var numberLoc = [];
-var betOption ="";
+var betOption = "";
+var expectedWinningChance = "";
 $.keyframe.debug = true;
 
 createWheel();
@@ -62,35 +167,75 @@ function createWheel() {
 }
 
 btnRed.click(function() {
-  betOption='red';
+  betOption = "red";
+  setSelectedColor();
 });
 
 btnBlack.click(function() {
-  betOption='black';
+  betOption = "black";
+  setSelectedColor();
 });
+
+btnHigh.click(function() {
+  setSelectedWinningChange("high");
+});
+
+btnLow.click(function() {
+  setSelectedWinningChange("low");
+});
+
+btnZero.click(function() {
+  setSelectedWinningChange("zero");
+});
+
+btnDontKnow.click(function() {
+  setSelectedWinningChange("dont know");
+});
+
+function setSelectedColor() {
+  $("#selected-color").text(betOption);
+}
+
+function setSelectedWinningChange(chance) {
+  $("#selected-winning-chance").text(
+    `You expect your winning change to be: ${chance}`
+  );
+  //$accountDeleteDialog[0].close();
+  //$("#firstShow").hide();
+  $("#firstShow")[0].close();
+}
+
+function switchButtons(disable) {
+  btnBlack.prop("disabled", disable);
+  btnRed.prop("disabled", disable);
+  btnSpin.prop("disabled", disable);
+}
 
 btnSpin.click(function() {
   var rndNum = Math.floor(Math.random() * 34 + 0);
+  switchButtons(true);
+
   winningNum = rndNum;
   spinTo(winningNum);
 });
 
-function finishSpin(){
-  let isWin=false;
-  if(numred.indexOf(winningNum) > 0 ){
-    if(betOption === 'red'){
+function finishSpin() {
+  let isWin = false;
+  if (numred.indexOf(winningNum) > 0) {
+    if (betOption === "red") {
       $("#winnerAnnouncer").show();
-      isWin=true;
+      isWin = true;
     }
-  }
-  else{
-    if(betOption === 'black'){
+  } else {
+    if (betOption === "black") {
       $("#winnerAnnouncer").show();
-      isWin=true;
+      isWin = true;
     }
   }
   console.log(winningNum, isWin);
-  betOption="";
+  betOption = "";
+  setSelectedColor();
+  switchButtons(false);
 }
 
 function resetAni() {
@@ -127,7 +272,7 @@ function spinTo(num) {
 }
 
 function ballrotateTo(deg) {
-  var temptime = rotationsTime + 's';
+  var temptime = rotationsTime + "s";
   var dest = -360 * ballSpinTime - (360 - deg);
   $.keyframe.define({
     name: "rotate2",
@@ -151,7 +296,7 @@ function ballrotateTo(deg) {
 
 function bgrotateTo(deg) {
   var dest = 360 * wheelSpinTime + deg;
-  var temptime = (rotationsTime * 1000 - 1000) / 1000 + 's';
+  var temptime = (rotationsTime * 1000 - 1000) / 1000 + "s";
 
   $.keyframe.define({
     name: "rotate",
@@ -174,8 +319,6 @@ function bgrotateTo(deg) {
     name: "rotate", // name of the keyframe you want to bind to the selected element
     duration: temptime, // [optional, default: 0, in ms] how long you want it to last in milliseconds
     timingFunction: "ease-in-out", // [optional, default: ease] specifies the speed curve of the animation
-    complete: function() {
-
-    } //[optional]  Function fired after the animation is complete. If repeat is infinite, the function will be fired every time the animation is restarted.
+    complete: function() {} //[optional]  Function fired after the animation is complete. If repeat is infinite, the function will be fired every time the animation is restarted.
   });
 }
