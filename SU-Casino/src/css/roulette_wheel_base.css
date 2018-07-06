@@ -17,7 +17,7 @@
     z-index: 2000;
     position: absolute;
     display:none;
-    animation: blinker 1s linear infinite;
+    /* animation: blinker 1s linear infinite; */
   }
 
   @keyframes blinker {
