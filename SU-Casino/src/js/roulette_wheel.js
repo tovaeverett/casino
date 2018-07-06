@@ -13,26 +13,8 @@ $(function() {
 
   var $guessChange = $("#firstShow");
   $guessChange[0].showModal();
-  // dialogPolyfill.registerDialog($guessChange);
 
   btnSpin.prop("disabled", true);
-
-  // $("#selected-color").on("DOMSubtreeModified", function(event) {
-  //   console.log(event);
-  //   var changedColor = event.currentTarget.innerText
-  //     ? event.currentTarget.innerText
-  //     : event.srcElement.innerText;
-  //   console.log(changedColor);
-  //   if (changedColor === "") {
-  //     console.log("tom text");
-  //     if (!btnSpin[0].disabled) {
-  //       btnSpin.prop("disabled", true);
-  //     }
-  //   } else {
-  //     console.log("inte tom text");
-  //     btnSpin.prop("disabled", false);
-  //   }
-  // });
 });
 
 var rotationsTime = 8;
@@ -236,13 +218,11 @@ function finishSpin() {
   let isWin = false;
   if (numred.indexOf(winningNum) > 0) {
     if (betOption === "red") {
-      $("#winnerAnnouncer").show();
-      isWin = true;
+      winnerWinnerChickenDinner();
     }
   } else {
     if (betOption === "black") {
-      $("#winnerAnnouncer").show();
-      isWin = true;
+      winnerWinnerChickenDinner();
     }
   }
 
@@ -262,13 +242,26 @@ function finishSpin() {
   btnSpin.prop("disabled", true);
 }
 
+function winnerWinnerChickenDinner() {
+  $("#winnerAnnouncer").show();
+  isWin = true;
+
+  // https://www.jqueryscript.net/animation/Realistic-Fireworks-Animations-Using-jQuery-And-Canvas-fireworks-js.html
+  $("#winnerAnnouncer").fireworks({
+    sound: true, // sound effect
+    opacity: 0.9,
+    width: "100%",
+    height: "100%"
+  });
+}
+
 function failed(error) {
-  alert(error.get_message());
+  console.log(error.get_message());
 }
 
 function callBack(response) {
   // här kan man "stänga ner" efteråt
-  alert(response);
+  console.log(response);
 }
 
 function resetAni() {
