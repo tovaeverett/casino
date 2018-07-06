@@ -13,5 +13,10 @@ namespace SU_Casino
         {
 
         }
+
+        protected void btnCreateReport_Click(object sender, EventArgs e)
+        {
+                
+        }
     }
 }
