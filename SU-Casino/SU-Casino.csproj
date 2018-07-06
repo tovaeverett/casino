@@ -150,6 +150,11 @@
     <Content Include="src\images\slot\chomp.png" />
     <Content Include="src\images\slot\coin.png" />
     <Content Include="src\images\slot\flower.png" />
+    <Content Include="src\images\slot\img1.png" />
+    <Content Include="src\images\slot\img2.png" />
+    <Content Include="src\images\slot\img3.png" />
+    <Content Include="src\images\slot\img4.png" />
+    <Content Include="src\images\slot\img5.png" />
     <Content Include="src\images\slot\mshroom.png" />
     <Content Include="src\images\slot\random.png" />
     <Content Include="src\images\slot\star.png" />
