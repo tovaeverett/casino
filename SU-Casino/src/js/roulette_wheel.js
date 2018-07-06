@@ -236,13 +236,11 @@ function finishSpin() {
   let isWin = false;
   if (numred.indexOf(winningNum) > 0) {
     if (betOption === "red") {
-      $("#winnerAnnouncer").show();
-      isWin = true;
+      winnerWinnerChickenDinner();
     }
   } else {
     if (betOption === "black") {
-      $("#winnerAnnouncer").show();
-      isWin = true;
+      winnerWinnerChickenDinner();
     }
   }
 
@@ -260,6 +258,19 @@ function finishSpin() {
   switchButtons(false);
 
   btnSpin.prop("disabled", true);
+}
+
+function winnerWinnerChickenDinner() {
+  $("#winnerAnnouncer").show();
+  isWin = true;
+
+  // https://www.jqueryscript.net/animation/Realistic-Fireworks-Animations-Using-jQuery-And-Canvas-fireworks-js.html
+  $("#winnerAnnouncer").fireworks({
+    sound: true, // sound effect
+    opacity: 0.9,
+    width: "100%",
+    height: "100%"
+  });
 }
 
 function failed(error) {

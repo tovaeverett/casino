@@ -13,6 +13,15 @@ namespace SU_Casino {
     public partial class Roulette {
         
         /// <summary>
+        /// lblCredit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCredit;
+        
+        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>

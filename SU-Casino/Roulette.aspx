@@ -104,6 +104,7 @@
                         <p style="display: inline;">You've selected: </p>
                         <p style="display: inline;" id="selected-color"></p>
                         <p id="selected-winning-chance"></p>
+                        <asp:Label ID="lblCredit" runat="server"></asp:Label>
                     </div>
                 </div>
             </div>
@@ -116,7 +117,7 @@
             </div>
             <div id="winnerAnnouncer">
                 <div class="span8">
-                    <h1>YES! YOU ARE A WINNER! +20 </h1>
+                    <h1>YES! YOU ARE A WINNER! +100 </h1>
                 </div>
             </div>
             <form id="form1" runat="server">
@@ -139,6 +140,7 @@
         </div>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+        <script src="/src/js/jquery.fireworks-js/jquery.fireworks.js"></script>
         <script src='/src/js/jquery.keyframes.mini.js'></script>
         <script src="/src/js/roulette_wheel.js"></script>
     </body>
