@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Roulette.aspx.cs" Inherits="SU_Casino.Roulette" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Roulette.aspx.cs" ClientIDMode="Static" Inherits="SU_Casino.Roulette" %>
 
     <!DOCTYPE html>
 
@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css" />
         <link rel="stylesheet" href="/src/css/bootstrap-responsive.css" />
         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css" />
+        <link rel="stylesheet" href="/src/css/roulette_wheel_base.css" />
         <% if (this.GetCssRandom() == 0)
             { %>
             <link rel="stylesheet" href="/src/css/roulette_wheel.css" />
@@ -20,6 +21,7 @@
     </head>
 
     <body>
+
         <dialog id="firstShow" class="site-dialog">
             <header class="dialog-header">
                 <h1 class="text-center">What are your chances of winning?</h1>
@@ -129,6 +131,8 @@
             
             <asp:Image ID="imgWinLose" runat="server" />
         </div-->
+
+                <asp:ScriptManager runat="server" EnablePageMethods="true" />
                 <asp:HiddenField ID="HiddenFieldrouletteNr" runat="server" />
                 <asp:HiddenField ID="HiddenFieldWinLose" runat="server" />
             </form>

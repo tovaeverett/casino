@@ -125,6 +125,8 @@ var btnRed = $("#btnRed");
 var btnHigh = $("#btnHigh");
 var btnLow = $("#btnLow");
 var btnZero = $("#btnZero");
+var hiddenRouletteNr = $("#HiddenFieldrouletteNr");
+var hiddenWinLose = $("input[name=HiddenFieldWinLose]:hidden"); // $('input[name="testing"]').val('Work!');
 var btnDontKnow = $("#btnDontKnow");
 var toppart = $("#toppart");
 var pfx = $.keyframe.getVendorPrefix();
@@ -211,6 +213,7 @@ function setSelectedWinningChange(chance) {
   $("#selected-winning-chance").text(
     `You expect your winning change to be: ${chance}`
   );
+  expectedWinningChance = chance;
   //$accountDeleteDialog[0].close();
   //$("#firstShow").hide();
   $("#firstShow")[0].close();
@@ -223,9 +226,8 @@ function switchButtons(disable) {
 }
 
 btnSpin.click(function() {
-  var rndNum = Math.floor(Math.random() * 34 + 0);
+  var rndNum = hiddenRouletteNr[0].value; // Math.floor(Math.random() * 34 + 0);
   switchButtons(true);
-
   winningNum = rndNum;
   spinTo(winningNum);
 });
@@ -243,12 +245,30 @@ function finishSpin() {
       isWin = true;
     }
   }
+
+  PageMethods.WinOrLose(
+    isWin,
+    betOption,
+    expectedWinningChance,
+    callBack,
+    failed
+  );
+
   console.log(winningNum, isWin);
   betOption = "";
   setSelectedColor();
   switchButtons(false);
 
   btnSpin.prop("disabled", true);
+}
+
+function failed(error) {
+  alert(error.get_message());
+}
+
+function callBack(response) {
+  // här kan man "stänga ner" efteråt
+  alert(response);
 }
 
 function resetAni() {
