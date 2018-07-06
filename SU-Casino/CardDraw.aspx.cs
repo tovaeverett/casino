@@ -12,8 +12,8 @@ namespace SU_Casino
     {
         private int CheckCard;
         public int money;
-       
 
+        Database database = new Database();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -23,7 +23,6 @@ namespace SU_Casino
                 money = 1500;
                 lblMoney.Text = money.ToString();
             }
-
         }
 
         public string randomCard(int min)
@@ -56,14 +55,18 @@ namespace SU_Casino
         }
 
 
-        public int randomStartCard()
+        public string randomStartCard()
         {
+            Random letter = new Random();
+            char[] Array = "SHDC".ToCharArray();
+            int num = letter.Next(0, 4);
+            char let = Array[num];
+
             Random rnd = new Random();
-            int randomcard = rnd.Next(0, 12);
+            int randomcard = rnd.Next(1, 13);
             //string url = "~/Cards/" + randomcard + ".png";
             CheckCard = randomcard;
-           
-            return randomcard;
+            return randomcard.ToString() + let;
         }
 
         public void setCards()
@@ -74,15 +77,17 @@ namespace SU_Casino
         }
         protected void btnPlay_Click(object sender, EventArgs e)
         {
-            checkForWin();
             setCards();
+            checkForWin();
+           
         }
         private void checkForWin()
         {
            int CardPressed = 0; 
            var winLose = HiddenField_WinLose.Value;
+           var credit = Int32.Parse(lblMoney.Text);
 
-           if(HiddenField_card1.Value != null)
+           if (HiddenField_card1.Value != null)
             {
                 CardPressed = 1;
                 if(winLose == "win")
@@ -106,6 +111,7 @@ namespace SU_Casino
                     money = -50;
                 }
             }
+            money = money + credit;
             lblMoney.Text = money.ToString();
             SaveToDB(CardPressed, winLose);
         }

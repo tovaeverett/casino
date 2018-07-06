@@ -1,0 +1,41 @@
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+div.roulette {
+	margin-top: 35px;
+}
+div.roulette-inner {
+	left : 33px;
+}
+
+div.roulette_container {
+    background-color: rgb(27, 1, 27);
+    width: 200px;
+    height: 200px;
+    border: 1px solid rgba(253, 252, 253, 0.31);
+    box-shadow: 0px 0px 3px #bab6ff;
+    margin: auto;
+}
+
+@media (max-width: 510px) {
+    div.roulette_container {
+        width: 80px;
+        height: 80px;
+    }
+    div.roulette-inner {
+        left: 1px;
+    }
+    div.roulette {
+        margin-top: 1px; 
+    }
+    .playground-cards {
+        padding-right: 5px;
+        padding-left: 5px;
+        height: 150px;
+    }
+    .playground {
+        height: 200px;
+        padding-top: 10px;
+    }
+ }

@@ -22,26 +22,32 @@ card2.addEventListener('click', function () {
 
 $(document).ready(function () {
     initGame();
-    $("#winchance-container").hide();
+    $("#winchance-container").show();
     $("#message-container").hide();
     console.log(cards);
 });
 
 $("#btnClose").click(function () {
     $("#message-container").hide();
+
 });
+
+$(".winchance-btn").click(function () {
+    $("#winchance-container").hide();
+});
+
 
 function initGame() {
     var baseUrl = "src/images/cards/";
     cards = {
-        card1:'3', //$("#HiddenField_card1").val(),
-        card2:'2', //$("#HiddenField_card2").val(),
-        showCard:'2' //$("#HiddenField_card3").val()
+        card1: $("#HiddenField_card1").val(),
+        card2: $("#HiddenField_card2").val(),
+        showCard: $("#HiddenField_card3").val()
     };
     $("[id ^= 'notEqual']").hide();
-    $("#imgCard1").attr("src", baseUrl + cards.card1 + "C.png");
-    $("#imgCard2").attr("src", baseUrl + cards.card2 + "C.png");
-    $("#imgCard3").attr("src", baseUrl + cards.showCard + "C.png");
+    $("#imgCard1").attr("src", baseUrl + cards.card1 + ".png");
+    $("#imgCard2").attr("src", baseUrl + cards.card2 + ".png");
+    $("#imgCard3").attr("src", baseUrl + cards.showCard + ".png");
    
     disable = false;
 }
@@ -50,22 +56,24 @@ function cardClicked(selectedCard) {
     console.log(selectedCard, $(card1).find('img')[1].id);
     disable = true;
     var isWinner = false;
+    $(".lost").hide();
+    $(".winner").hide();
     if (selectedCard.id === 'betCard1') {
         $("#HiddenField_card2").val("null");
         if (cards.card1 === cards.showCard) {
-            $("#message-container").show();
             isWinner = true;
         }
     }
     else {
         $("#HiddenField_card1").val("null");
         if (cards.card2 === cards.showCard) {
-            $("#message-container").show();
             isWinner = true;
         }
     }
-    isWinner ? $("#HiddenFieldWinLose").val("win") : $("#HiddenFieldWinLose").val("lose"); 
-    console.log($("#HiddenFieldWinLose").val());
+    isWinner ? $("#HiddenField_WinLose").val("win") : $("#HiddenField_WinLose").val("lose");
+    isWinner ? $(".winner").show() : $(".lost").show();
+    $("#message-container").show();
+    console.log($("#HiddenField_WinLose").val());
 }
 
 function resetGame() {

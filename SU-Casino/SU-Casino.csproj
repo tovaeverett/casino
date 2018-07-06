@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminPage.aspx" />
     <Content Include="CardDraw.aspx" />
     <Content Include="OneArmdBandit.aspx" />
     <Content Include="Roulette.aspx" />
@@ -76,6 +77,7 @@
     <Content Include="src\css\card_game.css" />
     <Content Include="src\css\index.css" />
     <Content Include="src\css\roulette_wheel.css" />
+    <Content Include="src\css\slot.css" />
     <Content Include="src\css\theme1.css" />
     <Content Include="src\images\backgrounds\body_theme1.jpg" />
     <Content Include="src\images\cards\10C.png" />
@@ -144,15 +146,30 @@
     <Content Include="src\images\cards\red_back_0.png" />
     <Content Include="src\images\cards\yellow_back.png" />
     <Content Include="src\images\coins.gif" />
+    <Content Include="src\images\logos\theme1Logo.png" />
+    <Content Include="src\images\slot\chomp.png" />
+    <Content Include="src\images\slot\coin.png" />
+    <Content Include="src\images\slot\flower.png" />
+    <Content Include="src\images\slot\mshroom.png" />
+    <Content Include="src\images\slot\random.png" />
+    <Content Include="src\images\slot\star.png" />
     <Content Include="src\js\card_game.js" />
     <Content Include="src\js\jquery.keyframes.mini.js" />
     <Content Include="src\js\roulette.js" />
     <Content Include="src\js\roulette_wheel.js" />
+    <Content Include="src\js\slot.js" />
     <Content Include="Web.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminPage.aspx.cs">
+      <DependentUpon>AdminPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPage.aspx.designer.cs">
+      <DependentUpon>AdminPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CardDraw.aspx.cs">
       <DependentUpon>CardDraw.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -160,6 +177,7 @@
     <Compile Include="CardDraw.aspx.designer.cs">
       <DependentUpon>CardDraw.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Database.cs" />
     <Compile Include="OneArmdBandit.aspx.cs">
       <DependentUpon>OneArmdBandit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

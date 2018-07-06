@@ -13,7 +13,13 @@ namespace SU_Casino
         int money;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!IsPostBack)
+            {
+                HiddenField_Spin1.Value = randomStartCard().ToString();
+                HiddenField_Spin2.Value = randomStartCard().ToString();
+                HiddenField_Spin3.Value = randomStartCard().ToString();
+                checkIfWin();
+            }
         }
 
         protected void btnPull_Click(object sender, EventArgs e)
