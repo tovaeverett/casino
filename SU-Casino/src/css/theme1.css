@@ -17,13 +17,13 @@
     
 }
 
-.playground-cards {
-    background-color: rgba(221, 221, 221, 0.48); 
+.playground-slot {
     border-radius: 30px;
     display: block;
-    height: 300px;
-    padding-top: 10px;
+    padding-top: 20px;
     padding-bottom: 10px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), color-stop(0.5, #dfdfdf), to(#cecece) );
+    border: 1px solid black;
 }
 
 .game-panel {
@@ -40,3 +40,4 @@
         list-style-type: none;
         display: inline-flex;
     }
+

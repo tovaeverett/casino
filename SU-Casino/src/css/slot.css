@@ -1,12 +1,9 @@
-body {
-	padding-top: 60px;
-	padding-bottom: 40px;
-}
+
 div.roulette {
 	margin-top: 5px;
 }
 div.roulette-inner {
-	left : 3px;
+	left : 1px;
 }
 
 div.roulette_container {
@@ -19,6 +16,60 @@ div.roulette_container {
     border-radius: 7px;
 }
 
+.slotSpan {
+    float: left;
+    max-width: 210px;
+    padding-right: 1px;
+    padding-left: 1px;
+}
+
+.playground {
+    padding-top: 70px;
+}
+
+
+
+@media (max-width: 996px) {
+    div.roulette_container {
+        width: 110px;
+        height: 110px;
+    }
+
+    div.roulette-inner {
+        left: 1px;
+    }
+
+    div.roulette {
+        margin-top: 1px;
+    }
+
+    .playground-slot {
+        padding-right: 1px;
+        padding-left: 1px;
+        height: 150px;
+    }
+
+    .playground {
+        height: 200px;
+        padding-top: 10px;
+        padding-right: 1px;
+        padding-left: 1px;
+    }
+
+    .div-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 30px;
+    }
+
+    .header {
+        padding-top: 1px;
+    }
+}
+
+
+
 @media (max-width: 510px) {
     div.roulette_container {
         width: 80px;
@@ -30,7 +81,7 @@ div.roulette_container {
     div.roulette {
         margin-top: 1px; 
     }
-    .playground-cards {
+    .playground-slot {
         padding-right: 1px;
         padding-left: 1px;
         height: 150px;
@@ -52,4 +103,41 @@ div.roulette_container {
     }
  }
 
+
+@media (min-width: 1600px) {
+    .playground {
+        height: 700px;
+        padding-top: 200px;
+    }
+}
+
+@media (max-width: 1599px) {
+    .playground {
+        height: 400px;
+        padding-top: 10px;
+    }
+}
+
+@media (max-width: 767px) {
+    .playground {
+        height: 300px;
+        padding-top: 10px;
+    }
+
+    .winchance-btn {
+        font-size: 1em;
+        padding: 10px;
+    }
+
+    .slotSpan {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+}
+
+@media (max-width: 510px) {
+    .playground-cards {
+        height: 200px !important;
+    }
+}
 

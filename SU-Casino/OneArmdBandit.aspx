@@ -16,14 +16,14 @@
 <body>
 <div id="main-container" class="container-fluid">
         <div class="row header">
-           <h1> image for : Casino theme 1</h1>
+           <h1> Image for theme 1<!-- img src="https://p84.cooltext.com/Rendered/Cool%20Text%20-%20Casino%20Blue%20292206619441777.png" /--></h1>
         </div>
         <div class="row playground">
             <div class="col-md-2 col-sm-1 "></div>
                 <div class="col-md-8 col-sm-10">
-                    <div class="col-md-12 playground-cards">
+                    <div class="col-md-12 playground-slot">
                     <div class="div-center">
-                    <div class="col-md-3 cardSpan">
+                    <div class="col-md-3 slotSpan">
 					    <div class="roulette_container" >
 						    <div class="roulette1 roulette" style="display:none;">
                             <img id="slot_1_1" src="src/images/slot/img1.png"/>
@@ -34,8 +34,8 @@
 						                    </div>
 					</div>
 				     </div>
-				     <!--div class="span1 notEqual"><span id="notEqualFirst">&#8800;</span><div-->
-				     <div class="col-md-3 cardSpan">
+				 
+				     <div class="col-md-3 slotSpan">
  					    <div class="roulette_container" >
 						    <div class="roulette2 roulette" style="display:none;">
 							    <img id="slot_1_1" src="src/images/slot/img1.png"/>
@@ -46,8 +46,8 @@
 						    </div>
 					    </div>
     		        </div>
-			        <!--div class="span1 notEqual"><span id="notEqualSecond">&#8800;</span> </div-->
-                    <div class="col-md-3 cardSpan">
+			        
+                    <div class="col-md-3 slotSpan">
 				        <div class="roulette_container" >
 						    <div class="roulette3 roulette" style="display:none;">
 							    <img id="slot_1_1" src="src/images/slot/img1.png"/>
