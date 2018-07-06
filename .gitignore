@@ -260,3 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 /SU-Casino/src/images/logos/theme1Logo.png
+/starBurst.gif
+/animatedStar.gif

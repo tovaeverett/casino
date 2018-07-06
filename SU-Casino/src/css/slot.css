@@ -3,19 +3,20 @@ body {
 	padding-bottom: 40px;
 }
 div.roulette {
-	margin-top: 35px;
+	margin-top: 5px;
 }
 div.roulette-inner {
-	left : 33px;
+	left : 3px;
 }
 
 div.roulette_container {
-    background-color: rgb(27, 1, 27);
+    background-color: #f8f9fa;
     width: 200px;
     height: 200px;
-    border: 1px solid rgba(253, 252, 253, 0.31);
-    box-shadow: 0px 0px 3px #bab6ff;
+    border: 2px solid rgba(253, 252, 253, 0.31);
+    box-shadow: inset 1px 1px 4px #000;
     margin: auto;
+    border-radius: 7px;
 }
 
 @media (max-width: 510px) {
@@ -30,12 +31,25 @@ div.roulette_container {
         margin-top: 1px; 
     }
     .playground-cards {
-        padding-right: 5px;
-        padding-left: 5px;
+        padding-right: 1px;
+        padding-left: 1px;
         height: 150px;
     }
     .playground {
         height: 200px;
         padding-top: 10px;
+        padding-right: 1px;
+        padding-left: 1px;
+    }
+    .div-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 30px;
+    }
+    .header {
+        padding-top:1px;
     }
  }
+
+

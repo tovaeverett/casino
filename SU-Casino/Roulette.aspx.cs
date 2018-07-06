@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -15,7 +16,7 @@ namespace SU_Casino
             {
                 HiddenFieldrouletteNr.Value = RandomSpin().ToString();
             }
-        } 
+        }
 
         public int GetCssRandom()
         {
@@ -43,6 +44,14 @@ namespace SU_Casino
         protected void btnSpin_Click(object sender, EventArgs e)
         {
             RandomSpin();
+        }
+
+        [WebMethod]
+        public static void WinOrLose(string isWin, string betOptions, string expectedWinningChance)
+        {
+            var t = isWin;
+            var t2 = betOptions;
+            var t3 = expectedWinningChance;
         }
     }
 }

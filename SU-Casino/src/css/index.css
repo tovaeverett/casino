@@ -56,15 +56,16 @@
     border-radius: 5px;
 }
 
-.cash-sum{
+.cash-sum {
     display: block;
     background: #fff;
     padding: 5px 10px;
     border: 2px solid #000;
-    border-radius: 3px;
+    border-radius: 6px;
     width: 70px;
-    color:black;
+    color: black;
     text-align: center;
+    box-shadow: inset 1px 1px 4px #000;
 }
 
 #moneyLable {
@@ -122,60 +123,6 @@
 }*/
 
 
-@media (min-width: 1600px) {
-    .playground {
-        height: 700px;
-        padding-top: 200px;
-    }
 
-    .cardSpan {
-        max-width: 190px;
-    }
-}
-
-    @media (max-width: 1600px) {
-        .playground {
-            height: 400px;
-            padding-top: 10px;
-        }
-
-        .cardSpan {
-            max-width: 190px;
-        }
-    }
-
-
-@media (max-width: 560px) {
-    .playground{
-        height: 225px;
-        padding-top: 10px;
-    }
-}
-
-@media (max-width: 767px) {
-    .playground {
-        height: 300px;
-        padding-top: 10px;
-    }
-    .cardSpan {
-        max-width: 130px;
-    }
-    .winchance-btn {
-        font-size: 1em;
-        padding: 10px;
-    }
-}
-
-@media (max-width: 510px) {
-    .cardSpan {
-        float: left;
-        width: 130px;
-        padding-right: 2px;
-        padding-left: 2px;
-    }
-    .playground-cards {
-        height: 200px !important;
-    }
-}
 
 
