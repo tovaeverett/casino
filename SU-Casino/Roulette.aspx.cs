@@ -10,11 +10,16 @@ namespace SU_Casino
 {
     public partial class Roulette : System.Web.UI.Page
     {
+        private static int credit = 1500;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 HiddenFieldrouletteNr.Value = RandomSpin().ToString();
+                lblCredit.Text = credit.ToString();
+
+                
             }
         }
 
@@ -31,7 +36,7 @@ namespace SU_Casino
         {
             Random rnd = new Random();
 
-            int randomNr = rnd.Next(0, 37);
+            int randomNr = rnd.Next(1, 37);
             lblNr.Text = randomNr.ToString();
             return randomNr;
         }
@@ -49,9 +54,13 @@ namespace SU_Casino
         [WebMethod]
         public static void WinOrLose(string isWin, string betOptions, string expectedWinningChance)
         {
+            credit = bool.Parse(isWin) ? credit + 100 : credit - 100;
+
             var t = isWin;
             var t2 = betOptions;
             var t3 = expectedWinningChance;
+
+            // send to DB
         }
     }
 }
