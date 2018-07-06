@@ -109,7 +109,6 @@ C:\Users\Hugosson\source\repos\SU-Casino2\SU-Casino\bin\roslyn\VBCSCompiler.exe
 C:\Users\Hugosson\source\repos\SU-Casino2\SU-Casino\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\Hugosson\source\repos\SU-Casino2\SU-Casino\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Hugosson\source\repos\SU-Casino2\SU-Casino\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Hugosson\source\repos\SU-Casino2\SU-Casino\obj\Debug\SU-Casino.csprojAssemblyReference.cache
 C:\Users\Hugosson\source\repos\SU-Casino2\SU-Casino\obj\Debug\SU-Casino.csproj.CoreCompileInputs.cache
 C:\Users\Hugosson\source\repos\SU-Casino2\SU-Casino\obj\Debug\SU-Casino.csproj.CopyComplete
 C:\Users\Hugosson\source\repos\SU-Casino2\SU-Casino\obj\Debug\SU-Casino.dll
@@ -178,3 +177,4 @@ C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\obj\Debug\SU-Casino.cspr
 C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\obj\Debug\SU-Casino.dll
 C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\obj\Debug\SU-Casino.pdb
 C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\obj\Debug\SU-Casino.csprojAssemblyReference.cache
+C:\Users\Hugosson\source\repos\SU-Casino2\SU-Casino\obj\Debug\SU-Casino.csprojAssemblyReference.cache
