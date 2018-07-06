@@ -80,8 +80,9 @@ namespace SU_Casino
         }
         protected void btnPlay_Click(object sender, EventArgs e)
         {
-            setCards();
             checkForWin();
+            setCards();
+            
            
         }
         private void checkForWin()
@@ -90,7 +91,7 @@ namespace SU_Casino
            var winLose = HiddenField_WinLose.Value;
            var credit = Int32.Parse(lblMoney.Text);
 
-           if (HiddenField_card1.Value != null)
+           if (HiddenField_card1.Value != "null")
             {
                 CardPressed = 1;
                 if(winLose == "win")
