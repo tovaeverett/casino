@@ -120,17 +120,6 @@ a, a:hover, a:active{
     align-items: center;
 }
 
-#play-container {
-    background: #151313ad;
-    padding-top: 5%;
-    box-shadow: 0 0 4px 2px rgba(0,0,0,.3);
-    border: 30px solid transparent;
-    padding: 15px;
-    border-image-source: url(/src/images/frameTest.png);
-    border-image-repeat: round;
-    border-image-slice: 90;
-    border-image-width: 30px;
-}
 
 #message-content{
     padding-top: 200px;

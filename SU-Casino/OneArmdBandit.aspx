@@ -11,7 +11,8 @@
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css"/>
 	<link rel="stylesheet" href="src/css/slot.css"/>
     <link rel="stylesheet" href="src/css/index.css"/>
-    <link rel="stylesheet" href="src/css/theme1.css"/>
+<%--    <link rel="stylesheet" href="src/css/theme1.css"/>--%>
+    <link rel="stylesheet" href="src/css/themeGold.css"/>
 </head>
 <body>
 <div id="main-container" class="container-fluid">
@@ -67,7 +68,7 @@
            </div>
             <div class="col-md-12 col-sm-12 game-panel">
                 <form id="form1" runat="server">
-                     <button class="round-button  start"> SPIN! </button>
+                     <button class="round-button  start"></button>
 
                      <asp:image id="IMGslot1" runat="server"></asp:image>
                      <asp:image id="IMGslot2" runat="server"></asp:image>
