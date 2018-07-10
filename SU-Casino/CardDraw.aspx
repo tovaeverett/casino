@@ -21,64 +21,59 @@
            <h1> image for : Casino theme 1</h1><!--img src="src/images/logos/theme1Logo.png" class="img-responsive" /-->
         </div>
         <div class="row playground">
-            <div class="col-md-2 col-sm-1 "></div>
-                <div class="col-md-8 col-sm-10">
+            <div class="col-md-2 col-sm-1 col-xl-2"></div>
+                <div class="col-xl-8 col-md-8 col-sm-10" id="play-container">
                     <div class="col-md-12 playground-cards">
-                    <div class="div-center">
-                    <div class="col-md-3 cardSpan">
-					    <div class="scene scene--card">
-	  					    <div class="card" id="betCard1">
-						        <div class="card__face card__face--front"><img src="src/images/cards/blue_back.png"/></div>
-						        <div class="card__face card__face--back"><img id="imgCard1" src="src/images/cards/3C.png"/></div>
-	  					    </div>
-				 	    </div>
-				     </div>
-				     <!--div class="span1 notEqual"><span id="notEqualFirst">&#8800;</span><div-->
-				     <div class="col-md-3 cardSpan">
- 					    <div class="scene scene--card">
-   				            <div class="card" id="resultCard">
- 					    	    <div class="card__face card__face--front"><img id="imgCard3" src="src/images/cards/3C.png"/></div>
-   						    </div>
- 				 	    </div>
-    		        </div>
-			        <!--div class="span1 notEqual"><span id="notEqualSecond">&#8800;</span> </div-->
-                    <div class="col-md-3 cardSpan">
-				        <div class="scene scene--card">
-	  					    <div class="card" id="betCard2">
-						        <div class="card__face card__face--front"><img src="src/images/cards/red_back_0.png"/></div>
-						        <div class="card__face card__face--back"><img id="imgCard2" src="src/images/cards/2C.png"/></div>
-	  					    </div>
-					     </div>
-                    </div>
-                  </div>
-                </div>
-           </div>
-           <div class="col-md-2 col-sm-1"></div>
-         </div>
-         <div class="row">
-            <div class="col-md-2 col-sm-1"></div>
-            <div class="col-md-8 col-sm-10 game-panel">
-                <form id="form1" runat="server">
-                    <asp:Image ID="imgWinner" Visible="false" runat="server"  />
-                    <asp:HiddenField ID="HiddenField_card1" runat="server" Value="5"/>
-                    <asp:HiddenField ID="HiddenField_card2" runat="server" Value="3"/> 
-                    <asp:HiddenField ID="HiddenField_card3" runat="server" Value="3"/> 
-                    <asp:HiddenField ID="HiddenField_WinLose" runat="server" />
+                        <div class="div-center">
+                            <!--**CARDS**-->
+                            <div class="col-md-3 cardSpan">
+					            <div class="scene scene--card">
+	  					            <div class="card" id="betCard1">
+						                <div class="card__face card__face--front"><img src="src/images/cards/blue_back.png"/></div>
+						                <div class="card__face card__face--back"><img id="imgCard1" src="src/images/cards/3C.png"/></div>
+	  					            </div>
+				 	            </div>
+				             </div>
+				             <div class="col-md-3 cardSpan">
+ 					            <div class="scene scene--card">
+   				                    <div class="card" id="resultCard">
+ 					    	            <div class="card__face card__face--front"><img id="imgCard3" src="src/images/cards/3C.png"/></div>
+   						            </div>
+ 				 	            </div>
+    		                </div>
+                            <div class="col-md-3 cardSpan">
+				                <div class="scene scene--card">
+	  					            <div class="card" id="betCard2">
+						                <div class="card__face card__face--front"><img src="src/images/cards/red_back_0.png"/></div>
+						                <div class="card__face card__face--back"><img id="imgCard2" src="src/images/cards/2C.png"/></div>
+	  					            </div>
+					             </div>
+                            </div>
+                          </div>
+                        <!--**END: CARDS**-->
+                        </div>
+                    <!--*** PANEL ***-->
+                        <div class="col-md-12 col-sm-12 game-panel">
+                            <form id="form1" runat="server">
+                                <asp:Image ID="imgWinner" Visible="false" runat="server"  />
+                                <asp:HiddenField ID="HiddenField_card1" runat="server" Value="5"/>
+                                <asp:HiddenField ID="HiddenField_card2" runat="server" Value="3"/> 
+                                <asp:HiddenField ID="HiddenField_card3" runat="server" Value="3"/> 
+                                <asp:HiddenField ID="HiddenField_WinLose" runat="server" />
 
-                    <div id="panel1">
-                    <div id="moneyLable">Credit left:&nbsp; 
-                        <span class="cash-sum"> 
-                           <asp:Label ID="lblMoney" runat="server"> </asp:Label>
-                        </span>
-                    </div>
-                </div>
-                    <div id="panel2">
-                     To play, click on the right or left card of the center card.
-                    </div>
-               
-            </div>
-            <div class="col-md-2 col-sm-1"></div>
-         </div>
+                                <div id="panel1">
+                                    <div id="moneyLable">Credit left:&nbsp; 
+                                        <span class="cash-sum"> 
+                                            <asp:Label ID="lblMoney" runat="server"> </asp:Label>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div id="panel2">
+                                </div>
+                            </div>
+                        </div>
+                   <div class="col-md-2 col-sm-1"></div>
+                 </div>
           
         <div id="message-container" class="container-fluid overlayer">
         <div class="row">
@@ -118,10 +113,10 @@
                  <h2>What are your chances of winning?</h2>
                 <br />
                 <ul>
-                    <li class="winchance-btn">High</li>
-                    <li class="winchance-btn">Low</li>
-                    <li class="winchance-btn">Zero</li>
-                    <li class="winchance-btn">Don't know</li>
+                    <li id="btnHigh" class="winchance-btn">High</li>
+                    <li id="btnLow" class="winchance-btn">Low</li>
+                    <li id="btnZero" class="winchance-btn">Zero</li>
+                    <li id="btnDontKnow" class="winchance-btn">Don't know</li>
                 </ul>
             </div>
         </div>

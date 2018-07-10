@@ -3,6 +3,12 @@
     background-size: cover;
 }
 
+
+body {
+    background: url("/src/images/backgrounds/body_theme1.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
 .header {
     color: #0088cc;
     padding-top: 25px;
@@ -12,9 +18,8 @@
 }
 
 .playground {
-    background: #000 url("/src/images/backgrounds/body_theme1.jpg") no-repeat center;
+    /*background: #000 url("/src/images/backgrounds/body_theme1.jpg") no-repeat center;*/
     background-size: cover;
-    
 }
 
 .playground-slot {
@@ -27,13 +32,9 @@
 }
 
 .game-panel {
-    text-align: center;
-    border-radius: 3px;
     background: #114959;
-    padding-top: 15px;
     color: #fff;
     border: 2px solid rgba(221, 221, 221, 0.48);
-   margin-top:15px;
 }
 
     .game-panel > ul {

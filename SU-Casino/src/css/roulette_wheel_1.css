@@ -1,11 +1,10 @@
- body {
-  font-size: 16px;
-  background-image: url('/src/images/bg-caribbean.jpg');
-  background-size: 100% auto;
-  color: whitesmoke;
-  background-repeat: no-repeat;
-  background-color: lightsalmon;
- }
+body {
+    font-size: 16px;
+    background: url(http://localhost:59745/src/images/bg-caribbean.jpg) no-repeat center center fixed;
+    background-size: 100% auto;
+    color: whitesmoke;
+    background-size: cover;
+}
 
  #winnerAnnouncer{
   top: 0;
@@ -21,6 +20,7 @@
 
 #roulette-wrapper {
     background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/138980/184983947.jpg) green;
+    box-sizing: unset;
 }
 
 #roulette-wrapper .btn_container {

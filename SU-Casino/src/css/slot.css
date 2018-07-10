@@ -1,6 +1,6 @@
 
 div.roulette {
-	margin-top: 5px;
+    margin-top: 5px;
 }
 div.roulette-inner {
 	left : 1px;
@@ -24,7 +24,19 @@ div.roulette_container {
 }
 
 .playground {
-    padding-top: 70px;
+    padding-top: 0px;
+}
+
+.playground-inner {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    padding: 30px;
+   background: -webkit-gradient(linear, left top, left bottom, from(#fff), color-stop(0.5, #dfdfdf), to(#cecece) );
+    border: 1px solid black;
 }
 
 
@@ -107,20 +119,20 @@ div.roulette_container {
 @media (min-width: 1600px) {
     .playground {
         height: 700px;
-        padding-top: 200px;
+        padding-top: 0px;
     }
 }
 
 @media (max-width: 1599px) {
     .playground {
-        height: 400px;
+        height: 500px;
         padding-top: 10px;
     }
 }
 
 @media (max-width: 767px) {
     .playground {
-        height: 300px;
+        height: 500px;
         padding-top: 10px;
     }
 
@@ -139,5 +151,20 @@ div.roulette_container {
     .playground-cards {
         height: 200px !important;
     }
+    #main-container, .slotSpan {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+    .playground {
+        height: 500px;
+        padding-top: 10px;
+    }
+    #play-container {
+        border: 15px solid transparent;
+    }
+    height: 250px;
+    .playground-slot {
+    }
+
 }
 

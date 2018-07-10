@@ -10,6 +10,14 @@
     color:yellow
 }
 
+a, a:hover, a:active{
+    text-decoration:none;
+}
+
+.logo{
+    height:200px;
+}
+
 #panel1 {
     /* width: 49*/
     float: right;
@@ -37,11 +45,11 @@
     align-items: center;
     width: 100%;
 }
-    .winchance-div > ul {
+    .winchance-div > ul, .btn_container >ul {
         list-style-type: none;
         display: inline-flex;
         margin: 5px;
-       cursor:pointer;
+        cursor: pointer;
     }
 
 
@@ -112,13 +120,20 @@
     align-items: center;
 }
 
-#message-content{
-    padding-top: 200px;
+#play-container {
+    background: #151313ad;
+    padding-top: 5%;
+    box-shadow: 0 0 4px 2px rgba(0,0,0,.3);
+    border: 30px solid transparent;
+    padding: 15px;
+    border-image-source: url(/src/images/frameTest.png);
+    border-image-repeat: round;
+    border-image-slice: 90;
+    border-image-width: 30px;
 }
 
-body {
-    background: #000;
-    background-size: cover;
+#message-content{
+    padding-top: 200px;
 }
 
 .header {
@@ -130,8 +145,9 @@ body {
 }
 
 .playground {
-    background: #000 url("/src/images/backgrounds/body_theme1.jpg") no-repeat center;
+    /*background: #000 url("/src/images/backgrounds/body_theme1.jpg") no-repeat center;*/
     background-size: cover;
+ 
 }
 
 .playground-cards, .playground-slot {
@@ -141,22 +157,49 @@ body {
     height: 300px;
     padding-top: 10px;
     padding-bottom: 10px;
+    margin-top: 10px;
 }
 
 .game-panel {
     text-align: center;
     border-radius: 3px;
     background: #114959;
-    padding-top: 15px;
+    padding-top: 10px;
     color: #fff;
     border: 2px solid rgba(221, 221, 221, 0.48);
-    margin-top: 15px;
+    margin-top: 10px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
 }
 
-    .game-panel > ul {
-        list-style-type: none;
-        display: inline-flex;
+.game-panel > ul {
+   list-style-type: none;
+   display: inline-flex;
+}
+
+.round-button {
+    height: 70px;
+    width:70px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #609dcb 0%,#125ead 50%,#476cde 100%);
+    color:white;
+}
+
+.col-xs-0,
+.col-sm-0,
+.col-md-0,
+.col-lg-0 {
+    flex: 0 0 0;
+    max-width: 0;
+}
+
+
+@media (min-width: 1600px) {
+    .playground-slot{
+        margin-top:100px;
     }
+}
 
 @media (max-width: 767px) {
     .winchance-btn {
@@ -164,7 +207,27 @@ body {
         padding: 10px;
     }
 }
-
+@media (max-width: 510px) {
+    #play-container {
+        border: 15px solid transparent;
+        border-image-source: url(/src/images/frameTest.png);
+        border-image-repeat: round;
+        border-image-slice: 90;
+        border-image-width: 15px
+    }
+    .playground-slot {
+        height: 250px;
+    }
+}
+@media (max-width: 320px) {
+    #play-container {
+        border: 2px solid transparent;
+        border-image-source: url(/src/images/frameTest.png);
+        border-image-repeat: round;
+        border-image-slice: 90;
+        border-image-width: 15px
+    }
+}
 
 
 

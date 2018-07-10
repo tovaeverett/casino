@@ -77,6 +77,8 @@
     <Content Include="src\css\card_game.css" />
     <Content Include="src\css\index.css" />
     <Content Include="src\css\roulette_wheel.css" />
+    <Content Include="src\css\roulette_wheel_1.css" />
+    <Content Include="src\css\roulette_wheel_base.css" />
     <Content Include="src\css\slot.css" />
     <Content Include="src\css\theme1.css" />
     <Content Include="src\images\backgrounds\body_theme1.jpg" />
@@ -146,6 +148,8 @@
     <Content Include="src\images\cards\red_back_0.png" />
     <Content Include="src\images\cards\yellow_back.png" />
     <Content Include="src\images\coins.gif" />
+    <Content Include="src\images\frameTest.png" />
+    <Content Include="src\images\logos\theme1.png" />
     <Content Include="src\images\logos\theme1Logo.png" />
     <Content Include="src\images\slot\chomp.png" />
     <Content Include="src\images\slot\coin.png" />

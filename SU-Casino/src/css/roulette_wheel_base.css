@@ -10,6 +10,9 @@
     border: 10px solid lightgreen;
     border-top-left-radius: 39% 65%;
     border-bottom-left-radius: 39% 65%;
+    box-sizing: unset;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 /* Winner announcer */
@@ -221,7 +224,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 }
 
 .spinner {
-
+    box-sizing: unset;
     float: left;
     position: relative;
     background-color: #fff;
@@ -404,5 +407,28 @@ border-bottom: none;
 
     #btnSpin {
         margin-top: 0.2em;
+    }
+}
+
+@media (max-width: 767px) {
+    body, .row, .container, #roulette-wrapper {
+        padding-right: 0px;
+        padding-left: 0px;
+        max-width: 100%;
+    }
+
+    #roulette-wrapper {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .spinner-container {
+        font-size: 0.87em;
+    }
+}
+
+@media (max-width: 320px) {
+    .spinner-container {
+        font-size: 0.77em;
     }
 }

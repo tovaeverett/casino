@@ -11,8 +11,8 @@ $(function() {
     }
   });
 
-  var $guessChange = $("#firstShow");
-  $guessChange[0].showModal();
+  //var $guessChange = $("#firstShow");
+ // $guessChange[0].showModal();
 
   btnSpin.prop("disabled", true);
 });
@@ -160,15 +160,17 @@ function createWheel() {
 }
 
 btnRed.click(function() {
-  betOption = "red";
-  setSelectedColor();
-  btnSpin.prop("disabled", false);
+    betOption = "black";
+    btnRed.prop("disabled", false);
+    btnBlack.prop("disabled", false);
+    startSpinn(); 
 });
 
 btnBlack.click(function() {
   betOption = "black";
-  setSelectedColor();
-  btnSpin.prop("disabled", false);
+  btnRed.prop("disabled", false);
+  btnBlack.prop("disabled", false);
+  startSpinn();
 });
 
 btnHigh.click(function() {
@@ -192,13 +194,13 @@ function setSelectedColor() {
 }
 
 function setSelectedWinningChange(chance) {
-  $("#selected-winning-chance").text(
+  /*$("#selected-winning-chance").text(
     `You expect your winning change to be: ${chance}`
-  );
+  );*/
   expectedWinningChance = chance;
   //$accountDeleteDialog[0].close();
   //$("#firstShow").hide();
-  $("#firstShow")[0].close();
+    $("#winchance-container").hide();
 }
 
 function switchButtons(disable) {
@@ -207,12 +209,12 @@ function switchButtons(disable) {
   btnSpin.prop("disabled", disable);
 }
 
-btnSpin.click(function() {
+function startSpinn() {
   var rndNum = hiddenRouletteNr[0].value; // Math.floor(Math.random() * 34 + 0);
   switchButtons(true);
   winningNum = rndNum;
   spinTo(winningNum);
-});
+}
 
 function finishSpin() {
   let isWin = false;
