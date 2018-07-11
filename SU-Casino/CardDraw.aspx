@@ -13,8 +13,9 @@
 	<link rel="stylesheet" href="src/css/card_game.css"/>
     <link rel="stylesheet" href="src/css/index.css"/>
 <%--    <link rel="stylesheet" href="src/css/theme1.css"/>--%>
-    <link rel="stylesheet" href="src/css/themeGold.css"/>
+<%--    <link rel="stylesheet" href="src/css/themeGold.css"/>--%>
 <%--    <link rel="stylesheet" href="src/css/themeCasino.css"/>--%>
+        <link id="themeCSS" runat="server" rel="stylesheet" type="text/css" /> 
 </head>
 <body>
     

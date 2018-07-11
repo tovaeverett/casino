@@ -13,7 +13,8 @@ namespace SU_Casino
         int money;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            applyThemeTemp(); //temporarily added, to be removed when themes are finalized and triggering logic is done
+            if (!IsPostBack)
             {
                 HiddenField_Spin1.Value = randomStartCard().ToString();
                 HiddenField_Spin2.Value = randomStartCard().ToString();
@@ -56,6 +57,29 @@ namespace SU_Casino
             int randomTheme = rnd.Next(0, 4);
 
             HiddenField_Theme.Value = randomTheme.ToString();
+        }
+
+        private void applyThemeTemp()
+        {
+            String themeName = Request.QueryString["theme"];
+            if (themeName == null)
+                themeCSS.Attributes["href"] = "src/css/theme1.css";
+            else
+            {
+                switch (themeName)
+                {
+                    case "casino":
+                        themeCSS.Attributes["href"] = "src/css/themeCasino.css";
+                        break;
+                    case "gold":
+                        themeCSS.Attributes["href"] = "src/css/themeGold.css";
+                        break;
+                    default:
+                        themeCSS.Attributes["href"] = "src/css/theme1.css";
+                        break;
+                }
+
+            }
         }
     }
 }
