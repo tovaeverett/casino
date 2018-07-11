@@ -10,6 +10,14 @@
     color:yellow
 }
 
+a, a:hover, a:active{
+    text-decoration:none;
+}
+
+.logo{
+    height:200px;
+}
+
 #panel1 {
     /* width: 49*/
     float: right;
@@ -37,11 +45,11 @@
     align-items: center;
     width: 100%;
 }
-    .winchance-div > ul {
+    .winchance-div > ul, .btn_container >ul {
         list-style-type: none;
         display: inline-flex;
         margin: 5px;
-       cursor:pointer;
+        cursor: pointer;
     }
 
 
@@ -112,15 +120,96 @@
     align-items: center;
 }
 
+
 #message-content{
     padding-top: 200px;
 }
-/*@media (min-width: 1800px) {
-    .div-center {
-        width: 50%;
-        margin: 0 auto;
+
+.header {
+    color: #0088cc;
+    padding-top: 25px;
+    padding-bottom: 15px;
+    text-align: center;
+    padding-left: 30px;
+}
+
+.playground {
+    /*background: #000 url("/src/images/backgrounds/body_theme1.jpg") no-repeat center;*/
+    background-size: cover;
+ 
+}
+
+.playground-cards, .playground-slot {
+    background-color: rgba(221, 221, 221, 0.48);
+    border-radius: 30px;
+    display: block;
+    height: 300px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+
+.game-panel {
+    text-align: center;
+    border-radius: 3px;
+    background: #114959;
+    padding-top: 10px;
+    color: #fff;
+    border: 2px solid rgba(221, 221, 221, 0.48);
+    margin-top: 10px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
+.game-panel > ul {
+   list-style-type: none;
+   display: inline-flex;
+}
+
+
+.col-xs-0,
+.col-sm-0,
+.col-md-0,
+.col-lg-0 {
+    flex: 0 0 0;
+    max-width: 0;
+}
+
+
+@media (min-width: 1600px) {
+    .playground-slot{
+        margin-top:100px;
     }
-}*/
+}
+
+@media (max-width: 767px) {
+    .winchance-btn {
+        font-size: 1em;
+        padding: 10px;
+    }
+}
+@media (max-width: 510px) {
+    #play-container {
+        border: 15px solid transparent;
+        border-image-source: url(/src/images/frameTest.png);
+        border-image-repeat: round;
+        border-image-slice: 90;
+        border-image-width: 15px
+    }
+    .playground-slot {
+        height: 250px;
+    }
+}
+@media (max-width: 320px) {
+    #play-container {
+        border: 2px solid transparent;
+        border-image-source: url(/src/images/frameTest.png);
+        border-image-repeat: round;
+        border-image-slice: 90;
+        border-image-width: 15px
+    }
+}
 
 
 

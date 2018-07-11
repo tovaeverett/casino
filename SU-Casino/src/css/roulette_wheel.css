@@ -1,9 +1,13 @@
- body {
-  font-size: 16px;
-  background-image: url('/src/images/bg.png');
-  background-repeat: repeat;
-  color: whitesmoke;
- }
+body {
+    font-size: 16px;
+    background-size: 100% auto;
+    color: whitesmoke;
+    background: url(src/images/bg-caribbean.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 
  #winnerAnnouncer{
   top: 50%;
@@ -17,12 +21,24 @@
 
 #roulette-wrapper {
     background: green;
+    box-sizing: unset;
 }
 
- #btnBlack{
-   background: black;
- }
+#btnBlack {
+    background: black;
+}
 
- #btnRed{
-   background: #a90329;
- }
+#btnRed {
+    background: #a90329;
+}
+
+#btnBlack, #btnRed {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    padding: 0px;
+    color:#fff;
+    margin-left: 20px;
+}
+
+

@@ -11,19 +11,25 @@
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css"/>
 	<link rel="stylesheet" href="src/css/slot.css"/>
     <link rel="stylesheet" href="src/css/index.css"/>
-    <link rel="stylesheet" href="src/css/theme1.css"/>
+<%--    <link rel="stylesheet" href="src/css/theme1.css"/>--%>
+    <link rel="stylesheet" href="src/css/themeGold.css"/>
+<%--    <link rel="stylesheet" href="src/css/themeCasino.css"/>--%>
 </head>
 <body>
 <div id="main-container" class="container-fluid">
         <div class="row header">
-           <h1> image for : Casino theme 1</h1>
+            <div class="col-md-2 col-sm-1"></div>
+            <div class="col-md-8 col-sm-10"> CASINO </div>
+            <div class="col-md-2 col-sm-1"></div>
+           <!--h1> Image for theme 1<h1-->
         </div>
         <div class="row playground">
-            <div class="col-md-2 col-sm-1 "></div>
-                <div class="col-md-8 col-sm-10">
-                    <div class="col-md-12 playground-cards">
+            <div class="col-xl-2 col-md-2 col-sm-1 "></div>
+                <div class="col-xl-8 col-md-8 col-sm-10" id="play-container">
+                    <div class="col-md-12 playground-slot">
                     <div class="div-center">
-                    <div class="col-md-3 cardSpan">
+                    <div class="playground-inner">
+                    <div class="col-md-3 slotSpan">
 					    <div class="roulette_container" >
 						    <div class="roulette1 roulette" style="display:none;">
                             <img id="slot_1_1" src="src/images/slot/img1.png"/>
@@ -34,8 +40,8 @@
 						                    </div>
 					</div>
 				     </div>
-				     <!--div class="span1 notEqual"><span id="notEqualFirst">&#8800;</span><div-->
-				     <div class="col-md-3 cardSpan">
+				 
+				     <div class="col-md-3 slotSpan">
  					    <div class="roulette_container" >
 						    <div class="roulette2 roulette" style="display:none;">
 							    <img id="slot_1_1" src="src/images/slot/img1.png"/>
@@ -46,8 +52,8 @@
 						    </div>
 					    </div>
     		        </div>
-			        <!--div class="span1 notEqual"><span id="notEqualSecond">&#8800;</span> </div-->
-                    <div class="col-md-3 cardSpan">
+			        
+                    <div class="col-md-3 slotSpan">
 				        <div class="roulette_container" >
 						    <div class="roulette3 roulette" style="display:none;">
 							    <img id="slot_1_1" src="src/images/slot/img1.png"/>
@@ -58,16 +64,12 @@
 						    </div>
 					    </div>
                   </div>
-                </div>
+                 </div>
+               </div>
            </div>
-           <div class="col-md-2 col-sm-1"></div>
-         </div>
-             </div>
-         <div class="row">
-            <div class="col-md-2 col-sm-1"></div>
-            <div class="col-md-8 col-sm-10 game-panel">
+            <div class="col-md-12 col-sm-12 game-panel">
                 <form id="form1" runat="server">
-                     <button class="btn btn-large btn-primary start"> SPINN! </button>
+                     <button class="round-button  start">SPIN!!!</button>
 
                      <asp:image id="IMGslot1" runat="server"></asp:image>
                      <asp:image id="IMGslot2" runat="server"></asp:image>
@@ -89,6 +91,13 @@
                     </div>
                
             </div>
+           <div class="col-xl-2 col-md-2 col-sm-1"></div>
+         </div>
+
+             </div>
+         <div class="row">
+            <div class="col-md-2 col-sm-1"></div>
+            
             <div class="col-md-2 col-sm-1"></div>
          </div>
           
@@ -129,10 +138,10 @@
                  <h2>What are your chances of winning?</h2>
                 <br />
                 <ul>
-                    <li class="winchance-btn">High</li>
-                    <li class="winchance-btn">Low</li>
-                    <li class="winchance-btn">Zero</li>
-                    <li class="winchance-btn">Don't know</li>
+                   <li id="btnHigh" class="winchance-btn">High</li>
+                    <li id="btnLow" class="winchance-btn">Low</li>
+                    <li id="btnZero" class="winchance-btn">Zero</li>
+                    <li id="btnDontKnow" class="winchance-btn">Don't know</li>
                 </ul>
             </div>
         </div>

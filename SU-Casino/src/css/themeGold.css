@@ -5,7 +5,7 @@
 
 
 body {
-    background: url("/src/images/backgrounds/body_theme1.jpg") no-repeat center center fixed;
+    background: url("/src/images/backgrounds/body_theme_gold.png") no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -18,7 +18,7 @@ body {
 }
 
 #play-container {
-    background: #151313ad;
+    background: #af4848ad;
     padding-top: 5%;
     box-shadow: 0 0 4px 2px rgba(0,0,0,.3);
     border: 30px solid transparent;
@@ -29,20 +29,15 @@ body {
     border-image-width: 30px;
 }
 
-.playground {
-    /*background: #000 url("/src/images/backgrounds/body_theme1.jpg") no-repeat center;*/
-    background-size: cover;
-}
-
 .playground-slot {
     padding-top: 20px;
     padding-bottom: 10px;
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), color-stop(0.5, #dfdfdf), to(#cecece) );
-    border: 1px solid black;
+    /*background: -webkit-gradient(linear, left top, left bottom, from(#fff), color-stop(0.5, #dfdfdf), to(#cecece) );
+    border: 1px solid black;*/
 }
 
 .game-panel {
-    background: #114959;
+    background: #e0b56a94;
 }
 
     .game-panel > ul {
@@ -51,10 +46,14 @@ body {
     }
 
 .round-button {
-    height: 70px;
-    width: 70px;
+    height: 100px;
+    width: 100px;
     border-radius: 50%;
-    background: linear-gradient(to bottom, #609dcb 0%,#125ead 50%,#476cde 100%);
-    color: white;
+    background-image: url("/src/images/slot/spin_btn_gold.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* Hide the text. */
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
 }
-
