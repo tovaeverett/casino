@@ -11,7 +11,8 @@
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css"/>
 	<link rel="stylesheet" href="src/css/slot.css"/>
     <link rel="stylesheet" href="src/css/index.css"/>
-    <link rel="stylesheet" href="src/css/theme1b.css"/>
+    <%--<link rel="stylesheet" href="src/css/theme1b.css"/>--%>
+    <link id="themeCSS" runat="server" rel="stylesheet" type="text/css" /> 
 </head>
 <body>
 <div id="main-container" class="container-fluid">
