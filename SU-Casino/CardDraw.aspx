@@ -16,7 +16,7 @@
        <%  var theme = this.setTheme();
         switch (theme) {
             case 1:%>
-                <link rel="stylesheet" href="src/css/theme1.css" />
+                <link rel="stylesheet" href="src/css/theme1a.css" />
               <%   break;
             case 2:%>
                 <link rel="stylesheet" href="src/css/theme2.css" />
@@ -80,6 +80,7 @@
                                 <asp:HiddenField ID="HiddenField_theme" runat="server" />
                                 <asp:HiddenField ID="HiddenField_showInfo" runat="server" />
                                 <asp:HiddenField ID="HiddenField_credit" runat="server" />
+                                <asp:HiddenField ID="HiddenField_result" runat="server" />
                                 <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play again!" class="hidden" />
                                 <div id="panel1">
                                     <div id="moneyLable">Credit left:&nbsp; 
@@ -127,10 +128,11 @@
                                         ad hinc everti qui. At modus decore sit. Omnes vivendo propriae eu pri, ut alii esse percipitur eos, 
                                         eu est nibh assentior. Impetus legendos duo an.
                                         </p>
+                                        <button id="btnShowInfo"class="btn btn-large btn-primary"> Start to play </button>
                                     </section>
                                 </div>
                                 
-                            <button id="btnShowInfo"class="btn btn-large btn-primary"> Start to play </button>
+                            
                         </div>
                     <div class="col-md-2"></div>
             </div>
