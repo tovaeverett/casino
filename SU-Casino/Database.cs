@@ -82,5 +82,10 @@ namespace SU_Casino
         {
 
         }
+        public string getTheme(int randomnr)
+        {
+            string theme = "";
+            return theme;
+        }
     }
 }
