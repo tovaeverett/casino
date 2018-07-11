@@ -16,12 +16,14 @@ namespace SU_Casino
         Database database = new Database();
         protected void Page_Load(object sender, EventArgs e)
         {
+            HiddenField_showInfo.Value = "0";
             if (!IsPostBack)
             {
-
+                setTheme();
                 setCards();
                 money = 1500;
                 lblMoney.Text = money.ToString();
+                HiddenField_showInfo.Value = "1";
             }
         }
 
@@ -74,13 +76,14 @@ namespace SU_Casino
             HiddenField_card3.Value = randomStartCard().ToString();
             HiddenField_card2.Value = randomCard(CheckCard).ToString();
             HiddenField_card1.Value = randomCard(CheckCard).ToString();
-        }
+
+       }
         protected void btnPlay_Click(object sender, EventArgs e)
         {
+            setTheme();
             checkForWin();
             setCards();
-            
-           
+            setCredit(); 
         }
         private void checkForWin()
         {
@@ -115,6 +118,19 @@ namespace SU_Casino
             money = money + credit;
             lblMoney.Text = money.ToString();
             SaveToDB(CardPressed, winLose);
+        }
+
+        public int setTheme()
+        {
+            Random rnd = new Random();
+            int randomTheme = rnd.Next(1, 4);
+            HiddenField_theme.Value = randomTheme.ToString();
+            return randomTheme;
+        }
+
+        public void setCredit()
+        {
+            HiddenField_credit.Value = "100"; //db -> getCredit();
         }
         public void SaveToDB(int card, string WinLose)
         {

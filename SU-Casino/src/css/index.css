@@ -10,6 +10,8 @@
     color:yellow
 }
 
+
+
 a, a:hover, a:active{
     text-decoration:none;
 }
@@ -18,22 +20,35 @@ a, a:hover, a:active{
     height:200px;
 }
 
-#panel1 {
-    /* width: 49*/
-    float: right;
+.header {
+    color: #0088cc;
+    padding-top: 25px;
+    padding-bottom: 15px;
+    text-align: center;
+    padding-left: 30px;
 }
-/*#panel2 {
-     width: 33%;
-    float: right;
-}*/
+
+#startInfo{
+    display:none;
+}
+
+.info {
+    background: #fff;
+    color: #000;
+    margin: 50px;
+    padding: 50px;
+    height: 100%;
+    font-size: 1em;
+}
+
 
 #winchance-container {
     background: rgba(90, 82, 82, 0.79);
     position: absolute;
     width: 100%;
     height: 100%;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
 }
 .winchance-div {
     background: rgba(90, 82, 82, 0.79);
@@ -124,12 +139,7 @@ a, a:hover, a:active{
     background: #151313ad;
     padding-top: 5%;
     box-shadow: 0 0 4px 2px rgba(0,0,0,.3);
-    border: 30px solid transparent;
     padding: 15px;
-    border-image-source: url(/src/images/frameTest.png);
-    border-image-repeat: round;
-    border-image-slice: 90;
-    border-image-width: 30px;
 }
 
 #message-content{
@@ -186,6 +196,19 @@ a, a:hover, a:active{
     color:white;
 }
 
+.game-panel > form > .round-button {
+    margin-left: -20px;
+}
+
+#panel1 {
+    width: 80px;
+    float: left;
+}
+
+.hidden{
+    display:none;
+}
+
 .col-xs-0,
 .col-sm-0,
 .col-md-0,
@@ -209,11 +232,7 @@ a, a:hover, a:active{
 }
 @media (max-width: 510px) {
     #play-container {
-        border: 15px solid transparent;
-        border-image-source: url(/src/images/frameTest.png);
-        border-image-repeat: round;
-        border-image-slice: 90;
-        border-image-width: 15px
+       
     }
     .playground-slot {
         height: 250px;
@@ -221,11 +240,7 @@ a, a:hover, a:active{
 }
 @media (max-width: 320px) {
     #play-container {
-        border: 2px solid transparent;
-        border-image-source: url(/src/images/frameTest.png);
-        border-image-repeat: round;
-        border-image-slice: 90;
-        border-image-width: 15px
+       
     }
 }
 

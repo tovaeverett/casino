@@ -21,24 +21,14 @@ card2.addEventListener('click', function () {
 
 
 $(document).ready(function () {
-    initGame();
-    $("#winchance-container").show();
+    initCardGame();
     $("#message-container").hide();
     console.log(cards);
 });
 
-$("#btnClose").click(function () {
-    $("#message-container").hide();
-
-});
-
-$(".winchance-btn").click(function () {
-    $("#winchance-container").hide();
-});
-
-
-function initGame() {
+function initCardGame() {
     var baseUrl = "src/images/cards/";
+    gameInit();
     cards = {
         card1: $("#HiddenField_card1").val(),
         card2: $("#HiddenField_card2").val(),
@@ -56,6 +46,7 @@ function cardClicked(selectedCard) {
     console.log(selectedCard, $(card1).find('img')[1].id);
     disable = true;
     var isWinner = false;
+    var result = "";
     $(".lost").hide();
     $(".winner").hide();
     if (selectedCard.id === 'betCard1') {
@@ -70,13 +61,16 @@ function cardClicked(selectedCard) {
             isWinner = true;
         }
     }
-    isWinner ? $("#HiddenField_WinLose").val("win") : $("#HiddenField_WinLose").val("lose");
-    isWinner ? $(".winner").show() : $(".lost").show();
-    $("#message-container").show();
+    
+    if (!isWinner) {
+        $("#HiddenField_WinLose").val("lose");
+        setTimeout(function () { $("#btnPlay").click(); }, 500);
+    }
+    else {
+        $("#HiddenField_WinLose").val("win");
+        $(".winner").show();
+        $("#message-container").show();
+    }
     console.log($("#HiddenField_WinLose").val());
 }
 
-function resetGame() {
-    resultMessage = hide();
-    initGame();
-}

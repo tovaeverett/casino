@@ -80,6 +80,8 @@
     <Content Include="src\css\roulette_wheel_1.css" />
     <Content Include="src\css\roulette_wheel_base.css" />
     <Content Include="src\css\slot.css" />
+    <Content Include="src\css\theme1b.css" />
+    <Content Include="src\css\theme2.css" />
     <Content Include="src\css\theme1.css" />
     <Content Include="src\images\backgrounds\body_theme1.jpg" />
     <Content Include="src\images\cards\10C.png" />
@@ -166,6 +168,7 @@
     <Content Include="src\js\jquery.keyframes.mini.js" />
     <Content Include="src\js\roulette.js" />
     <Content Include="src\js\roulette_wheel.js" />
+    <Content Include="src\js\index.js" />
     <Content Include="src\js\slot.js" />
     <Content Include="Web.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

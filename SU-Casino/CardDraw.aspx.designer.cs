@@ -13,22 +13,13 @@ namespace SU_Casino {
     public partial class CardDraw {
         
         /// <summary>
-        /// form1 control.
+        /// formCards control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
-        /// imgWinner control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgWinner;
+        protected global::System.Web.UI.HtmlControls.HtmlForm formCards;
         
         /// <summary>
         /// HiddenField_card1 control.
@@ -67,13 +58,31 @@ namespace SU_Casino {
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_WinLose;
         
         /// <summary>
-        /// lblMoney control.
+        /// HiddenField_theme control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMoney;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_theme;
+        
+        /// <summary>
+        /// HiddenField_showInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_showInfo;
+        
+        /// <summary>
+        /// HiddenField_credit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_credit;
         
         /// <summary>
         /// btnPlay control.
@@ -85,12 +94,12 @@ namespace SU_Casino {
         protected global::System.Web.UI.WebControls.Button btnPlay;
         
         /// <summary>
-        /// btnQuit control.
+        /// lblMoney control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnQuit;
+        protected global::System.Web.UI.WebControls.Label lblMoney;
     }
 }

@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css"/>
 	<link rel="stylesheet" href="src/css/slot.css"/>
     <link rel="stylesheet" href="src/css/index.css"/>
-    <link rel="stylesheet" href="src/css/theme1.css"/>
+    <link rel="stylesheet" href="src/css/theme1b.css"/>
 </head>
 <body>
 <div id="main-container" class="container-fluid">
@@ -35,9 +35,9 @@
 		                    <img id="slot_1_3" src="src/images/slot/img3.png"/>
 	                        <img id="slot_1_4" src="src/images/slot/img4.png"/>
 		                    <img id="slot_1_5" src="src/images/slot/img1.png"/>
-						                    </div>
+						</div>
 					</div>
-				     </div>
+				  </div>
 				 
 				     <div class="col-md-3 slotSpan">
  					    <div class="roulette_container" >
@@ -84,10 +84,6 @@
                         </span>
                     </div>
                 </div>
-                    <div id="panel2">
-                     
-                    </div>
-               
             </div>
            <div class="col-xl-2 col-md-2 col-sm-1"></div>
          </div>
