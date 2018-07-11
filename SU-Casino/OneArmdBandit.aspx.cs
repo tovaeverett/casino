@@ -19,6 +19,7 @@ namespace SU_Casino
                 HiddenField_Spin2.Value = randomStartCard().ToString();
                 HiddenField_Spin3.Value = randomStartCard().ToString();
                 checkIfWin();
+                GetRandomTheme();
             }
         }
 
@@ -48,6 +49,13 @@ namespace SU_Casino
             int randomfruit = rnd.Next(0, 6);
 
             return randomfruit;
+        }
+        public void GetRandomTheme()
+        {
+            Random rnd = new Random();
+            int randomTheme = rnd.Next(0, 4);
+
+            HiddenField_Theme.Value = randomTheme.ToString();
         }
     }
 }

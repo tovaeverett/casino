@@ -177,7 +177,6 @@ C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\obj\Debug\SU-Casino.cspr
 C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\obj\Debug\SU-Casino.dll
 C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\obj\Debug\SU-Casino.pdb
 C:\Users\Jeanette Skog\Documents\su\su-casino\SU-Casino\obj\Debug\SU-Casino.csprojAssemblyReference.cache
-C:\Users\Hugosson\source\repos\SU-Casino2\SU-Casino\obj\Debug\SU-Casino.csprojAssemblyReference.cache
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\Microsoft.CodeAnalysis.dll
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll

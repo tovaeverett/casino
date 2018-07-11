@@ -79,6 +79,7 @@
                     <asp:HiddenField ID="HiddenField_Spin2" runat="server" />
                     <asp:HiddenField ID="HiddenField_Spin3" runat="server" />
                     <asp:HiddenField ID="HiddenField_WinLose" runat="server" />
+                    <asp:HiddenField ID="HiddenField_Theme" runat="server" />
                     <div id="panel1">
                     <div id="moneyLable">Credit left:&nbsp; 
                         <span class="cash-sum"> 

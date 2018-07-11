@@ -22,6 +22,7 @@ namespace SU_Casino
                 setCards();
                 money = 1500;
                 lblMoney.Text = money.ToString();
+                GetRandomTheme();
             }
         }
 
