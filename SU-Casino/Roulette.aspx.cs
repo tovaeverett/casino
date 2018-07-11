@@ -17,7 +17,7 @@ namespace SU_Casino
             if (!IsPostBack)
             {
                 HiddenFieldrouletteNr.Value = RandomSpin().ToString();
-                lblCredit.Text = credit.ToString();
+                //lblCredit.Text = credit.ToString();
 
                 
             }

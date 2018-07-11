@@ -116,9 +116,17 @@ namespace SU_Casino
             lblMoney.Text = money.ToString();
             SaveToDB(CardPressed, winLose);
         }
+
+        public void GetRandomTheme()
+        {
+            Random rnd = new Random();
+            int randomTheme = rnd.Next(0, 4);
+
+            HiddenField_Theme.Value = randomTheme.ToString();
+        }
         public void SaveToDB(int card, string WinLose)
         {
-
+           
         }
     }
 }

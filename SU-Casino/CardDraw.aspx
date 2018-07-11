@@ -64,7 +64,7 @@
                     <asp:HiddenField ID="HiddenField_card2" runat="server" Value="3"/> 
                     <asp:HiddenField ID="HiddenField_card3" runat="server" Value="3"/> 
                     <asp:HiddenField ID="HiddenField_WinLose" runat="server" />
-
+                    <asp:HiddenField ID="HiddenField_Theme" runat="server" />
                     <div id="panel1">
                     <div id="moneyLable">Credit left:&nbsp; 
                         <span class="cash-sum"> 
