@@ -13,6 +13,15 @@ namespace SU_Casino {
     public partial class OneArmdBandit {
         
         /// <summary>
+        /// themeCSS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlLink themeCSS;
+        
+        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,15 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_WinLose;
+        
+        /// <summary>
+        /// HiddenField_Theme control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_Theme;
         
         /// <summary>
         /// lblMoney control.

@@ -78,9 +78,9 @@ namespace SU_Casino
             return userExist;
 
         }
-        public int getCredit()
+        public void CreateReport()
         {
-            return 100;
+
         }
     }
 }
