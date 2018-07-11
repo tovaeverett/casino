@@ -12,8 +12,9 @@
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css"/>
 	<link rel="stylesheet" href="src/css/card_game.css"/>
     <link rel="stylesheet" href="src/css/index.css"/>
+<%--    <link rel="stylesheet" href="src/css/theme1.css"/>--%>
     <link rel="stylesheet" href="src/css/themeGold.css"/>
-    <%--<link rel="stylesheet" href="src/css/themeCasino.css"/>--%>
+<%--    <link rel="stylesheet" href="src/css/themeCasino.css"/>--%>
 </head>
 <body>
     

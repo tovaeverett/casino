@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="src/css/index.css"/>
 <%--    <link rel="stylesheet" href="src/css/theme1.css"/>--%>
     <link rel="stylesheet" href="src/css/themeGold.css"/>
+<%--    <link rel="stylesheet" href="src/css/themeCasino.css"/>--%>
 </head>
 <body>
 <div id="main-container" class="container-fluid">
@@ -68,7 +69,7 @@
            </div>
             <div class="col-md-12 col-sm-12 game-panel">
                 <form id="form1" runat="server">
-                     <button class="round-button  start"></button>
+                     <button class="round-button  start">SPIN!!!</button>
 
                      <asp:image id="IMGslot1" runat="server"></asp:image>
                      <asp:image id="IMGslot2" runat="server"></asp:image>

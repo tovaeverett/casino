@@ -30,8 +30,6 @@ body {
 }
 
 .playground-slot {
-    border-radius: 30px;
-    display: block;
     padding-top: 20px;
     padding-bottom: 10px;
     /*background: -webkit-gradient(linear, left top, left bottom, from(#fff), color-stop(0.5, #dfdfdf), to(#cecece) );
@@ -40,8 +38,6 @@ body {
 
 .game-panel {
     background: #e0b56a94;
-    color: #fff;
-    border: 2px solid rgba(221, 221, 221, 0.48);
 }
 
     .game-panel > ul {
@@ -53,9 +49,11 @@ body {
     height: 100px;
     width: 100px;
     border-radius: 50%;
-    background: linear-gradient(to bottom, #609dcb 0%,#125ead 50%,#476cde 100%);
-    background-image: url("/src/images/slot/spin_btn.jpg");
+    background-image: url("/src/images/slot/spin_btn_gold.jpg");
     background-size: contain;
     background-repeat: no-repeat;
-    color: white;
+    /* Hide the text. */
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
 }

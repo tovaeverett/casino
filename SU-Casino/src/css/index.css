@@ -167,13 +167,6 @@ a, a:hover, a:active{
    display: inline-flex;
 }
 
-.round-button {
-    height: 70px;
-    width:70px;
-    border-radius: 50%;
-    background: linear-gradient(to bottom, #609dcb 0%,#125ead 50%,#476cde 100%);
-    color:white;
-}
 
 .col-xs-0,
 .col-sm-0,
