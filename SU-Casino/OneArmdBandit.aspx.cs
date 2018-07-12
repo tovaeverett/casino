@@ -14,8 +14,10 @@ namespace SU_Casino
         protected void Page_Load(object sender, EventArgs e)
         {
             applyThemeTemp(); //temporarily added, to be removed when themes are finalized and triggering logic is done
+            HiddenField_showInfo.Value = "0";
             if (!IsPostBack)
             {
+                HiddenField_showInfo.Value = "1";
                 HiddenField_Spin1.Value = randomStartCard().ToString();
                 HiddenField_Spin2.Value = randomStartCard().ToString();
                 HiddenField_Spin3.Value = randomStartCard().ToString();
@@ -24,7 +26,7 @@ namespace SU_Casino
             }
         }
 
-        protected void btnPull_Click(object sender, EventArgs e)
+        protected void btnPlay_Click(object sender, EventArgs e)
         {
             HiddenField_Spin1.Value = randomStartCard().ToString();
             HiddenField_Spin2.Value = randomStartCard().ToString();

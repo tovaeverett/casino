@@ -138,7 +138,7 @@
             </div>
         </div>
         <!-- END: Start info -->   
-        <!-- Winn or Lost: Shows ....  -->
+        <!-- Win or Lost: Shows ....  -->
                   <div id="message-container" class="container-fluid overlayer">
                     <div class="row">
                         <div class="col-md-2"></div>
@@ -162,7 +162,7 @@
                     <div class="col-md-2"></div>
                 </div>
             </div>
-         <!-- End: Winn or Lost  -->
+         <!-- End: Win or Lost  -->
                     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <script src="src/js/card_game.js"></script>

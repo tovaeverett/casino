@@ -8,19 +8,20 @@ $(document).ready(function () {
 });
 
 $(".winchance-btn").click(function () {
+    slotContent.winChance = getWinChance(this.id);
     $("#winchance-container").hide();
 });
 
 function initSlotGame(){
-    $("#winchance-container").hide();
-    $("#message-container").hide();
+    gameInit();
     $(".winner").hide();
     $(".lost").hide();
     slotContent = {
         img1: $("#HiddenField_Spin1").val(),
         img2: $("#HiddenField_Spin2").val(),
         img3: $("#HiddenField_Spin3").val(),
-        result: $("#HiddenField_WinLose").val()
+        result: $("#HiddenField_WinLose").val(),
+        winChance: ""
     };
 
     var optionFirst = {
@@ -65,7 +66,12 @@ function initSlotGame(){
         },
         stopCallback: function ($stopElm) {
             slotContent.result === 'Lose' ? $(".lost").show() : $(".winner").show();
-            $("#message-container").show();
+            $("#HiddenField_result").val(slotContent.winChance + ",null," + slotContent.result.toLowerCase());
+            if (slotContent.result === 'Lose')
+                setTimeout(function () { $("#btnPlay").click(); }, 500);
+            else
+                $("#message-container").show();
+            
         }
     }
     rouletter = $('div.roulette1').roulette(optionFirst);
