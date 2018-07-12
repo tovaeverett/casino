@@ -13,7 +13,7 @@ namespace SU_Casino
         private int CheckCard;
         public int money;
 
-        Database database = new Database();
+        Database _database = new Database();
         protected void Page_Load(object sender, EventArgs e)
         {
             HiddenField_showInfo.Value = "0";
@@ -139,7 +139,7 @@ namespace SU_Casino
         {
             Random rnd = new Random();
             int randomTheme = rnd.Next(1, 4);
-            var theme = database.getTheme(randomTheme);
+            var theme = _database.getTheme(randomTheme);
             HiddenField_theme.Value = randomTheme.ToString();
             return randomTheme;
         }
