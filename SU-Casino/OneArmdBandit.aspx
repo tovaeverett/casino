@@ -15,7 +15,7 @@
     <link id="themeCSS" runat="server" rel="stylesheet" type="text/css" /> 
 </head>
 <body>
-<form id="form2" runat="server">
+<%--form id="form2" runat="server">--%>
 <div id="main-container" class="container-fluid">
         <div class="row header">
             <div class="col-md-2 col-sm-1"></div>
@@ -68,17 +68,17 @@
                     </div>
                     </div>
                     <div class="col-md-12 col-sm-12 game-panel">
-                        <%--<form id="form1" runat="server">--%>
+                        <form id="form1" runat="server">
                             <button class="round-button  start">SPIN! </button>
-                            <asp:Image ID="IMGslot1" runat="server"></asp:Image>
-                            <asp:Image ID="IMGslot2" runat="server"></asp:Image>
-                            <asp:Image ID="IMGslot3" runat="server"></asp:Image>
-
+                            <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play again!" class="hidden" />
                             <asp:HiddenField ID="HiddenField_Spin1" runat="server" />
                             <asp:HiddenField ID="HiddenField_Spin2" runat="server" />
                             <asp:HiddenField ID="HiddenField_Spin3" runat="server" />
                             <asp:HiddenField ID="HiddenField_WinLose" runat="server" />
                             <asp:HiddenField ID="HiddenField_theme" runat="server" />
+                            <asp:HiddenField ID="HiddenField_showInfo" runat="server" />
+                            <asp:HiddenField ID="HiddenField_credit" runat="server" />
+                            <asp:HiddenField ID="HiddenField_result" runat="server" />
                             <div id="panel1">
                                 <div id="moneyLable">Credit left:&nbsp; 
                                 <span class="cash-sum"> 
@@ -86,6 +86,7 @@
                                 </span>
                             </div>
                             </div>
+                    </form> 
                     </div>
                     <div class="col-xl-2 col-md-2 col-sm-1"></div>
                 </div>
@@ -97,54 +98,83 @@
             <div class="col-md-2 col-sm-1"></div>
          </div>
           
-        <div id="message-container" class="container-fluid overlayer">
-            <div class="row">
-                <div class="col-md-2"></div>
-                    <div class="col-md-8 text-center" id="message-content">
-                        <div class="winner">
-                            <h1> WINNER!!!! </h1>
-                            <h2> You got <span id="winCredit">+100</span> !!!!</h2>
-                            <br />
-                            <br />
-                            <br />
-                        </div>
-                        <div class="lost">
-                            <h1> You lost... </h1>
-                            <h2 id="lostCredit"> -100</h2>
-                            <br />
-                            <br />
-                            <br />
-                        </div>
-                        <asp:Button ID="btnPull" runat="server" OnClick="btnPull_Click" Text="Play again!" class="btn btn-large btn-primary" />
-                        <asp:Button ID="btnQuit" runat="server" Text="Quit game" class="btn btn-large btn-primary" />
-                </div>
-        <div class="col-md-2"></div>
-        </div>
+        
             <div class="row text-center">
                 
             </div>
         </div>
               
-           
-</div>
-<div id="winchance-container" class="container-fluid overlayer">
+  <!-- Winning chance: Shows before every game. The value are saved to backend in  -->
+    <div id="winchance-container" class="container-fluid overlayer">
         <div class="row text-center" >
            
             <div class="winchance-div">
                  <h2>What are your chances of winning?</h2>
                 <br />
                 <ul>
-                   <li id="btnHigh" class="winchance-btn">High</li>
+                    <li id="btnHigh" class="winchance-btn">High (Q)</li>
                     <li id="btnLow" class="winchance-btn">Low</li>
                     <li id="btnZero" class="winchance-btn">Zero</li>
                     <li id="btnDontKnow" class="winchance-btn">Don't know</li>
                 </ul>
             </div>
         </div>
-</div>
-</form> 
+    </div>
+     <!-- END: Winning chance --> 
+   <!-- Start info: Information about the game, visible first time set by hidden field 'HiddenField_showInfo' -->
+            <div id="startInfo" class="container-fluid overlayer">
+                 <div class="row">
+                        <div class="col-md-2"></div>
+                            <div class="col-md-8 text-center" id="message-content">
+                                <div class="info">
+                                    <section>
+                                        <h1> LETS PLAY CARDS </h1>
+                                        <p>
+                                        Lorem ipsum dolor sit amet, sea mundi ponderum neglegentur ex, at munere delicata cum. 
+                                        Inani choro per ex, equidem debitis et pro, sea an ludus omnium. Putent commune omnesque no ius, 
+                                        ad hinc everti qui. At modus decore sit. Omnes vivendo propriae eu pri, ut alii esse percipitur eos, 
+                                        eu est nibh assentior. Impetus legendos duo an.
+                                        </p>
+                                        <button id="btnShowInfo"class="btn btn-large btn-primary"> Start to play </button>
+                                    </section>
+                                </div>
+                                
+                            
+                        </div>
+                    <div class="col-md-2"></div>
+            </div>
+        </div>
+        <!-- END: Start info -->   
+        <!-- Win or Lost: Shows ....  -->
+                  <div id="message-container" class="container-fluid overlayer">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                            <div class="col-md-8 text-center" id="message-content">
+                                <div class="winner">
+                                    <h1> WINNER!!!! </h1>
+                                    <h2> You got <span id="winCredit">+100</span> !!!!</h2>
+                                    <br />
+                                    <br />
+                                    <br />
+                                </div>
+                                <div class="lost">
+                                    <h1> You lost... </h1>
+                                    <h2 id="lostCredit"> -100</h2>
+                                    <br />
+                                    <br />
+                                    <br />
+                                </div>
+                            <button id="btnCloseWin" class="btn btn-large btn-primary" > Play again </button>
+                        </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+         <!-- End: Win or Lost  -->
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <script src="src/js/roulette.js"></script>
+    <script src="src/js/index.js"></script>
 	<script src="src/js/slot.js"></script>
 
     <!-------------------***********************--------------------------------->
