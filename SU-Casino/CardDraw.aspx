@@ -7,7 +7,7 @@
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="src/css/bootstrap.css"/>
-    <!--link rel="stylesheet" href="src/css/bootstrap-responsive.css"/-->
+    <link rel="stylesheet" href="src/css/bootstrap-responsive.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"/>
 	<!--link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css"/-->
 	<link rel="stylesheet" href="src/css/card_game.css"/>
@@ -16,10 +16,10 @@
        <%  var theme = this.setTheme();
         switch (theme) {
             case 1:%>
-                <link rel="stylesheet" href="src/css/theme1a.css" />
+                <link rel="stylesheet" href="src/css/themeBlack.css" />
               <%   break;
             case 2:%>
-                <link rel="stylesheet" href="src/css/theme2.css" />
+                <link rel="stylesheet" href="src/css/themeGold.css" />
                 <% break;
             case 3:%>
                 <link rel="stylesheet" href="src/css/theme1b.css" />
@@ -39,9 +39,9 @@
         </div>
         <div class="row playground">
             <div class="col-md-2 col-sm-1 col-xl-2"></div>
-                <div class="col-xl-8 col-md-8 col-sm-10" id="play-container">
-                    <div class="col-md-12 playground-cards">
-                        <div class="div-center">
+            <div class="col-xl-8 col-md-8 col-sm-10" id="play-container">
+                 <div class="col-md-12 playground-cards">
+                     <div class="div-center">
                             <!--**CARDS**-->
                             <div class="col-md-3 cardSpan">
 					            <div class="scene scene--card">

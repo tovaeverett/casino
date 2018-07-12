@@ -14,12 +14,13 @@ namespace SU_Casino
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            HiddenField_showInfo.Value = "0";
             if (!IsPostBack)
             {
                 HiddenFieldrouletteNr.Value = RandomSpin().ToString();
-                //lblCredit.Text = credit.ToString();
-
-                
+                lblMoney.Text = credit.ToString();
+                RandomSpin();
+                HiddenField_showInfo.Value = "1";
             }
         }
 
@@ -35,9 +36,7 @@ namespace SU_Casino
         public int RandomSpin()
         {
             Random rnd = new Random();
-
             int randomNr = rnd.Next(1, 37);
-            lblNr.Text = randomNr.ToString();
             return randomNr;
         }
 
@@ -46,20 +45,24 @@ namespace SU_Casino
             return value % 2 == 0;
         }
 
-        protected void btnSpin_Click(object sender, EventArgs e)
+        protected void btnPlay_Click(object sender, EventArgs e)
         {
+            bool isWin = true; //Change...
             RandomSpin();
+            credit = isWin ? credit + 500 : credit - 500;
+            lblMoney.Text = credit.ToString();
         }
 
         [WebMethod]
         public static void WinOrLose(string isWin, string betOptions, string expectedWinningChance)
         {
-            credit = bool.Parse(isWin) ? credit + 100 : credit - 100;
+            
 
             var t = isWin;
             var t2 = betOptions;
             var t3 = expectedWinningChance;
-
+      
+            
             // send to DB
         }
     }

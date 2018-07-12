@@ -1,4 +1,5 @@
 function gameInit() {
+    $("#message-container").hide();
     var showInfo = $("#HiddenField_showInfo").val();
     showInfo === '1' ? $("#startInfo").show() : $("#winchance-container").show();
 }

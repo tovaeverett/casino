@@ -22,6 +22,8 @@ body {
 #roulette-wrapper {
     background: green;
     box-sizing: unset;
+    padding-top: 15px;
+    padding-left: 15px;
 }
 
 #btnBlack {
@@ -41,4 +43,94 @@ body {
     margin-left: 20px;
 }
 
+#moneyLable{
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    body {
+        height: 100vh;
+        background-size: cover;
+    }
+
+    .container {
+        padding-top: 0;
+        height: 85vh;
+    }
+
+        .container .row:first-of-type {
+            height: inherit;
+        }
+
+    #roulette-wrapper {
+        border-radius: 20px;
+        border: 10px solid lightgreen;
+        border-top-left-radius: 48% 24%;
+        border-top-right-radius: 50% 25%;
+        height: inherit;
+        /* border-bottom-left-radius: 39% 65%; */
+        /* background-color: white; */
+        max-width: 800px;
+    }
+
+    .spinner {
+        font-size: 0.87em;
+    }
+
+    #winnerAnnouncer {
+    }
+
+    .btn_container p {
+        padding-left: 1em;
+    }
+
+    #btnSpin {
+        margin-top: 0.2em;
+    }
+}
+
+@media (max-width: 812px) {
+    body, .row, .container, #roulette-wrapper {
+        padding-right: 0px;
+        padding-left: 0px;
+        max-width: 100%;
+    }
+
+    #roulette-wrapper {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .spinner {
+        font-size: 0.67em;
+    }
+}
+
+@media (max-width: 567px) {
+    .spinner-container {
+        font-size: 0.77em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .spinner {
+        font-size: 0.67em;
+    }
+
+    #roulette-wrapper {
+        padding-left: 1px;
+    }
+}
+
+@media (max-width: 320px) {
+    .spinner-container {
+        font-size: 0.77em;
+    }
+}
 

@@ -119,8 +119,18 @@ var betOption = "";
 var expectedWinningChance = "";
 $.keyframe.debug = true;
 
-createWheel();
+$(document).ready(function () {
+    initRouletteGame();
+});
+
+function initRouletteGame() {
+    gameInit();
+    createWheel();
+}
+
+
 function createWheel() {
+    
   var temparc = 360 / numorder.length;
   for (var i = 0; i < numorder.length; i++) {
     numberLoc[numorder[i]] = [];
@@ -173,7 +183,7 @@ btnBlack.click(function() {
   startSpinn();
 });
 
-btnHigh.click(function() {
+/*btnHigh.click(function() {
   setSelectedWinningChange("high");
 });
 
@@ -187,6 +197,12 @@ btnZero.click(function() {
 
 btnDontKnow.click(function() {
   setSelectedWinningChange("dont know");
+});
+*/
+
+$(".winchance-btn").click(function () {
+    expectedWinningChance = getWinChance(this.id);
+    $("#winchance-container").hide();
 });
 
 function setSelectedColor() {
@@ -217,31 +233,46 @@ function startSpinn() {
 }
 
 function finishSpin() {
-  let isWin = false;
-  if (numred.indexOf(winningNum) > 0) {
-    if (betOption === "red") {
-      winnerWinnerChickenDinner();
+    let isWinner  = false;
+    var result = expectedWinningChance + ",";
+    
+    if (numred.indexOf(winningNum) > 0) {
+        if (betOption === "red") {
+            result = result + "2,";
+            isWinner = true;
     }
-  } else {
-    if (betOption === "black") {
-      winnerWinnerChickenDinner();
+    } else {
+        if (betOption === "black") {
+            result = result + "1,";
+            isWinner = true;
+       }
     }
-  }
+
+    if (!isWinner) {//TODO- function in index?
+        result = result + "lose";
+        $("#HiddenField_result").val(result);
+        setTimeout(function () { $("#btnPlay").click(); }, 500);
+    }
+    else {
+        result = result + "win";
+        $("#HiddenField_result").val(result);
+        $(".winner").show();
+        $("#message-container").show();
+    }
+
 
   PageMethods.WinOrLose(
-    isWin,
+    isWinner ,
     betOption,
     expectedWinningChance,
     callBack,
     failed
   );
 
-  console.log(winningNum, isWin);
+    console.log(winningNum, isWinner, result );
   betOption = "";
   setSelectedColor();
   switchButtons(false);
-
-  btnSpin.prop("disabled", true);
 }
 
 function winnerWinnerChickenDinner() {

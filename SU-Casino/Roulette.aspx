@@ -41,7 +41,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-2 col-xs-0"></div>
-                <div class="col-md-8 col-xs-12" id="roulette-wrapper">
+                <div class="col-md-10 col-xs-12" id="roulette-wrapper">
                 
                     <div class="spinner-container">
                         <div class="spinner text-center">
@@ -66,10 +66,24 @@
                     <div class="btn_container">
                         <h3> Choose a color: </h3>
                         <ul>
-                            <li><button id="btnBlack" class="btn btn-large spinnButton">BLACK</button></li>
-                            <li><button id="btnRed" class="btn btn-large spinnButton"> RED </button></li>
+                            <li><button id="btnBlack" class="btn round-button spinnButton">BLACK</button></li>
+                            <li><button id="btnRed" class="btn round-button spinnButton"> RED </button></li>
                         </ul>
-                       Credit: <asp:Label ID="lblCredit" runat="server"></asp:Label>
+                        <form id="form1" runat="server">
+                            
+                            <asp:ScriptManager runat="server" EnablePageMethods="true" />
+                            <asp:HiddenField ID="HiddenFieldrouletteNr" runat="server" />
+                            <asp:HiddenField ID="HiddenFieldWinLose" runat="server" />
+                            <asp:HiddenField ID="HiddenField_credit" runat="server" />
+                            <asp:HiddenField ID="HiddenField_showInfo" runat="server" />
+                            <asp:HiddenField ID="HiddenField_result" runat="server" />
+                            <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play again!" class="hidden" />
+                            <div id="moneyLable">Credit left:&nbsp; 
+                               <span class="cash-sum"> 
+                                  <asp:Label ID="lblMoney" runat="server"> </asp:Label>
+                               </span>
+                            </div>
+                        </form>
                         
                     </div>
                 </div>
@@ -87,21 +101,64 @@
                     <h1>YES! YOU ARE A WINNER! +100 </h1>
                 </div>
             </div>
-            <form id="form1" runat="server">
-               
-                <asp:Label ID="lblColor" runat="server"></asp:Label>
-                <asp:Label ID="lblNr" runat="server"></asp:Label>
-                <asp:ScriptManager runat="server" EnablePageMethods="true" />
-                <asp:HiddenField ID="HiddenFieldrouletteNr" runat="server" />
-                <asp:HiddenField ID="HiddenFieldWinLose" runat="server" />
-            </form>
+          
         </div>
+         <!-- Start info: Information about the game, visible first time set by hidden field 'HiddenField_showInfo' -->
+            <div id="startInfo" class="container-fluid overlayer">
+                 <div class="row">
+                        <div class="col-md-2"></div>
+                            <div class="col-md-8 text-center" id="message-content">
+                                <div class="info">
+                                    <section>
+                                        <h1> LETS PLAY CARDS </h1>
+                                        <p>
+                                        Lorem ipsum dolor sit amet, sea mundi ponderum neglegentur ex, at munere delicata cum. 
+                                        Inani choro per ex, equidem debitis et pro, sea an ludus omnium. Putent commune omnesque no ius, 
+                                        ad hinc everti qui. At modus decore sit. Omnes vivendo propriae eu pri, ut alii esse percipitur eos, 
+                                        eu est nibh assentior. Impetus legendos duo an.
+                                        </p>
+                                        <button id="btnShowInfo"class="btn btn-large btn-primary"> Start to play </button>
+                                    </section>
+                                </div>
+                                
+                            
+                        </div>
+                    <div class="col-md-2"></div>
+            </div>
+        </div>
+        <!-- END: Start info -->   
+        <!-- Winn or Lost: Shows ....  -->
+                  <div id="message-container" class="container-fluid overlayer">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                            <div class="col-md-8 text-center" id="message-content">
+                                <div class="winner">
+                                    <h1> WINNER!!!! </h1>
+                                    <h2> You got <span id="winCredit">+100</span> !!!!</h2>
+                                    <br />
+                                    <br />
+                                    <br />
+                                </div>
+                                <div class="lost">
+                                    <h1> You lost... </h1>
+                                    <h2 id="lostCredit"> -100</h2>
+                                    <br />
+                                    <br />
+                                    <br />
+                                </div>
+                            <button id="btnCloseWin" class="btn btn-large btn-primary" > Play again </button>
+                        </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+         <!-- End: Winn or Lost  -->
      
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
         <script src="/src/js/jquery.fireworks-js/jquery.fireworks.js"></script>
         <script src='/src/js/jquery.keyframes.mini.js'></script>
-        <script src="/src/js/roulette_wheel.js"></script>
+        <script src="/src/js/index.js"></script>
+         <script src="/src/js/roulette_wheel.js"></script>
     </body>
 
     </html>

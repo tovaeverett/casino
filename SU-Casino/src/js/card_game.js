@@ -51,30 +51,30 @@ function initCardGame() {
 function cardClicked(selectedCard) {
     disable = true;
     var isWinner = false;
-    var result = "";
+    var result = cards.winChance + ",";
     $(".lost").hide();
     $(".winner").hide();
     if (selectedCard.id === 'betCard1') {
-        result = "PressCard:1,";
+        result = result + "1,";
         if (cards.card1 === cards.showCard) {
             isWinner = true;
         }
     }
     else {
-        result = "PressCard:2,";
+        result = result + "2,";
         if (cards.card2 === cards.showCard) {
             isWinner = true;
         }
     }
-    result = result + "WinChance:" + cards.winChance + ",";
+     
     if (!isWinner) {
-        result = result + "WinLose:lose";
+        result = result + "lose";
         //result = JSON.stringify(cards).split('"').join('');
         $("#HiddenField_result").val(result);
         setTimeout(function () { $("#btnPlay").click(); }, 500);
     }
     else {
-        result = result + "WinLose:win";
+        result = result + "win";
         $("#HiddenField_result").val(result);
         $(".winner").show();
         $("#message-container").show();

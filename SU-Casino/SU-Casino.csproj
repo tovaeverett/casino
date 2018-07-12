@@ -84,6 +84,9 @@
     <Content Include="src\css\theme1b.css" />
     <Content Include="src\css\theme2.css" />
     <Content Include="src\css\theme1.css" />
+    <Content Include="src\css\themeBlack.css" />
+    <Content Include="src\css\themeCasino.css" />
+    <Content Include="src\css\themeGold.css" />
     <Content Include="src\images\backgrounds\body_theme1.jpg" />
     <Content Include="src\images\cards\10C.png" />
     <Content Include="src\images\cards\10D.png" />
