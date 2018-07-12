@@ -15,6 +15,7 @@
     <link id="themeCSS" runat="server" rel="stylesheet" type="text/css" /> 
 </head>
 <body>
+<form id="form2" runat="server">
 <div id="main-container" class="container-fluid">
         <div class="row header">
             <div class="col-md-2 col-sm-1"></div>
@@ -26,71 +27,70 @@
             <div class="col-xl-2 col-md-2 col-sm-1 "></div>
                 <div class="col-xl-8 col-md-8 col-sm-10" id="play-container">
                     <div class="col-md-12 playground-slot">
-                    <div class="div-center">
-                    <div class="playground-inner">
-                    <div class="col-md-3 slotSpan">
-					    <div class="roulette_container" >
-						    <div class="roulette1 roulette" style="display:none;">
-                            <img id="slot_1_1" src="src/images/slot/img1.png"/>
-		                    <img id="slot_1_2" src="src/images/slot/img2.png"/>
-		                    <img id="slot_1_3" src="src/images/slot/img3.png"/>
-	                        <img id="slot_1_4" src="src/images/slot/img4.png"/>
-		                    <img id="slot_1_5" src="src/images/slot/img1.png"/>
-						</div>
-					</div>
-				  </div>
+                        <div class="div-center">
+                        <div class="playground-inner">
+                            <div class="col-md-3 slotSpan">
+					            <div class="roulette_container" >
+						            <div class="roulette1 roulette" style="display:none;">
+                                        <img id="slot_1_1" src="src/images/slot/img1.png"/>
+		                                <img id="slot_1_2" src="src/images/slot/img2.png"/>
+		                                <img id="slot_1_3" src="src/images/slot/img3.png"/>
+	                                    <img id="slot_1_4" src="src/images/slot/img4.png"/>
+		                                <img id="slot_1_5" src="src/images/slot/img1.png"/>
+						            </div>
+					            </div>
+				            </div>
 				 
-				     <div class="col-md-3 slotSpan">
- 					    <div class="roulette_container" >
-						    <div class="roulette2 roulette" style="display:none;">
-							    <img id="slot_1_1" src="src/images/slot/img1.png"/>
-		                    <img id="slot_1_2" src="src/images/slot/img2.png"/>
-		                    <img id="slot_1_3" src="src/images/slot/img3.png"/>
-	                        <img id="slot_1_4" src="src/images/slot/img4.png"/>
-		                    <img id="slot_1_5" src="src/images/slot/img1.png"/>
-						    </div>
-					    </div>
-    		        </div>
+				            <div class="col-md-3 slotSpan">
+ 					            <div class="roulette_container" >
+						            <div class="roulette2 roulette" style="display:none;">
+							            <img id="slot_1_1" src="src/images/slot/img1.png"/>
+		                                <img id="slot_1_2" src="src/images/slot/img2.png"/>
+		                                <img id="slot_1_3" src="src/images/slot/img3.png"/>
+	                                    <img id="slot_1_4" src="src/images/slot/img4.png"/>
+		                                <img id="slot_1_5" src="src/images/slot/img1.png"/>
+						            </div>
+					            </div>
+    		                 </div>
 			        
-                    <div class="col-md-3 slotSpan">
-				        <div class="roulette_container" >
-						    <div class="roulette3 roulette" style="display:none;">
-							    <img id="slot_1_1" src="src/images/slot/img1.png"/>
-		                        <img id="slot_1_2" src="src/images/slot/img2.png"/>
-		                    <img id="slot_1_3" src="src/images/slot/img3.png"/>
-	                        <img id="slot_1_4" src="src/images/slot/img4.png"/>
-		                    <img id="slot_1_5" src="src/images/slot/img1.png"/>
-						    </div>
-					    </div>
-                  </div>
-                 </div>
-               </div>
-           </div>
-            <div class="col-md-12 col-sm-12 game-panel">
-                <form id="form1" runat="server">
-                     <button class="round-button  start"> SPIN! </button>
-
-                     <asp:image id="IMGslot1" runat="server"></asp:image>
-                     <asp:image id="IMGslot2" runat="server"></asp:image>
-                     <asp:image id="IMGslot3" runat="server"></asp:image>
-                    
-                    <asp:HiddenField ID="HiddenField_Spin1" runat="server" />
-                    <asp:HiddenField ID="HiddenField_Spin2" runat="server" />
-                    <asp:HiddenField ID="HiddenField_Spin3" runat="server" />
-                    <asp:HiddenField ID="HiddenField_WinLose" runat="server" />
-                    <div id="panel1">
-                    <div id="moneyLable">Credit left:&nbsp; 
-                        <span class="cash-sum"> 
-                            <asp:Label ID="lblMoney" runat="server"></asp:Label>  
-                        </span>
+                            <div class="col-md-3 slotSpan">
+				                <div class="roulette_container" >
+						            <div class="roulette3 roulette" style="display:none;">
+							            <img id="slot_1_1" src="src/images/slot/img1.png"/>
+		                                <img id="slot_1_2" src="src/images/slot/img2.png"/>
+		                                <img id="slot_1_3" src="src/images/slot/img3.png"/>
+	                                    <img id="slot_1_4" src="src/images/slot/img4.png"/>
+		                                <img id="slot_1_5" src="src/images/slot/img1.png"/>
+						            </div>
+					            </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-           <div class="col-xl-2 col-md-2 col-sm-1"></div>
-         </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 game-panel">
+                        <%--<form id="form1" runat="server">--%>
+                            <button class="round-button  start">SPIN! </button>
+                            <asp:Image ID="IMGslot1" runat="server"></asp:Image>
+                            <asp:Image ID="IMGslot2" runat="server"></asp:Image>
+                            <asp:Image ID="IMGslot3" runat="server"></asp:Image>
 
-             </div>
-         <div class="row">
+                            <asp:HiddenField ID="HiddenField_Spin1" runat="server" />
+                            <asp:HiddenField ID="HiddenField_Spin2" runat="server" />
+                            <asp:HiddenField ID="HiddenField_Spin3" runat="server" />
+                            <asp:HiddenField ID="HiddenField_WinLose" runat="server" />
+                            <div id="panel1">
+                                <div id="moneyLable">Credit left:&nbsp; 
+                                <span class="cash-sum"> 
+                                    <asp:Label ID="lblMoney" runat="server"></asp:Label>  
+                                </span>
+                            </div>
+                            </div>
+                    </div>
+                    <div class="col-xl-2 col-md-2 col-sm-1"></div>
+                </div>
+
+        </div>
+        <div class="row">
             <div class="col-md-2 col-sm-1"></div>
             
             <div class="col-md-2 col-sm-1"></div>
@@ -114,8 +114,8 @@
                             <br />
                             <br />
                         </div>
-                    <asp:Button ID="btnPull" runat="server" OnClick="btnPull_Click" Text="Play again!" class="btn btn-large btn-primary" />
-                    <asp:Button ID="btnQuit" runat="server" Text="Quit game" class="btn btn-large btn-primary" />
+                        <asp:Button ID="btnPull" runat="server" OnClick="btnPull_Click" Text="Play again!" class="btn btn-large btn-primary" />
+                        <asp:Button ID="btnQuit" runat="server" Text="Quit game" class="btn btn-large btn-primary" />
                 </div>
         <div class="col-md-2"></div>
         </div>
@@ -125,8 +125,8 @@
         </div>
               
            
-    </div>
-    <div id="winchance-container" class="container-fluid overlayer">
+</div>
+<div id="winchance-container" class="container-fluid overlayer">
         <div class="row text-center" >
            
             <div class="winchance-div">
@@ -140,8 +140,8 @@
                 </ul>
             </div>
         </div>
-    </div>
-    </form> 
+</div>
+</form> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <script src="src/js/roulette.js"></script>
 	<script src="src/js/slot.js"></script>
