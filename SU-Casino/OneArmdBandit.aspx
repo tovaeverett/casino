@@ -124,8 +124,8 @@
    <!-- Start info: Information about the game, visible first time set by hidden field 'HiddenField_showInfo' -->
             <div id="startInfo" class="container-fluid overlayer">
                  <div class="row">
-                        <div class="col-md-2"></div>
-                            <div class="col-md-8 text-center" id="message-content">
+                        <div class="col-md-1 col-xs-0"></div>
+                            <div class="col-md-10 col-xs-12 text-center" id="message-content-info">
                                 <div class="info">
                                     <section>
                                         <h1> LETS PLAY CARDS </h1>
@@ -141,7 +141,7 @@
                                 
                             
                         </div>
-                    <div class="col-md-2"></div>
+                    <div class="col-md-1 col-xs-0"></div>
             </div>
         </div>
         <!-- END: Start info -->   
