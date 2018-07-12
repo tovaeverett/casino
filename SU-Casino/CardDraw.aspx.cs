@@ -80,10 +80,12 @@ namespace SU_Casino
        }
         protected void btnPlay_Click(object sender, EventArgs e)
         {
+            string result = HiddenField_result.Value;
             setTheme();
             checkForWin();
             setCards();
-            setCredit(); 
+            setCredit();
+            
         }
         private void checkForWin()
         {
