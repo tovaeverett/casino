@@ -1,9 +1,4 @@
-﻿body {
-    background: #000;
-    background-size: cover;
-}
-
-
+﻿
 body {
     background: url("/src/images/backgrounds/body_theme_gold.png") no-repeat center center fixed;
     background-size: cover;
@@ -19,10 +14,7 @@ body {
 
 #play-container {
     background: #af4848ad;
-    padding-top: 5%;
-    box-shadow: 0 0 4px 2px rgba(0,0,0,.3);
     border: 30px solid transparent;
-    padding: 15px;
     border-image-source: url(/src/images/frameTest.png);
     border-image-repeat: round;
     border-image-slice: 90;

@@ -56,14 +56,14 @@ namespace SU_Casino
             Random rnd = new Random();
             int randomTheme = rnd.Next(0, 4);
 
-            HiddenField_Theme.Value = randomTheme.ToString();
+          //  HiddenField_Theme.Value = randomTheme.ToString();
         }
 
         private void applyThemeTemp()
         {
             String themeName = Request.QueryString["theme"];
             if (themeName == null)
-                themeCSS.Attributes["href"] = "src/css/theme1.css";
+                themeCSS.Attributes["href"] = "src/css/themeGlow.css";
             else
             {
                 switch (themeName)
@@ -73,6 +73,12 @@ namespace SU_Casino
                         break;
                     case "gold":
                         themeCSS.Attributes["href"] = "src/css/themeGold.css";
+                        break;
+                    case "black":
+                        themeCSS.Attributes["href"] = "src/css/themeBlack.css";
+                        break;
+                    case "glow":
+                        themeCSS.Attributes["href"] = "src/css/themeGlow.css";
                         break;
                     default:
                         themeCSS.Attributes["href"] = "src/css/theme1.css";
