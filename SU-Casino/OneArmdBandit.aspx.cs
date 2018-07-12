@@ -9,6 +9,7 @@ namespace SU_Casino
 {
     public partial class OneArmdBandit : System.Web.UI.Page
     {
+        Database _database = new Database();
         Random rnd = new Random();
         int money;
         protected void Page_Load(object sender, EventArgs e)
@@ -20,7 +21,7 @@ namespace SU_Casino
                 HiddenField_Spin2.Value = randomStartCard().ToString();
                 HiddenField_Spin3.Value = randomStartCard().ToString();
                 checkIfWin();
-                GetRandomTheme();
+                setTheme();
             }
         }
 
@@ -51,12 +52,13 @@ namespace SU_Casino
 
             return randomfruit;
         }
-        public void GetRandomTheme()
+        public int setTheme()
         {
             Random rnd = new Random();
-            int randomTheme = rnd.Next(0, 4);
-
-          //  HiddenField_Theme.Value = randomTheme.ToString();
+            int randomTheme = rnd.Next(1, 4);
+            var theme = _database.getTheme(randomTheme);
+            HiddenField_theme.Value = randomTheme.ToString();
+            return randomTheme;
         }
 
         private void applyThemeTemp()
