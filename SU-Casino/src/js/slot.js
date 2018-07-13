@@ -3,6 +3,7 @@ var rouletter = {};
 var rouletter2 = {};
 var rouletter3 = {};
 
+
 $(document).ready(function () {
     initSlotGame();
 });
@@ -17,12 +18,14 @@ function initSlotGame() {
     gameInit(theme);
     $(".winner").hide();
     $(".lost").hide();
+    var slotSound = new Audio("src/sound/effects/slotMachineSpin.mp3");
     slotContent = {
         img1: $("#HiddenField_Spin1").val(),
         img2: $("#HiddenField_Spin2").val(),
         img3: $("#HiddenField_Spin3").val(),
         result: $("#HiddenField_WinLose").val(),
-        winChance: ""
+        winChance: "",
+        sound: slotSound
     };
 
     var optionFirst = {
@@ -66,12 +69,13 @@ function initSlotGame() {
             console.log('slowDown3');
         },
         stopCallback: function ($stopElm) {
+            setTimeout(function () { slotContent.sound.pause(); }, 300);
             slotContent.result === 'Lose' ? $(".lost").show() : $(".winner").show();
             $("#HiddenField_result").val(slotContent.winChance + ",null," + slotContent.result.toLowerCase());
             if (slotContent.result === 'Lose')
                 setTimeout(function () { $("#btnPlay").click(); }, 500);
             else
-                $("#message-container").show();
+               setTimeout(function () { showWinner(); }, 300);
             
         }
     }
@@ -84,6 +88,7 @@ function initSlotGame() {
 
 $('.start').click(function (e) {
     e.preventDefault();
+    slotContent.sound.play();
 	rouletter.roulette('start');
 	rouletter2.roulette('start');
 	rouletter3.roulette('start');

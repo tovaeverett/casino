@@ -1,23 +1,19 @@
 $(function() {
   document.addEventListener("keydown", function(event) {
     if (event.keyCode === 81) {
-      setSelectedWinningChange("high");
+      setSelectedWinningChange("0");
     } else if (event.keyCode === 87) {
-      setSelectedWinningChange("low");
+      setSelectedWinningChange("1");
     } else if (event.keyCode === 69) {
-      setSelectedWinningChange("zero");
+      setSelectedWinningChange("2");
     } else if (event.keyCode === 82) {
-      setSelectedWinningChange("dont know");
+      setSelectedWinningChange("3");
     }
   });
-
-  //var $guessChange = $("#firstShow");
- // $guessChange[0].showModal();
-
   btnSpin.prop("disabled", true);
 });
 
-var rotationsTime = 8;
+var rotationsTime = 9;
 var wheelSpinTime = 6;
 var ballSpinTime = 5;
 var numorder = [
@@ -117,6 +113,7 @@ var rinner = $("#rcircle");
 var numberLoc = [];
 var betOption = "";
 var expectedWinningChance = "";
+var wheelSound = new Audio("src/sound/effects/RouletteWheel.mp3")
 $.keyframe.debug = true;
 
 $(document).ready(function () {
@@ -240,8 +237,7 @@ function finishSpin() {
     else {
         result = result + "win";
         $("#HiddenField_result").val(result);
-        $(".winner").show();
-        $("#message-container").show();
+        setTimeout(function () { showWinner(); }, 300);
     }
 
 
@@ -308,7 +304,8 @@ function spinTo(num) {
   var rndSpace = Math.floor(Math.random() * 360 + 1);
 
   resetAni();
-  setTimeout(function() {
+    setTimeout(function () {
+        wheelSound.play();
     bgrotateTo(rndSpace);
     ballrotateTo(rndSpace + temp);
   }, 500);

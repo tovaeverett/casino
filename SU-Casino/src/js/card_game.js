@@ -34,7 +34,7 @@ function initCardGame() {
     var baseUrl = "src/images/cards/";
     var theme = $("#HiddenField_theme").val();
     gameInit(theme);
-    var cardSound = new Audio("src/sound/effects/card-flip.wav");
+    var cardSound = new Audio("src/sound/effects/cardSlide.mp3");
     cards = {
         card1: $("#HiddenField_card1").val(),
         card2: $("#HiddenField_card2").val(),
@@ -73,15 +73,13 @@ function cardClicked(selectedCard) {
      
     if (!isWinner) {
         result = result + "lose";
-        //result = JSON.stringify(cards).split('"').join('');
         $("#HiddenField_result").val(result);
         setTimeout(function () { $("#btnPlay").click(); }, 500);
     }
     else {
         result = result + "win";
         $("#HiddenField_result").val(result);
-        $(".winner").show();
-        $("#message-container").show();
+        setTimeout(function () { showWinner(); }, 300);
     }
     console.log(result);
 }
