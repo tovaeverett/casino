@@ -19,6 +19,11 @@ function initSlotGame() {
     $(".winner").hide();
     $(".lost").hide();
     var slotSound = new Audio("src/sound/effects/slotMachineSpin.mp3");
+    slotSound.addEventListener('ended', function () {
+        this.currentTime = 0;
+        this.play();
+    });
+
     slotContent = {
         img1: $("#HiddenField_Spin1").val(),
         img2: $("#HiddenField_Spin2").val(),
@@ -75,7 +80,9 @@ function initSlotGame() {
             if (slotContent.result === 'Lose')
                 setTimeout(function () { $("#btnPlay").click(); }, 500);
             else
-               setTimeout(function () { showWinner(); }, 300);
+                setTimeout(function () { showWinner(); }, 300);
+
+            slotSound.sound().pause();
             
         }
     }
