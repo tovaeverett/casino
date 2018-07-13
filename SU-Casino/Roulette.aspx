@@ -14,31 +14,15 @@
         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css" />
         <link rel="stylesheet" href="src/css/index.css"/>
         <link rel="stylesheet" href="/src/css/roulette_wheel_base.css" />
+        <link rel="stylesheet" href="/src/css/roulette_wheel.css" />
+
         <!--li--nk rel="stylesheet" href="/src/css/roulette_wheel.css" /-->
-        <% if (this.GetCssRandom() == 0)
-            { %>
-            <link rel="stylesheet" href="/src/css/roulette_wheel.css" />
-            <% } else { %>
-                <link rel="stylesheet" href="/src/css/roulette_wheel.css" />
-                <% } %>
     </head>
 
     <body>
-    <div id="winchance-container" class="container-fluid overlayer">
-        <div class="row text-center" >
-            <div class="winchance-div">
-                 <h2>What are your chances of winning?</h2>
-                <br />
-                <ul>
-                    <li id="btnHigh" class="winchance-btn">High</li>
-                    <li id="btnLow" class="winchance-btn">Low</li>
-                    <li id="btnZero" class="winchance-btn">Zero</li>
-                    <li id="btnDontKnow" class="winchance-btn">Don't know</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+   
         <div class="container">
+            <div class="first"></div>
             <div class="row">
                 <div class="col-md-2 col-xs-0"></div>
                 <div class="col-md-10 col-xs-12" id="roulette-wrapper">
@@ -65,7 +49,7 @@
                     </div>
                     <div class="btn_container">
                         <h3> Choose a color: </h3>
-                        <ul>
+                        <ul id="roulette-ul">
                             <li><button id="btnBlack" class="btn round-button spinnButton">BLACK</button></li>
                             <li><button id="btnRed" class="btn round-button spinnButton"> RED </button></li>
                         </ul>
@@ -91,18 +75,24 @@
             </div>
             <div class="row">
                 <div class="row text-center">
-                    <p>
-                        
-                    </p>
-                </div>
-            </div>
-            <div id="winnerAnnouncer">
-                <div class="span8">
-                    <h1>YES! YOU ARE A WINNER! +100 </h1>
                 </div>
             </div>
           
         </div>
+         <div id="winchance-container" class="container-fluid overlayer">
+        <div class="row text-center" >
+            <div class="winchance-div">
+                 <h2>What are your chances of winning?</h2>
+                <br />
+                <ul>
+                    <li id="btnHigh" class="winchance-btn">High</li>
+                    <li id="btnLow" class="winchance-btn">Low</li>
+                    <li id="btnZero" class="winchance-btn">Zero</li>
+                    <li id="btnDontKnow" class="winchance-btn">Don't know</li>
+                </ul>
+            </div>
+        </div>
+    </div>
          <!-- Start info: Information about the game, visible first time set by hidden field 'HiddenField_showInfo' -->
             <div id="startInfo" class="container-fluid overlayer">
                  <div class="row">

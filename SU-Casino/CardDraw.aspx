@@ -15,6 +15,9 @@
    <!-- *****Random themes *****-->
        <%  var theme = this.setTheme();
         switch (theme) {
+             case 0:%>
+                <link rel="stylesheet" href="src/css/noTheme.css" />
+              <%   break;
             case 1:%>
                 <link rel="stylesheet" href="src/css/themeBlack.css" />
               <%   break;
@@ -22,7 +25,7 @@
                 <link rel="stylesheet" href="src/css/theme1b.css" />
                 <% break;
             case 3:%>
-                <link rel="stylesheet" href="src/css/theme1b.css" />
+                <link rel="stylesheet" href="src/css/theme2.css" />
                <%  break;
             case 4:%>
                 <link rel="stylesheet" href="src/css/theme2.css" />
