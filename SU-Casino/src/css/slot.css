@@ -23,6 +23,11 @@ div.roulette_container {
     padding-left: 1px;
 }
 
+#play-container {
+    height:100%;
+}
+
+
 .playground {
     padding-top: 0px;
 }
