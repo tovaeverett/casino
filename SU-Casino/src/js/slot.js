@@ -18,7 +18,7 @@ function initSlotGame() {
     gameInit(theme);
     $(".winner").hide();
     $(".lost").hide();
-    var slotSound = new Audio("src/sound/effects/slotMachineSpin.mp3");
+    var slotSound = new Audio("src/sound/effects/slotMachine.wav");
     slotContent = {
         img1: $("#HiddenField_Spin1").val(),
         img2: $("#HiddenField_Spin2").val(),
@@ -88,6 +88,7 @@ function initSlotGame() {
 
 $('.start').click(function (e) {
     e.preventDefault();
+    slotContent.sound.loop = true;
     slotContent.sound.play();
 	rouletter.roulette('start');
 	rouletter2.roulette('start');
