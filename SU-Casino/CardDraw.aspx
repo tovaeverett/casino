@@ -165,7 +165,8 @@
          <!-- End: Win or Lost  -->
                     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-    <script src="src/js/card_game.js"></script>
     <script src="src/js/index.js"></script>
+    <script src="src/js/card_game.js"></script>
+    
 </body>
 </html>
