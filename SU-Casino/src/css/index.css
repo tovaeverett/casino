@@ -246,7 +246,7 @@ a, a:hover, a:active{
 }
 @media (max-width: 320px) {
     #play-container {
-        height: 250px;
+        height: 400px;
     }
 }
 

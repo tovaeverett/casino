@@ -173,3 +173,9 @@ div.roulette_container {
 
 }
 
+@media (max-width: 320px) {
+    .playground-inner {
+        padding: 0px;
+    }
+}
+
