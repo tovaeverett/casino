@@ -124,7 +124,7 @@ $(document).ready(function () {
 });
 
 function initRouletteGame() {
-    gameInit();
+    gameInit('5');
     createWheel();
 }
 
@@ -183,22 +183,6 @@ btnBlack.click(function() {
   startSpinn();
 });
 
-/*btnHigh.click(function() {
-  setSelectedWinningChange("high");
-});
-
-btnLow.click(function() {
-  setSelectedWinningChange("low");
-});
-
-btnZero.click(function() {
-  setSelectedWinningChange("zero");
-});
-
-btnDontKnow.click(function() {
-  setSelectedWinningChange("dont know");
-});
-*/
 
 $(".winchance-btn").click(function () {
     expectedWinningChance = getWinChance(this.id);

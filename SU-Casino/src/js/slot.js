@@ -12,8 +12,9 @@ $(".winchance-btn").click(function () {
     $("#winchance-container").hide();
 });
 
-function initSlotGame(){
-    gameInit();
+function initSlotGame() {
+    var theme = $("#HiddenField_theme").val();
+    gameInit(theme);
     $(".winner").hide();
     $(".lost").hide();
     slotContent = {

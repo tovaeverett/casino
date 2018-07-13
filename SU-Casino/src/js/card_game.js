@@ -5,8 +5,8 @@ var card1 = document.querySelector('#betCard1');
 card1.addEventListener('click', function () {
     if (!disable) {
         card1.classList.toggle('is-flipped');
+        cards.sound.play();
         setTimeout(function () { cardClicked(card1); }, 500);
-        console.log($(this).find('img'));
     }
 });
 
@@ -14,6 +14,7 @@ var card2 = document.querySelector('#betCard2');
 card2.addEventListener('click', function () {
     if (!disable) {
         card2.classList.toggle('is-flipped');
+        cards.sound.play();
         setTimeout(function () { cardClicked(card2); }, 500);
     }
 });
@@ -31,15 +32,18 @@ $(".winchance-btn").click(function () {
 
 function initCardGame() {
     var baseUrl = "src/images/cards/";
-    gameInit();
+    var theme = $("#HiddenField_theme").val();
+    gameInit(theme);
+    var cardSound = new Audio("src/sound/effects/card-flip.wav");
     cards = {
         card1: $("#HiddenField_card1").val(),
         card2: $("#HiddenField_card2").val(),
         showCard: $("#HiddenField_card3").val(),
         winChance: "",
-        winLose:""
+        winLose: "",
+        sound: cardSound
     };
-
+   
     $("[id ^= 'notEqual']").hide();
     $("#imgCard1").attr("src", baseUrl + cards.card1 + ".png");
     $("#imgCard2").attr("src", baseUrl + cards.card2 + ".png");

@@ -13,6 +13,27 @@
     <link rel="stylesheet" href="src/css/index.css"/>
     <%--<link rel="stylesheet" href="src/css/theme1b.css"/>--%>
     <link id="themeCSS" runat="server" rel="stylesheet" type="text/css" /> 
+
+    <!-- *****Random themes *****-->
+       <%  var theme = this.setTheme();
+        switch (theme) {
+            case 1:%>
+                <link rel="stylesheet" href="src/css/themeBlack.css" />
+              <%   break;
+            case 2:%>
+                <link rel="stylesheet" href="src/css/themeGold.css" />
+                <% break;
+            case 3:%>
+                <link rel="stylesheet" href="src/css/theme1b.css" />
+               <%  break;
+            case 4:%>
+                <link rel="stylesheet" href="src/css/theme2.css" />
+              <%   break;
+            default:%>
+                <link rel="stylesheet" href="src/css/theme1b.css" />
+               <%  break;
+         }%>
+        
 </head>
 <body>
 <%--form id="form2" runat="server">--%>
