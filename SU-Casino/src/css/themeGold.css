@@ -14,12 +14,7 @@ body {
 
 #play-container {
     background: #af4848ad;
-    border: 30px solid transparent;
-    border-image-source: url(/src/images/frameTest.png);
-    border-image-repeat: round;
-    border-image-slice: 90;
-    border-image-width: 30px;
-}
+ }
 
 .playground-slot {
     padding-top: 20px;
