@@ -33,13 +33,13 @@ function initSlotGame() {
         duration: 1,
         stopImageNumber: slotContent.img1,
         startCallback: function () {
-            //console.log('start');
+            
         },
         slowDownCallback: function () {
-            console.log('slowDown');
+            
         },
         stopCallback: function ($stopElm) {
-            //console.log('stop');
+           
         }
     }
 
@@ -48,13 +48,13 @@ function initSlotGame() {
         duration: 2,
         stopImageNumber: slotContent.img2,
         startCallback: function () {
-            //console.log('start2');
+           
         },
         slowDownCallback: function () {
-            //console.log('slowDown2');
+            
         },
         stopCallback: function ($stopElm) {
-           // console.log('stop2');
+           
         }
     }
 
@@ -63,10 +63,10 @@ function initSlotGame() {
         duration: 3,
         stopImageNumber: slotContent.img3,
         startCallback: function () {
-            console.log('start3');
+           
         },
         slowDownCallback: function () {
-            console.log('slowDown3');
+           
         },
         stopCallback: function ($stopElm) {
             setTimeout(function () { slotContent.sound.pause(); }, 300);

@@ -194,6 +194,7 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="/src/js/jquery.fireworks-js/jquery.fireworks.js"></script>
     <script src="src/js/roulette.js"></script>
     <script src="src/js/index.js"></script>
 	<script src="src/js/slot.js"></script>

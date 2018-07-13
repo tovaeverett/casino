@@ -46,6 +46,12 @@ function showWinner() {
     backgroundSound.stop();
     var winnerSound = new Audio("src/sound/effects/cashoutWinning.mp3");
     winnerSound.play();
+    $("#message-container").fireworks({
+        sound: true, // sound effect
+        opacity: 0.9,
+        width: "100%",
+        height: "100%"
+    });
     $(".winner").show();
     $("#message-container").show();
 
@@ -54,7 +60,7 @@ function showWinner() {
 function sound(src) {
     this.sound = document.createElement("audio");
     this.sound.src = src;
-    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("preload", "");
     this.sound.setAttribute("controls", "none");
     this.sound.style.display = "none";
     document.body.appendChild(this.sound);

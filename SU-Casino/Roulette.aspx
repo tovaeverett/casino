@@ -138,15 +138,16 @@
                                     <br />
                                     <br />
                                     <br />
+                                     <button id="btnCloseWin" class="btn btn-large btn-primary" > Play again </button>
                                 </div>
-                                <div class="lost">
+                                <!--div class="lost">
                                     <h1> You lost... </h1>
                                     <h2 id="lostCredit"> -100</h2>
                                     <br />
                                     <br />
                                     <br />
-                                </div>
-                            <button id="btnCloseWin" class="btn btn-large btn-primary" > Play again </button>
+                                </div-->
+                           
                         </div>
                     <div class="col-md-2"></div>
                 </div>

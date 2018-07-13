@@ -260,7 +260,7 @@ function winnerWinnerChickenDinner() {
   isWin = true;
 
   // https://www.jqueryscript.net/animation/Realistic-Fireworks-Animations-Using-jQuery-And-Canvas-fireworks-js.html
-  $("#winnerAnnouncer").fireworks({
+    $("#message-container").fireworks({
     sound: true, // sound effect
     opacity: 0.9,
     width: "100%",
