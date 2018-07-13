@@ -1,3 +1,5 @@
+var backgroundSound;
+
 function gameInit(theme) {
     $("#message-container").hide();
     $("#winchance-container").hide();
@@ -23,7 +25,7 @@ function gameInit(theme) {
             backgroundSoundSource = "bensound-straight.mp3";
     }
 
-    var backgroundSound = sound(baseSoundUrl+backgroundSoundSource);
+    backgroundSound = sound(baseSoundUrl+backgroundSoundSource);
     backgroundSound.play();
 }
 
@@ -38,6 +40,15 @@ function getWinChance(button) {
         case 'btnDontKnow':
             return 0;
     }
+}
+
+function showWinner() {
+    backgroundSound.stop();
+    var winnerSound = new Audio("src/sound/effects/cashoutWinning.mp3");
+    winnerSound.play();
+    $(".winner").show();
+    $("#message-container").show();
+
 }
 
 function sound(src) {
