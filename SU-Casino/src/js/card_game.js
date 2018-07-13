@@ -18,12 +18,15 @@ card2.addEventListener('click', function () {
     }
 });
 
-
-
 $(document).ready(function () {
     initCardGame();
     $("#message-container").hide();
-    console.log(cards);
+   
+});
+
+$(".winchance-btn").click(function () {
+    cards.winChance = getWinChance(this.id);
+    $("#winchance-container").hide();
 });
 
 function initCardGame() {
@@ -32,8 +35,11 @@ function initCardGame() {
     cards = {
         card1: $("#HiddenField_card1").val(),
         card2: $("#HiddenField_card2").val(),
-        showCard: $("#HiddenField_card3").val()
+        showCard: $("#HiddenField_card3").val(),
+        winChance: "",
+        winLose:""
     };
+
     $("[id ^= 'notEqual']").hide();
     $("#imgCard1").attr("src", baseUrl + cards.card1 + ".png");
     $("#imgCard2").attr("src", baseUrl + cards.card2 + ".png");
@@ -43,34 +49,36 @@ function initCardGame() {
 }
 
 function cardClicked(selectedCard) {
-    console.log(selectedCard, $(card1).find('img')[1].id);
     disable = true;
     var isWinner = false;
-    var result = "";
+    var result = cards.winChance + ",";
     $(".lost").hide();
     $(".winner").hide();
     if (selectedCard.id === 'betCard1') {
-        $("#HiddenField_card2").val("null");
+        result = result + "1,";
         if (cards.card1 === cards.showCard) {
             isWinner = true;
         }
     }
     else {
-        $("#HiddenField_card1").val("null");
+        result = result + "2,";
         if (cards.card2 === cards.showCard) {
             isWinner = true;
         }
     }
-    
+     
     if (!isWinner) {
-        $("#HiddenField_WinLose").val("lose");
+        result = result + "lose";
+        //result = JSON.stringify(cards).split('"').join('');
+        $("#HiddenField_result").val(result);
         setTimeout(function () { $("#btnPlay").click(); }, 500);
     }
     else {
-        $("#HiddenField_WinLose").val("win");
+        result = result + "win";
+        $("#HiddenField_result").val(result);
         $(".winner").show();
         $("#message-container").show();
     }
-    console.log($("#HiddenField_WinLose").val());
+    console.log(result);
 }
 

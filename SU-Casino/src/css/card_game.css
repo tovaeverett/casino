@@ -90,6 +90,10 @@ body { font-family: sans-serif; }
         .cardSpan {
             padding-right: 5px;
             padding-left: 5px;
+            max-width: 100px;
+        }
+        #play-container {
+            height: 310px;
         }
     }
 

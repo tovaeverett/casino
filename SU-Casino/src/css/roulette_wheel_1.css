@@ -1,6 +1,6 @@
 body {
     font-size: 16px;
-    background: url(http://localhost:59745/src/images/bg-caribbean.jpg) no-repeat center center fixed;
+    background: url(src/images/bg-caribbean.jpg) no-repeat center center fixed;
     background-size: 100% auto;
     color: whitesmoke;
     background-size: cover;

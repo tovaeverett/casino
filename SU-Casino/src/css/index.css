@@ -60,12 +60,12 @@ a, a:hover, a:active{
     align-items: center;
     width: 100%;
 }
-    .winchance-div > ul, .btn_container >ul {
-        list-style-type: none;
-        display: inline-flex;
-        margin: 5px;
-        cursor: pointer;
-    }
+ .winchance-div > ul, .btn_container >ul {
+    list-style-type: none;
+    display: inline-flex;
+    margin: 5px;
+    cursor: pointer;
+ }
 
 
 .winchance-btn {
@@ -73,7 +73,7 @@ a, a:hover, a:active{
     padding: 40px;
     background: #fff;
     color: black;
-    font-size: 3em;
+    font-size: 1.5em;
     border: 1px solid #ddd;
     margin-left: 10px;
     border-radius: 5px;
@@ -231,16 +231,13 @@ a, a:hover, a:active{
     }
 }
 @media (max-width: 510px) {
-    #play-container {
-       
-    }
     .playground-slot {
         height: 250px;
     }
 }
 @media (max-width: 320px) {
     #play-container {
-       
+        height: 250px;
     }
 }
 

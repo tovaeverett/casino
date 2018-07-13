@@ -13,7 +13,7 @@ namespace SU_Casino
         private int CheckCard;
         public int money;
 
-        Database database = new Database();
+        Database _database = new Database();
         protected void Page_Load(object sender, EventArgs e)
         {
             HiddenField_showInfo.Value = "0";
@@ -80,21 +80,37 @@ namespace SU_Casino
        }
         protected void btnPlay_Click(object sender, EventArgs e)
         {
+            string result = HiddenField_result.Value;
             setTheme();
             checkForWin();
             setCards();
-            setCredit(); 
+            setCredit();
+            
         }
         private void checkForWin()
         {
-           int CardPressed = 0; 
-           var winLose = HiddenField_WinLose.Value;
+           //int CardPressed = 0; 
+           //var winLose = HiddenField_WinLose.Value;
            var credit = Int32.Parse(lblMoney.Text);
-
-           if (HiddenField_card1.Value != "null")
+            string WinChance = "";
+            string CardColor = "";
+            string WinLose = "";
+           // string test = "PressCard:1, WinChance: 1, WinLose: lose";
+           
+            string[] splitCards = HiddenField_result.Value.Split(':');
+            foreach(var value in splitCards)
             {
-                CardPressed = 1;
-                if(winLose == "win")
+                WinChance = value[0].ToString();
+                CardColor = value[1].ToString();
+                WinLose = value[2].ToString();
+            }
+                //card1:null,card2:6H,showCard:5H,winChance:1,winLose:lose
+
+
+           if (CardColor != "null")
+            {
+
+                if(CardColor == "1")
                 {
                     money = + 100;
                 }
@@ -105,11 +121,10 @@ namespace SU_Casino
             }
            else
             {
-                CardPressed = 2;
-                if (winLose == "win")
+                if (CardColor == "2")
                 {
                     money = +50;
-                }
+                } 
                 else
                 {
                     money = -50;
@@ -117,14 +132,14 @@ namespace SU_Casino
             }
             money = money + credit;
             lblMoney.Text = money.ToString();
-            SaveToDB(CardPressed, winLose);
+            //SaveToDB(CardPressed, winLose);
         }
 
         public int setTheme()
         {
             Random rnd = new Random();
             int randomTheme = rnd.Next(1, 4);
-            var theme = database.getTheme(randomTheme);
+            var theme = _database.getTheme(randomTheme);
             HiddenField_theme.Value = randomTheme.ToString();
             return randomTheme;
         }
