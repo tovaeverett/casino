@@ -80,6 +80,7 @@
     <Content Include="src\css\roulette_wheel_1.css" />
     <Content Include="src\css\roulette_wheel_base.css" />
     <Content Include="src\css\slot.css" />
+    <Content Include="src\css\noTheme.css" />
     <Content Include="src\css\theme1a.css" />
     <Content Include="src\css\theme1b.css" />
     <Content Include="src\css\theme2.css" />

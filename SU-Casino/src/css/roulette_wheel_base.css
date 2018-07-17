@@ -35,9 +35,9 @@
     }
   }
   
-  /* HTML5 equivalent for modal */
+  /* HTML5 equivalent for modal 
  dialog::backdrop {
-    /* make the backdrop a semi-transparent black */
+    
     background-color: rgba(0, 0, 0, 0.4);
   }
 
@@ -60,7 +60,7 @@
 
 #firstShow .row:last-of-type{
     margin-bottom: 10px;
-}
+}*/
 
 .pieBackground {
     background-color: rgba(240, 240, 240, 1);

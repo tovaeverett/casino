@@ -13,6 +13,27 @@
     <link rel="stylesheet" href="src/css/index.css"/>
     <%--<link rel="stylesheet" href="src/css/theme1b.css"/>--%>
     <link id="themeCSS" runat="server" rel="stylesheet" type="text/css" /> 
+
+    <!-- *****Random themes *****-->
+       <%  var theme = this.setTheme();
+        switch (theme) {
+            case 1:%>
+                <link rel="stylesheet" href="src/css/themeBlack.css" />
+              <%   break;
+            case 2:%>
+                <link rel="stylesheet" href="src/css/themeGold.css" />
+                <% break;
+            case 3:%>
+                <link rel="stylesheet" href="src/css/theme1b.css" />
+               <%  break;
+            case 4:%>
+                <link rel="stylesheet" href="src/css/theme2.css" />
+              <%   break;
+            default:%>
+                <link rel="stylesheet" href="src/css/theme1b.css" />
+               <%  break;
+         }%>
+        
 </head>
 <body>
 <%--form id="form2" runat="server">--%>
@@ -124,8 +145,8 @@
    <!-- Start info: Information about the game, visible first time set by hidden field 'HiddenField_showInfo' -->
             <div id="startInfo" class="container-fluid overlayer">
                  <div class="row">
-                        <div class="col-md-2"></div>
-                            <div class="col-md-8 text-center" id="message-content">
+                        <div class="col-md-1 col-xs-0"></div>
+                            <div class="col-md-10 col-xs-12 text-center" id="message-content-info">
                                 <div class="info">
                                     <section>
                                         <h1> LETS PLAY CARDS </h1>
@@ -141,7 +162,7 @@
                                 
                             
                         </div>
-                    <div class="col-md-2"></div>
+                    <div class="col-md-1 col-xs-0"></div>
             </div>
         </div>
         <!-- END: Start info -->   
@@ -173,6 +194,7 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="/src/js/jquery.fireworks-js/jquery.fireworks.js"></script>
     <script src="src/js/roulette.js"></script>
     <script src="src/js/index.js"></script>
 	<script src="src/js/slot.js"></script>

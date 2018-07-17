@@ -33,28 +33,34 @@ a, a:hover, a:active{
 }
 
 .info {
-    background: #fff;
+    background: #f8f9fa;
     color: #000;
-    margin: 50px;
-    padding: 50px;
+    padding: 2rem;
     height: 100%;
     font-size: 1em;
+    border: 1px black solid;
+    -webkit-border-vertical-spacing: 3px;
+    box-shadow: 4px 3px 5px 3px rgb(0,0,0, 0.1);
+}
+.info > section {
+   border: 1px #ddd solid;
+   border-spacing: 30px;
+   padding: 5px;
 }
 
-
-#winchance-container {
-    background: rgba(90, 82, 82, 0.79);
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-}
+    #winchance-container {
+        background: rgba(90, 82, 82, 0.79);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
 .winchance-div {
     background: rgba(90, 82, 82, 0.79);
     padding-right: 1px;
     padding-left: 1px;
-    margin-top: 20%;
+    margin-top: 10rem;
     padding: 30px 1px 30px 1px;
     justify-content: center;
     align-items: center;
@@ -136,14 +142,13 @@ a, a:hover, a:active{
 }
 
 #play-container {
-    background: #151313ad;
-    padding-top: 5%;
     box-shadow: 0 0 4px 2px rgba(0,0,0,.3);
     padding: 15px;
 }
 
-#message-content{
-    padding-top: 200px;
+#message-content {
+    padding-top: 5rem;
+    z-index: 1000;
 }
 
 .header {
@@ -161,7 +166,7 @@ a, a:hover, a:active{
 }
 
 .playground-cards, .playground-slot {
-    background-color: rgba(221, 221, 221, 0.48);
+    /*background-color: rgba(221, 221, 221, 0.48);*/
     border-radius: 30px;
     display: block;
     height: 300px;
@@ -209,6 +214,10 @@ a, a:hover, a:active{
     display:none;
 }
 
+.first {
+    height: 1%;
+}
+
 .col-xs-0,
 .col-sm-0,
 .col-md-0,
@@ -237,11 +246,13 @@ a, a:hover, a:active{
 }
 @media (max-width: 320px) {
     #play-container {
-        height: 250px;
+        height: 400px;
     }
 }
 
 
 
-
+.winner > h1 {
+    text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+}
 

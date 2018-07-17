@@ -3,6 +3,7 @@ var rouletter = {};
 var rouletter2 = {};
 var rouletter3 = {};
 
+
 $(document).ready(function () {
     initSlotGame();
 });
@@ -12,16 +13,19 @@ $(".winchance-btn").click(function () {
     $("#winchance-container").hide();
 });
 
-function initSlotGame(){
-    gameInit();
+function initSlotGame() {
+    var theme = $("#HiddenField_theme").val();
+    gameInit(theme);
     $(".winner").hide();
     $(".lost").hide();
+    var slotSound = new Audio("src/sound/effects/slotMachine.wav");
     slotContent = {
         img1: $("#HiddenField_Spin1").val(),
         img2: $("#HiddenField_Spin2").val(),
         img3: $("#HiddenField_Spin3").val(),
         result: $("#HiddenField_WinLose").val(),
-        winChance: ""
+        winChance: "",
+        sound: slotSound
     };
 
     var optionFirst = {
@@ -29,13 +33,13 @@ function initSlotGame(){
         duration: 1,
         stopImageNumber: slotContent.img1,
         startCallback: function () {
-            //console.log('start');
+            
         },
         slowDownCallback: function () {
-            console.log('slowDown');
+            
         },
         stopCallback: function ($stopElm) {
-            //console.log('stop');
+           
         }
     }
 
@@ -44,13 +48,13 @@ function initSlotGame(){
         duration: 2,
         stopImageNumber: slotContent.img2,
         startCallback: function () {
-            //console.log('start2');
+           
         },
         slowDownCallback: function () {
-            //console.log('slowDown2');
+            
         },
         stopCallback: function ($stopElm) {
-           // console.log('stop2');
+           
         }
     }
 
@@ -59,18 +63,19 @@ function initSlotGame(){
         duration: 3,
         stopImageNumber: slotContent.img3,
         startCallback: function () {
-            console.log('start3');
+           
         },
         slowDownCallback: function () {
-            console.log('slowDown3');
+           
         },
         stopCallback: function ($stopElm) {
+            setTimeout(function () { slotContent.sound.pause(); }, 300);
             slotContent.result === 'Lose' ? $(".lost").show() : $(".winner").show();
             $("#HiddenField_result").val(slotContent.winChance + ",null," + slotContent.result.toLowerCase());
             if (slotContent.result === 'Lose')
                 setTimeout(function () { $("#btnPlay").click(); }, 500);
             else
-                $("#message-container").show();
+               setTimeout(function () { showWinner(); }, 300);
             
         }
     }
@@ -83,6 +88,8 @@ function initSlotGame(){
 
 $('.start').click(function (e) {
     e.preventDefault();
+    slotContent.sound.loop = true;
+    slotContent.sound.play();
 	rouletter.roulette('start');
 	rouletter2.roulette('start');
 	rouletter3.roulette('start');

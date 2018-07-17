@@ -15,21 +15,24 @@
    <!-- *****Random themes *****-->
     <!-- behövs den här triggern ??? -->
        <%  var theme = this.setTheme();
-           switch (theme) {
-               case 1:%>
+        switch (theme) {
+             case 0:%>
+                <link rel="stylesheet" href="src/css/noTheme.css" />
+              <%   break;
+            case 1:%>
                 <link rel="stylesheet" href="src/css/themeBlack.css" />
               <%   break;
             case 2:%>
-                <link rel="stylesheet" href="src/css/themeGold.css" />
+                <link rel="stylesheet" href="src/css/theme1b.css" />
                 <% break;
             case 3:%>
-                <link rel="stylesheet" href="src/css/theme1b.css" />
+                <link rel="stylesheet" href="src/css/theme2.css" />
                <%  break;
             case 4:%>
                 <link rel="stylesheet" href="src/css/theme2.css" />
               <%   break;
             default:%>
-                <link rel="stylesheet" href="src/css/theme1b.css" />
+                <link rel="stylesheet" href="src/css/themeGold.css" />
                <%  break;
          }%>
         
@@ -166,7 +169,9 @@
          <!-- End: Win or Lost  -->
                     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-    <script src="src/js/card_game.js"></script>
+     <script src="/src/js/jquery.fireworks-js/jquery.fireworks.js"></script>
     <script src="src/js/index.js"></script>
+    <script src="src/js/card_game.js"></script>
+    
 </body>
 </html>

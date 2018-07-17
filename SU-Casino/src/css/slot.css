@@ -23,6 +23,11 @@ div.roulette_container {
     padding-left: 1px;
 }
 
+#play-container {
+    height:100%;
+}
+
+
 .playground {
     padding-top: 0px;
 }
@@ -166,5 +171,11 @@ div.roulette_container {
     .playground-slot {
     }
 
+}
+
+@media (max-width: 320px) {
+    .playground-inner {
+        padding: 0px;
+    }
 }
 
