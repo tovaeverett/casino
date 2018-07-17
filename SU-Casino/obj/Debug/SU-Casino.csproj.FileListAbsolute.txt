@@ -299,3 +299,4 @@ C:\Users\Murk Gopi Chand\projects\SU Casino\su-casino\SU-Casino\obj\Debug\SU-Cas
 C:\Users\Murk Gopi Chand\projects\SU Casino\su-casino\SU-Casino\obj\Debug\SU-Casino.csproj.CopyComplete
 C:\Users\Murk Gopi Chand\projects\SU Casino\su-casino\SU-Casino\obj\Debug\SU-Casino.dll
 C:\Users\Murk Gopi Chand\projects\SU Casino\su-casino\SU-Casino\obj\Debug\SU-Casino.pdb
+C:\Users\Hugosson\source\repos\SU-Casino2\SU-Casino\obj\Debug\SU-Casino.csprojAssemblyReference.cache

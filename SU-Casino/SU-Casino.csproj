@@ -194,6 +194,7 @@
       <DependentUpon>CardDraw.aspx</DependentUpon>
     </Compile>
     <Compile Include="Database.cs" />
+    <Compile Include="helpClass.cs" />
     <Compile Include="OneArmdBandit.aspx.cs">
       <DependentUpon>OneArmdBandit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

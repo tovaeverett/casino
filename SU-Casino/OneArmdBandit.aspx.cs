@@ -22,7 +22,7 @@ namespace SU_Casino
                 HiddenField_Spin1.Value = randomStartCard().ToString();
                 HiddenField_Spin2.Value = randomStartCard().ToString();
                 HiddenField_Spin3.Value = randomStartCard().ToString();
-                checkIfWin();
+                checkForWin();
                 setTheme();
             }
         }
@@ -32,21 +32,54 @@ namespace SU_Casino
             HiddenField_Spin1.Value = randomStartCard().ToString();
             HiddenField_Spin2.Value = randomStartCard().ToString();
             HiddenField_Spin3.Value = randomStartCard().ToString();
-            checkIfWin();
+            checkForWin();
         }
-        public void checkIfWin()
+        private void checkForWin()
         {
-            if (HiddenField_Spin1.Value == HiddenField_Spin2.Value && HiddenField_Spin1.Value == HiddenField_Spin3.Value)
+            //int CardPressed = 0; 
+            //var winLose = HiddenField_WinLose.Value;
+            var credit = Int32.Parse(lblMoney.Text);
+            string WinChance = "";
+            string CardColor = "";
+            string WinLose = "";
+            // string test = "PressCard:1, WinChance: 1, WinLose: lose";
+
+            string[] splitCards = HiddenField_result.Value.Split(':');
+            foreach (var value in splitCards)
             {
-                HiddenField_WinLose.Value = "Win";
-                money = 100;
+                WinChance = value[0].ToString();
+                CardColor = value[1].ToString();
+                WinLose = value[2].ToString();
+            }
+            //card1:null,card2:6H,showCard:5H,winChance:1,winLose:lose
+
+
+            if (CardColor != "null")
+            {
+
+                if (CardColor == "1")
+                {
+                    money = +100;
+                }
+                else
+                {
+                    money = -100;
+                }
             }
             else
             {
-                HiddenField_WinLose.Value = "Lose";
-                money = -100;
+                if (CardColor == "2")
+                {
+                    money = +50;
+                }
+                else
+                {
+                    money = -50;
+                }
             }
+            money = money + credit;
             lblMoney.Text = money.ToString();
+            //SaveToDB(CardPressed, winLose);
         }
         public int randomStartCard()
         {
