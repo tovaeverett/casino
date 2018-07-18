@@ -200,22 +200,16 @@ namespace SU_Casino
 
         protected void gvMatris_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            UpdateMatris(e);
+            gvMatris.EditIndex = -1;
 
-
-            //gvMatris.EditIndex = -1;
-            //conn.Open();
-            //SqlCommand cmd = new SqlCommand("update  emp set marks=" + textmarks.Text + " , name='" + textname.Text + "' where rowid=" + lbl.Text + "", conn);
-            //cmd.ExecuteNonQuery();
-            //conn.Close();
-            //bind();
-
+            GetMatris();
         }
-
-        public void updateMatris(GridViewUpdateEventArgs e)
+        public void UpdateMatris(GridViewUpdateEventArgs e)
         {
             GridViewRow row = (GridViewRow)gvMatris.Rows[e.RowIndex];
-            Label lblRowId = (Label)row.FindControl("lblrow");
-            TextBox txtprop_n = (TextBox)row.FindControl("txtEditProp_n");
+            Label lblRowId = (Label)row.FindControl("lblRowId");
+            TextBox txtprop_n = (TextBox)row.FindControl("txtEditProp_N");
             TextBox txtcondition = (TextBox)row.FindControl("txtEditcondition");
             TextBox txtmoment = (TextBox)row.FindControl("txtEditmoment");
             TextBox txtname = (TextBox)row.FindControl("txtEditname");
@@ -240,6 +234,176 @@ namespace SU_Casino
             TextBox txtifS3probX = (TextBox)row.FindControl("txtEditifS3probX");
             TextBox txtifS4probX = (TextBox)row.FindControl("txtEditifS4probX");
             TextBox txthide = (TextBox)row.FindControl("txtEdithide");
+
+           
+
+            string query = "UPDATE [matris] SET prop_n = @prop_n, condition = @condition, moment = @moment, name = @name, prob_S0 = @prob_S0," +
+                " perc_S1 = @perc_S1, perc_S2 = @perc_S2, perc_S3 = @perc_S3, perc_S4 = @perc_S4, bet_R1 = @bet_R1, bet_R2 = @bet_R2, prob_O1 = @prob_O1, prob_O2 = @prob_O2, win_O1 = @win_O1," +
+                " win_O2 = @win_O2, ifS0 = @ifS0, ifS1win = @ifS1win, ifS2win = @ifS2win, ifS3win = @ifS3win, ifS4win = @ifS4win, ifS1probX = @ifS1probX, ifS2probX = @ifS2probX,  " +
+                "ifS3probX = @ifS3probX, ifS4probX = @ifS4probX , hide = @hide" +
+                " WHERE RowId = @rowId";
+
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ToString()))
+            using (SqlCommand command = new SqlCommand(query, connection))
+
+                try
+                {
+                    // open the connection, execute, etc
+                    List<SqlParameter> p = new List<SqlParameter>();
+                    p.Add(new SqlParameter("@rowid", lblRowId.Text));
+                    p.Add(new SqlParameter("@prop_n", txtprop_n.Text));
+                    p.Add(new SqlParameter("@condition", txtcondition.Text));
+                    p.Add(new SqlParameter("@moment", txtmoment.Text));
+                    p.Add(new SqlParameter("@name", txtname.Text));
+                    p.Add(new SqlParameter("@prob_S0", txtprob_S0.Text));
+                    p.Add(new SqlParameter("@perc_S1", txtperc_S1.Text));
+                    p.Add(new SqlParameter("@perc_S2", txtperc_S2.Text));
+                    p.Add(new SqlParameter("@perc_S3", txtperc_S3.Text));
+                    p.Add(new SqlParameter("@perc_S4", txtperc_S4.Text));
+                    p.Add(new SqlParameter("@bet_R1", txtbet_R1.Text));
+                    p.Add(new SqlParameter("@bet_R2", txtbet_R2.Text));
+                    p.Add(new SqlParameter("@prob_O1", txtprob_O1.Text));
+                    p.Add(new SqlParameter("@prob_O2", txtprob_O2.Text));
+                    p.Add(new SqlParameter("@win_O1", txtwin_O1.Text));
+                    p.Add(new SqlParameter("@win_O2", txtwin_O2.Text));
+                    p.Add(new SqlParameter("@ifS0", txtifS0.Text));
+                    p.Add(new SqlParameter("@ifS1win", txtifS1win.Text));
+                    p.Add(new SqlParameter("@ifS2win", txtifS2win.Text));
+                    p.Add(new SqlParameter("@ifS3win", txtifS3win.Text));
+                    p.Add(new SqlParameter("@ifS4win", txtifS4win.Text));
+                    p.Add(new SqlParameter("@ifS1probX", txtifS1probX.Text));
+                    p.Add(new SqlParameter("@ifS2probX", txtifS2probX.Text));
+                    p.Add(new SqlParameter("@ifS3probX", txtifS3probX.Text));
+                    p.Add(new SqlParameter("@ifS4probX", txtifS4probX.Text));
+                    p.Add(new SqlParameter("@hide", txthide.Text));
+
+                    connection.Open();
+                     GetExample(command, p.ToArray());
+                    command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+                    GetMatris();
+                   
+
+                }
+                catch (Exception c )
+                {
+                    // log and handle exception(s)
+                }
+        }
+        public void GetExample(SqlCommand command, params SqlParameter[] p)
+        {
+            if (p != null && p.Any())
+            {
+                command.Parameters.AddRange(p);
+            }
+
+        }
+
+        protected void gvMatris_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            DeleteMatris(e);
+        }
+        private void DeleteMatris(GridViewDeleteEventArgs e)
+        {
+            GridViewRow row = (GridViewRow)gvMatris.Rows[e.RowIndex];
+            Label lblRowId = (Label)row.FindControl("lblRowId");
+
+            string query = "Delete from [matris] WHERE RowId = @rowId";
+
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ToString()))
+            using (SqlCommand command = new SqlCommand(query, connection))
+
+                try
+                {
+                    // open the connection, execute, etc
+                    List<SqlParameter> p = new List<SqlParameter>();
+                    p.Add(new SqlParameter("@rowid", lblRowId.Text));
+
+                    connection.Open();
+                    GetExample(command, p.ToArray());
+                    command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+                    GetMatris();
+
+                }
+                catch (Exception c)
+                {
+                    // log and handle exception(s)
+                }
+        }
+
+
+
+        protected void gvMatris_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            gvMatris.EditIndex = -1;
+
+            GetMatris();
+        }
+
+        private void InsertMatris()
+        {
+            using (SqlConnection openCon = connectionstring)
+            {
+                string saveStaff = "INSERT into matris (prop_n,condition,moment,name,prob_S0,perc_S1,perc_S2,perc_S3,perc_S4,bet_R1,bet_R2,prob_O1,prob_O2,win_O1,win_O2,ifS0,ifS1win,ifS2win,ifS3win,ifS4win,ifS1probX,ifS2probX,ifS3probX,ifS4probX,hide)" +
+                    " VALUES (@prop_n,@condition,@moment,@name,@prob_S0,@perc_S1,@perc_S2,@perc_S3,@perc_S4,@bet_R1,@bet_R2,@prob_O1,@prob_O2,@win_O1,@win_O2,@ifS0,@ifS1win,@ifS2win,@ifS3win,@ifS4win,@ifS1probX,@ifS2probX,@ifS3probX,@ifS4probX,@hide)";
+
+                using (SqlCommand querySaveStaff = new SqlCommand(saveStaff))
+                {
+                    querySaveStaff.Connection = openCon;
+
+                    querySaveStaff.Parameters.Add(new SqlParameter("@prop_n", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@condition", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@moment", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@name", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@prob_S0", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@perc_S1", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@perc_S2", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@perc_S3", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@perc_S4", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@bet_R1", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@bet_R2", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@prob_O1", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@prob_O2", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@win_O1", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@win_O2", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@ifS0", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@ifS1win", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@ifS2win", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@ifS3win", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@ifS4win", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@ifS1probX", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@ifS2probX", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@ifS3probX", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@ifS4probX", ""));
+                    querySaveStaff.Parameters.Add(new SqlParameter("@hide", ""));
+
+                    openCon.Open();
+
+                    querySaveStaff.ExecuteNonQuery();
+                }
+                GetMatris();
+            }
+
+         
+        }
+
+        protected void AddRow_Click(object sender, EventArgs e)
+        {
+            InsertMatris();
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
