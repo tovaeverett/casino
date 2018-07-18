@@ -305,39 +305,39 @@ namespace SU_Casino
                 string saveStaff = "INSERT into matris (prop_n,condition,moment,name,prob_S0,perc_S1,perc_S2,perc_S3,perc_S4,bet_R1,bet_R2,prob_O1,prob_O2,win_O1,win_O2,ifS0,ifS1win,ifS2win,ifS3win,ifS4win,ifS1probX,ifS2probX,ifS3probX,ifS4probX,hide)" +
                     " VALUES (@prop_n,@condition,@moment,@name,@prob_S0,@perc_S1,@perc_S2,@perc_S3,@perc_S4,@bet_R1,@bet_R2,@prob_O1,@prob_O2,@win_O1,@win_O2,@ifS0,@ifS1win,@ifS2win,@ifS3win,@ifS4win,@ifS1probX,@ifS2probX,@ifS3probX,@ifS4probX,@hide)";
 
-                using (SqlCommand querySaveStaff = new SqlCommand(saveStaff))
+                using (SqlCommand Save = new SqlCommand(saveStaff))
                 {
-                    querySaveStaff.Connection = openCon;
+                    Save.Connection = openCon;
 
-                    querySaveStaff.Parameters.Add(new SqlParameter("@prop_n", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@condition", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@moment", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@name", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@prob_S0", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@perc_S1", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@perc_S2", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@perc_S3", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@perc_S4", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@bet_R1", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@bet_R2", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@prob_O1", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@prob_O2", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@win_O1", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@win_O2", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@ifS0", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@ifS1win", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@ifS2win", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@ifS3win", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@ifS4win", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@ifS1probX", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@ifS2probX", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@ifS3probX", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@ifS4probX", ""));
-                    querySaveStaff.Parameters.Add(new SqlParameter("@hide", ""));
+                    Save.Parameters.Add(new SqlParameter("@prop_n", ""));
+                    Save.Parameters.Add(new SqlParameter("@condition", ""));
+                    Save.Parameters.Add(new SqlParameter("@moment", ""));
+                    Save.Parameters.Add(new SqlParameter("@name", ""));
+                    Save.Parameters.Add(new SqlParameter("@prob_S0", ""));
+                    Save.Parameters.Add(new SqlParameter("@perc_S1", ""));
+                    Save.Parameters.Add(new SqlParameter("@perc_S2", ""));
+                    Save.Parameters.Add(new SqlParameter("@perc_S3", ""));
+                    Save.Parameters.Add(new SqlParameter("@perc_S4", ""));
+                    Save.Parameters.Add(new SqlParameter("@bet_R1", ""));
+                    Save.Parameters.Add(new SqlParameter("@bet_R2", ""));
+                    Save.Parameters.Add(new SqlParameter("@prob_O1", ""));
+                    Save.Parameters.Add(new SqlParameter("@prob_O2", ""));
+                    Save.Parameters.Add(new SqlParameter("@win_O1", ""));
+                    Save.Parameters.Add(new SqlParameter("@win_O2", ""));
+                    Save.Parameters.Add(new SqlParameter("@ifS0", ""));
+                    Save.Parameters.Add(new SqlParameter("@ifS1win", ""));
+                    Save.Parameters.Add(new SqlParameter("@ifS2win", ""));
+                    Save.Parameters.Add(new SqlParameter("@ifS3win", ""));
+                    Save.Parameters.Add(new SqlParameter("@ifS4win", ""));
+                    Save.Parameters.Add(new SqlParameter("@ifS1probX", ""));
+                    Save.Parameters.Add(new SqlParameter("@ifS2probX", ""));
+                    Save.Parameters.Add(new SqlParameter("@ifS3probX", ""));
+                    Save.Parameters.Add(new SqlParameter("@ifS4probX", ""));
+                    Save.Parameters.Add(new SqlParameter("@hide", ""));
 
                     openCon.Open();
 
-                    querySaveStaff.ExecuteNonQuery();
+                    Save.ExecuteNonQuery();
                 }
                 GetMatris();
             }
