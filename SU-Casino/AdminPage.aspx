@@ -178,6 +178,9 @@
         </asp:templatefield>
     </columns>
         </asp:GridView>
+        <p>
+            <asp:Button ID="btnReport" runat="server" OnClick="btnReport_Click" Text="Report" Width="125px" />
+        </p>
     </form>
 </body>
 </html>

@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -34,12 +35,58 @@ namespace SU_Casino
         {
 
         }
+        private void report()
+        {
+            string strFilePath = @"C:\temp\testfile.csv";
+            string strSeperator = ",";
+            StringBuilder sbOutput = new StringBuilder();
 
+            string sqlselectQuery = "select * from PlayerLog";
+            SqlCommand sqlcmd = new SqlCommand();
+            string[] inaOutput = new string[] { };
+            string test = "";
+            SqlConnection spContentConn = new SqlConnection(HiddenField1.Value);
+            sqlcmd.Connection = spContentConn;
+            sqlcmd.CommandTimeout = 0;
+            sqlcmd.CommandType = CommandType.Text;
+            sqlcmd.CommandText = sqlselectQuery;
+            spContentConn.Open();
+            using (spContentConn)
+            {
+                using (SqlDataReader sdr = sqlcmd.ExecuteReader())
+                {
+                    while (sdr.Read())
+                    {
+                        int i = 0;
+                        foreach (var col in sdr.GetString(i))
+                        {
+                            var t = sdr[0];
+                            sbOutput.AppendLine(string.Join(strSeperator, col));
+                            i++;
+                        }
+                        test = sdr.GetString(0);
+                    }
+                }
+            }
+            spContentConn.Close();
+            spContentConn.Dispose();
+
+
+            //int ilength = test.Length;
+            //for (int i = 0; i < ilength; i++)
+            //sbOutput.AppendLine(string.Join(strSeperator, test));
+
+            // Create and write the csv file
+            File.WriteAllText(strFilePath, sbOutput.ToString());
+
+            // To append more lines to the csv file
+            File.AppendAllText(strFilePath, sbOutput.ToString());
+        }
         public void getData()
         {
-            string NewconnectionString = "myCoonectionString";
+            string NewconnectionString = HiddenField1.Value;
             StreamWriter CsvfileWriter = new StreamWriter(@"D:\testfile.csv");
-            string sqlselectQuery = "select * from Mytable";
+            string sqlselectQuery = "select * from PlayerLog";
             SqlCommand sqlcmd = new SqlCommand();
 
             SqlConnection spContentConn = new SqlConnection(NewconnectionString);
@@ -235,7 +282,7 @@ namespace SU_Casino
             TextBox txtifS4probX = (TextBox)row.FindControl("txtEditifS4probX");
             TextBox txthide = (TextBox)row.FindControl("txtEdithide");
 
-           
+
 
             string query = "UPDATE [matris] SET prop_n = @prop_n, condition = @condition, moment = @moment, name = @name, prob_S0 = @prob_S0," +
                 " perc_S1 = @perc_S1, perc_S2 = @perc_S2, perc_S3 = @perc_S3, perc_S4 = @perc_S4, bet_R1 = @bet_R1, bet_R2 = @bet_R2, prob_O1 = @prob_O1, prob_O2 = @prob_O2, win_O1 = @win_O1," +
@@ -278,14 +325,14 @@ namespace SU_Casino
                     p.Add(new SqlParameter("@hide", txthide.Text));
 
                     connection.Open();
-                     GetExample(command, p.ToArray());
+                    GetExample(command, p.ToArray());
                     command.ExecuteNonQuery();
                     command.Parameters.Clear();
                     GetMatris();
-                   
+
 
                 }
-                catch (Exception c )
+                catch (Exception c)
                 {
                     // log and handle exception(s)
                 }
@@ -385,16 +432,50 @@ namespace SU_Casino
                 GetMatris();
             }
 
-         
+
         }
 
         protected void AddRow_Click(object sender, EventArgs e)
         {
             InsertMatris();
         }
+
+        protected void btnReport_Click(object sender, EventArgs e)
+        {
+            string strFilePath = @"C:\temp\testfile.csv";
+            string strSeperator = ",";
+            StringBuilder sbOutput = new StringBuilder();
+
+
+            SqlConnection con = new SqlConnection(HiddenField1.Value);
+            var sql = "getLog";
+            var da = new SqlDataAdapter(sql, con);
+            var ds = new DataSet();
+            DataTable dt = new DataTable();
+
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+            //da.SelectCommand.Parameters.AddWithValue("@UserId", lblUserId.Text);
+
+
+            da.Fill(ds, "getLog");
+            dt = ds.Tables["getLog"];
+         
+            foreach (DataRow dr in dt.Rows)
+            {
+                sbOutput.AppendLine(string.Join(strSeperator, dr[0]+ strSeperator+ dr[1] + strSeperator + dr[2] + strSeperator + dr[3] + strSeperator + dr[4] + strSeperator + dr[5] + strSeperator
+                    + dr[6] + strSeperator + dr[7] + strSeperator + dr[8] + strSeperator + dr[9] + strSeperator + dr[10] + strSeperator + dr[11] + strSeperator + dr[12] + strSeperator + dr[13] + strSeperator));
+            }
+
+            File.WriteAllText(strFilePath, sbOutput.ToString());
+
+            // To append more lines to the csv file
+           // File.AppendAllText(strFilePath, sbOutput.ToString());
+
+        }
+
     }
 }
-
 
 
 
