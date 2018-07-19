@@ -145,10 +145,13 @@ namespace SU_Casino
                 return null;
             }
         }
-        public string getAllThemes(string GameName)
+        public string getAllThemes(string prop_n, int moment)
         {
-            string theme = "";
-            string[] chance= null;
+            int theme1 = 0;
+            int theme2 = 0;
+            int theme3 = 0;
+            int theme4 = 0;
+
             try
             {
                 SqlConnection con = connectionstring;
@@ -158,32 +161,55 @@ namespace SU_Casino
                 DataTable dt = new DataTable();
 
                 da.SelectCommand.CommandType = CommandType.StoredProcedure;
-                da.SelectCommand.Parameters.AddWithValue("@GameName", GameName);
+                da.SelectCommand.Parameters.AddWithValue("@prop_n", prop_n);
+                da.SelectCommand.Parameters.AddWithValue("@moment", moment);
                 da.Fill(ds, "getAllTheme");
                 dt = ds.Tables["getAllTheme"];
-               
+           
                 foreach (DataRow dr in dt.Rows)
                 {
-                    theme = dr[0].ToString();
-                    chance.SetValue(dr[0].ToString(),Convert.ToInt32(dr[1]));
+                    theme1 = Convert.ToInt32(dr[0]);
+                    theme2 = Convert.ToInt32(dr[1]);
+                    theme3 = Convert.ToInt32(dr[2]);
+                    theme4 = Convert.ToInt32(dr[3]);
                 }
             }
             catch (Exception e)
             {
                 // msg = "Error trying login user : " + txtUsername.Text;
             }
-            if (chance != null)
+            if (theme1 != 0)
             {
-                return null;
+                CalculateChance(theme1, theme2, theme3, theme4);
+                return "";
             }
             else
             {
                 return null;
             }
         }
-        private void CalculateChance(string[] chance)
+        private int CalculateChance(int theme1, int theme2, int theme3, int theme4)
         {
+            Random rnd = new Random();
+            int nr = rnd.Next(0, theme4);
 
+            if(nr < theme1)
+            {
+                return theme1;
+            }
+            else if(nr > theme1 && nr < theme2)
+            {
+                return theme2;
+            }
+            else if(nr > theme2 && nr < theme3 )
+            {
+                return theme3;
+            }
+            else if(nr > theme3)
+            {
+                return theme4;
+            }
+            return 0;
         }
     }
 }
