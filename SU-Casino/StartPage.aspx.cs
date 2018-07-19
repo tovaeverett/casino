@@ -16,7 +16,7 @@ namespace SU_Casino
         public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
-            getText();
+            hiddenfield_text.Value = _database.getText("startpage");
             getBetingelse();
         }
         private void getBetingelse()
@@ -27,30 +27,7 @@ namespace SU_Casino
             _database.getAllThemes(nr,1);            
         }
 
-        private void getText()
-        {
-            string sqlselectQuery = "select Text from InfoText where Text_Name = " + "'" + "InfoText1" + "'";
-            SqlCommand sqlcmd = new SqlCommand();
 
-            SqlConnection spContentConn = connectionstring;
-            sqlcmd.Connection = spContentConn;
-            sqlcmd.CommandTimeout = 0;
-            sqlcmd.CommandType = CommandType.Text;
-            sqlcmd.CommandText = sqlselectQuery;
-            spContentConn.Open();
-            using (spContentConn)
-            {
-                using (SqlDataReader sdr = sqlcmd.ExecuteReader())
-                {
-                    while (sdr.Read())
-                    {
-                        hiddenfield_text.Value = sdr.GetString(0);
-                    }
-                }
-            }
-            spContentConn.Close();
-            spContentConn.Dispose();
-        }
 
     }
 }

@@ -211,5 +211,30 @@ namespace SU_Casino
             }
             return 0;
         }
+        public string getText(string infotext)
+        {
+            string sqlselectQuery = "select Text from InfoText where Text_Name = " + "'" + infotext + "'";
+            SqlCommand sqlcmd = new SqlCommand();
+
+            SqlConnection spContentConn = connectionstring;
+            sqlcmd.Connection = spContentConn;
+            sqlcmd.CommandTimeout = 0;
+            sqlcmd.CommandType = CommandType.Text;
+            sqlcmd.CommandText = sqlselectQuery;
+            spContentConn.Open();
+            using (spContentConn)
+            {
+                using (SqlDataReader sdr = sqlcmd.ExecuteReader())
+                {
+                    while (sdr.Read())
+                    {
+                        return sdr.GetString(0);
+                    }
+                }
+            }
+            return "";
+            spContentConn.Close();
+            spContentConn.Dispose();
+        }
     }
 }
