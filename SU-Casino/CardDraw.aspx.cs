@@ -24,6 +24,7 @@ namespace SU_Casino
                 money = 1500;
                 lblMoney.Text = money.ToString();
                 HiddenField_showInfo.Value = "1";
+                SaveToDB();
             }
         }
 
@@ -148,9 +149,26 @@ namespace SU_Casino
         {
             HiddenField_credit.Value = "100"; //db -> getCredit();
         }
-        public void SaveToDB(int card, string WinLose)
+        public void SaveToDB()
         {
+            Playerlog pl = new Playerlog();
 
+            pl.userid = "test1234";
+            pl.balance_in = 5;
+            pl.balance_out = 10;
+            pl.bet = 5;
+            pl.condition = "testcondition";
+            pl.gamename = "CardDraw";
+            pl.moment = 1;
+            pl.outcome = 0;
+            pl.response = "r1";
+            pl.stimuli = "s2";
+            pl.timestamp_begin = DateTime.Now;
+            pl.timestamp_O = DateTime.Now;
+            pl.timestamp_R = DateTime.Now;
+            pl.trial = 1;
+           
+            _database.updatePlayerLog(pl);
         }
     }
 }

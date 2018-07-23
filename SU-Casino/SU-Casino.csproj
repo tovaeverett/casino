@@ -175,6 +175,7 @@
     <Content Include="src\js\roulette_wheel.js" />
     <Content Include="src\js\index.js" />
     <Content Include="src\js\slot.js" />
+    <Content Include="StartPage.aspx" />
     <Content Include="Web.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -195,6 +196,7 @@
       <DependentUpon>CardDraw.aspx</DependentUpon>
     </Compile>
     <Compile Include="Database.cs" />
+    <Compile Include="helpClass.cs" />
     <Compile Include="OneArmdBandit.aspx.cs">
       <DependentUpon>OneArmdBandit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -209,6 +211,13 @@
     </Compile>
     <Compile Include="Roulette.aspx.designer.cs">
       <DependentUpon>Roulette.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StartPage.aspx.cs">
+      <DependentUpon>StartPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StartPage.aspx.designer.cs">
+      <DependentUpon>StartPage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="src/css/card_game.css"/>
     <link rel="stylesheet" href="src/css/index.css"/>
    <!-- *****Random themes *****-->
+    <!-- behövs den här triggern ??? -->
        <%  var theme = this.setTheme();
         switch (theme) {
              case 0:%>
