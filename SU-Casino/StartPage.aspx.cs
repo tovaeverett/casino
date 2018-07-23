@@ -21,13 +21,13 @@ namespace SU_Casino
         }
         private void getBetingelse()
         {
-            Random rnd = new Random();
-            string nr = rnd.Next(0, 11).ToString();
-            nr = "1." + nr;
-            _database.getAllThemes(nr,1);            
+            Random letter = new Random();
+            var Array = _database.GetCondition();//{ "one.one","two.one","two.two","two.three","three.one","three.two","three.three","four.one","four.one" };
+
+            int num = letter.Next(0, 9);
+            string let = Array[num];
+
+            _database.getAllThemes(let,1,"");
         }
-
-
-
     }
 }

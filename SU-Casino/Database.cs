@@ -107,12 +107,10 @@ namespace SU_Casino
             return userExist;
 
         }
-        public void CreateReport()
-        {
 
-        }
-        public string getTheme(int randomnr)
+        public string getTheme(int randomnr,string gamename = null)
         {
+         
             string theme = "";
             try
             {
@@ -145,8 +143,12 @@ namespace SU_Casino
                 return null;
             }
         }
-        public string getAllThemes(string prop_n, int moment)
+        public string getAllThemes(string condition, int moment, string gamename = null)
         {
+            if (gamename != null)
+            {
+                gamename = "nothing";
+            }
             int theme1 = 0;
             int theme2 = 0;
             int theme3 = 0;
@@ -161,7 +163,7 @@ namespace SU_Casino
                 DataTable dt = new DataTable();
 
                 da.SelectCommand.CommandType = CommandType.StoredProcedure;
-                da.SelectCommand.Parameters.AddWithValue("@prop_n", prop_n);
+                da.SelectCommand.Parameters.AddWithValue("@condition", condition);
                 da.SelectCommand.Parameters.AddWithValue("@moment", moment);
                 da.Fill(ds, "getAllTheme");
                 dt = ds.Tables["getAllTheme"];
@@ -180,7 +182,7 @@ namespace SU_Casino
             }
             if (theme1 != 0)
             {
-                CalculateChance(theme1, theme2, theme3, theme4);
+                 CalculateChance(theme1, theme2, theme3, theme4,gamename).ToString();
                 return "";
             }
             else
@@ -188,28 +190,28 @@ namespace SU_Casino
                 return null;
             }
         }
-        private int CalculateChance(int theme1, int theme2, int theme3, int theme4)
+        private string CalculateChance(int theme1, int theme2, int theme3, int theme4, string gamename)
         {
             Random rnd = new Random();
             int nr = rnd.Next(0, theme4);
 
             if(nr < theme1)
             {
-                return theme1;
+                return getTheme(1, gamename);
             }
             else if(nr > theme1 && nr < theme2)
             {
-                return theme2;
+                return getTheme(2, gamename);
             }
             else if(nr > theme2 && nr < theme3 )
             {
-                return theme3;
+                return getTheme(3, gamename);
             }
             else if(nr > theme3)
             {
-                return theme4;
+                return getTheme(4, gamename);
             }
-            return 0;
+            return "";
         }
         public string getText(string infotext)
         {
@@ -232,9 +234,48 @@ namespace SU_Casino
                     }
                 }
             }
-            return "";
+            
             spContentConn.Close();
             spContentConn.Dispose();
+            return "";
+        }
+
+       public List<string> GetCondition()
+       {
+            List<string> array = new List<string>();
+            try
+            {
+                SqlConnection connectionstring = new SqlConnection(@"Data Source=LAPTOP-TGVH7EEV\HUGOSSONSQL;Initial Catalog=SU_Casino;Integrated Security=True");
+                SqlConnection con = connectionstring;
+                var sql = "getAllCondition";
+                var da = new SqlDataAdapter(sql, con);
+                var ds = new DataSet();
+                DataTable dt = new DataTable();
+
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.Fill(ds, "getAllCondition");
+                dt = ds.Tables["getAllCondition"];
+             
+                foreach (DataRow dr in dt.Rows)
+                {
+                    array.Add(dr[0].ToString());
+                   
+                }
+            }
+            catch (Exception e)
+            {
+                // msg = "Error trying login user : " + txtUsername.Text;
+            }
+            //if (theme1 != 0)
+            //{
+            //    CalculateChance(theme1, theme2, theme3, theme4);
+            //    return "";
+            //}
+            //else
+            //{
+            //    return null;
+            //}
+            return array;
         }
     }
 }
