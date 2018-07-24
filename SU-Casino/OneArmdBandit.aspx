@@ -15,22 +15,25 @@
     <link id="themeCSS" runat="server" rel="stylesheet" type="text/css" /> 
 
     <!-- *****Random themes *****-->
-       <%  var theme = this.setTheme();
+      <%  var theme = this.HiddenField_theme.Value;
         switch (theme) {
-            case 1:%>
+             case "0":%>
+                <link rel="stylesheet" href="src/css/noTheme.css" />
+              <%   break;
+            case "1":%>
                 <link rel="stylesheet" href="src/css/themeBlack.css" />
               <%   break;
-            case 2:%>
-                <link rel="stylesheet" href="src/css/themeGold.css" />
-                <% break;
-            case 3:%>
+            case "2":%>
                 <link rel="stylesheet" href="src/css/theme1b.css" />
+                <% break;
+            case "3":%>
+                <link rel="stylesheet" href="src/css/theme2.css" />
                <%  break;
-            case 4:%>
+            case "4":%>
                 <link rel="stylesheet" href="src/css/theme2.css" />
               <%   break;
             default:%>
-                <link rel="stylesheet" href="src/css/theme1b.css" />
+                <link rel="stylesheet" href="src/css/themeGold.css" />
                <%  break;
          }%>
         
@@ -172,7 +175,7 @@
                         <div class="col-md-2"></div>
                             <div class="col-md-8 text-center" id="message-content">
                                 <div class="winner">
-                                    <h1> WINNER!!!! </h1>
+                                    <img src="src/images/other/winntext2.png" class="img-responsive" />
                                     <h2> You got <span id="winCredit">+100</span> !!!!</h2>
                                     <br />
                                     <br />

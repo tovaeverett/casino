@@ -2,7 +2,7 @@ body {
     font-size: 16px;
     background-size: 100% auto;
     color: whitesmoke;
-    background: url("src/images/bg-caribbean.jpg") no-repeat center center fixed;
+    background: url("/src/images/backgrounds/body_theme1.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -12,14 +12,33 @@ body {
 
 #roulette-wrapper {
     background: green;
-    box-sizing: unset;
-    padding-top: 15px;
-    padding-left: 15px;
     max-width: 800px;
-}
-#roulette-ul {
+    border-radius: 20px;
     border: 4px #332c10 solid;
     box-shadow: inset 2px 3px 9px 2px #000;
+    border-top-left-radius: 39% 65%;
+    border-bottom-left-radius: 39% 65%;
+    box-sizing: unset;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Winner announcer */
+#winnerAnnouncer {
+    z-index: 2000;
+    position: absolute;
+    display: none;
+    /* animation: blinker 1s linear infinite; */
+}
+
+.spinner-container > .btn_container > ul {
+    border: 4px solid lightgreen;
+    padding: 10px;
+    padding-right: 20px;
+}
+
+#roulette-ul {
+    border: 4px lightgreen solid;
     padding-right: 20px;
     padding-left: 0px;
 }
@@ -86,6 +105,9 @@ body {
     }
     #btnSpin {
         margin-top: 0.2em;
+    }
+    #moneyLable {
+        position: relative;
     }
 }
 

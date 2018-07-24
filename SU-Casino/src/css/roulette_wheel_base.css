@@ -5,28 +5,6 @@
 */
 
 /*  */
-#roulette-wrapper {
-    border-radius: 20px;
-    border: 10px solid lightgreen;
-    border-top-left-radius: 39% 65%;
-    border-bottom-left-radius: 39% 65%;
-    box-sizing: unset;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-/* Winner announcer */
-#winnerAnnouncer{
-    z-index: 2000;
-    position: absolute;
-    display:none;
-    /* animation: blinker 1s linear infinite; */
-  }
-.spinner-container > .btn_container > ul {
-    border: 4px solid lightgreen;
-    padding: 10px;
-    padding-right: 20px;
-}
 
 
 @keyframes blinker {

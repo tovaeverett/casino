@@ -16,44 +16,7 @@ $(function() {
 var rotationsTime = 9;
 var wheelSpinTime = 6;
 var ballSpinTime = 5;
-var numorder = [
-  0,
-  32,
-  15,
-  19,
-  4,
-  2,
-  25,
-  17,
-  34,
-  6,
-  27,
-  13,
-  36,
-  11,
-  30,
-  8,
-  23,
-  10,
-  5,
-  24,
-  16,
-  33,
-  1,
-  20,
-  14,
-  31,
-  9,
-  22,
-  18,
-  29,
-  7,
-  28,
-  12,
-  35,
-  3,
-  26
-];
+var numorder = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26];
 var numred = [
   32,
   19,
@@ -92,7 +55,7 @@ var numblack = [
   29,
   28,
   35,
-  26
+  26,
 ];
 var numgreen = [0];
 var numbg = $(".pieContainer");
@@ -104,7 +67,7 @@ var btnHigh = $("#btnHigh");
 var btnLow = $("#btnLow");
 var btnZero = $("#btnZero");
 var hiddenRouletteNr = $("#HiddenFieldrouletteNr");
-var hiddenWinLose = $("input[name=HiddenFieldWinLose]:hidden"); // $('input[name="testing"]').val('Work!');
+var hiddenWinLose = $("input[name=HiddenFieldWinLose]:hidden"); 
 var btnDontKnow = $("#btnDontKnow");
 var toppart = $("#toppart");
 var pfx = $.keyframe.getVendorPrefix();
@@ -113,8 +76,8 @@ var rinner = $("#rcircle");
 var numberLoc = [];
 var betOption = "";
 var expectedWinningChance = "";
-var wheelSound = new Audio("src/sound/effects/RouletteWheel.mp3")
-$.keyframe.debug = true;
+var wheelSound = new Audio("src/sound/effects/RouletteWheel.mp3");
+$.keyframe.debug = false;
 
 $(document).ready(function () {
     initRouletteGame();
@@ -123,6 +86,7 @@ $(document).ready(function () {
 function initRouletteGame() {
     gameInit('5');
     createWheel();
+    console.log(hiddenRouletteNr);
 }
 
 
@@ -167,7 +131,7 @@ function createWheel() {
 }
 
 btnRed.click(function() {
-    betOption = "black";
+    betOption = "red";
     btnRed.prop("disabled", false);
     btnBlack.prop("disabled", false);
     startSpinn(); 
@@ -195,15 +159,12 @@ function setSelectedWinningChange(chance) {
     `You expect your winning change to be: ${chance}`
   );*/
   expectedWinningChance = chance;
-  //$accountDeleteDialog[0].close();
-  //$("#firstShow").hide();
     $("#winchance-container").hide();
 }
 
 function switchButtons(disable) {
   btnBlack.prop("disabled", disable);
   btnRed.prop("disabled", disable);
-  btnSpin.prop("disabled", disable);
 }
 
 function startSpinn() {
@@ -217,7 +178,7 @@ function finishSpin() {
     let isWinner  = false;
     var result = expectedWinningChance + ",";
     
-    if (numred.indexOf(winningNum) > 0) {
+    if (numred.indexOf(Number(winningNum)) > 0) {
         if (betOption === "red") {
             result = result + "2,";
             isWinner = true;
@@ -253,19 +214,6 @@ function finishSpin() {
   betOption = "";
   setSelectedColor();
   switchButtons(false);
-}
-
-function winnerWinnerChickenDinner() {
-  $("#winnerAnnouncer").show();
-  isWin = true;
-
-  // https://www.jqueryscript.net/animation/Realistic-Fireworks-Animations-Using-jQuery-And-Canvas-fireworks-js.html
-    $("#message-container").fireworks({
-    sound: true, // sound effect
-    opacity: 0.9,
-    width: "100%",
-    height: "100%"
-  });
 }
 
 function failed(error) {

@@ -1,5 +1,7 @@
 var backgroundSound;
 
+console.log("nav", window.navigator.appVersion, window.navigator.platform);
+
 function gameInit(theme) {
     $("#message-container").hide();
     $("#winchance-container").hide();
@@ -26,7 +28,7 @@ function gameInit(theme) {
     }
 
     backgroundSound = sound(baseSoundUrl+backgroundSoundSource);
-    backgroundSound.play();
+    //backgroundSound.play();
 }
 
 function getWinChance(button) {
@@ -53,6 +55,7 @@ function showWinner() {
         height: "100%"
     });
     $(".winner").show();
+    $(".winner-inner").addClass('zoom');
     $("#message-container").show();
 
 }
@@ -77,6 +80,7 @@ function sound(src) {
 $('#btnShowInfo').click(function () {
     $("#startInfo").hide();
     $("#winchance-container").show();
+    //backgroundSound.play();
  
 });
 
