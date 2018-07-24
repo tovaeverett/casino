@@ -22,7 +22,7 @@ namespace SU_Casino
                 HiddenField_Spin1.Value = randomStartCard().ToString();
                 HiddenField_Spin2.Value = randomStartCard().ToString();
                 HiddenField_Spin3.Value = randomStartCard().ToString();
-                checkForWin();
+               //checkForWin();
                 setTheme();
             }
         }
@@ -38,7 +38,7 @@ namespace SU_Casino
         {
             //int CardPressed = 0; 
             //var winLose = HiddenField_WinLose.Value;
-            var credit = Int32.Parse(lblMoney.Text);
+            var credit = 0;//Int32.Parse(lblMoney.Text);
             string WinChance = "";
             string CardColor = "";
             string WinLose = "";

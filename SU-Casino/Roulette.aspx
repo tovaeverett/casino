@@ -15,8 +15,6 @@
         <link rel="stylesheet" href="src/css/index.css"/>
         <link rel="stylesheet" href="/src/css/roulette_wheel_base.css" />
         <link rel="stylesheet" href="/src/css/roulette_wheel.css" />
-
-        <!--li--nk rel="stylesheet" href="/src/css/roulette_wheel.css" /-->
     </head>
 
     <body>
@@ -123,12 +121,15 @@
                         <div class="col-md-2"></div>
                             <div class="col-md-8 text-center" id="message-content">
                                 <div class="winner">
-                                    <h1> WINNER!!!! </h1>
+                                    <div class="winner-inner">
+                                    <!--h1> WINNER!!!! </h1-->
+                                    <img src="src/images/other/winntext2.png" class="img-responsive" />
                                     <h2> You got <span id="winCredit">+100</span> !!!!</h2>
                                     <br />
                                     <br />
                                     <br />
                                      <button id="btnCloseWin" class="btn btn-large btn-primary" > Play again </button>
+                                        </div>
                                 </div>
                                 <!--div class="lost">
                                     <h1> You lost... </h1>

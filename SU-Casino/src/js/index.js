@@ -55,6 +55,7 @@ function showWinner() {
         height: "100%"
     });
     $(".winner").show();
+    $(".winner-inner").addClass('zoom');
     $("#message-container").show();
 
 }

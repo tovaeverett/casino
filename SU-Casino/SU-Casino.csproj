@@ -154,10 +154,11 @@
     <Content Include="src\images\cards\red_back.png" />
     <Content Include="src\images\cards\red_back_0.png" />
     <Content Include="src\images\cards\yellow_back.png" />
-    <Content Include="src\images\coins.gif" />
     <Content Include="src\images\frameTest.png" />
     <Content Include="src\images\logos\theme1.png" />
     <Content Include="src\images\logos\theme1Logo.png" />
+    <Content Include="src\images\other\winntext.png" />
+    <Content Include="src\images\other\winntext2.png" />
     <Content Include="src\images\slot\chomp.png" />
     <Content Include="src\images\slot\coin.png" />
     <Content Include="src\images\slot\flower.png" />
@@ -170,6 +171,7 @@
     <Content Include="src\images\slot\random.png" />
     <Content Include="src\images\slot\star.png" />
     <Content Include="src\js\card_game.js" />
+    <Content Include="src\js\start.js" />
     <Content Include="src\js\jquery.keyframes.mini.js" />
     <Content Include="src\js\roulette.js" />
     <Content Include="src\js\roulette_wheel.js" />

@@ -16,6 +16,10 @@ namespace SU_Casino
         public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                hiddenfield_showInfo.Value = "0";
+            }
             hiddenfield_text.Value = _database.getText("startpage");
             getBetingelse();
         }
@@ -27,7 +31,16 @@ namespace SU_Casino
             _database.getAllThemes(nr,1);            
         }
 
+        protected void btnPlay_Click(object sender, EventArgs e)
+        {
+            //Save to db
+            hiddenfield_showInfo.Value = "1";
 
+        }
 
+        protected void btnStart_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("Roulette.aspx", true);
+        }
     }
 }
