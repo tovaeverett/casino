@@ -14,15 +14,15 @@ namespace SU_Casino
         int money;
         protected void Page_Load(object sender, EventArgs e)
         {
-            applyThemeTemp(); //temporarily added, to be removed when themes are finalized and triggering logic is done
+           // applyThemeTemp(); //temporarily added, to be removed when themes are finalized and triggering logic is done
             HiddenField_showInfo.Value = "0";
             if (!IsPostBack)
             {
                 HiddenField_showInfo.Value = "1";
                 HiddenField_Spin1.Value = randomStartCard().ToString();
                 HiddenField_Spin2.Value = randomStartCard().ToString();
-                HiddenField_Spin3.Value = randomStartCard().ToString();
-               //checkForWin();
+               HiddenField_Spin3.Value = randomStartCard().ToString();
+               // checkForWin();
                 setTheme();
             }
         }
@@ -38,7 +38,11 @@ namespace SU_Casino
         {
             //int CardPressed = 0; 
             //var winLose = HiddenField_WinLose.Value;
-            var credit = 0;//Int32.Parse(lblMoney.Text);
+            int credit = 0;
+            if(lblMoney.Text != "")
+            { 
+             credit = Convert.ToInt32(lblMoney.Text);
+            }
             string WinChance = "";
             string CardColor = "";
             string WinLose = "";
@@ -91,7 +95,7 @@ namespace SU_Casino
         {
             Random rnd = new Random();
             int randomTheme = rnd.Next(1, 4);
-            var theme = _database.getTheme(randomTheme);
+          //  var theme = _database.getTheme(randomTheme);
             HiddenField_theme.Value = randomTheme.ToString();
             return randomTheme;
         }
