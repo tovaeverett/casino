@@ -30,7 +30,7 @@ namespace SU_Casino
 
             var item = Array[Array.Count - 1]; ;
 
-            int num = letter.Next(0, 5);
+            int num = letter.Next(0, 2);
             string let = Array[num];
 
             _database.getAllThemes(let,1,"");

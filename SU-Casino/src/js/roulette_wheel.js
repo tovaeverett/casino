@@ -131,14 +131,14 @@ function createWheel() {
 }
 
 btnRed.click(function() {
-    betOption = "red";
+    betOption = "2";
     btnRed.prop("disabled", false);
     btnBlack.prop("disabled", false);
     startSpinn(); 
 });
 
 btnBlack.click(function() {
-  betOption = "black";
+  betOption = "1";
   btnRed.prop("disabled", false);
   btnBlack.prop("disabled", false);
   startSpinn();
@@ -173,20 +173,20 @@ function startSpinn() {
 
 function finishSpin() {
     let isWinner  = false;
-    var result = expectedWinningChance + ",";
+    var result = expectedWinningChance + "," + betOption + ",";
     
     if (numred.indexOf(Number(winningNum)) > 0) {
-        if (betOption === "red") {
-            result = result + "2,";
+        if (betOption === "2") {
+           // result = result + "2,";
             isWinner = true;
     }
     } else {
-        if (betOption === "black") {
-            result = result + "1,";
+        if (betOption === "1") {
+          //  result = result + "1,";
             isWinner = true;
        }
     }
-
+    console.log(result);
     if (!isWinner) {//TODO- function in index?
         result = result + "lose";
         $("#HiddenField_result").val(result);
