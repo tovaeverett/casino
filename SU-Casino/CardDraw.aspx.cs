@@ -98,20 +98,19 @@ namespace SU_Casino
             string WinLose = "";
            // string test = "PressCard:1, WinChance: 1, WinLose: lose";
            
-            string[] splitCards = HiddenField_result.Value.Split(':');
-            foreach(var value in splitCards)
-            {
-                WinChance = value[0].ToString();
-                CardColor = value[1].ToString();
-                WinLose = value[2].ToString();
-            }
+            string[] splitCards = HiddenField_result.Value.Split(',');
+           //( foreach(var value in splitCards)
+            
+                WinChance = splitCards[0].ToString();
+                CardColor = splitCards[1].ToString();
+                WinLose = splitCards[2].ToString();
+            
                 //card1:null,card2:6H,showCard:5H,winChance:1,winLose:lose
 
 
-           if (CardColor != "null")
+           if (CardColor == "1")
             {
-
-                if(CardColor == "1")
+                if(WinLose == "win")
                 {
                     money = + 100;
                 }
@@ -120,9 +119,9 @@ namespace SU_Casino
                     money = -100;
                 }
             }
-           else
+           else if (CardColor == "2")
             {
-                if (CardColor == "2")
+                if( WinLose == "win")
                 {
                     money = +50;
                 } 
