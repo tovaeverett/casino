@@ -28,7 +28,9 @@ namespace SU_Casino
             Random letter = new Random();
             var Array = _database.GetCondition();//{ "one.one","two.one","two.two","two.three","three.one","three.two","three.three","four.one","four.one" };
 
-            int num = letter.Next(0, 2);
+            var item = Array[Array.Count - 1]; ;
+
+            int num = letter.Next(0, 5);
             string let = Array[num];
 
             _database.getAllThemes(let,1,"");

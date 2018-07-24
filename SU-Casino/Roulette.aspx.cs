@@ -11,7 +11,7 @@ namespace SU_Casino
     public partial class Roulette : System.Web.UI.Page
     {
         private static int credit = 1500;
-
+        int money;
         protected void Page_Load(object sender, EventArgs e)
         {
             HiddenField_showInfo.Value = "0";
@@ -44,13 +44,63 @@ namespace SU_Casino
         {
             return value % 2 == 0;
         }
+        private void checkForWin()
+        {
+            //int CardPressed = 0; 
+            //var winLose = HiddenField_WinLose.Value;
+            int credit = 0;
+            if (lblMoney.Text != "")
+            {
+                credit = Convert.ToInt32(lblMoney.Text);
+            }
+            string WinChance = "";
+            string CardColor = "";
+            string WinLose = "";
+            // string test = "PressCard:1, WinChance: 1, WinLose: lose";
 
+            string[] splitCards = HiddenField_result.Value.Split(',');
+
+            WinChance = splitCards[0].ToString();
+            CardColor = splitCards[1].ToString();
+            WinLose = splitCards[2].ToString();
+
+            //card1:null,card2:6H,showCard:5H,winChance:1,winLose:lose
+
+
+            if (WinLose == "win")
+            {
+
+                if (CardColor == "1")
+                {
+                    money = +500;
+                }
+                else
+                {
+                    money = -500;
+                }
+            }
+            else
+            {
+                if (CardColor == "2")
+                {
+                    money = +500;
+                }
+                else
+                {
+                    money = -500;
+                }
+            }
+            money = money + credit;
+            lblMoney.Text = money.ToString();
+            //SaveToDB(CardPressed, winLose);
+        }
         protected void btnPlay_Click(object sender, EventArgs e)
         {
-            bool isWin = true; //Change...
+            checkForWin();
+           // bool isWin = true; //Change...
             RandomSpin();
-            credit = isWin ? credit + 500 : credit - 500;
-            lblMoney.Text = credit.ToString();
+           // credit = isWin ? credit + 500 : credit - 500;
+           // lblMoney.Text = credit.ToString();
         }
 
         [WebMethod]
