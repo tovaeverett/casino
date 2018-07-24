@@ -21,8 +21,15 @@ namespace SU_Casino
                 HiddenField_showInfo.Value = "1";
                 HiddenField_Spin1.Value = randomStartCard().ToString();
                 HiddenField_Spin2.Value = randomStartCard().ToString();
-               HiddenField_Spin3.Value = randomStartCard().ToString();
-               // checkForWin();
+                HiddenField_Spin3.Value = randomStartCard().ToString();
+                if (HiddenField_Spin1.Value == HiddenField_Spin2.Value && HiddenField_Spin1.Value == HiddenField_Spin3.Value)
+                {
+                    HiddenField_WinLose.Value = "win";
+                }
+                else
+                {
+                    HiddenField_WinLose.Value = "lose";
+                }
                 setTheme();
             }
         }
@@ -32,13 +39,22 @@ namespace SU_Casino
             HiddenField_Spin1.Value = randomStartCard().ToString();
             HiddenField_Spin2.Value = randomStartCard().ToString();
             HiddenField_Spin3.Value = randomStartCard().ToString();
+            if (Convert.ToInt32(HiddenField_Spin1.Value) == Convert.ToInt32(HiddenField_Spin2.Value) && Convert.ToInt32(HiddenField_Spin1.Value) == Convert.ToInt32(HiddenField_Spin3.Value))
+            {
+                HiddenField_WinLose.Value = "win";
+            }
+            else
+            {
+                HiddenField_WinLose.Value = "lose";
+            }
             checkForWin();
         }
         private void checkForWin()
         {
+ 
             //int CardPressed = 0; 
             //var winLose = HiddenField_WinLose.Value;
-            int credit = 0;
+                int credit = 0;
             if(lblMoney.Text != "")
             { 
              credit = Convert.ToInt32(lblMoney.Text);
@@ -48,38 +64,23 @@ namespace SU_Casino
             string WinLose = "";
             // string test = "PressCard:1, WinChance: 1, WinLose: lose";
 
-            string[] splitCards = HiddenField_result.Value.Split(':');
-            foreach (var value in splitCards)
-            {
-                WinChance = value[0].ToString();
-                CardColor = value[1].ToString();
-                WinLose = value[2].ToString();
-            }
+            string[] splitCards = HiddenField_result.Value.Split(',');
+          
+                WinChance = splitCards[0].ToString();
+                CardColor = splitCards[1].ToString();
+                WinLose = splitCards[2].ToString();
+           
             //card1:null,card2:6H,showCard:5H,winChance:1,winLose:lose
 
 
-            if (CardColor != "null")
+            if (HiddenField_WinLose.Value == "win")
             {
-
-                if (CardColor == "1")
-                {
-                    money = +100;
-                }
-                else
-                {
-                    money = -100;
-                }
+              money = +100;
+                
             }
             else
             {
-                if (CardColor == "2")
-                {
-                    money = +50;
-                }
-                else
-                {
-                    money = -50;
-                }
+                money = -100;
             }
             money = money + credit;
             lblMoney.Text = money.ToString();
