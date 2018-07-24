@@ -13,6 +13,7 @@ $(".winchance-btn").click(function () {
     $("#winchance-container").hide();
 });
 
+
 function initSlotGame() {
     var theme = $("#HiddenField_theme").val();
     gameInit(theme);
@@ -88,9 +89,25 @@ function initSlotGame() {
 
 $('.start').click(function (e) {
     e.preventDefault();
+    $(this).prop("disabled", true);
     slotContent.sound.loop = true;
     slotContent.sound.play();
 	rouletter.roulette('start');
 	rouletter2.roulette('start');
 	rouletter3.roulette('start');
+});
+
+$(function () {
+    document.addEventListener("keydown", function (event) {
+        if (event.keyCode === 81) {
+            slotContent.winChance="0";
+        } else if (event.keyCode === 87) {
+            slotContent.winChance = "1";
+        } else if (event.keyCode === 69) {
+            slotContent.winChance = "2";
+        } else if (event.keyCode === 82) {
+            slotContent.winChance = "3";
+        }
+        $("#winchance-container").hide();
+    });
 });

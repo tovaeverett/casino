@@ -84,3 +84,18 @@ function cardClicked(selectedCard) {
     console.log(result);
 }
 
+$(function () {
+    document.addEventListener("keydown", function (event) {
+        if (event.keyCode === 81) {
+            cards.winChance = "0";
+        } else if (event.keyCode === 87) {
+            cards.winChance = "1";
+        } else if (event.keyCode === 69) {
+            cards.winChance = "2";
+        } else if (event.keyCode === 82) {
+            cards.winChance = "3";
+        }
+        $("#winchance-container").hide();
+    });
+});
+

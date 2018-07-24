@@ -122,7 +122,7 @@ namespace SU_Casino
                         themeCSS.Attributes["href"] = "src/css/themeGlow.css";
                         break;
                     default:
-                        themeCSS.Attributes["href"] = "src/css/theme1.css";
+                        themeCSS.Attributes["href"] = "src/css/theme2.css";
                         break;
                 }
 

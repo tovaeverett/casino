@@ -26,7 +26,7 @@
                 <link rel="stylesheet" href="src/css/theme1b.css" />
                 <% break;
             case "3":%>
-                <link rel="stylesheet" href="src/css/theme2.css" />
+                <link rel="stylesheet" href="src/css/themeGlow.css" />
                <%  break;
             case "4":%>
                 <link rel="stylesheet" href="src/css/theme2.css" />
@@ -110,9 +110,9 @@
                 <br />
                 <ul>
                     <li id="btnHigh" class="winchance-btn">High (Q)</li>
-                    <li id="btnLow" class="winchance-btn">Low</li>
-                    <li id="btnZero" class="winchance-btn">Zero</li>
-                    <li id="btnDontKnow" class="winchance-btn">Don't know</li>
+                    <li id="btnLow" class="winchance-btn">Low (W)</li>
+                    <li id="btnZero" class="winchance-btn">Zero (E)</li>
+                    <li id="btnDontKnow" class="winchance-btn">Don't know (R)</li>
                 </ul>
             </div>
         </div>

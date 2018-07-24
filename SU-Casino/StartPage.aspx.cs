@@ -28,10 +28,16 @@ namespace SU_Casino
             Random letter = new Random();
             var Array = _database.GetCondition();//{ "one.one","two.one","two.two","two.three","three.one","three.two","three.three","four.one","four.one" };
 
-            int num = letter.Next(0, 9);
+            int num = letter.Next(0, 2);
             string let = Array[num];
 
             _database.getAllThemes(let,1,"");
+        }
+        protected void btnPlay_Click(object sender, EventArgs e)
+        {
+            //Save to db
+            hiddenfield_showInfo.Value = "1";
+
         }
         protected void btnStart_Click(object sender, EventArgs e)
         {

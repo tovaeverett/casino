@@ -155,9 +155,6 @@ function setSelectedColor() {
 }
 
 function setSelectedWinningChange(chance) {
-  /*$("#selected-winning-chance").text(
-    `You expect your winning change to be: ${chance}`
-  );*/
   expectedWinningChance = chance;
     $("#winchance-container").hide();
 }
@@ -202,13 +199,13 @@ function finishSpin() {
     }
 
 
-  PageMethods.WinOrLose(
+  /*PageMethods.WinOrLose(
     isWinner ,
     betOption,
     expectedWinningChance,
     callBack,
     failed
-  );
+  );*/
 
     console.log(winningNum, isWinner, result );
   betOption = "";

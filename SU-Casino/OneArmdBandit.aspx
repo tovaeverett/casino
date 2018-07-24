@@ -27,10 +27,10 @@
                 <link rel="stylesheet" href="src/css/theme1b.css" />
                 <% break;
             case "3":%>
-                <link rel="stylesheet" href="src/css/theme2.css" />
+                <link rel="stylesheet" href="src/css/themeGold.css" />
                <%  break;
             case "4":%>
-                <link rel="stylesheet" href="src/css/theme2.css" />
+                <link rel="stylesheet" href="src/css/themeCasino.css" />
               <%   break;
             default:%>
                 <link rel="stylesheet" href="src/css/themeGold.css" />
@@ -43,7 +43,7 @@
 <div id="main-container" class="container-fluid">
         <div class="row header">
             <div class="col-md-2 col-sm-1"></div>
-            <div class="col-md-8 col-sm-10"> CASINO </div>
+            <div class="col-md-8 col-sm-10">  </div>
             <div class="col-md-2 col-sm-1"></div>
            <!--h1> Image for theme 1<h1-->
         </div>
@@ -137,9 +137,9 @@
                 <br />
                 <ul>
                     <li id="btnHigh" class="winchance-btn">High (Q)</li>
-                    <li id="btnLow" class="winchance-btn">Low</li>
-                    <li id="btnZero" class="winchance-btn">Zero</li>
-                    <li id="btnDontKnow" class="winchance-btn">Don't know</li>
+                    <li id="btnLow" class="winchance-btn">Low (W)</li>
+                    <li id="btnZero" class="winchance-btn">Zero (E)</li>
+                    <li id="btnDontKnow" class="winchance-btn">Don't know (R)</li>
                 </ul>
             </div>
         </div>
@@ -148,11 +148,11 @@
    <!-- Start info: Information about the game, visible first time set by hidden field 'HiddenField_showInfo' -->
             <div id="startInfo" class="container-fluid overlayer">
                  <div class="row">
-                        <div class="col-md-1 col-xs-0"></div>
-                            <div class="col-md-10 col-xs-12 text-center" id="message-content-info">
+                        <div class="col-md-2"></div>
+                            <div class="col-md-8 text-center" id="message-content">
                                 <div class="info">
                                     <section>
-                                        <h1> LETS PLAY CARDS </h1>
+                                        <h1> LETS PLAY SLOT MACHINE </h1>
                                         <p>
                                         Lorem ipsum dolor sit amet, sea mundi ponderum neglegentur ex, at munere delicata cum. 
                                         Inani choro per ex, equidem debitis et pro, sea an ludus omnium. Putent commune omnesque no ius, 
@@ -165,10 +165,10 @@
                                 
                             
                         </div>
-                    <div class="col-md-1 col-xs-0"></div>
+                    <div class="col-md-2"></div>
             </div>
         </div>
-        <!-- END: Start info -->   
+        <!-- END: Start info -->    
         <!-- Win or Lost: Shows ....  -->
                   <div id="message-container" class="container-fluid overlayer">
                     <div class="row">

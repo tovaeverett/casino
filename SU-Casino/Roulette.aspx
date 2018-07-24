@@ -83,10 +83,10 @@
                  <h2>What are your chances of winning?</h2>
                 <br />
                 <ul>
-                    <li id="btnHigh" class="winchance-btn">High</li>
-                    <li id="btnLow" class="winchance-btn">Low</li>
-                    <li id="btnZero" class="winchance-btn">Zero</li>
-                    <li id="btnDontKnow" class="winchance-btn">Don't know</li>
+                    <li id="btnHigh" class="winchance-btn">High (Q)</li>
+                    <li id="btnLow" class="winchance-btn">Low (W)</li>
+                    <li id="btnZero" class="winchance-btn">Zero (E)</li>
+                    <li id="btnDontKnow" class="winchance-btn">Don't know (R)</li>
                 </ul>
             </div>
         </div>

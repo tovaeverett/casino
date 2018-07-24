@@ -12,8 +12,17 @@
 
 
 
-a, a:hover, a:active{
-    text-decoration:none;
+a:hover, a:visited, a:link, a:active{
+text-decoration:none;
+}
+
+button:active {
+    outline: none;
+    border: none;
+}
+
+button:focus {
+    outline: 0;
 }
 
 .logo{
@@ -60,7 +69,7 @@ a, a:hover, a:active{
     background: rgba(90, 82, 82, 0.79);
     padding-right: 1px;
     padding-left: 1px;
-    margin-top: 25%;
+    margin-top: 15%;
     padding: 30px 1px 30px 1px;
     justify-content: center;
     align-items: center;
@@ -152,20 +161,21 @@ a, a:hover, a:active{
 }
 
 .winner {
-    padding-top: 25%;
+    padding-top: 15%;
     display: flex;
     justify-content: center;
     align-items: center;
+    display:none;
 }
 
 .winner-inner {
-    width: 10%;
+    /*width: 10%;
     height: 10%;
     -webkit-transition: all 2.5s ease-in-out;
     -moz-transition: all 2.5s ease-in-out;
     -ms-transition: all 2.5s ease-in-out;
     -o-transition: all 2.5s ease-in-out;
-    transition: all 2.5s ease-in-out;
+    transition: all 2.5s ease-in-out;*/
     /*transition: transform .2s;
         -webkit-animation: zoomin 10s ease-in infinite;
     animation: zoomout 10s ease-in infinite;
@@ -192,7 +202,7 @@ a, a:hover, a:active{
 }
 
 #intro {
-    padding-top: 15%;
+    padding-top: 10%;
 }
 
 #startPlay {
