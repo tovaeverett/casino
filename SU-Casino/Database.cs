@@ -6,11 +6,12 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
+
 namespace SU_Casino
 {
     public class Database
     {
-        public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+        SqlConnection connectionstring = new SqlConnection(@"Data Source=LAPTOP-TGVH7EEV\HUGOSSONSQL;Initial Catalog=SU_Casino;Integrated Security=True");//(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
         public string getPlayerCredits(string userid)
         {
             string credit = "";
@@ -242,7 +243,7 @@ namespace SU_Casino
 
        public List<string> GetCondition()
        {
-            List<string> array = new List<string>();
+            List<string> list = new List<string>();
             try
             {
                 SqlConnection connectionstring = new SqlConnection(@"Data Source=LAPTOP-TGVH7EEV\HUGOSSONSQL;Initial Catalog=SU_Casino;Integrated Security=True");
@@ -258,24 +259,48 @@ namespace SU_Casino
              
                 foreach (DataRow dr in dt.Rows)
                 {
-                    array.Add(dr[0].ToString());
+                    list.Add(dr[0].ToString());
                    
                 }
             }
             catch (Exception e)
             {
+            }
+            return list;
+        }
+
+        public List<string> getOrderToPlay(int seq, string condition)
+        {
+            List<string> list = new List<string>();
+            try
+            {
+                SqlConnection con = new SqlConnection(@"Data Source=LAPTOP-TGVH7EEV\HUGOSSONSQL;Initial Catalog=SU_Casino;Integrated Security=True");
+                var sql = "getGameToPlay";
+                var da = new SqlDataAdapter(sql, con);
+                var ds = new DataSet();
+                DataTable dt = new DataTable();
+
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.AddWithValue("@seq", seq);
+                da.SelectCommand.Parameters.AddWithValue("@condition", condition);
+               
+                da.Fill(ds, "getGameToPlay");
+                dt = ds.Tables["getGameToPlay"];
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    list.Add(dr[0].ToString());
+                    list.Add(dr[1].ToString());
+                    list.Add(dr[2].ToString());
+                }
+                return list;
+            }
+            catch (Exception e)
+            {
                 // msg = "Error trying login user : " + txtUsername.Text;
             }
-            //if (theme1 != 0)
-            //{
-            //    CalculateChance(theme1, theme2, theme3, theme4);
-            //    return "";
-            //}
-            //else
-            //{
-            //    return null;
-            //}
-            return array;
+            return null;
         }
+
     }
 }

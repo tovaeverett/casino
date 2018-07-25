@@ -39,7 +39,7 @@
             </EditItemTemplate>
         </asp:templatefield>
           <asp:templatefield headertext="moment">
-            <itemtemplate> <%#Eval("moment") %></itemtemplate>
+            <itemtemplate> <%#Eval("seq") %></itemtemplate>
             <EditItemTemplate>
                 <asp:TextBox ID="txtEditmoment" runat="server" Text='<%#Eval("moment") %>'></asp:TextBox>
             </EditItemTemplate>

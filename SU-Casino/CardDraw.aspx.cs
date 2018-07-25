@@ -16,12 +16,13 @@ namespace SU_Casino
         Database _database = new Database();
         protected void Page_Load(object sender, EventArgs e)
         {
+
             HiddenField_showInfo.Value = "0";
             if (!IsPostBack)
             {
                 setTheme();
                 setCards();
-                money = 1500;
+                money = Convert.ToInt32(Request["saldo"]);
                 lblMoney.Text = money.ToString();
                 HiddenField_showInfo.Value = "1";
                 SaveToDB();
@@ -92,7 +93,7 @@ namespace SU_Casino
         {
            //int CardPressed = 0; 
            //var winLose = HiddenField_WinLose.Value;
-           var credit = Int32.Parse(lblMoney.Text);
+            var credit = Int32.Parse(lblMoney.Text);
             string WinChance = "";
             string CardColor = "";
             string WinLose = "";
