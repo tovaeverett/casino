@@ -6,8 +6,13 @@ function gameInit(theme) {
     $("#message-container").hide();
     $("#winchance-container").hide();
     var showInfo = $("#HiddenField_showInfo").val();
-    showInfo === '1' ? $("#startInfo").show() : $("#winchance-container").show();
-
+    if (showInfo === '1') {
+        $("#startInfo").show();
+    }
+    else {
+        if (theme !== '99')
+            $("#winchance-container").show();
+    }
     var backgroundSoundSource = "";
     var baseSoundUrl = "src/sound/background/";
     switch (theme) {

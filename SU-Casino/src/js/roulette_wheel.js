@@ -198,15 +198,6 @@ function finishSpin() {
         setTimeout(function () { showWinner(); }, 300);
     }
 
-
-  /*PageMethods.WinOrLose(
-    isWinner ,
-    betOption,
-    expectedWinningChance,
-    callBack,
-    failed
-  );*/
-
     console.log(winningNum, isWinner, result );
   betOption = "";
   setSelectedColor();

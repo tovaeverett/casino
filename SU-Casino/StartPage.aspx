@@ -5,14 +5,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Start</title>
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"/>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="src/css/index.css"/>
 </head>
 <body class="bodyStart">
     <div class="container smallDev">
         <header></header>
     </div>
-    <div class="container smallDev">
+    <div class="container-fluid smallDev">
       <form id="form1" runat="server">
          <div id="introInfo">
          <div class="row">
@@ -48,6 +48,7 @@
                             <asp:ListItem Value="2">Most of the time</asp:ListItem>
                             <asp:ListItem Value="3">Always</asp:ListItem>
                         </asp:RadioButtonList>
+                        
                      </fieldset>
                 </div>
                 <div class="form-group question">
@@ -59,6 +60,7 @@
                             <asp:ListItem Value="2">Most of the time</asp:ListItem>
                             <asp:ListItem Value="3">Always</asp:ListItem>
                         </asp:RadioButtonList>
+                       
                      </fieldset>
                 </div>
                   <div class="form-group question">
@@ -70,6 +72,7 @@
                             <asp:ListItem Value="2">Most of the time</asp:ListItem>
                             <asp:ListItem Value="3">Always</asp:ListItem>
                         </asp:RadioButtonList>
+                        
                      </fieldset>
                 </div>
                  <div class="form-group question">
@@ -81,6 +84,7 @@
                             <asp:ListItem Value="2">Most of the time</asp:ListItem>
                             <asp:ListItem Value="3">Always</asp:ListItem>
                         </asp:RadioButtonList>
+                       
                      </fieldset>
                 </div>
                 <div class="form-group question">
@@ -92,6 +96,7 @@
                             <asp:ListItem Value="2">Most of the time</asp:ListItem>
                             <asp:ListItem Value="3">Always</asp:ListItem>
                         </asp:RadioButtonList>
+                        
                      </fieldset>
                 </div>
                   <div class="form-group question">
@@ -103,6 +108,7 @@
                             <asp:ListItem Value="2">Most of the time</asp:ListItem>
                             <asp:ListItem Value="3">Always</asp:ListItem>
                         </asp:RadioButtonList>
+                        
                      </fieldset>
                 </div>
                    <div class="form-group question">
@@ -114,6 +120,7 @@
                             <asp:ListItem Value="2">Most of the time</asp:ListItem>
                             <asp:ListItem Value="3">Always</asp:ListItem>
                         </asp:RadioButtonList>
+                        
                      </fieldset>
                 </div>
                 <div class="form-group question">
@@ -125,6 +132,7 @@
                             <asp:ListItem Value="2">Most of the time</asp:ListItem>
                             <asp:ListItem Value="3">Always</asp:ListItem>
                         </asp:RadioButtonList>
+                        
                      </fieldset>
                 </div>
                   <div class="form-group question">
@@ -136,6 +144,7 @@
                             <asp:ListItem Value="2">Most of the time</asp:ListItem>
                             <asp:ListItem Value="3">Always</asp:ListItem>
                         </asp:RadioButtonList>
+                        
                      </fieldset>
                 </div>
                    <div class="form-group question">
@@ -146,6 +155,7 @@
                             <asp:ListItem Value="1">Male </asp:ListItem>
                             <asp:ListItem Value="2">Other/Prefer not to say</asp:ListItem>
                         </asp:RadioButtonList>
+                        
                      </fieldset>
                 </div>
                   <div class="form-group question">
@@ -153,6 +163,7 @@
                         <legend>What is your age? </legend>
                         <asp:TextBox  CssClass="radioButtonList" ID="q11" runat="server"/>
                      </fieldset>
+                     
                 </div>
                   <section class="questionInfoBox">
                        <h5> The following questions concern gambling, by which we mean any activity where money (or something of monetary value) is waged on an uncertain outcome governed (to some extent) by chance, with the primary aim of winning more money (or something greater monetary value).</h5>
@@ -178,6 +189,7 @@
                             <asp:ListItem Value="10">Online slot machines</asp:ListItem>
                             <asp:ListItem Value="11">Other</asp:ListItem>
                         </asp:CheckBoxList>
+                       
                      </fieldset>
                 </div>
                   <div class="form-group question">
@@ -190,10 +202,13 @@
                             <asp:ListItem Value="3">Once per week</asp:ListItem>
                             <asp:ListItem Value="4">Once per day or more often</asp:ListItem>
                         </asp:RadioButtonList>
+                        
                      </fieldset>
                 </div>
 
                    <asp:Button ID="btnPlay" runat="server"  Text="Send information" class="btn btn-large btn-primary" OnClick="btnPlay_Click"/>
+                  <br />
+
              </div>
             <div class="col-sm-1 col-md-2 col-xl-2"></div>
         </div>
