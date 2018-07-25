@@ -69,11 +69,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminPage.aspx" />
+    <Content Include="CardDraw2.aspx" />
     <Content Include="CardDraw.aspx" />
     <Content Include="OneArmdBandit.aspx" />
     <Content Include="Roulette.aspx" />
     <Content Include="src\css\bootstrap-responsive.css" />
     <Content Include="src\css\bootstrap.css" />
+    <Content Include="src\css\card_game2.css" />
     <Content Include="src\css\card_game.css" />
     <Content Include="src\css\index.css" />
     <Content Include="src\css\roulette_wheel.css" />
@@ -82,13 +84,15 @@
     <Content Include="src\css\slot.css" />
     <Content Include="src\css\noTheme.css" />
     <Content Include="src\css\theme1a.css" />
-    <Content Include="src\css\theme1b.css" />
-    <Content Include="src\css\theme2.css" />
+    <Content Include="src\css\themeBlue.css" />
+    <Content Include="src\css\themeRed.css" />
     <Content Include="src\css\theme1.css" />
     <Content Include="src\css\themeBlack.css" />
     <Content Include="src\css\themeCasino.css" />
+    <Content Include="src\css\themeGlow.css" />
     <Content Include="src\css\themeGold.css" />
     <Content Include="src\images\backgrounds\body_theme1.jpg" />
+    <Content Include="src\images\backgrounds\body_theme_black.png" />
     <Content Include="src\images\cards\10C.png" />
     <Content Include="src\images\cards\10D.png" />
     <Content Include="src\images\cards\10H.png" />
@@ -189,6 +193,13 @@
     </Compile>
     <Compile Include="AdminPage.aspx.designer.cs">
       <DependentUpon>AdminPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CardDraw2.aspx.cs">
+      <DependentUpon>CardDraw2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CardDraw2.aspx.designer.cs">
+      <DependentUpon>CardDraw2.aspx</DependentUpon>
     </Compile>
     <Compile Include="CardDraw.aspx.cs">
       <DependentUpon>CardDraw.aspx</DependentUpon>

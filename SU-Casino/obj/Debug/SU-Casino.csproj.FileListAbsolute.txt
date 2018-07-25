@@ -238,12 +238,7 @@ C:\Users\Murk Gopi Chand\projects\SU Casino\su-casino\SU-Casino\obj\Debug\SU-Cas
 C:\Users\Murk Gopi Chand\projects\SU Casino\su-casino\SU-Casino\obj\Debug\SU-Casino.csproj.CopyComplete
 C:\Users\Murk Gopi Chand\projects\SU Casino\su-casino\SU-Casino\obj\Debug\SU-Casino.dll
 C:\Users\Murk Gopi Chand\projects\SU Casino\su-casino\SU-Casino\obj\Debug\SU-Casino.pdb
-C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\System.IO.Compression.dll
-C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\VBCSCompiler.exe
+C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\obj\Debug\SU-Casino.csproj.CoreCompileInputs.cache
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\Web.config
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\Web.Debug.config
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\Web.Release.config
@@ -257,9 +252,13 @@ C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\csi.exe
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\csi.exe.config
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\csi.rsp
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\Microsoft.CodeAnalysis.dll
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\Microsoft.VisualBasic.Core.targets
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\Microsoft.Win32.Primitives.dll
@@ -269,6 +268,7 @@ C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\System.Co
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\System.Diagnostics.Process.dll
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\System.IO.Compression.dll
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\System.IO.FileSystem.dll
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\System.IO.FileSystem.Primitives.dll
@@ -291,10 +291,10 @@ C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\System.Xm
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\vbc.exe
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\vbc.exe.config
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\vbc.rsp
+C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\VBCSCompiler.exe
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\obj\Debug\SU-Casino.csproj.CoreCompileInputs.cache
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\obj\Debug\SU-Casino.csproj.CopyComplete
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\obj\Debug\SU-Casino.dll
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\obj\Debug\SU-Casino.pdb

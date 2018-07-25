@@ -10,10 +10,21 @@
     color:yellow
 }
 
+.rotate {
+    transform: rotate(270deg);
+}
 
+a:hover, a:visited, a:link, a:active{
+text-decoration:none;
+}
 
-a, a:hover, a:active{
-    text-decoration:none;
+button:active {
+    outline: none;
+    border: none;
+}
+
+button:focus {
+    outline: 0;
 }
 
 .logo{
@@ -60,7 +71,7 @@ a, a:hover, a:active{
     background: rgba(90, 82, 82, 0.79);
     padding-right: 1px;
     padding-left: 1px;
-    margin-top: 25%;
+    margin-top: 15%;
     padding: 30px 1px 30px 1px;
     justify-content: center;
     align-items: center;
@@ -152,20 +163,21 @@ a, a:hover, a:active{
 }
 
 .winner {
-    padding-top: 25%;
+    padding-top: 15%;
     display: flex;
     justify-content: center;
     align-items: center;
+    display:none;
 }
 
 .winner-inner {
-    width: 10%;
+    /*width: 10%;
     height: 10%;
     -webkit-transition: all 2.5s ease-in-out;
     -moz-transition: all 2.5s ease-in-out;
     -ms-transition: all 2.5s ease-in-out;
     -o-transition: all 2.5s ease-in-out;
-    transition: all 2.5s ease-in-out;
+    transition: all 2.5s ease-in-out;*/
     /*transition: transform .2s;
         -webkit-animation: zoomin 10s ease-in infinite;
     animation: zoomout 10s ease-in infinite;
@@ -192,7 +204,7 @@ a, a:hover, a:active{
 }
 
 #intro {
-    padding-top: 15%;
+    padding-top: 10%;
 }
 
 #startPlay {
@@ -266,6 +278,64 @@ a, a:hover, a:active{
     color:white;
 }
 
+/*------StartPage--------*/
+.questionInfoBox {
+    padding: 40px 10px 20px 10px;
+    border-bottom: 3px solid #00338d;
+    border-top: 3px solid #00338d;
+    margin-bottom: 10px;
+}
+.radioButtonList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+  .radioButtonList.horizontal li {
+        display: inline;
+    }
+
+    .radioButtonList label {
+        display: inline;
+        border: 2px solid #ddd;
+        padding: 10px 15px;
+        border-radius: 5px;
+        margin-right: 10px;
+        cursor: pointer;
+        background: #fff;
+    }
+    .radioButtonList input{
+        display:none;
+    }
+
+    .radioButtonList input:checked + label {
+        background-color: #00338D;
+        border-color: #9B9B9B;
+        transition: 0.2s background;
+        color: #fff;
+    }
+    .radioButtonList td {
+        padding: 12px 0px;
+    }
+
+.question {
+    border: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+    .question:nth-of-type(odd) {
+        background: #F7F7F7
+    }
+
+fieldset {
+    padding: 15px;
+}
+
+legend {
+   font-weight: 500;
+   font-size: 1.1rem;
+   margin-bottom: .9rem;
+}
+
 .game-panel > form > .round-button {
     margin-left: -20px;
 }
@@ -299,14 +369,28 @@ a, a:hover, a:active{
 }
 
 @media (max-width: 767px) {
-    .winchance-btn {
-        font-size: 1em;
-        padding: 10px;
+    .smallDev {
+        max-width: 100% !important;
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 576px){
+    .smallDev {
+        max-width: 100% !important;
+        padding-right: 0;
+        padding-left: 0;
     }
 }
 @media (max-width: 510px) {
     .playground-slot {
         height: 250px;
+    }
+    .smallDev {
+        max-width: 100%;
+        padding-right: 0;
+        padding-left: 0;
     }
 }
 @media (max-width: 320px) {

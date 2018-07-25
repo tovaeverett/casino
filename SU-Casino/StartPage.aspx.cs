@@ -72,11 +72,16 @@ namespace SU_Casino
             }
         }
 
-        protected void btnPlay_Click(object sender, EventArgs e)
-        {
+            int num = letter.Next(0, 5);
+            string let = Array[num];
 
         }
+        protected void btnPlay_Click(object sender, EventArgs e)
+        {
+            //Save to db
+            hiddenfield_showInfo.Value = "1";
 
+        }
         protected void btnStart_Click(object sender, EventArgs e)
         {
 
