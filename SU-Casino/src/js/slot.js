@@ -31,7 +31,7 @@ function initSlotGame() {
 
     var optionFirst = {
         speed: 10,
-        duration: 1,
+        duration: 0.5,
         stopImageNumber: slotContent.img1,
         startCallback: function () {
             
@@ -46,7 +46,7 @@ function initSlotGame() {
 
     var optionSecond = {
         speed: 10,
-        duration: 2,
+        duration: 1,
         stopImageNumber: slotContent.img2,
         startCallback: function () {
            
@@ -61,7 +61,7 @@ function initSlotGame() {
 
     var optionThird = {
         speed: 10,
-        duration: 3,
+        duration: 1.5,
         stopImageNumber: slotContent.img3,
         startCallback: function () {
            
@@ -74,9 +74,9 @@ function initSlotGame() {
             slotContent.result === 'Lose' ? $(".lost").show() : $(".winner").show();
             $("#HiddenField_result").val(slotContent.winChance + ",null," + slotContent.result.toLowerCase());
             if (slotContent.result === 'Lose')
-                setTimeout(function () { $("#btnPlay").click(); }, 500);
+                setTimeout(function () { $("#btnPlay").click(); }, 1500);
             else
-               setTimeout(function () { showWinner(); }, 300);
+               setTimeout(function () { showWinner(); }, 1000);
             
         }
     }

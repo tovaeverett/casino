@@ -17,20 +17,20 @@
     <!-- *****Random themes *****-->
       <%  var theme = this.HiddenField_theme.Value;
         switch (theme) {
-             case "0":%>
+             case "null":%>
                 <link rel="stylesheet" href="src/css/noTheme.css" />
               <%   break;
             case "1":%>
                 <link rel="stylesheet" href="src/css/themeBlack.css" />
               <%   break;
             case "2":%>
-                <link rel="stylesheet" href="src/css/theme1b.css" />
+                <link rel="stylesheet" href="src/css/themeBlue.css" />
                 <% break;
             case "3":%>
-                <link rel="stylesheet" href="src/css/themeGold.css" />
+                <link rel="stylesheet" href="src/css/themeRed.css" />
                <%  break;
             case "4":%>
-                <link rel="stylesheet" href="src/css/themeCasino.css" />
+                <link rel="stylesheet" href="src/css/themeGold.css" />
               <%   break;
             default:%>
                 <link rel="stylesheet" href="src/css/themeGold.css" />

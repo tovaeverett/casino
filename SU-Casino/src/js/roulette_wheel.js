@@ -84,7 +84,7 @@ $(document).ready(function () {
 });
 
 function initRouletteGame() {
-    gameInit('5');
+    gameInit('99');
     createWheel();
     console.log(hiddenRouletteNr);
 }

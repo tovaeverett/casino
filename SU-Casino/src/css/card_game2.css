@@ -1,0 +1,30 @@
+.scene {
+    width: 100%;
+    height: 120px;
+    margin: 0;
+    perspective: 600px;
+}
+
+.playground-cards {
+    padding-top: 0px !important;
+    margin-top: 0px !important;
+}
+
+.div-center {
+    margin-top: -20px;
+}
+
+
+    @media (max-width: 767px) {
+        #play-container {
+            height: 100%;
+        }
+
+        .scene {
+            height: 80px;
+            margin: 2px;
+        }
+        .div-center {
+            margin-top: -20px;
+        }
+    }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CardDraw.aspx.cs" Inherits="SU_Casino.CardDraw" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CardDraw2.aspx.cs" Inherits="SU_Casino.CardDraw" %>
 
 <!DOCTYPE html>
 
@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"/>
 	<!--link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css"/-->
 	<link rel="stylesheet" href="src/css/card_game.css"/>
+    <link rel="stylesheet" href="src/css/card_game2.css"/>
     <link rel="stylesheet" href="src/css/index.css"/>
    <!-- *****Random themes *****-->
     <!-- behövs den här triggern ??? -->
@@ -46,32 +47,34 @@
             <div class="col-xl-8 col-md-8 col-sm-10" id="play-container">
                  <div class="col-md-12 playground-cards">
                      <div class="div-center">
-                            <!--**CARDS**-->
+                         
                             <div class="col-md-3 cardSpan">
-					            <div class="scene scene--card">
-	  					            <div class="betCard" id="betCard1">
-						                <div class="card__face card__face--front"><img src="src/images/cards/blue_back.png"/></div>
-						                <div class="card__face card__face--back"><img id="imgCard1" src="src/images/cards/3C.png"/></div>
-	  					            </div>
-				 	            </div>
+					      
 				             </div>
 				             <div class="col-md-3 cardSpan">
  					            <div class="scene scene--card">
+	  					            <div class="betCard" id="betCard1">
+						                <div class="card__face card__face--front"><img class="rotate" src="src/images/cards/blue_back.png"/></div>
+						                <div class="card__face card__face--back"><img class="rotate" id="imgCard1" src="src/images/cards/3C.png"/></div>
+	  					            </div>
+				 	            </div>
+                          <div class="scene scene--card">
    				                    <div class="betCard" id="resultCard">
- 					    	            <div class="card__face card__face--front"><img id="imgCard3" src="src/images/cards/3C.png"/></div>
+ 					    	            <div class="card__face card__face--front"><img class="rotate" id="imgCard3" src="src/images/cards/3C.png"/></div>
    						            </div>
  				 	            </div>
-    		                </div>
-                            <div class="col-md-3 cardSpan">
-				                <div class="scene scene--card">
+                         <div class="scene scene--card">
 	  					            <div class="betCard" id="betCard2">
-						                <div class="card__face card__face--front"><img src="src/images/cards/red_back_0.png"/></div>
-						                <div class="card__face card__face--back"><img id="imgCard2" src="src/images/cards/2C.png"/></div>
+						                <div class="card__face card__face--front"><img class="rotate" src="src/images/cards/red_back_0.png"/></div>
+						                <div class="card__face card__face--back"><img class="rotate" id="imgCard2" src="src/images/cards/2C.png"/></div>
 	  					            </div>
 					             </div>
+    		                </div>
+                            <div class="col-md-3 cardSpan">
+				                
                             </div>
-                          </div>
-                        <!--**END: CARDS**-->
+                      </div>
+                     
                         </div>
                         <!--*** PANEL for buttons and credit***-->
                         <div class="col-md-12 col-sm-12 game-panel">

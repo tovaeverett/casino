@@ -10,7 +10,9 @@
     color:yellow
 }
 
-
+.rotate {
+    transform: rotate(270deg);
+}
 
 a:hover, a:visited, a:link, a:active{
 text-decoration:none;
@@ -276,6 +278,64 @@ button:focus {
     color:white;
 }
 
+/*------StartPage--------*/
+.questionInfoBox {
+    padding: 40px 10px 20px 10px;
+    border-bottom: 3px solid #00338d;
+    border-top: 3px solid #00338d;
+    margin-bottom: 10px;
+}
+.radioButtonList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+  .radioButtonList.horizontal li {
+        display: inline;
+    }
+
+    .radioButtonList label {
+        display: inline;
+        border: 2px solid #ddd;
+        padding: 10px 15px;
+        border-radius: 5px;
+        margin-right: 10px;
+        cursor: pointer;
+        background: #fff;
+    }
+    .radioButtonList input{
+        display:none;
+    }
+
+    .radioButtonList input:checked + label {
+        background-color: #00338D;
+        border-color: #9B9B9B;
+        transition: 0.2s background;
+        color: #fff;
+    }
+    .radioButtonList td {
+        padding: 12px 0px;
+    }
+
+.question {
+    border: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+    .question:nth-of-type(odd) {
+        background: #F7F7F7
+    }
+
+fieldset {
+    padding: 15px;
+}
+
+legend {
+   font-weight: 500;
+   font-size: 1.1rem;
+   margin-bottom: .9rem;
+}
+
 .game-panel > form > .round-button {
     margin-left: -20px;
 }
@@ -309,14 +369,28 @@ button:focus {
 }
 
 @media (max-width: 767px) {
-    .winchance-btn {
-        font-size: 1em;
-        padding: 10px;
+    .smallDev {
+        max-width: 100% !important;
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 576px){
+    .smallDev {
+        max-width: 100% !important;
+        padding-right: 0;
+        padding-left: 0;
     }
 }
 @media (max-width: 510px) {
     .playground-slot {
         height: 250px;
+    }
+    .smallDev {
+        max-width: 100%;
+        padding-right: 0;
+        padding-left: 0;
     }
 }
 @media (max-width: 320px) {
