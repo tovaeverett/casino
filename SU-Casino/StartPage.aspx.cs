@@ -17,13 +17,13 @@ namespace SU_Casino
         public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
-           // string name = RegionInfo.CurrentRegion.DisplayName;
+            // string name = RegionInfo.CurrentRegion.DisplayName;
             if (!IsPostBack)
             {
                 hiddenfield_showInfo.Value = "0";
             }
             hiddenfield_text.Value = _database.getText("startpage");
-            getBetingelse();
+            //getBetingelse();
         }
         public void getBetingelse()
         {
@@ -34,8 +34,8 @@ namespace SU_Casino
             int num = letter.Next(0, i);
             string let = Array[num];
 
-            
-            var list = _database.getOrderToPlay(1,let);
+
+            var list = _database.getOrderToPlay(1, let);
 
             if (list != null)
             {
@@ -52,7 +52,7 @@ namespace SU_Casino
 
                         break;
                     case "Instrumental_acq":
-                        Response.Redirect("CardDraw.aspx?seq=" + list[1] + "&credit="+list[2] + "&gamename="+list[0]);
+                        Response.Redirect("CardDraw.aspx?seq=" + list[1] + "&credit=" + list[2] + "&gamename=" + list[0]);
                         break;
                     case "Instrumental_acq2":
                         Response.Redirect("CardDraw2.aspx?seq=" + list[1] + "&credit=" + list[2] + "&gamename=" + list[0]);
@@ -72,10 +72,7 @@ namespace SU_Casino
             }
         }
 
-            int num = letter.Next(0, 5);
-            string let = Array[num];
 
-        }
         protected void btnPlay_Click(object sender, EventArgs e)
         {
             //Save to db
@@ -84,7 +81,7 @@ namespace SU_Casino
         }
         protected void btnStart_Click(object sender, EventArgs e)
         {
-
+            getBetingelse();
         }
     }
 }

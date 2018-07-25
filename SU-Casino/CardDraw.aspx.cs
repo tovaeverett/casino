@@ -16,7 +16,6 @@ namespace SU_Casino
         Database _database = new Database();
         protected void Page_Load(object sender, EventArgs e)
         {
-
             HiddenField_showInfo.Value = "0";
             if (!IsPostBack)
             {
