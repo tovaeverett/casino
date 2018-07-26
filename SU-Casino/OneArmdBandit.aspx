@@ -149,7 +149,7 @@
             <div id="startInfo" class="container-fluid overlayer">
                  <div class="row">
                         <div class="col-md-2"></div>
-                            <div class="col-md-8 text-center" id="message-content">
+                            <div class="col-md-8 text-center div-center" id="message-content">
                                 <div class="info">
                                     <section>
                                         <h1> LETS PLAY SLOT MACHINE </h1>
@@ -176,17 +176,7 @@
                             <div class="col-md-8 text-center" id="message-content">
                                 <div class="winner">
                                     <img src="src/images/other/winntext2.png" class="img-responsive" />
-                                    <h2> You got <span id="winCredit">+100</span> !!!!</h2>
-                                    <br />
-                                    <br />
-                                    <br />
-                                </div>
-                                <div class="lost">
-                                    <h1> You lost... </h1>
-                                    <h2 id="lostCredit"> -100</h2>
-                                    <br />
-                                    <br />
-                                    <br />
+                                    <h2><span class="winSpan"> You got <span id="winCredit">+100</span> !!!!</span></h2>
                                 </div>
                             <button id="btnCloseWin" class="btn btn-large btn-primary" > Play again </button>
                         </div>

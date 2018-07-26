@@ -1,17 +1,19 @@
-﻿
+﻿html, body {
+    min-height: 100%;
+}
+
+body {
+    position: relative;
+}
 .overlayer {
     background: rgba(90, 82, 82, 0.79);
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
     z-index: 999;
     color:yellow
-}
-
-.rotate {
-    transform: rotate(270deg);
 }
 
 a:hover, a:visited, a:link, a:active{
@@ -52,6 +54,7 @@ button:focus {
     border: 1px black solid;
     -webkit-border-vertical-spacing: 3px;
     box-shadow: 4px 3px 5px 3px rgb(0,0,0, 0.1);
+    max-width: 700px;
 }
 .info > section {
    border: 1px #ddd solid;
@@ -61,7 +64,7 @@ button:focus {
 
  #winchance-container {
     background: rgba(90, 82, 82, 0.79);
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     top: 0;
@@ -168,7 +171,9 @@ button:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    display:none;
+    background: url(/src/images/backgrounds/Win3Test.png) no-repeat center center;
+    background-size: contain;
+    display: none;
 }
 
 .winner-inner {
@@ -183,6 +188,19 @@ button:focus {
         -webkit-animation: zoomin 10s ease-in infinite;
     animation: zoomout 10s ease-in infinite;
     transition: all .5s ease-in-out;*/
+}
+
+.winSpan {
+    background: rgba(19, 19, 2, 0.8117647058823529);
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.9rem;
+    font-weight: 600;
+}
+
+#btnCloseWin{
+    margin-top:20px;
 }
 
 .zoom {
@@ -379,21 +397,29 @@ legend {
         padding-left: 0;
     }
 }
-
-@media (max-width: 510px) {
-    .playground-slot {
-        height: 250px;
+@media (max-width: 767px) {
+    .winchance-btn {
+        font-size: 1em;
+        padding: 10px;
     }
 }
-@media (max-width: 320px) {
-    #play-container {
-        height: 400px;
+    @media (max-width: 510px) {
+        .playground-slot {
+            height: 250px;
+        }
     }
-}
 
-
-
-.winner > h1 {
-    text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+    @media (max-width: 320px) {
+        #play-container {
+            height: 400px;
+        }
+    }
+@media screen and ( max-height: 400px) {
+    .winner{
+        padding-top: 0;
+    }
+    .winner > img{
+        height:100px;
+    }
 }
 

@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"/>
 	<!--link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css"/-->
 	<link rel="stylesheet" href="src/css/card_game.css"/>
-    <link rel="stylesheet" href="src/css/card_game2.css"/>
     <link rel="stylesheet" href="src/css/index.css"/>
+    <link rel="stylesheet" href="src/css/card_game2.css"/>
    <!-- *****Random themes *****-->
     <!-- behövs den här triggern ??? -->
        <%  var theme = this.HiddenField_theme.Value;
@@ -48,13 +48,11 @@
                  <div class="col-md-12 playground-cards">
                      <div class="div-center">
                          
-                            <div class="col-md-3 cardSpan">
-					      
-				             </div>
+                            <div class="col-md-3 cardSpan"> </div>
 				             <div class="col-md-3 cardSpan">
  					            <div class="scene scene--card">
 	  					            <div class="betCard" id="betCard1">
-						                <div class="card__face card__face--front"><img class="rotate" src="src/images/cards/blue_back.png"/></div>
+						                <div class="card__face card__face--front"><img class="rotate" src="src/images/cards/purple_back0.png"/></div>
 						                <div class="card__face card__face--back"><img class="rotate" id="imgCard1" src="src/images/cards/3C.png"/></div>
 	  					            </div>
 				 	            </div>
@@ -65,7 +63,7 @@
  				 	            </div>
                          <div class="scene scene--card">
 	  					            <div class="betCard" id="betCard2">
-						                <div class="card__face card__face--front"><img class="rotate" src="src/images/cards/red_back_0.png"/></div>
+						                <div class="card__face card__face--front"><img class="rotate" src="src/images/cards/orange_back0.png"/></div>
 						                <div class="card__face card__face--back"><img class="rotate" id="imgCard2" src="src/images/cards/2C.png"/></div>
 	  					            </div>
 					             </div>
@@ -86,7 +84,8 @@
                                 <asp:HiddenField ID="HiddenField_WinLose" runat="server" />
                                 <asp:HiddenField ID="HiddenField_theme" runat="server" />
                                 <asp:HiddenField ID="HiddenField_showInfo" runat="server" />
-                                <asp:HiddenField ID="HiddenField_credit" runat="server" />
+                                <asp:HiddenField ID="HiddenField_bet1" runat="server" />
+                                <asp:HiddenField ID="HiddenField_bet2" runat="server" />
                                 <asp:HiddenField ID="HiddenField_result" runat="server" />
                                 <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play again!" class="hidden" />
                                 <div id="panel1">
@@ -125,7 +124,7 @@
             <div id="startInfo" class="container-fluid overlayer">
                  <div class="row">
                         <div class="col-md-2"></div>
-                            <div class="col-md-8 text-center" id="message-content">
+                            <div class="col-md-8 text-center div-center" id="message-content">
                                 <div class="info">
                                     <section>
                                         <h1> LETS PLAY CARDS </h1>
@@ -152,18 +151,8 @@
                             <div class="col-md-8 text-center" id="message-content">
                                 <div class="winner">
                                    <img src="src/images/other/winntext2.png" class="img-responsive" />
-                                    <h2> You got +<span id="winCredit">100</span> !!!!</h2>
-                                    <br />
-                                    <br />
-                                    <br />
+                                    <h2><span class="winSpan"> You got <span id="winCredit">+100</span> !!!!</span></h2>
                                 </div>
-                                <!--div class="lost">
-                                    <h1> You lost... </h1>
-                                    <h2 id="lostCredit"> -100</h2>
-                                    <br />
-                                    <br />
-                                    <br />
-                                </div-->
                             <button id="btnCloseWin" class="btn btn-large btn-primary" > Play again </button>
                         </div>
                     <div class="col-md-2"></div>

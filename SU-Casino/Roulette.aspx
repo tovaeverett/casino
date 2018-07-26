@@ -95,10 +95,10 @@
             <div id="startInfo" class="container-fluid overlayer">
                  <div class="row">
                         <div class="col-md-2"></div>
-                            <div class="col-md-8 text-center" id="message-content">
+                            <div class="col-md-8 text-center div-center" id="message-content">
                                 <div class="info">
                                     <section>
-                                        <h1> LETS PLAY CARDS </h1>
+                                        <h1> LETS PLAY ROULETTE </h1>
                                         <p>
                                         Lorem ipsum dolor sit amet, sea mundi ponderum neglegentur ex, at munere delicata cum. 
                                         Inani choro per ex, equidem debitis et pro, sea an ludus omnium. Putent commune omnesque no ius, 
@@ -121,24 +121,14 @@
                         <div class="col-md-2"></div>
                             <div class="col-md-8 text-center" id="message-content">
                                 <div class="winner">
-                                    <div class="winner-inner">
-                                    <!--h1> WINNER!!!! </h1-->
+                                    <!--div class="winner-inner"></div>
+                                    <h1> WINNER!!!! </h1-->
                                     <img src="src/images/other/winntext2.png" class="img-responsive" />
-                                    <h2> You got <span id="winCredit">+100</span> !!!!</h2>
-                                    <br />
-                                    <br />
-                                    <br />
+                                    <h2><span class="winSpan"> You got <span id="winCredit">+100</span> !!!!</span></h2>
+                                  
                                      <button id="btnCloseWin" class="btn btn-large btn-primary" > Play again </button>
-                                        </div>
+                                        
                                 </div>
-                                <!--div class="lost">
-                                    <h1> You lost... </h1>
-                                    <h2 id="lostCredit"> -100</h2>
-                                    <br />
-                                    <br />
-                                    <br />
-                                </div-->
-                           
                         </div>
                     <div class="col-md-2"></div>
                 </div>

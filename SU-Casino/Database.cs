@@ -11,7 +11,7 @@ namespace SU_Casino
 {
     public class Database
     {
-        SqlConnection connectionstring = new SqlConnection(@"Data Source=LAPTOP-TGVH7EEV\HUGOSSONSQL;Initial Catalog=SU_Casino;Integrated Security=True");//(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+        SqlConnection connectionstring = new SqlConnection(@"Data Source=LAPTOP-6M597I9T\MSSQLSERVER01;Initial Catalog=SU_Casino;Integrated Security=True");//(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
         public string getPlayerCredits(string userid)
         {
             string credit = "";
@@ -246,7 +246,7 @@ namespace SU_Casino
             List<string> list = new List<string>();
             try
             {
-                SqlConnection connectionstring = new SqlConnection(@"Data Source=LAPTOP-TGVH7EEV\HUGOSSONSQL;Initial Catalog=SU_Casino;Integrated Security=True");
+                SqlConnection connectionstring = new SqlConnection(@"Data Source=LAPTOP-6M597I9T\MSSQLSERVER01;Initial Catalog=SU_Casino;Integrated Security=True");
                 SqlConnection con = connectionstring;
                 var sql = "getAllCondition";
                 var da = new SqlDataAdapter(sql, con);
@@ -274,7 +274,7 @@ namespace SU_Casino
             List<string> list = new List<string>();
             try
             {
-                SqlConnection con = new SqlConnection(@"Data Source=LAPTOP-TGVH7EEV\HUGOSSONSQL;Initial Catalog=SU_Casino;Integrated Security=True");
+                SqlConnection con = new SqlConnection(@"Data Source=LAPTOP-6M597I9T\MSSQLSERVER01;Initial Catalog=SU_Casino;Integrated Security=True");
                 var sql = "getGameToPlay";
                 var da = new SqlDataAdapter(sql, con);
                 var ds = new DataSet();

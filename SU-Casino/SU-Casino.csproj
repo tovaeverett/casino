@@ -93,6 +93,7 @@
     <Content Include="src\css\themeGold.css" />
     <Content Include="src\images\backgrounds\body_theme1.jpg" />
     <Content Include="src\images\backgrounds\body_theme_black.png" />
+    <Content Include="src\images\backgrounds\depositphotos_180632780-stock-illustration-set-gold-coins-falling-editable.jpg" />
     <Content Include="src\images\cards\10C.png" />
     <Content Include="src\images\cards\10D.png" />
     <Content Include="src\images\cards\10H.png" />

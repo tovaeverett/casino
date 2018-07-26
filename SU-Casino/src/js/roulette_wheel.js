@@ -1,3 +1,4 @@
+//delete
 $(function() {
   document.addEventListener("keydown", function(event) {
     if (event.keyCode === 81) {
@@ -17,46 +18,8 @@ var rotationsTime = 9;
 var wheelSpinTime = 6;
 var ballSpinTime = 5;
 var numorder = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26];
-var numred = [
-  32,
-  19,
-  21,
-  25,
-  34,
-  27,
-  36,
-  30,
-  23,
-  5,
-  16,
-  1,
-  14,
-  9,
-  18,
-  7,
-  12,
-  3
-];
-var numblack = [
-  15,
-  4,
-  2,
-  17,
-  6,
-  13,
-  11,
-  8,
-  10,
-  24,
-  33,
-  20,
-  31,
-  22,
-  29,
-  28,
-  35,
-  26,
-];
+var numred = [ 32, 19, 21, 25, 34, 27, 36, 30, 23, 5, 16, 1, 14, 9, 18, 7, 12, 3];
+var numblack = [ 15, 4, 2, 17, 6, 13, 11, 8, 10, 24, 33, 20, 31, 22, 29, 28, 35, 26];
 var numgreen = [0];
 var numbg = $(".pieContainer");
 var ballbg = $(".ball");
@@ -91,7 +54,6 @@ function initRouletteGame() {
 
 
 function createWheel() {
-    
   var temparc = 360 / numorder.length;
   for (var i = 0; i < numorder.length; i++) {
     numberLoc[numorder[i]] = [];
@@ -127,7 +89,6 @@ function createWheel() {
     $(newHold).appendTo(newSlice);
     $(newSlice).appendTo(rinner);
   }
-  console.log(numberLoc);
 }
 
 btnRed.click(function() {
@@ -144,16 +105,12 @@ btnBlack.click(function() {
   startSpinn();
 });
 
-
+//delete
 $(".winchance-btn").click(function () {
     expectedWinningChance = getWinChance(this.id);
     $("#winchance-container").hide();
 });
-
-function setSelectedColor() {
-  $("#selected-color").text(betOption);
-}
-
+//delete
 function setSelectedWinningChange(chance) {
   expectedWinningChance = chance;
     $("#winchance-container").hide();
@@ -173,20 +130,18 @@ function startSpinn() {
 
 function finishSpin() {
     let isWinner  = false;
-    var result = expectedWinningChance + "," + betOption + ",";
+    var result = "null," + betOption + ",";
     
-    if (numred.indexOf(Number(winningNum)) > 0) {
+    if (numred.indexOf(Number(winningNum)) > -1) {
         if (betOption === "2") {
-           // result = result + "2,";
             isWinner = true;
-    }
+        }
     } else {
         if (betOption === "1") {
-          //  result = result + "1,";
             isWinner = true;
        }
     }
-    console.log(result);
+ 
     if (!isWinner) {//TODO- function in index?
         result = result + "lose";
         $("#HiddenField_result").val(result);
@@ -197,10 +152,8 @@ function finishSpin() {
         $("#HiddenField_result").val(result);
         setTimeout(function () { showWinner(); }, 300);
     }
-
-    console.log(winningNum, isWinner, result );
+//delete
   betOption = "";
-  setSelectedColor();
   switchButtons(false);
 }
 
@@ -208,6 +161,7 @@ function failed(error) {
   console.log(error.get_message());
 }
 
+//delete?
 function callBack(response) {
   // här kan man "stänga ner" efteråt
   console.log(response);
