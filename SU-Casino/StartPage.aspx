@@ -32,6 +32,7 @@
                <div class="col-xs-1 col-md-2 col-xl-2"></div>
                <asp:hiddenfield ID="hiddenfield_text" runat="server"></asp:hiddenfield>
                <asp:hiddenfield ID="hiddenfield_showInfo" runat="server"></asp:hiddenfield>
+              <asp:hiddenfield ID="hiddenfield_userid" runat="server"></asp:hiddenfield>
           </div>
           <div id="form" class="row">
               <div class="col-sm-1 col-md-2 col-xl-2"></div>

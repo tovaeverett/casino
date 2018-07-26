@@ -11,13 +11,13 @@ namespace SU_Casino
 {
     public class Database
     {
-        SqlConnection connectionstring = new SqlConnection(@"Data Source=LAPTOP-6M597I9T\MSSQLSERVER01;Initial Catalog=SU_Casino;Integrated Security=True");//(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+       public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString); //(@"Data Source=LAPTOP-TGVH7EEV\HUGOSSONSQL;Initial Catalog=SU_Casino;Integrated Security=True");//
         public string getPlayerCredits(string userid)
         {
             string credit = "";
             try
             {
-                SqlConnection con = connectionstring;
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
                 var sql = "getPlayerCredit";
                 var da = new SqlDataAdapter(sql, con);
                 var ds = new DataSet();
@@ -39,7 +39,7 @@ namespace SU_Casino
         }
         public void updatePlayerLog(Playerlog log)
         {
-            SqlConnection conn = connectionstring;
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
             SqlCommand cmd = new SqlCommand("insertIntoLog", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("userid", log.userid);
@@ -81,7 +81,7 @@ namespace SU_Casino
             string user = null;
             try
             {
-                SqlConnection con = connectionstring;
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
                 var sql = "checkIfUserExist";
                 var da = new SqlDataAdapter(sql, con);
                 var ds = new DataSet();
@@ -115,7 +115,7 @@ namespace SU_Casino
             string theme = "";
             try
             {
-                SqlConnection con = connectionstring;
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
                 var sql = "getTheme";
                 var da = new SqlDataAdapter(sql, con);
                 var ds = new DataSet();
@@ -157,7 +157,7 @@ namespace SU_Casino
 
             try
             {
-                SqlConnection con = connectionstring;
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
                 var sql = "getAllTheme";
                 var da = new SqlDataAdapter(sql, con);
                 var ds = new DataSet();
@@ -219,7 +219,7 @@ namespace SU_Casino
             string sqlselectQuery = "select Text from InfoText where Text_Name = " + "'" + infotext + "'";
             SqlCommand sqlcmd = new SqlCommand();
 
-            SqlConnection spContentConn = connectionstring;
+            SqlConnection spContentConn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
             sqlcmd.Connection = spContentConn;
             sqlcmd.CommandTimeout = 0;
             sqlcmd.CommandType = CommandType.Text;
@@ -246,7 +246,7 @@ namespace SU_Casino
             List<string> list = new List<string>();
             try
             {
-                SqlConnection connectionstring = new SqlConnection(@"Data Source=LAPTOP-6M597I9T\MSSQLSERVER01;Initial Catalog=SU_Casino;Integrated Security=True");
+                SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
                 SqlConnection con = connectionstring;
                 var sql = "getAllCondition";
                 var da = new SqlDataAdapter(sql, con);
@@ -274,7 +274,7 @@ namespace SU_Casino
             List<string> list = new List<string>();
             try
             {
-                SqlConnection con = new SqlConnection(@"Data Source=LAPTOP-6M597I9T\MSSQLSERVER01;Initial Catalog=SU_Casino;Integrated Security=True");
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
                 var sql = "getGameToPlay";
                 var da = new SqlDataAdapter(sql, con);
                 var ds = new DataSet();
@@ -301,6 +301,40 @@ namespace SU_Casino
             }
             return null;
         }
+        public void saveQuestions(List<string> list,string userid)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("insertQuestionsLog", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("userid", userid);
+            cmd.Parameters.AddWithValue("q1",list[0].ToString());
+            cmd.Parameters.AddWithValue("q2", list[1].ToString());
+            cmd.Parameters.AddWithValue("q3", list[2].ToString());
+            cmd.Parameters.AddWithValue("q4", list[3].ToString());
+            cmd.Parameters.AddWithValue("q5", list[4].ToString());
+            cmd.Parameters.AddWithValue("q6", list[5].ToString());
+            cmd.Parameters.AddWithValue("q7", list[6].ToString());
+            cmd.Parameters.AddWithValue("q8", list[7].ToString());
+            cmd.Parameters.AddWithValue("q9", list[8].ToString());
+            cmd.Parameters.AddWithValue("q10", list[9].ToString());
+            cmd.Parameters.AddWithValue("q11", list[10].ToString());
+            cmd.Parameters.AddWithValue("q12", list[11].ToString());
+            cmd.Parameters.AddWithValue("q13", list[12].ToString());
+            cmd.Parameters.AddWithValue("Date", DateTime.Now);
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                //   throw new Exception("Execption adding account. " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
 
+        }
     }
 }
