@@ -321,6 +321,7 @@ namespace SU_Casino
             cmd.Parameters.AddWithValue("q12", list[11].ToString());
             cmd.Parameters.AddWithValue("q13", list[12].ToString());
             cmd.Parameters.AddWithValue("Date", DateTime.Now);
+            cmd.Parameters.AddWithValue("Device", list[13].ToString());
             try
             {
                 conn.Open();

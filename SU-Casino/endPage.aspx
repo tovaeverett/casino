@@ -34,6 +34,6 @@
     </form>
   </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-    <script src="src/js/start.js"></script>
+    <script src="src/js/end.js"></script>
 </body>
 </html>

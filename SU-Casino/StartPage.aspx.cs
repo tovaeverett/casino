@@ -80,7 +80,7 @@ namespace SU_Casino
         protected void btnPlay_Click(object sender, EventArgs e)
         {
             //Save to db
-            //saveQuestions();
+            saveQuestions();
             hiddenfield_showInfo.Value = "1";
 
         }
@@ -115,6 +115,7 @@ namespace SU_Casino
             }
             answers.Add(a12);
             answers.Add(q13.SelectedItem.Value);
+            answers.Add(hiddenfield_device.Value);
 
             _database.saveQuestions(answers, hiddenfield_userid.Value);
         }

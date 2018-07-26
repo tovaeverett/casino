@@ -2,7 +2,7 @@ var backgroundSound;
 var game = $('body')[0].id;
 
 
-console.log("nav", window.navigator.appVersion, window.navigator.platform);
+
 
 function gameInit(theme) {
     $("#message-container").hide();
