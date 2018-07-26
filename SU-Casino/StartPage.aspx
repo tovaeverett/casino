@@ -8,7 +8,7 @@
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="src/css/index.css"/>
 </head>
-<body class="bodyStart">
+<body class="bodyStart" id="start">
     <div class="container smallDev">
         <header></header>
     </div>
@@ -215,13 +215,13 @@
         </div>
      </div>
      <div class="row" id="startPlay">
-        <div class=""></div>
-        <div id="startPlayContent" class="">
+        <div class="q"></div>
+        <div id="startPlayContent">
               <h1>Time to start to play!</h1>
             <p class="countCredit"> Here is your start credit:<br/><span id="value">0</span></p>
             <asp:Button ID="btnStart" runat="server"  Text="Start to play" class="btn btn-large btn-primary" OnClick="btnStart_Click" />
         </div>  
-        <div class=""></div>
+        <div class="q"></div>
      </div>
     </form> 
   </div>

@@ -71,6 +71,7 @@
     <Content Include="AdminPage.aspx" />
     <Content Include="CardDraw2.aspx" />
     <Content Include="CardDraw.aspx" />
+    <Content Include="EndPage.aspx" />
     <Content Include="OneArmdBandit.aspx" />
     <Content Include="Roulette.aspx" />
     <Content Include="src\css\bootstrap-responsive.css" />
@@ -176,6 +177,7 @@
     <Content Include="src\images\slot\random.png" />
     <Content Include="src\images\slot\star.png" />
     <Content Include="src\js\card_game.js" />
+    <Content Include="src\js\end.js" />
     <Content Include="src\js\start.js" />
     <Content Include="src\js\jquery.keyframes.mini.js" />
     <Content Include="src\js\roulette.js" />
@@ -210,6 +212,13 @@
       <DependentUpon>CardDraw.aspx</DependentUpon>
     </Compile>
     <Compile Include="Database.cs" />
+    <Compile Include="EndPage.aspx.cs">
+      <DependentUpon>EndPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EndPage.aspx.designer.cs">
+      <DependentUpon>EndPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="helpClass.cs" />
     <Compile Include="OneArmdBandit.aspx.cs">
       <DependentUpon>OneArmdBandit.aspx</DependentUpon>

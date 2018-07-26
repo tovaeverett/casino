@@ -146,7 +146,7 @@ namespace SU_Casino
 
         public void setCredit()
         {
-            HiddenField_credit.Value = "100"; //db -> getCredit();
+            //HiddenField_credit.Value = "100"; //db -> getCredit();
         }
         public void SaveToDB()
         {

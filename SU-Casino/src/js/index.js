@@ -1,4 +1,6 @@
 var backgroundSound;
+var game = $('body')[0].id;
+
 
 console.log("nav", window.navigator.appVersion, window.navigator.platform);
 
@@ -84,7 +86,8 @@ function sound(src) {
 
 $('#btnShowInfo').click(function () {
     $("#startInfo").hide();
-    $("#winchance-container").show();
+    if(game !== 'roulette')
+        $("#winchance-container").show();
     //backgroundSound.play();
  
 });

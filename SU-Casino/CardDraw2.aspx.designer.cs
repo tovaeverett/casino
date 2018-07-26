@@ -76,13 +76,22 @@ namespace SU_Casino {
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_showInfo;
         
         /// <summary>
-        /// HiddenField_credit control.
+        /// HiddenField_bet1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField_credit;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_bet1;
+        
+        /// <summary>
+        /// HiddenField_bet2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_bet2;
         
         /// <summary>
         /// HiddenField_result control.

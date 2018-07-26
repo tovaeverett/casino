@@ -26,7 +26,7 @@ namespace SU_Casino
                     hiddenfield_userid.Value = Request["userid"];
                 }
             }
-            hiddenfield_text.Value = _database.getText("startpage");
+            hiddenfield_text.Value = _database.getText("startPage");
             //getBetingelse();
         }
         public void getBetingelse()
@@ -80,7 +80,7 @@ namespace SU_Casino
         protected void btnPlay_Click(object sender, EventArgs e)
         {
             //Save to db
-            saveQuestions();
+            //saveQuestions();
             hiddenfield_showInfo.Value = "1";
 
         }

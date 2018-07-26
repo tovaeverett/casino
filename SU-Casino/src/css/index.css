@@ -5,6 +5,15 @@
 body {
     position: relative;
 }
+
+.header {
+    color: #0088cc;
+    padding-top: 25px;
+    padding-bottom: 15px;
+    text-align: center;
+    padding-left: 30px;
+}
+
 .overlayer {
     background: rgba(90, 82, 82, 0.79);
     position: fixed;
@@ -61,7 +70,7 @@ button:focus {
    border-spacing: 30px;
    padding: 5px;
 }
-
+/*---Layer for winning chance buttons*/
  #winchance-container {
     background: rgba(90, 82, 82, 0.79);
     position: fixed;
@@ -99,7 +108,7 @@ button:focus {
     margin-left: 10px;
     border-radius: 5px;
 }
-
+/*---Credit left*/
 .cash-sum {
     display: block;
     background: #fff;
@@ -116,7 +125,7 @@ button:focus {
     display: inline-block;
     text-align: left;
 }
-
+/*---buttons--*/
 .round span.round {
     display: block;
     opacity: 0;
@@ -150,6 +159,27 @@ button:focus {
     margin-bottom: 5px;
 }
 
+#startPlay {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: 20vh;
+    text-align: center;
+    display: none;
+}
+
+.round-button {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #609dcb 0%,#125ead 50%,#476cde 100%);
+    color: white;
+}
+
+/*---Playground--*/
 .div-center {
     display: flex;
     justify-content: center;
@@ -161,6 +191,41 @@ button:focus {
     padding: 15px;
 }
 
+.playground {
+    /*background: #000 url("/src/images/backgrounds/body_theme1.jpg") no-repeat center;*/
+    background-size: cover;
+}
+
+.playground-cards, .playground-slot {
+    /*background-color: rgba(221, 221, 221, 0.48);*/
+    border-radius: 30px;
+    display: block;
+    height: 300px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+
+.game-panel {
+    text-align: center;
+    border-radius: 3px;
+    background: #114959;
+    padding-top: 10px;
+    color: #fff;
+    border: 2px solid rgba(221, 221, 221, 0.48);
+    margin-top: 10px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
+    .game-panel > ul {
+        list-style-type: none;
+        display: inline-flex;
+    }
+
+
+/*---Layer for win --*/
 #message-content {
     padding-top: 5rem;
     z-index: 1000;
@@ -203,6 +268,10 @@ button:focus {
     margin-top:20px;
 }
 
+.game-panel > form > .round-button {
+    margin-left: -20px;
+}
+
 .zoom {
     width: 100%;
     height: 100%;
@@ -226,76 +295,14 @@ button:focus {
     padding-top: 10%;
 }
 
-#startPlay {
-    width: 400px;
-    height: 400px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -200px;
-    margin-top: -200px;
-    text-align: center;
-    display: none;
-}
 
-.countCredit {
-    font-size: 1.5rem;
-}
 
-#value {
-    font-weight: 900;
-    font-size: 4rem;
-}
 
-.header {
-    color: #0088cc;
-    padding-top: 25px;
-    padding-bottom: 15px;
-    text-align: center;
-    padding-left: 30px;
-}
 
-.playground {
-    /*background: #000 url("/src/images/backgrounds/body_theme1.jpg") no-repeat center;*/
-    background-size: cover;
- 
-}
 
-.playground-cards, .playground-slot {
-    /*background-color: rgba(221, 221, 221, 0.48);*/
-    border-radius: 30px;
-    display: block;
-    height: 300px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-top: 10px;
-}
 
-.game-panel {
-    text-align: center;
-    border-radius: 3px;
-    background: #114959;
-    padding-top: 10px;
-    color: #fff;
-    border: 2px solid rgba(221, 221, 221, 0.48);
-    margin-top: 10px;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-}
 
-.game-panel > ul {
-   list-style-type: none;
-   display: inline-flex;
-}
 
-.round-button {
-    height: 70px;
-    width:70px;
-    border-radius: 50%;
-    background: linear-gradient(to bottom, #609dcb 0%,#125ead 50%,#476cde 100%);
-    color:white;
-}
 
 /*------StartPage--------*/
 .question-container {
@@ -358,9 +365,16 @@ legend {
    margin-bottom: .9rem;
 }
 
-.game-panel > form > .round-button {
-    margin-left: -20px;
+.countCredit {
+    font-size: 1.5rem;
 }
+
+#value {
+    font-weight: 900;
+    font-size: 4rem;
+}
+
+
 
 #panel1 {
     width: 80px;
@@ -414,8 +428,11 @@ legend {
             height: 400px;
         }
     }
-@media screen and ( max-height: 400px) {
-    .winner{
+@media screen and ( max-height: 700px) {
+    .overlayer {
+        position: absolute;
+    }
+    .winner {
         padding-top: 0;
     }
     .winner > img{

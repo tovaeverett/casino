@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="/src/css/roulette_wheel.css" />
     </head>
 
-    <body>
+    <body id="roulette">
    
         <div class="container">
             <div class="first"></div>

@@ -38,7 +38,7 @@
          }%>
         
 </head>
-<body>
+<body id="slot">
 <%--form id="form2" runat="server">--%>
 <div id="main-container" class="container-fluid">
         <div class="row header">
