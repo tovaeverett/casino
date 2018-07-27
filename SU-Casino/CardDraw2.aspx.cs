@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
-using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,9 +17,12 @@ namespace SU_Casino
         public int money;
 
         Database _database = new Database();
+        public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             HiddenField_showInfo.Value = "0";
+            Hiddenfield_text.Value = _database.getText("playCardInfo");
             if (!IsPostBack)
             {
                 setTheme();
@@ -24,6 +30,7 @@ namespace SU_Casino
                 money = 1500;
                 lblMoney.Text = money.ToString();
                 HiddenField_showInfo.Value = "1";
+               
                 SaveToDB();
             }
         }

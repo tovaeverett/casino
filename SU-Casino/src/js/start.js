@@ -7,7 +7,7 @@ $(document).ready(function () {
     else {
         $("#introInfo").hide();
         $("#startPlay").show();
-        animateValue("value", 0, 1000, 30);
+        animateValue("value", 0, 1000, 300);
     }
 });
 

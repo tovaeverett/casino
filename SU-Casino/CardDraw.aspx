@@ -86,6 +86,7 @@
                                 <asp:HiddenField ID="HiddenField_bet1" runat="server" />
                                 <asp:HiddenField ID="HiddenField_bet2" runat="server" />
                                 <asp:HiddenField ID="HiddenField_result" runat="server" />
+                                 <asp:HiddenField ID="Hiddenfield_text" runat="server" />
                                 <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play again!" class="hidden" />
                                 <div id="panel1">
                                     <div id="moneyLable">Credit left:&nbsp; 
@@ -127,7 +128,7 @@
                                 <div class="info">
                                     <section>
                                         <h1> LETS PLAY CARDS </h1>
-                                        <p>
+                                        <p id="introInfoText">
                                         Lorem ipsum dolor sit amet, sea mundi ponderum neglegentur ex, at munere delicata cum. 
                                         Inani choro per ex, equidem debitis et pro, sea an ludus omnium. Putent commune omnesque no ius, 
                                         ad hinc everti qui. At modus decore sit. Omnes vivendo propriae eu pri, ut alii esse percipitur eos, 

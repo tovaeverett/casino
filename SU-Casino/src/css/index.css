@@ -217,6 +217,9 @@ button:focus {
     position: absolute;
     bottom: 0px;
     left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
     .game-panel > ul {
@@ -277,9 +280,17 @@ button:focus {
 #btnCloseWin{
     margin-top:20px;
 }
-
+/*- game panel*/
 .game-panel > form > .round-button {
-    margin-left: -20px;
+    margin-left: -1px;
+}
+
+#panel1 {
+    width: 80px;
+    float: right;
+    position: absolute;
+    right: 0;
+    bottom: 10px;
 }
 
 .zoom {
@@ -379,10 +390,7 @@ legend {
 
 
 
-#panel1 {
-    width: 80px;
-    float: left;
-}
+
 
 .hidden{
     display:none;
@@ -431,15 +439,17 @@ legend {
             height: 400px;
         }
     }
-@media screen and ( max-height: 700px) {
+@media screen and ( max-height: 700px) and (max-width: 767px) {
     .overlayer {
         position: absolute;
     }
+
     .winner {
         padding-top: 0;
     }
-    .winner > img{
-        height:100px;
-    }
+
+        .winner > img {
+            height: 100px;
+        }
 }
 
