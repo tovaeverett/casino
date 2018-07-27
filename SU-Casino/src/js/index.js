@@ -7,6 +7,7 @@ var game = $('body')[0].id;
 function gameInit(theme) {
     $("#message-container").hide();
     $("#winchance-container").hide();
+    $("#introInfoText").html($("#Hiddenfield_text").val());
     var showInfo = $("#HiddenField_showInfo").val();
     if (showInfo === '1') {
         $("#startInfo").show();
@@ -57,7 +58,7 @@ function showWinner() {
     winnerSound.play();
     $("#message-container").fireworks({
         sound: true, // sound effect
-        opacity: 0.9,
+        opacity: 0.5,
         width: "100%",
         height: "100%"
     });

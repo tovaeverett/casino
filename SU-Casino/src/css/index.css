@@ -241,6 +241,15 @@ button:focus {
     display: none;
 }
 
+.winner-content {
+    position: fixed;
+}
+#message-content-win {
+    padding-top: 5rem;
+    z-index: 1000;
+    background: url(http://localhost:59745/src/images/backgrounds/Win3Test.png) no-repeat center center;
+    background-size: contain;
+}
 .winner-inner {
     /*width: 10%;
     height: 10%;
@@ -256,12 +265,13 @@ button:focus {
 }
 
 .winSpan {
-    background: rgba(19, 19, 2, 0.8117647058823529);
-    border: 1px solid transparent;
+    background: rgba(19, 19, 2, 0.55);
+    border: 1px solid rgba(255, 255, 0, 0.45098039215686275);
     border-radius: 5px;
     padding: 10px;
     font-size: 1.9rem;
     font-weight: 600;
+    color: #ecdd67;
 }
 
 #btnCloseWin{
@@ -294,13 +304,6 @@ button:focus {
 #intro {
     padding-top: 10%;
 }
-
-
-
-
-
-
-
 
 
 

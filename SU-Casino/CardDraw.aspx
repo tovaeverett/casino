@@ -144,7 +144,7 @@
         </div>
         <!-- END: Start info -->   
         <!-- Win or Lost: Shows ....  -->
-                  <div id="message-container" class="container-fluid overlayer">
+                  <div id="message-container" class="container-fluid overlayer  winner-content">
                     <div class="row">
                         <div class="col-md-2"></div>
                             <div class="col-md-8 text-center" id="message-content">

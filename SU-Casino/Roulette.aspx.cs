@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
-using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -12,6 +15,8 @@ namespace SU_Casino
     {
         private static int credit = 1500;
         int money;
+        Database _database = new Database();
+        public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
             HiddenField_showInfo.Value = "0";
@@ -21,6 +26,7 @@ namespace SU_Casino
                 lblMoney.Text = credit.ToString();
                 RandomSpin();
                 HiddenField_showInfo.Value = "1";
+                Hiddenfield_text.Value = _database.getText("playRouletteInfo");
             }
         }
 
@@ -101,19 +107,6 @@ namespace SU_Casino
             RandomSpin();
            // credit = isWin ? credit + 500 : credit - 500;
            // lblMoney.Text = credit.ToString();
-        }
-
-        [WebMethod]
-        public static void WinOrLose(string isWin, string betOptions, string expectedWinningChance)
-        {
-            
-
-            var t = isWin;
-            var t2 = betOptions;
-            var t3 = expectedWinningChance;
-      
-            
-            // send to DB
         }
     }
 }

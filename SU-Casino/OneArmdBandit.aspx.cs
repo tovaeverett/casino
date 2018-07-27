@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,6 +14,8 @@ namespace SU_Casino
     public partial class OneArmdBandit : System.Web.UI.Page
     {
         Database _database = new Database();
+        public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+
         Random rnd = new Random();
         int money;
         protected void Page_Load(object sender, EventArgs e)
@@ -19,6 +25,7 @@ namespace SU_Casino
             if (!IsPostBack)
             {
                 HiddenField_showInfo.Value = "1";
+                Hiddenfield_text.Value = _database.getText("playSlotInfo");
                 HiddenField_Spin1.Value = randomStartCard().ToString();
                 HiddenField_Spin2.Value = randomStartCard().ToString();
                 HiddenField_Spin3.Value = randomStartCard().ToString();
