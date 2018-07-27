@@ -220,6 +220,7 @@ button:focus {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 80px;
 }
 
     .game-panel > ul {
@@ -269,12 +270,25 @@ button:focus {
 
 .winSpan {
     background: rgba(19, 19, 2, 0.55);
-    border: 1px solid rgba(255, 255, 0, 0.45098039215686275);
+    border: 2px dotted rgba(255, 255, 0, 0.45098039215686275);
     border-radius: 5px;
     padding: 10px;
     font-size: 1.9rem;
     font-weight: 600;
     color: #ecdd67;
+    display: block;
+}
+
+#piggySpan {
+    display: block;
+    color: #ecdd67;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 12px;
+}
+#piggySpan > img {
+   height: 50px;
+   width: 50px;
 }
 
 #btnCloseWin{

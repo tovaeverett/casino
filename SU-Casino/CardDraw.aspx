@@ -151,7 +151,14 @@
                             <div class="col-md-8 text-center" id="message-content">
                                 <div class="winner">
                                    <img src="src/images/other/winntext2.png" class="img-responsive" />
-                                    <h2><span class="winSpan"> You got <span id="winCredit">+100</span> !!!!</span></h2>
+                                    
+                                    <h2><span class="winSpan"> You got <span id="winCredit">+100</span> !!!!
+                                        <span id="piggySpan"><img src="src/images/other/piggy-bank-icon.png"/> <br />
+                                       <b> The pricehas been saved in a piggy bank and you can't gamble with it </b>
+                                        </span>
+                                        </span>
+                                        
+                                    </h2>
                                     
                                 </div>
                         
