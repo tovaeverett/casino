@@ -25,7 +25,7 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT [perc_S1],[perc_S2],[perc_S3],[perc_S4] from matris where prop_n = @prop_n and moment = @moment
+	SELECT [perc_S1],[perc_S2],[perc_S3],[perc_S4] from matris where prop_n = @prop_n and seq = @moment
 END
 GO
 
