@@ -14,7 +14,7 @@ body {
 }
 
 #play-container {
-    background: url(https://seacoastevents.net/wp-content/uploads/2013/03/SE_Website_Background.jpg) no-repeat center top fixed;
+    background: url(/src/images/backgrounds/themeBluePlayground.jpg) no-repeat center top fixed;
     background-size: cover;
 }
 

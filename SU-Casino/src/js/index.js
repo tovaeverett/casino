@@ -37,7 +37,8 @@ function gameInit(theme) {
             backgroundSoundSource = "bensound-straight.mp3";
     }
 
-    backgroundSound = sound(baseSoundUrl+backgroundSoundSource);
+    backgroundSound = sound(baseSoundUrl + backgroundSoundSource);
+    //if(theme !== "null")
     //backgroundSound.play();
 }
 
@@ -55,7 +56,6 @@ function getWinChance(button) {
 }
 
 function showWinner(creditAmount) {
-    console.log(creditAmount);
     backgroundSound.stop();
     var winnerSound = new Audio("src/sound/effects/cashoutWinning.mp3");
     winnerSound.play();
@@ -68,8 +68,6 @@ function showWinner(creditAmount) {
     $(".winner").show();
     $(".winner-inner").addClass('zoom');
     $("#message-container").show();
-    $("#winCredit").append("+" + creditAmount);
-
 }
 
 function sound(src) {
