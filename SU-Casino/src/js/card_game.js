@@ -56,18 +56,21 @@ function cardClicked(selectedCard) {
     disable = true;
     var isWinner = false;
     var result = cards.winChance + ",";
+    var winningAmount;
     $(".lost").hide();
     $(".winner").hide();
     if (selectedCard.id === 'betCard1') {
-        result = result + "1,";
+        result = result + "bet_R1,";
         if (cards.card1 === cards.showCard) {
             isWinner = true;
+            winningAmount = "100";  //TODO get this winning amount from session variable currentGame
         }
     }
     else {
-        result = result + "2,";
+        result = result + "bet_R2,";
         if (cards.card2 === cards.showCard) {
             isWinner = true;
+            winningAmount = "50";
         }
     }
      
@@ -79,7 +82,7 @@ function cardClicked(selectedCard) {
     else {
         result = result + "win";
         $("#HiddenField_result").val(result);
-        setTimeout(function () { showWinner(); }, 300);
+        setTimeout(function () { showWinner(creditAmount); }, 300);
     }
     console.log(result);
 }

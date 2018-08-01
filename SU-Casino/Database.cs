@@ -269,9 +269,42 @@ namespace SU_Casino
             return list;
         }
 
-        public List<string> getOrderToPlay(int seq, string condition)
+        //public List<string> getOrderToPlay(int seq, string condition)
+        //{
+        //    List<string> list = new List<string>();        
+        //    try
+        //    {
+        //        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+        //        var sql = "getGameToPlay";
+        //        var da = new SqlDataAdapter(sql, con);
+        //        var ds = new DataSet();
+        //        DataTable dt = new DataTable();
+
+        //        da.SelectCommand.CommandType = CommandType.StoredProcedure;
+        //        da.SelectCommand.Parameters.AddWithValue("@seq", seq);
+        //        da.SelectCommand.Parameters.AddWithValue("@condition", condition);
+
+        //        da.Fill(ds, "getGameToPlay");
+        //        dt = ds.Tables["getGameToPlay"];
+
+        //        foreach (DataRow dr in dt.Rows)
+        //        {
+        //            list.Add(dr[0].ToString());
+        //            list.Add(dr[1].ToString());
+        //            list.Add(dr[2].ToString());
+        //        }
+        //        return list;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        // msg = "Error trying login user : " + txtUsername.Text;
+        //    }
+        //    return null;
+        //}
+
+        public Game getOrderToPlay(int seq, string condition)
         {
-            List<string> list = new List<string>();
+            Game game = new Game();
             try
             {
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
@@ -283,17 +316,22 @@ namespace SU_Casino
                 da.SelectCommand.CommandType = CommandType.StoredProcedure;
                 da.SelectCommand.Parameters.AddWithValue("@seq", seq);
                 da.SelectCommand.Parameters.AddWithValue("@condition", condition);
-               
+
                 da.Fill(ds, "getGameToPlay");
                 dt = ds.Tables["getGameToPlay"];
 
                 foreach (DataRow dr in dt.Rows)
                 {
-                    list.Add(dr[0].ToString());
-                    list.Add(dr[1].ToString());
-                    list.Add(dr[2].ToString());
+                    game.Name = dr[0].ToString();
+                    game.Trials = Convert.ToInt32(dr[1].ToString());
+                    game.Saldo = Convert.ToInt32(dr[2].ToString());
+                    game.Bet_R1 = Convert.ToInt32(dr[3].ToString());
+                    game.Bet_R2 = Convert.ToInt32(dr[4].ToString());
+                    game.Win_O1 = Convert.ToInt32(dr[5].ToString());
+                    game.Win_O2 = Convert.ToInt32(dr[6].ToString());
                 }
-                return list;
+                game.Condition = condition;
+                return game;
             }
             catch (Exception e)
             {

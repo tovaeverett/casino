@@ -29,6 +29,7 @@ namespace SU_Casino
             hiddenfield_text.Value = _database.getText("startPage");
             //getBetingelse();
         }
+
         public void getBetingelse()
         {
             Random letter = new Random();
@@ -37,13 +38,13 @@ namespace SU_Casino
             int i = Array.Count();
             int num = letter.Next(0, i);
             string let = Array[num];
+            
+            Game gameToPlay = _database.getOrderToPlay(1, let);
 
-
-            var list = _database.getOrderToPlay(1, let);
-
-            if (list != null)
+            if (gameToPlay != null)
             {
-                string value = list[0];
+                string value = gameToPlay.Name;
+                Session.Add("currentGame", gameToPlay);
                 switch (value)
                 {
                     case "DET_control":
@@ -56,26 +57,25 @@ namespace SU_Casino
 
                         break;
                     case "Instrumental_acq":
-                        Response.Redirect("CardDraw.aspx?seq=" + list[1] + "&credit=" + list[2] + "&gamename=" + list[0]);
+                        Response.Redirect("CardDraw.aspx");
                         break;
                     case "Instrumental_acq2":
-                        Response.Redirect("CardDraw2.aspx?seq=" + list[1] + "&credit=" + list[2] + "&gamename=" + list[0]);
+                        Response.Redirect("CardDraw2.aspx");
                         break;
                     case "Pavlovian_acq":
-                        Response.Redirect("OneArmdBandit.aspx?seq=" + list[1] + "&credit=" + list[2] + "&gamename=" + list[0]);
+                        Response.Redirect("OneArmdBandit.aspx");
                         break;
                     case "Pavlovian_extinct":
-                        Response.Redirect("OneArmdBandit.aspx?seq=" + list[1] + "&credit=" + list[2] + "&gamename=" + list[0]);
+                        Response.Redirect("OneArmdBandit.aspx");
                         break;
                     case "Roulette":
-                        Response.Redirect("Roulette.aspx?seq=" + list[1] + "&credit=" + list[2] + "&gamename=" + list[0]);
+                        Response.Redirect("Roulette.aspx");
                         break;
                     case "Transfer_test":
                         break;
                 }
             }
         }
-
 
         protected void btnPlay_Click(object sender, EventArgs e)
         {

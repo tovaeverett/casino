@@ -52,7 +52,8 @@ function getWinChance(button) {
     }
 }
 
-function showWinner() {
+function showWinner(creditAmount) {
+    console.log(creditAmount);
     backgroundSound.stop();
     var winnerSound = new Audio("src/sound/effects/cashoutWinning.mp3");
     winnerSound.play();
@@ -65,6 +66,7 @@ function showWinner() {
     $(".winner").show();
     $(".winner-inner").addClass('zoom');
     $("#message-container").show();
+    $("#winCredit").append("+" + creditAmount);
 
 }
 
