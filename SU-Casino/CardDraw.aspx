@@ -7,8 +7,8 @@
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="src/css/bootstrap.css"/>
-    <link rel="stylesheet" href="src/css/bootstrap-responsive.css"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"/>
+    <!--link rel="stylesheet" href="src/css/bootstrap-responsive.css"/-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
 	<!--link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css"/-->
 	<link rel="stylesheet" href="src/css/card_game.css"/>
     <link rel="stylesheet" href="src/css/index.css"/>
@@ -109,13 +109,13 @@
         <div class="row text-center" >
            
             <div class="winchance-div">
-                 <h2>What are your chances of winning?</h2>
+                 <h2>Which deck gives most profit?</h2>
                 <br />
                 <ul>
-                    <li id="btnHigh" class="winchance-btn">High (Q)</li>
-                    <li id="btnLow" class="winchance-btn">Low (W)</li>
-                    <li id="btnZero" class="winchance-btn">Zero (E)</li>
-                    <li id="btnDontKnow" class="winchance-btn">Don't know (R)</li>
+                    <li id="btnHigh" class="winchance-btn">Blue deck</li>
+                    <li id="btnLow" class="winchance-btn">Red deck</li>
+                    <!--li id="btnZero" class="winchance-btn">Zero (E)</!--li>
+                    <li id="btnDontKnow" class="winchance-btn">Don't know (R)</li-->
                 </ul>
             </div>
         </div>
@@ -155,7 +155,7 @@
                                     
                                     <h2><span class="winSpan"> You got <span id="winCredit"></span> !!!!
                                         <span id="piggySpan"><img src="src/images/other/piggy-bank-icon.png"/> <br />
-                                       <b> The pricehas been saved in a piggy bank and you can't gamble with it </b>
+                                       <b> The price has been saved in a piggy bank and you can't gamble with it </b>
                                         </span>
                                         </span>
                                         
