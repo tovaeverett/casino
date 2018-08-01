@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="src/css/bootstrap.css"/>
     <link rel="stylesheet" href="src/css/bootstrap-responsive.css"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
 	<!--link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css"/-->
 	<link rel="stylesheet" href="src/css/card_game.css"/>
     <link rel="stylesheet" href="src/css/index.css"/>
@@ -27,16 +27,22 @@
                 <link rel="stylesheet" href="src/css/themeBlue.css" />
                 <% break;
             case "3":%>
-                <link rel="stylesheet" href="src/css/themeRed.css" />
+                <link rel="stylesheet" href="src/css/themeGold.css" />
                <%  break;
             case "4":%>
-                <link rel="stylesheet" href="src/css/themeGold.css" />
+                <link rel="stylesheet" href="src/css/themeRed.css" />
+              <%   break;
+            case "5":%>
+                <link rel="stylesheet" href="src/css/themeRedB.css" />
+              <%   break;
+            case "6":%>
+                <link rel="stylesheet" href="src/css/themeRedC.css" />
               <%   break;
             default:%>
                 <link rel="stylesheet" href="src/css/themeGold.css" />
                <%  break;
          }%>
-        
+        <link rel="stylesheet" href="src/css/noTheme.css"/>
 </head>
 <body id="cardH">
     <div id="main-container" class="container-fluid">
@@ -109,13 +115,13 @@
         <div class="row text-center" >
            
             <div class="winchance-div">
-                 <h2>What are your chances of winning?</h2>
+                 <h2>Which deck gives most profit?</h2>
                 <br />
                 <ul>
-                    <li id="btnHigh" class="winchance-btn">High (Q)</li>
-                    <li id="btnLow" class="winchance-btn">Low (W)</li>
-                    <li id="btnZero" class="winchance-btn">Zero (E)</li>
-                    <li id="btnDontKnow" class="winchance-btn">Don't know (R)</li>
+                    <li id="btnHigh" class="winchance-btn">Orange deck</li>
+                    <li id="btnLow" class="winchance-btn">Purple deck</li>
+                    <!--li id="btnZero" class="winchance-btn">Zero (E)</!--li>
+                    <li id="btnDontKnow" class="winchance-btn">Don't know (R)</li-->
                 </ul>
             </div>
         </div>

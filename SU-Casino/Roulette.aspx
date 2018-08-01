@@ -7,9 +7,8 @@
     <head runat="server">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <title>Roulette</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/src/css/bootstrap.css" />
-        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css" />
         <link rel="stylesheet" href="/src/css/bootstrap-responsive.css" />
         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css" />
         <link rel="stylesheet" href="src/css/index.css"/>
@@ -21,7 +20,7 @@
    
         <div class="container">
             <div class="first"></div>
-            <div class="row">
+            <div class="row div-center">
                 <div class="col-md-2 col-xs-0"></div>
                 <div class="col-md-10 col-xs-12" id="roulette-wrapper">
                 
@@ -56,7 +55,7 @@
                             
                             <asp:HiddenField ID="HiddenFieldrouletteNr" runat="server" />
                             <asp:HiddenField ID="Hiddenfield_text" runat="server" />
-                            <asp:HiddenField ID="HiddenField_credit" runat="server" />
+                            <asp:HiddenField ID="HiddenField_credit" runat="server" Value="500"/>
                             <asp:HiddenField ID="HiddenField_showInfo" runat="server" />
                             <asp:HiddenField ID="HiddenField_result" runat="server" />
                             <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play again!" class="hidden" />
@@ -136,11 +135,11 @@
          <!-- End: Winn or Lost  -->
      
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+        <!--script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script-->
         <script src="/src/js/jquery.fireworks-js/jquery.fireworks.js"></script>
         <script src='/src/js/jquery.keyframes.mini.js'></script>
         <script src="/src/js/index.js"></script>
          <script src="/src/js/roulette_wheel.js"></script>
     </body>
 
-    </html>
+</ht

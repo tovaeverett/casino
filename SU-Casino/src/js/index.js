@@ -8,6 +8,8 @@ function gameInit(theme) {
     $("#message-container").hide();
     $("#winchance-container").hide();
     $("#introInfoText").html($("#Hiddenfield_text").val());
+    $("#winCredit").html("+" + $("#HiddenField_credit").val());
+    
     var showInfo = $("#HiddenField_showInfo").val();
     if (showInfo === '1') {
         $("#startInfo").show();

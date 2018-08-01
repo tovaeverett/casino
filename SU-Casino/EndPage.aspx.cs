@@ -19,5 +19,10 @@ namespace SU_Casino
         {
             hiddenfield_text.Value = _database.getText("endPage");
         }
+
+        protected void btnStart_Click(object sender, EventArgs e)
+        {
+            //send info
+        }
     }
 }

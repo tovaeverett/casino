@@ -7,6 +7,18 @@
     <title>Start</title>
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="src/css/index.css"/>
+    <script>
+        function ValidateCheckBox(sender, args) {
+            console.log($("#" + sender.id).parent().find(":checkbox"));
+            args.IsValid = false;
+            $("#" + sender.id).parent().find(":checkbox").each(function () {
+                if ($(this).attr("checked")) {
+                    args.IsValid = true;
+                    return;
+                }
+            });
+        }
+    </script>
 </head>
 <body class="bodyStart" id="start">
     <div class="container smallDev">
@@ -35,7 +47,7 @@
               <asp:hiddenfield ID="hiddenfield_userid" runat="server"></asp:hiddenfield>
               <asp:hiddenfield ID="hiddenfield_device" runat="server"></asp:hiddenfield>
           </div>
-          <div id="form" class="row">
+           <div id="form" class="row">
               <div class="col-sm-1 col-md-2 col-xl-2"></div>
               <div class="col-sm-10 col-md-8 col-xl-8 question-container">
                   <section class="questionInfoBox">
@@ -50,7 +62,7 @@
                             <asp:ListItem Value="2">Most of the time</asp:ListItem>
                             <asp:ListItem Value="3">Always</asp:ListItem>
                         </asp:RadioButtonList>
-                        
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please answer this question." ControlToValidate="q1" CssClass="validationError" Font-Bold="True" SetFocusOnError="True" ForeColor="Red"></asp:RequiredFieldValidator>
                      </fieldset>
                 </div>
                 <div class="form-group question">
@@ -62,7 +74,7 @@
                             <asp:ListItem Value="2">Most of the time</asp:ListItem>
                             <asp:ListItem Value="3">Always</asp:ListItem>
                         </asp:RadioButtonList>
-                       
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please answer this question." ControlToValidate="q2" CssClass="validationError" Font-Bold="True" SetFocusOnError="True" ForeColor="Red"></asp:RequiredFieldValidator>
                      </fieldset>
                 </div>
                   <div class="form-group question">
@@ -74,7 +86,7 @@
                             <asp:ListItem Value="2">Most of the time</asp:ListItem>
                             <asp:ListItem Value="3">Always</asp:ListItem>
                         </asp:RadioButtonList>
-                        
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please answer this question." CssClass="validationError" Font-Bold="True" SetFocusOnError="True" ForeColor="Red" ControlToValidate="q3"></asp:RequiredFieldValidator>
                      </fieldset>
                 </div>
                  <div class="form-group question">
@@ -86,7 +98,7 @@
                             <asp:ListItem Value="2">Most of the time</asp:ListItem>
                             <asp:ListItem Value="3">Always</asp:ListItem>
                         </asp:RadioButtonList>
-                       
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please answer this question." CssClass="validationError" Font-Bold="True" SetFocusOnError="True" ForeColor="Red" ControlToValidate="q4"></asp:RequiredFieldValidator>
                      </fieldset>
                 </div>
                 <div class="form-group question">
@@ -98,7 +110,7 @@
                             <asp:ListItem Value="2">Most of the time</asp:ListItem>
                             <asp:ListItem Value="3">Always</asp:ListItem>
                         </asp:RadioButtonList>
-                        
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Please answer this question." CssClass="validationError" Font-Bold="True" SetFocusOnError="True" ForeColor="Red" ControlToValidate="q5"></asp:RequiredFieldValidator>
                      </fieldset>
                 </div>
                   <div class="form-group question">
@@ -110,7 +122,7 @@
                             <asp:ListItem Value="2">Most of the time</asp:ListItem>
                             <asp:ListItem Value="3">Always</asp:ListItem>
                         </asp:RadioButtonList>
-                        
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Please answer this question." CssClass="validationError" Font-Bold="True" SetFocusOnError="True" ForeColor="Red" ControlToValidate="q6"></asp:RequiredFieldValidator>
                      </fieldset>
                 </div>
                    <div class="form-group question">
@@ -122,7 +134,7 @@
                             <asp:ListItem Value="2">Most of the time</asp:ListItem>
                             <asp:ListItem Value="3">Always</asp:ListItem>
                         </asp:RadioButtonList>
-                        
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Please answer this question." CssClass="validationError" Font-Bold="True" SetFocusOnError="True" ForeColor="Red" ControlToValidate="q7"></asp:RequiredFieldValidator>
                      </fieldset>
                 </div>
                 <div class="form-group question">
@@ -134,7 +146,7 @@
                             <asp:ListItem Value="2">Most of the time</asp:ListItem>
                             <asp:ListItem Value="3">Always</asp:ListItem>
                         </asp:RadioButtonList>
-                        
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="Please answer this question." CssClass="validationError" Font-Bold="True" SetFocusOnError="True" ForeColor="Red" ControlToValidate="q8"></asp:RequiredFieldValidator>
                      </fieldset>
                 </div>
                   <div class="form-group question">
@@ -146,7 +158,7 @@
                             <asp:ListItem Value="2">Most of the time</asp:ListItem>
                             <asp:ListItem Value="3">Always</asp:ListItem>
                         </asp:RadioButtonList>
-                        
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="Please answer this question." CssClass="validationError" Font-Bold="True" SetFocusOnError="True" ForeColor="Red" ControlToValidate="q9"></asp:RequiredFieldValidator>
                      </fieldset>
                 </div>
                    <div class="form-group question">
@@ -157,7 +169,7 @@
                             <asp:ListItem Value="1">Male </asp:ListItem>
                             <asp:ListItem Value="2">Other/Prefer not to say</asp:ListItem>
                         </asp:RadioButtonList>
-                        
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="Please answer this question." CssClass="validationError" Font-Bold="True" SetFocusOnError="True" ForeColor="Red" ControlToValidate="q10"></asp:RequiredFieldValidator>
                      </fieldset>
                 </div>
                   <div class="form-group question">
@@ -165,7 +177,7 @@
                         <legend>What is your age? </legend>
                         <asp:TextBox  CssClass="radioButtonList" ID="q11" runat="server"/>
                      </fieldset>
-                     
+                      <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="Please answer this question." CssClass="validationError" Font-Bold="True" SetFocusOnError="True" ForeColor="Red" ControlToValidate="q11"></asp:RequiredFieldValidator>
                 </div>
                   <section class="questionInfoBox">
                        <h5> The following questions concern gambling, by which we mean any activity where money (or something of monetary value) is waged on an uncertain outcome governed (to some extent) by chance, with the primary aim of winning more money (or something greater monetary value).</h5>
@@ -191,7 +203,7 @@
                             <asp:ListItem Value="10">Online slot machines</asp:ListItem>
                             <asp:ListItem Value="11">Other</asp:ListItem>
                         </asp:CheckBoxList>
-                       
+                        <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="Please answer this question." CssClass="validationError" Font-Bold="True" ClientValidationFunction = "ValidateCheckBox" OnServerValidate="CustomValidator1_ServerValidate" SetFocusOnError="True"></asp:CustomValidator>
                      </fieldset>
                 </div>
                   <div class="form-group question">
@@ -204,7 +216,7 @@
                             <asp:ListItem Value="3">Once per week</asp:ListItem>
                             <asp:ListItem Value="4">Once per day or more often</asp:ListItem>
                         </asp:RadioButtonList>
-                        
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ErrorMessage="Please answer this question." CssClass="validationError" Font-Bold="True" SetFocusOnError="True" ForeColor="Red" ControlToValidate="q13"></asp:RequiredFieldValidator>
                      </fieldset>
                 </div>
 

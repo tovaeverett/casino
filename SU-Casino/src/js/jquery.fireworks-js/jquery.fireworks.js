@@ -267,7 +267,7 @@
 
     // Append the canvas and start the loops
     $(fireworksField).append(canvas);
-    setInterval(launch, 800);
+        setInterval(launch, 80);
     setInterval(loop, 1000 / 50);
 
     return fireworksField;
