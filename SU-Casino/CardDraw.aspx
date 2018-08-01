@@ -86,8 +86,7 @@
                                 <asp:HiddenField ID="HiddenField_bet1" runat="server" />
                                 <asp:HiddenField ID="HiddenField_bet2" runat="server" />
                                 <asp:HiddenField ID="HiddenField_result" runat="server" />
-                                <asp:HiddenField ID="Hiddenfield_text" runat="server" />
-                                <asp:HiddenField ID="HiddenField_credit" runat="server" />
+                                 <asp:HiddenField ID="Hiddenfield_text" runat="server" />
                                 <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play again!" class="hidden" />
                                 <div id="panel1">
                                     <div id="moneyLable">Credit left:&nbsp; 
@@ -153,7 +152,7 @@
                                 <div class="winner">
                                    <img src="src/images/other/winntext2.png" class="img-responsive" />
                                     
-                                    <h2><span class="winSpan"> You got <span id="winCredit"></span> !!!!
+                                    <h2><span class="winSpan winSpanSpecial"> You got <span id="winCredit">+100</span> !!!!
                                         <span id="piggySpan"><img src="src/images/other/piggy-bank-icon.png"/> <br />
                                        <b> The price has been saved in a piggy bank and you can't gamble with it </b>
                                         </span>

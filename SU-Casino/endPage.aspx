@@ -23,6 +23,7 @@
                               <!----TEXT FROM DB ---->
 
                           </p>
+                             <asp:Button ID="btnStart" runat="server"  Text="Submit" class="btn btn-large btn-primary" OnClick="btnStart_Click" />
                       </div>
                 </section>  
              </div>

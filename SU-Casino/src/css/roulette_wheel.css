@@ -51,9 +51,9 @@ body {
   padding: 5px;
 }
   
-    #btnBlack {
-        background: black;
-    }
+#btnBlack {
+    background: black;
+}
 
 #btnRed {
     background: #a90329;
@@ -64,8 +64,9 @@ body {
     width: 70px;
     border-radius: 50%;
     padding: 0px;
-    color:#fff;
+    color: #fff;
     margin-left: 20px;
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2784313725490196);
 }
 
 #moneyLable{
@@ -125,7 +126,7 @@ body {
         }
 
         #roulette-wrapper {
-            font-size: 14px;
+            font-size: 15px;
             text-align: center;
         }
 

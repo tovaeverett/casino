@@ -25,11 +25,13 @@ function animateValue(id, start, end, duration) {
     var timer = setInterval(function () {
         current += increment;
         obj.innerHTML = current;
-        if (current == end) {
+        if (current === end) {
             clearInterval(timer);
         }
     }, stepTime);
 }
+
+
 
 
 

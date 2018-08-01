@@ -93,7 +93,7 @@
                     </div>
                     <div class="col-md-12 col-sm-12 game-panel">
                         <form id="form1" runat="server">
-                            <button class="round-button  start">SPIN! </button>
+                            <button class="round-button spin start">SPIN! </button>
                             <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play again!" class="hidden" />
                             <asp:HiddenField ID="HiddenField_Spin1" runat="server" />
                             <asp:HiddenField ID="HiddenField_Spin2" runat="server" />

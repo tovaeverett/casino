@@ -119,5 +119,10 @@ namespace SU_Casino
 
             _database.saveQuestions(answers, hiddenfield_userid.Value);
         }
+
+        protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+
+        }
     }
 }

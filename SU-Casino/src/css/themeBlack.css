@@ -13,19 +13,17 @@
 }
 
 #play-container {
-    //background: #24222226;
-    background: #f5f3f378;
+    background: rgba(245, 243, 243, 0.47058823529411764);
+    border: 4px #222222 solid;
 }
 
 .playground-slot {
     padding-top: 20px;
     padding-bottom: 10px;
-    /*background: -webkit-gradient(linear, left top, left bottom, from(#fff), color-stop(0.5, #dfdfdf), to(#cecece) );
-    border: 1px solid black;*/
 }
 
 .game-panel {
-    background: #d5cec294;
+    background: rgba(213, 206, 194, 0.5803921568627451);
 }
 
     .game-panel > ul {
@@ -41,7 +39,8 @@
     background-size: contain;
     background-repeat: no-repeat;
     /* Hide the text. */
-    text-indent: 100%;
+    text-indent: 110%;
     white-space: nowrap;
     overflow: hidden;
+    border:none;
 }
