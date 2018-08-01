@@ -220,6 +220,7 @@
     <Compile Include="EndPage.aspx.designer.cs">
       <DependentUpon>EndPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Game.cs" />
     <Compile Include="helpClass.cs" />
     <Compile Include="OneArmdBandit.aspx.cs">
       <DependentUpon>OneArmdBandit.aspx</DependentUpon>
