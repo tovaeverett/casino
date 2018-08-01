@@ -82,7 +82,7 @@ function cardClicked(selectedCard) {
     else {
         result = result + "win";
         $("#HiddenField_result").val(result);
-        setTimeout(function () { showWinner(creditAmount); }, 300);
+        setTimeout(function () { showWinner(winningAmount); }, 300);
     }
     console.log(result);
 }
