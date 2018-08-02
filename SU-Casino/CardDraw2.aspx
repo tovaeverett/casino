@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CardDraw2.aspx.cs" Inherits="SU_Casino.CardDraw" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CardDraw2.aspx.cs" Inherits="SU_Casino.CardDraw2" %>
 
 <!DOCTYPE html>
 
@@ -42,7 +42,7 @@
                 <link rel="stylesheet" href="src/css/themeGold.css" />
                <%  break;
          }%>
-        <link rel="stylesheet" href="src/css/themeGold.css"/>
+        <link rel="stylesheet" href="src/css/themeRedC.css"/>
 </head>
 <body id="cardH">
     <div id="main-container" class="container-fluid">

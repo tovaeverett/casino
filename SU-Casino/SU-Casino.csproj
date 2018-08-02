@@ -86,6 +86,8 @@
     <Content Include="src\css\noTheme.css" />
     <Content Include="src\css\theme1a.css" />
     <Content Include="src\css\themeBlue.css" />
+    <Content Include="src\css\themeRedC.css" />
+    <Content Include="src\css\themeRedB.css" />
     <Content Include="src\css\themeRed.css" />
     <Content Include="src\css\theme1.css" />
     <Content Include="src\css\themeBlack.css" />
