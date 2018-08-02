@@ -92,11 +92,17 @@ namespace SU_Casino
        }
         protected void btnPlay_Click(object sender, EventArgs e)
         {
-            string result = HiddenField_result.Value;
-            setTheme();
-            checkForWin();
-            setCards();
-            setCredit();
+            if (trial <= currentGame.Trials)
+            {
+                string result = HiddenField_result.Value;
+                setTheme();
+                checkForWin();
+                setCards();
+                setCredit();
+            }else
+            {
+                //getNewGame
+            }
             
         }
         private void checkForWin()
