@@ -141,9 +141,9 @@ namespace SU_Casino
             }
 
             if (currentGame.Name != "DET_realworld")
-                money = Convert.ToInt32(HiddenField_credit.Value) + betAmount + winningAmount;
+                money = Convert.ToInt32(HiddenField_currentBalance.Value) + betAmount + winningAmount;
             else
-                money = Convert.ToInt32(HiddenField_credit.Value) + betAmount;
+                money = Convert.ToInt32(HiddenField_currentBalance.Value) + betAmount;
 
 
             lblMoney.Text = money.ToString();
@@ -170,7 +170,7 @@ namespace SU_Casino
         public void setCredit()
         {
             //HiddenField_credit.Value = "100"; //db -> getCredit();
-            HiddenField_credit.Value = money.ToString();
+            HiddenField_currentBalance.Value = money.ToString();
         }
 
         //TODO check if these initial values are correct, or may be we do not need this method at all?
@@ -201,7 +201,7 @@ namespace SU_Casino
             Playerlog pl = new Playerlog();
 
             pl.userid = "test1234";
-            pl.balance_in = Convert.ToInt32(HiddenField_credit.Value);
+            pl.balance_in = Convert.ToInt32(HiddenField_currentBalance.Value);
             pl.balance_out = money;
             pl.bet = betAmount;
             pl.condition = currentGame.Condition;

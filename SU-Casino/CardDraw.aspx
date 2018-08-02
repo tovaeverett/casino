@@ -88,7 +88,7 @@
                                 <asp:HiddenField ID="HiddenField_result" runat="server" />
                                 <asp:HiddenField ID="Hiddenfield_text" runat="server" />
                                 <asp:HiddenField ID="HiddenField_game" runat="server" />
-                                <asp:HiddenField ID="HiddenField_credit" runat="server" />
+                                <asp:HiddenField ID="HiddenField_currentBalance" runat="server" />
                                  
                                 <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play again!" class="hidden" />
                                 <div id="panel1">
