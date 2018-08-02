@@ -26,8 +26,9 @@ namespace SU_Casino
             currentGame = (Game)Session["currentGame"];
             if (currentGame == null) 
             {
+                currentGame = Game.getDummyGame();
                 //TODO An error page might not be needed. Decide on error handling
-                Response.Redirect("ErrorPage.aspx");
+                //Response.Redirect("ErrorPage.aspx");
             }
 
             HiddenField_showInfo.Value = "0";
@@ -36,14 +37,10 @@ namespace SU_Casino
             {
                 setTheme();
                 setCards();
-                if (currentGame != null)
-                {
-                    HiddenField_game.Value = currentGame.Name;
-                    HiddenField_win1.Value = currentGame.Win_O1.ToString();
-                    HiddenField_win1.Value = currentGame.Win_O2.ToString();
-                    money = currentGame.Saldo;   //Convert.ToInt32(Request["saldo"]);
-                }
-                
+                HiddenField_game.Value = currentGame.Name;
+                HiddenField_win1.Value = currentGame.Win_O1.ToString();
+                HiddenField_win1.Value = currentGame.Win_O2.ToString();
+                money = currentGame.Saldo;   //Convert.ToInt32(Request["saldo"]);
                 lblMoney.Text = money.ToString();
                 HiddenField_showInfo.Value = "1";
                 trial = 1;
@@ -192,13 +189,10 @@ namespace SU_Casino
             pl.balance_in = money;  //initial Game saldo
             pl.balance_out = money;  //in the begininnig balance in and out is same
             pl.bet = 0; //initial bet is 0
-            if (currentGame != null)
-            {
-                pl.condition = currentGame.Condition;
-                pl.gamename = currentGame.Name;
-                pl.stimuli = currentGame.Name;  //is this really needed?
-                pl.moment = 1; //is this really needed?
-            }
+            pl.condition = currentGame.Condition;
+            pl.gamename = currentGame.Name;
+            pl.stimuli = currentGame.Name;  //is this really needed?
+            pl.moment = 1; //is this really needed?
             pl.outcome = 0;
             pl.response = null;
             pl.timestamp_begin = DateTime.Now;
