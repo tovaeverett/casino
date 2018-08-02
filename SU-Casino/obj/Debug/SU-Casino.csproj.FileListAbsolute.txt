@@ -294,9 +294,9 @@ C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\VBCSCompi
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\obj\Debug\SU-Casino.csprojAssemblyReference.cache
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\obj\Debug\SU-Casino.csproj.CoreCompileInputs.cache
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\obj\Debug\SU-Casino.csproj.CopyComplete
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\obj\Debug\SU-Casino.dll
 C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\obj\Debug\SU-Casino.pdb
 C:\Users\Murk Gopi Chand\projects\SU Casino\su-casino\SU-Casino\obj\Debug\SU-Casino.csprojAssemblyReference.cache
-C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\obj\Debug\SU-Casino.csprojAssemblyReference.cache

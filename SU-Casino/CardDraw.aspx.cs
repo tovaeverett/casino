@@ -100,11 +100,17 @@ namespace SU_Casino
        }
         protected void btnPlay_Click(object sender, EventArgs e)
         {
-            string result = HiddenField_result.Value;
-            setTheme();
-            checkForWin();
-            setCards();
-            setCredit();
+            if (trial <= currentGame.Trials)
+            {
+                string result = HiddenField_result.Value;
+                setTheme();
+                checkForWin();
+                setCards();
+                setCredit();
+            }else
+            {
+                //getNewGame
+            }
             
         }
         private void checkForWin()
@@ -140,9 +146,9 @@ namespace SU_Casino
             }
 
             if (currentGame.Name != "DET_realworld")
-                money = Convert.ToInt32(HiddenField_credit.Value) + betAmount + winningAmount;
+                money = Convert.ToInt32(HiddenField_currentBalance.Value) + betAmount + winningAmount;
             else
-                money = Convert.ToInt32(HiddenField_credit.Value) + betAmount;
+                money = Convert.ToInt32(HiddenField_currentBalance.Value) + betAmount;
 
 
             lblMoney.Text = money.ToString();
@@ -203,7 +209,7 @@ namespace SU_Casino
             Playerlog pl = new Playerlog();
 
             pl.userid = "test1234";
-            pl.balance_in = Convert.ToInt32(HiddenField_credit.Value);
+            pl.balance_in = Convert.ToInt32(HiddenField_currentBalance.Value);
             pl.balance_out = money;
             pl.bet = betAmount;
             pl.condition = currentGame.Condition;
