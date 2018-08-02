@@ -24,6 +24,9 @@ namespace SU_Casino
         protected void Page_Load(object sender, EventArgs e)
         {
             currentGame = (Game)Session["currentGame"];
+            HiddenField_game.Value = currentGame.Name;
+            HiddenField_win1.Value = currentGame.Win_O1.ToString();
+            HiddenField_win1.Value = currentGame.Win_O2.ToString();
             HiddenField_showInfo.Value = "0";
             Hiddenfield_text.Value = _database.getText("playCardInfo");
             if (!IsPostBack)
@@ -137,19 +140,31 @@ namespace SU_Casino
                     winningAmount = currentGame.Win_O2;
             }
 
+            if (currentGame.Name != "DET_realworld")
+                money = Convert.ToInt32(HiddenField_credit.Value) + betAmount + winningAmount;
+            else
+                money = Convert.ToInt32(HiddenField_credit.Value) + betAmount;
 
-            money = Convert.ToInt32(HiddenField_credit.Value) + betAmount + winningAmount;
+
             lblMoney.Text = money.ToString();
             SaveToDB(CardBet, betAmount, winningAmount);
         }
 
-        public int setTheme()
+        public string setTheme()
         {
-            Random rnd = new Random();
-            int randomTheme = rnd.Next(1, 4);
-          //  var theme = _database.getTheme(randomTheme);
-            HiddenField_theme.Value = randomTheme.ToString();
-            return randomTheme;
+            if (currentGame.Name == "Instrumental_acq")
+            {
+                HiddenField_theme.Value = "null";
+                return "null";
+            }
+            else
+            {
+                Random rnd = new Random();
+                int randomTheme = rnd.Next(1, 5);
+                //  var theme = _database.getTheme(randomTheme);
+                HiddenField_theme.Value = randomTheme.ToString();
+                return randomTheme.ToString();
+            }
         }
 
         public void setCredit()

@@ -83,11 +83,13 @@
                                 <asp:HiddenField ID="HiddenField_WinLose" runat="server" />
                                 <asp:HiddenField ID="HiddenField_theme" runat="server" />
                                 <asp:HiddenField ID="HiddenField_showInfo" runat="server" />
-                                <asp:HiddenField ID="HiddenField_bet1" runat="server" />
-                                <asp:HiddenField ID="HiddenField_bet2" runat="server" />
+                                <asp:HiddenField ID="HiddenField_win1" runat="server" />
+                                <asp:HiddenField ID="HiddenField_win2" runat="server" />
                                 <asp:HiddenField ID="HiddenField_result" runat="server" />
                                 <asp:HiddenField ID="Hiddenfield_text" runat="server" />
+                                <asp:HiddenField ID="HiddenField_game" runat="server" />
                                 <asp:HiddenField ID="HiddenField_credit" runat="server" />
+                                 
                                 <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play again!" class="hidden" />
                                 <div id="panel1">
                                     <div id="moneyLable">Credit left:&nbsp; 

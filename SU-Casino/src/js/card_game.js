@@ -33,6 +33,13 @@ $(".winchance-btn").click(function () {
 function initCardGame() {
     var baseUrl = "src/images/cards/";
     var theme = $("#HiddenField_theme").val();
+    var game = $("#HiddenField_game").val();
+    if (cards.game === "Transfer_test") {
+        $("#moneyLable").hide();
+    }
+    if (cards.game === "DET_realworld") {
+        $("#piggySpan").show();
+    }
     gameInit(theme);
     var cardSound = new Audio("src/sound/effects/cardSlide.mp3");
     cards = {
@@ -41,7 +48,8 @@ function initCardGame() {
         showCard: $("#HiddenField_card3").val(),
         winChance: "",
         winLose: "",
-        sound: cardSound
+        sound: cardSound,
+        game: game
     };
    
     $("[id ^= 'notEqual']").hide();
@@ -63,26 +71,26 @@ function cardClicked(selectedCard) {
         result = result + "bet_R1,";
         if (cards.card1 === cards.showCard) {
             isWinner = true;
-            winningAmount = "100";  //TODO get this winning amount from session variable currentGame
+            $("#winCredit").html("+" + $("#HiddenField_win1").val());
         }
     }
     else {
         result = result + "bet_R2,";
         if (cards.card2 === cards.showCard) {
             isWinner = true;
-            winningAmount = "50";
+            $("#winCredit").html("+" + $("#HiddenField_win2").val());
         }
     }
-     
-    if (!isWinner) {
-        result = result + "lose";
-        $("#HiddenField_result").val(result);
-        setTimeout(function () { $("#btnPlay").click(); }, 500);
+
+    if (isWinner && cards.game !== "Transfer_test") {
+        result = result + "win";
+        $("#HiddenField_result").val(result); 
+        setTimeout(function () { showWinner(winningAmount); }, 1500);
     }
     else {
-        result = result + "win";
+        result = result + "lose";
         $("#HiddenField_result").val(result);
-        setTimeout(function () { showWinner(winningAmount); }, 300);
+        setTimeout(function () { $("#btnPlay").click(); }, 1500);
     }
     console.log(result);
 }
