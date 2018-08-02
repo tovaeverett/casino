@@ -24,7 +24,12 @@ namespace SU_Casino
         protected void Page_Load(object sender, EventArgs e)
         {
             currentGame = (Game)Session["currentGame"];
-            
+            if (currentGame == null) 
+            {
+                //TODO An error page might not be needed. Decide on error handling
+                Response.Redirect("ErrorPage.aspx");
+            }
+
             HiddenField_showInfo.Value = "0";
             Hiddenfield_text.Value = _database.getText("playCardInfo");
             if (!IsPostBack)
@@ -174,8 +179,8 @@ namespace SU_Casino
 
         public void setCredit()
         {
-            //HiddenField_credit.Value = "100"; //db -> getCredit();
-            //HiddenField_credit.Value = money.ToString();
+             //db -> getCredit();
+            HiddenField_currentBalance.Value = money.ToString();
         }
 
         //TODO check if these initial values are correct, or may be we do not need this method at all?
