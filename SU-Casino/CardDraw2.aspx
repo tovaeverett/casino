@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CardDraw2.aspx.cs" Inherits="SU_Casino.CardDraw" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CardDraw2.aspx.cs" Inherits="SU_Casino.CardDraw2" %>
 
 <!DOCTYPE html>
 
@@ -94,6 +94,8 @@
                                 <asp:HiddenField ID="HiddenField_bet2" runat="server" />
                                 <asp:HiddenField ID="HiddenField_result" runat="server" />
                                 <asp:HiddenField ID="Hiddenfield_text" runat="server" />
+                                <asp:HiddenField ID="HiddenField_game" runat="server" />
+                                <asp:HiddenField ID="HiddenField_currentBalance" runat="server" />
                                 <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play again!" class="hidden" />
                                 <div id="panel1">
                                     <div id="moneyLable">Credit left:&nbsp; 
