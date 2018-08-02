@@ -253,7 +253,7 @@ button:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url(http://localhost:59745/src/images/backgrounds/winCoins.png) no-repeat center center;
+    background: url(src/images/backgrounds/winCoins.png) no-repeat center center;
     background-size: contain;
     display: none;
 }
@@ -264,7 +264,7 @@ button:focus {
 #message-content-win {
     padding-top: 5rem;
     z-index: 1000;
-    background: url(http://localhost:59745/src/images/backgrounds/winCoins.png) no-repeat center center;
+    background: url(/src/images/backgrounds/winCoins.png) no-repeat center center;
     background-size: contain;
 }
 .winner-inner {

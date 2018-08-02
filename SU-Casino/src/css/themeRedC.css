@@ -1,6 +1,6 @@
 ﻿body {
     background: url("/src/images/backgrounds/themeRedC.jpg") no-repeat top center fixed;
-    background-size: 100% 100%;
+    background-size: cover;
 }
 
 .header {
