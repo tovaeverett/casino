@@ -42,7 +42,7 @@
                 <link rel="stylesheet" href="src/css/themeGold.css" />
                <%  break;
          }%>
-        <link rel="stylesheet" href="src/css/noTheme.css"/>
+        <link rel="stylesheet" href="src/css/themeGold.css"/>
 </head>
 <body id="cardH">
     <div id="main-container" class="container-fluid">
