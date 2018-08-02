@@ -104,6 +104,7 @@
                             <asp:HiddenField ID="HiddenField_credit" runat="server" />
                             <asp:HiddenField ID="HiddenField_result" runat="server" />
                             <asp:HiddenField ID="Hiddenfield_text" runat="server" />
+                            <asp:HiddenField ID="HiddenField_currentBalance" runat="server" />
                             <div id="panel1">
                                 <div id="moneyLable">Credit left:&nbsp; 
                                 <span class="cash-sum"> 

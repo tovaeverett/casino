@@ -45,7 +45,8 @@ namespace SU_Casino
                 HiddenField_showInfo.Value = "1";
                 trial = 1;
                 setCredit();
-                SaveToDB(); //Is this really needed? User has not begun playing yet
+                
+                //SaveToDB(); //Is this really needed? User has not begun playing yet
             }
         }
 
