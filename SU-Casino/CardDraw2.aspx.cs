@@ -42,7 +42,7 @@ namespace SU_Casino
                 lblMoney.Text = money.ToString();
                 HiddenField_showInfo.Value = "1";
                 trial = 1;
-                setCredit();
+                setCurrentBalance();
 
                 //SaveToDB(); //Is this really needed? User has not begun playing yet
             }
@@ -107,7 +107,7 @@ namespace SU_Casino
                 setTheme();
                 checkForWin();
                 setCards();
-                setCredit();
+                setCurrentBalance();
             }else
             {
                 //getNewGame
@@ -168,7 +168,7 @@ namespace SU_Casino
             }
         }
 
-        public void setCredit()
+        public void setCurrentBalance()
         {
             //HiddenField_credit.Value = "100"; //db -> getCredit();
             HiddenField_currentBalance.Value = money.ToString();
@@ -207,7 +207,7 @@ namespace SU_Casino
             pl.bet = betAmount;
             pl.condition = currentGame.Condition;
             pl.gamename = currentGame.Name;
-            pl.moment = 1;
+            pl.moment = currentGame.Sequence;
             pl.outcome = winAmount;
             pl.response = CardBetResponse;
             pl.stimuli = currentGame.Name;

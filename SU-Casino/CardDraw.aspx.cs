@@ -44,7 +44,7 @@ namespace SU_Casino
                 lblMoney.Text = money.ToString();
                 HiddenField_showInfo.Value = "1";
                 trial = 1;
-                setCredit();
+                setCurrentBalance();
                 
                 //SaveToDB(); //Is this really needed? User has not begun playing yet
             }
@@ -109,7 +109,7 @@ namespace SU_Casino
                 setTheme();
                 checkForWin();
                 setCards();
-                setCredit();
+                setCurrentBalance();
             }else
             {
                 //getNewGame
@@ -118,13 +118,10 @@ namespace SU_Casino
         }
         private void checkForWin()
         {
-           //int CardPressed = 0; 
-           //var winLose = HiddenField_WinLose.Value;
             var credit = Int32.Parse(lblMoney.Text);
             string WinChance = "";
             string CardBet = "";
             string WinLose = "";
-           // string test = "PressCard:1, WinChance: 1, WinLose: lose";
            
             string[] splitCards = HiddenField_result.Value.Split(',');
            //( foreach(var value in splitCards)
@@ -175,7 +172,7 @@ namespace SU_Casino
             }
         }
 
-        public void setCredit()
+        public void setCurrentBalance()
         {
              //db -> getCredit();
             HiddenField_currentBalance.Value = money.ToString();
@@ -193,7 +190,7 @@ namespace SU_Casino
             pl.condition = currentGame.Condition;
             pl.gamename = currentGame.Name;
             pl.stimuli = currentGame.Name;  //is this really needed?
-            pl.moment = 1; //is this really needed?
+            pl.moment = currentGame.Sequence;
             pl.outcome = 0;
             pl.response = null;
             pl.timestamp_begin = DateTime.Now;
@@ -214,7 +211,7 @@ namespace SU_Casino
             pl.bet = betAmount;
             pl.condition = currentGame.Condition;
             pl.gamename = currentGame.Name;
-            pl.moment = 1;
+            pl.moment = currentGame.Sequence;
             pl.outcome = winAmount;
             pl.response = CardBetResponse;
             pl.stimuli = currentGame.Name;

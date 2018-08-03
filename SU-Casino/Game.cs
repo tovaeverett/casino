@@ -9,6 +9,7 @@ namespace SU_Casino
     {
         private String name;
         private String condition;
+        private int sequence;
         private int trials;
         private int saldo;
         private int bet_R1;
@@ -24,12 +25,14 @@ namespace SU_Casino
         public int Win_O1 { get => win_O1; set => win_O1 = value; }
         public int Win_O2 { get => win_O2; set => win_O2 = value; }
         public string Condition { get => condition; set => condition = value; }
+        public int Sequence { get => sequence; set => sequence = value; }
 
         public static Game getDummyGame()
         {
             Game dummy = new Game();
             dummy.Name = "Dummy Test Game";
             dummy.condition = "testCondition";
+            dummy.sequence = 2;
             dummy.Trials = 24;
             dummy.Saldo = 1500;
             dummy.Bet_R1 = -25;

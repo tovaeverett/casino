@@ -330,6 +330,7 @@ namespace SU_Casino
                     game.Win_O1 = Convert.ToInt32(dr[5].ToString());
                     game.Win_O2 = Convert.ToInt32(dr[6].ToString());
                 }
+                game.Sequence = seq;
                 game.Condition = condition;
                 return game;
             }
