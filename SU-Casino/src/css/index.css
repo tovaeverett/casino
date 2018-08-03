@@ -473,6 +473,7 @@ legend {
         width: 70px;
         font-size: 18px;
     }
+    
 }
 @media (max-width: 510px) {
     .playground-slot {
