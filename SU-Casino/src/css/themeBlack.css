@@ -4,14 +4,6 @@
 }
 
 
-.header {
-    color: #0088cc;
-    padding-top: 25px;
-    padding-bottom: 15px;
-    text-align: center;
-    padding-left: 30px;
-}
-
 #play-container {
     background: rgba(245, 243, 243, 0.47058823529411764);
     border: 4px #222222 solid;
@@ -26,10 +18,6 @@
     background: rgba(213, 206, 194, 0.5803921568627451);
 }
 
-    .game-panel > ul {
-        list-style-type: none;
-        display: inline-flex;
-    }
 
 .round-button {
     height: 100px;

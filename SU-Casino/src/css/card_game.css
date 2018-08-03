@@ -51,11 +51,14 @@ body { font-family: sans-serif; }
   transform: rotateY(180deg);
 }
 
+
+
 .img {
     height: auto;
     max-width: 100%;
     vertical-align: middle;
     border: 0;
+    box-shadow: 4px 5px 3px 0px rgba(0, 0, 0, 0.3);
 }
 
 

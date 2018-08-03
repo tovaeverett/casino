@@ -479,6 +479,9 @@ legend {
     .playground-slot {
         height: 250px;
     }
+    #message-content{
+       padding-top:10px;
+    }
 }
 
 @media (max-width: 320px) {
@@ -487,7 +490,7 @@ legend {
     }
 }
 @media screen and (max-height:700px) and (max-width:767px) {
-    .overlayer {
+    .info-content {
         position: absolute;
     }
     .winner {
@@ -497,4 +500,10 @@ legend {
         height: 100px;
     }
 }
+@media screen and (max-height:400px) {
+    #message-content {
+        padding-top: 1px;
+    }
+}
+
 

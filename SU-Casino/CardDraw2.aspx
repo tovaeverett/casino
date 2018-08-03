@@ -42,7 +42,7 @@
                 <link rel="stylesheet" href="src/css/themeGold.css" />
                <%  break;
          }%>
-        <link rel="stylesheet" href="src/css/themeRedC.css"/>
+        <link rel="stylesheet" href="src/css/noTheme.css"/>
 </head>
 <body id="cardH">
     <div id="main-container" class="container-fluid">
@@ -130,7 +130,7 @@
     </div>
      <!-- END: Winning chance --> 
    <!-- Start info: Information about the game, visible first time set by hidden field 'HiddenField_showInfo' -->
-            <div id="startInfo" class="container-fluid overlayer">
+            <div id="startInfo" class="container-fluid overlayer info-content">
                  <div class="row">
                         <div class="col-md-2"></div>
                             <div class="col-md-8 text-center div-center" id="message-content">

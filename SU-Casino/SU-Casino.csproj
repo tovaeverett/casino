@@ -81,7 +81,6 @@
     <Content Include="src\css\card_game.css" />
     <Content Include="src\css\index.css" />
     <Content Include="src\css\roulette_wheel.css" />
-    <Content Include="src\css\roulette_wheel_1.css" />
     <Content Include="src\css\roulette_wheel_base.css" />
     <Content Include="src\css\slot.css" />
     <Content Include="src\css\noTheme.css" />

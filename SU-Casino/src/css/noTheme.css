@@ -41,10 +41,6 @@
     background: #ddd;
 }
 
-.game-panel > ul {
-    list-style-type: none;
-    display: inline-flex;
-}
 
 @media (max-width: 510px) {
     .playground-slot {

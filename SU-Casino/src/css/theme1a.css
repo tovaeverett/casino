@@ -49,11 +49,6 @@
     background: #114959;
 }
 
-.game-panel > ul {
-    list-style-type: none;
-    display: inline-flex;
-}
-
 @media (max-width: 510px) {
     #play-container {
         border: 15px solid transparent;

@@ -3,14 +3,6 @@
     background-size: cover;
 }
 
-.header {
-    color: #0088cc;
-    padding-top: 25px;
-    padding-bottom: 15px;
-    text-align: center;
-    padding-left: 30px;
-}
-
 #play-container {
     background-image: url("/src/images/backgrounds/container_theme_slot.png");
     background-size: contain;
@@ -20,18 +12,12 @@
 .playground-slot {
     padding-top: 20px;
     padding-bottom: 10px;
-      /*background: -webkit-gradient(linear, left top, left bottom, from(#fff), color-stop(0.5, #dfdfdf), to(#cecece) );
-    border: 1px solid black;*/
 }
 
 .game-panel {
     background: #a61571b5;
 }
 
-    .game-panel > ul {
-        list-style-type: none;
-        display: inline-flex;
-    }
 
 .round-button {
     height: 100px;

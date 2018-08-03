@@ -4,12 +4,8 @@ body {
     background-size: cover;
 }
 
-.header {
-    color: #0088cc;
-}
 
 .playground {
-
     background-size: cover;
 }
 
@@ -35,19 +31,6 @@ body {
     border: 2px solid rgba(221, 221, 221, 0.48);
 }
 
-.game-panel > ul {
-    list-style-type: none;
-    display: inline-flex;
-}
 
-@media (max-width: 510px) {
 
-    .playground-slot {
-        height: 250px;
-    }
-}
-
-@media (max-width: 320px) {
-    
-}
 
