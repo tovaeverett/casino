@@ -132,7 +132,7 @@
             return Math.floor(Math.random() * (max - min + 1)) + min;
           }(0, 2);
           audio.src = sounds[randomNumber].prefix + sounds[randomNumber].data;
-          audio.play();
+          
         }
 
         var count = Math.random() * 10 + 80;
@@ -158,6 +158,7 @@
 
             particles.push(particle);
         }
+        audio.play();
     };
 
     Rocket.prototype.render = function(c) {
@@ -267,7 +268,7 @@
 
     // Append the canvas and start the loops
     $(fireworksField).append(canvas);
-        setInterval(launch, 80);
+        setInterval(launch, 200);
     setInterval(loop, 1000 / 50);
 
     return fireworksField;
