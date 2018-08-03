@@ -92,17 +92,17 @@ function createWheel() {
 }
 
 btnRed.click(function() {
-    betOption = "2";
+    betOption = "bet_R2";
     btnRed.prop("disabled", false);
     btnBlack.prop("disabled", false);
     startSpinn(); 
 });
 
 btnBlack.click(function() {
-  betOption = "1";
-  btnRed.prop("disabled", false);
-  btnBlack.prop("disabled", false);
-  startSpinn();
+    betOption = "bet_R1";
+    btnRed.prop("disabled", false);
+    btnBlack.prop("disabled", false)
+    startSpinn();
 });
 
 //delete
@@ -133,11 +133,11 @@ function finishSpin() {
     var result = "null," + betOption + ",";
     
     if (numred.indexOf(Number(winningNum)) > -1) {
-        if (betOption === "2") {
+        if (betOption === "bet_R2") {
             isWinner = true;
         }
     } else {
-        if (betOption === "1") {
+        if (betOption === "bet_R1") {
             isWinner = true;
        }
     }

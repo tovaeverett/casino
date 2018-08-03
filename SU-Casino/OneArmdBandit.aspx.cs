@@ -35,9 +35,9 @@ namespace SU_Casino
             {
                 HiddenField_showInfo.Value = "1";
                 Hiddenfield_text.Value = _database.getText("playSlotInfo");
-                HiddenField_Spin1.Value = randomSpin().ToString();
-                HiddenField_Spin2.Value = randomSpin().ToString();
-                HiddenField_Spin3.Value = randomSpin().ToString();
+                HiddenField_Spin1.Value = randomSlotSpin().ToString();
+                HiddenField_Spin2.Value = randomSlotSpin().ToString();
+                HiddenField_Spin3.Value = randomSlotSpin().ToString();
                 if (HiddenField_Spin1.Value == HiddenField_Spin2.Value && HiddenField_Spin1.Value == HiddenField_Spin3.Value)
                 {
                     HiddenField_WinLose.Value = "win";
@@ -56,9 +56,9 @@ namespace SU_Casino
 
         protected void btnPlay_Click(object sender, EventArgs e)
         {
-            HiddenField_Spin1.Value = randomSpin().ToString();
-            HiddenField_Spin2.Value = randomSpin().ToString();
-            HiddenField_Spin3.Value = randomSpin().ToString();
+            HiddenField_Spin1.Value = randomSlotSpin().ToString();
+            HiddenField_Spin2.Value = randomSlotSpin().ToString();
+            HiddenField_Spin3.Value = randomSlotSpin().ToString();
             if (Convert.ToInt32(HiddenField_Spin1.Value) == Convert.ToInt32(HiddenField_Spin2.Value) && Convert.ToInt32(HiddenField_Spin1.Value) == Convert.ToInt32(HiddenField_Spin3.Value))
             {
                 HiddenField_WinLose.Value = "win";
@@ -88,9 +88,9 @@ namespace SU_Casino
             lblMoney.Text = money.ToString();
             SaveToDB(currentGame.Bet_R1, winningAmount);
         }
-        public int randomSpin()
+        public int randomSlotSpin()
         {
-            int randomfruit = rnd.Next(0, 6);
+            int randomfruit = rnd.Next(1, 4);
 
             return randomfruit;
         }
@@ -105,7 +105,7 @@ namespace SU_Casino
 
         private void setCurrentBalance()
         {
-            HiddenField_currentBalance.Value = money.ToString();
+            HiddenField_currentBalance.Value = money.ToString(); //or get from DB?
         }
 
         public void SaveToDB(int betAmount, int winAmount)
@@ -118,7 +118,7 @@ namespace SU_Casino
             pl.bet = betAmount;
             pl.condition = currentGame.Condition;
             pl.gamename = currentGame.Name;
-            pl.moment = 1;
+            pl.moment = currentGame.Sequence;
             pl.outcome = winAmount;
             pl.response = "R1";
             pl.stimuli = currentGame.Name;
