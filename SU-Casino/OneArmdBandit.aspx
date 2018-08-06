@@ -175,10 +175,10 @@
                   <div id="message-container" class="container-fluid overlayer  winner-content">
                     <div class="row">
                         <div class="col-md-2"></div>
-                            <div class="col-md-8 text-center" id="message-content">
+                            <div class="col-md-8 text-center" id="message-content-win">
                                 <div class="winner">
                                     <img src="src/images/other/winntext2.png" class="img-responsive" />
-                                    <h2><span class="winSpan"> You got <span id="winCredit">+100</span> !!!!</span></h2>
+                                    <h2><span class="winSpan"> You got <span id="winCredit"></span> !!!!</span></h2>
                                 </div>
                             <button id="btnCloseWin" class="btn btn-large btn-primary" > Play again </button>
                         </div>
