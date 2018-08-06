@@ -15,7 +15,7 @@
              <div class="row">
                  <div class="col-xs-1 col-md-2 col-xl-2"></div>
                   <div id="intro" class="col-xs-10 col-md-8 col-xl-8">
-                     <section>
+                     <section id="endText">
                          <h1>End </h1>
                          <div id="introInfoTextDiv">
                           <p id="introInfoText">

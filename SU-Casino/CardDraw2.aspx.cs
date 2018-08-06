@@ -39,6 +39,8 @@ namespace SU_Casino
                 setCards();
                 HiddenField_game.Value = currentGame.Name;
                 money = currentGame.Saldo;
+                HiddenField_win1.Value = currentGame.Win_O1.ToString();
+                HiddenField_win1.Value = currentGame.Win_O2.ToString();
                 lblMoney.Text = money.ToString();
                 HiddenField_showInfo.Value = "1";
                 trial = 1;
@@ -182,7 +184,7 @@ namespace SU_Casino
             pl.condition = currentGame.Condition;
             pl.gamename = currentGame.Name;
             pl.stimuli = currentGame.Name;  //is this really needed?
-            pl.moment = 1; //is this really needed?
+            pl.moment = currentGame.Sequence;
             pl.outcome = 0;
             pl.response = null;
             pl.timestamp_begin = DateTime.Now;
