@@ -30,6 +30,7 @@ namespace SU_Casino
                 //TODO An error page might not be needed. Decide on error handling
                 //Response.Redirect("ErrorPage.aspx");
             }
+
             HiddenField_showInfo.Value = "0";
             if (!IsPostBack)
             {
@@ -38,6 +39,7 @@ namespace SU_Casino
                 HiddenField_Spin1.Value = randomSlotSpin().ToString();
                 HiddenField_Spin2.Value = randomSlotSpin().ToString();
                 HiddenField_Spin3.Value = randomSlotSpin().ToString();
+                HiddenField_credit.Value = currentGame.Win_O1.ToString();
                 if (HiddenField_Spin1.Value == HiddenField_Spin2.Value && HiddenField_Spin1.Value == HiddenField_Spin3.Value)
                 {
                     HiddenField_WinLose.Value = "win";
@@ -69,6 +71,9 @@ namespace SU_Casino
             }
             checkForWin();
             setCurrentBalance();
+
+            if (trial > currentGame.Trials)
+                GameLogic.getNextGame(currentGame, money);
         }
         private void checkForWin()
         {
@@ -120,7 +125,7 @@ namespace SU_Casino
             pl.gamename = currentGame.Name;
             pl.moment = currentGame.Sequence;
             pl.outcome = winAmount;
-            pl.response = "R1";
+            pl.response = "bet_R1";
             pl.stimuli = currentGame.Name;
             pl.timestamp_begin = DateTime.Now;
             pl.timestamp_O = DateTime.Now;

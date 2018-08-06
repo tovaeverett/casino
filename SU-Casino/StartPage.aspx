@@ -44,8 +44,9 @@
                <div class="col-xs-1 col-md-2 col-xl-2"></div>
                <asp:hiddenfield ID="hiddenfield_text" runat="server"></asp:hiddenfield>
                <asp:hiddenfield ID="hiddenfield_showInfo" runat="server"></asp:hiddenfield>
-              <asp:hiddenfield ID="hiddenfield_userid" runat="server"></asp:hiddenfield>
-              <asp:hiddenfield ID="hiddenfield_device" runat="server"></asp:hiddenfield>
+               <asp:hiddenfield ID="hiddenfield_userid" runat="server"></asp:hiddenfield>
+               <asp:hiddenfield ID="hiddenfield_device" runat="server"></asp:hiddenfield>
+               <asp:HiddenField ID="hiddenfield_startCredit" runat="server" />
           </div>
            <div id="form" class="row">
               <div class="col-sm-1 col-md-2 col-xl-2"></div>
@@ -187,7 +188,7 @@
                 <div class="form-group question">
                     <fieldset>
                         <legend>
-                                Please indicate which forms of gambling that you have engaged in the last 12 months:
+                                Please indicate which forms of gambling that you have engaged in the last 12 months <br /> <i>( Multiple response options are possible )</i>:
                         </legend>
                         <asp:CheckBoxList  CssClass="radioButtonList" ID="q12" runat="server">
                             <asp:ListItem Value="0">Lottery</asp:ListItem>

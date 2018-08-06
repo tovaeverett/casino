@@ -28,6 +28,7 @@ namespace SU_Casino
                 //TODO An error page might not be needed. Decide on error handling
                 //Response.Redirect("ErrorPage.aspx");
             }
+
             HiddenField_showInfo.Value = "0";
             if (!IsPostBack)
             {
@@ -37,9 +38,11 @@ namespace SU_Casino
                 RandomSpin();
                 HiddenField_showInfo.Value = "1";
                 Hiddenfield_text.Value = _database.getText("playRouletteInfo");
+                HiddenField_credit.Value = currentGame.Win_O1.ToString();
                 setCurrentBalance();
                 trial = 1;
             }
+
         }
 
         //TODO : Code cleanup, unused method?
@@ -95,10 +98,13 @@ namespace SU_Casino
         protected void btnPlay_Click(object sender, EventArgs e)
         {
             checkForWin();
-           // bool isWin = true; //Change...
+            if (trial > currentGame.Trials)
+                GameLogic.getNextGame(currentGame,money);
+
             RandomSpin();
-           // credit = isWin ? credit + 500 : credit - 500;
-           // lblMoney.Text = credit.ToString();
+
+            // credit = isWin ? credit + 500 : credit - 500;
+            // lblMoney.Text = credit.ToString();
         }
 
         private void setCurrentBalance()

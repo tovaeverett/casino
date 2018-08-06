@@ -30,7 +30,7 @@ namespace SU_Casino
                 //TODO An error page might not be needed. Decide on error handling
                 //Response.Redirect("ErrorPage.aspx");
             }
-            
+
             HiddenField_showInfo.Value = "0";
             Hiddenfield_text.Value = _database.getText("playCardInfo");
             if (!IsPostBack)
@@ -39,6 +39,8 @@ namespace SU_Casino
                 setCards();
                 HiddenField_game.Value = currentGame.Name;
                 money = currentGame.Saldo;
+                HiddenField_win1.Value = currentGame.Win_O1.ToString();
+                HiddenField_win2.Value = currentGame.Win_O2.ToString();
                 lblMoney.Text = money.ToString();
                 HiddenField_showInfo.Value = "1";
                 trial = 1;
@@ -101,18 +103,14 @@ namespace SU_Casino
        }
         protected void btnPlay_Click(object sender, EventArgs e)
         {
-            if (trial <= currentGame.Trials)
-            {
-                string result = HiddenField_result.Value;
-                setTheme();
-                checkForWin();
-                setCards();
-                setCurrentBalance();
-            }else
-            {
-                //getNewGame
-            }
-            
+            string result = HiddenField_result.Value;
+            setTheme();
+            checkForWin();
+            setCards();
+            setCurrentBalance();
+            if (trial > currentGame.Trials)
+                GameLogic.getNextGame(currentGame, money);
+
         }
         private void checkForWin()
         {
@@ -186,7 +184,7 @@ namespace SU_Casino
             pl.condition = currentGame.Condition;
             pl.gamename = currentGame.Name;
             pl.stimuli = currentGame.Name;  //is this really needed?
-            pl.moment = 1; //is this really needed?
+            pl.moment = currentGame.Sequence;
             pl.outcome = 0;
             pl.response = null;
             pl.timestamp_begin = DateTime.Now;

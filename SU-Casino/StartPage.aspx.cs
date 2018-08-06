@@ -15,6 +15,7 @@ namespace SU_Casino
     {
         Database _database = new Database();
         public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+        private static Game initialGame;
         protected void Page_Load(object sender, EventArgs e)
         {
             // string name = RegionInfo.CurrentRegion.DisplayName;
@@ -30,64 +31,27 @@ namespace SU_Casino
             //getBetingelse();
         }
 
-        public void getBetingelse()
-        {
-            Random letter = new Random();
-            var Array = _database.GetCondition();
-
-            int i = Array.Count();
-            int num = letter.Next(0, i);
-            string let = Array[num];
-            
-            Game gameToPlay = _database.getOrderToPlay(1, let);
-
-            if (gameToPlay != null)
-            {
-                string value = gameToPlay.Name;
-                Session.Add("currentGame", gameToPlay);
-                switch (value)
-                {
-                    case "DET_control":
-
-                        break;
-                    case "DET_experimental":
-
-                        break;
-                    case "DET_realworld":
-
-                        break;
-                    case "Instrumental_acq":
-                        Response.Redirect("CardDraw.aspx");
-                        break;
-                    case "Instrumental_acq2":
-                        Response.Redirect("CardDraw2.aspx");
-                        break;
-                    case "Pavlovian_acq":
-                        Response.Redirect("OneArmdBandit.aspx");
-                        break;
-                    case "Pavlovian_extinct":
-                        Response.Redirect("OneArmdBandit.aspx");
-                        break;
-                    case "Roulette":
-                        Response.Redirect("Roulette.aspx");
-                        break;
-                    case "Transfer_test":
-                        break;
-                }
-            }
-        }
-
+ 
         protected void btnPlay_Click(object sender, EventArgs e)
         {
             //Save to db
             saveQuestions();
             hiddenfield_showInfo.Value = "1";
 
+            //To get the start credit from DB
+            GameLogic.getInitialBetingelse();
+            initialGame = (Game)Session["currentGame"];
+            if (initialGame != null)
+                hiddenfield_startCredit.Value = initialGame.Saldo.ToString();
+            else       //error handling?    
+                Response.Redirect("ErrorPage.aspx");
+
         }
         protected void btnStart_Click(object sender, EventArgs e)
         {
-            
-            getBetingelse();
+            //GameLogic.getInitialBetingelse();
+            GameLogic.redirectToGame(initialGame.Name);
+ 
         }
 
         private void saveQuestions()
