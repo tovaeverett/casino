@@ -231,6 +231,7 @@
       <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Game.cs" />
+    <Compile Include="GameLogic.cs" />
     <Compile Include="helpClass.cs" />
     <Compile Include="OneArmdBandit.aspx.cs">
       <DependentUpon>OneArmdBandit.aspx</DependentUpon>

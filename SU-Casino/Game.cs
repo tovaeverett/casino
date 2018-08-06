@@ -33,7 +33,7 @@ namespace SU_Casino
             dummy.Name = "Dummy Test Game";
             dummy.condition = "testCondition";
             dummy.sequence = 2;
-            dummy.Trials = 24;
+            dummy.Trials = 2;
             dummy.Saldo = 1500;
             dummy.Bet_R1 = -25;
             dummy.Bet_R2 = -45;
