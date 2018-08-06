@@ -1,0 +1,85 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+
+namespace SU_Casino
+{
+    public class GameLogic
+    {
+        static Database _database = new Database();
+        public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+        public static void getInitialBetingelse()
+        {
+            Random letter = new Random();
+            var Array = _database.GetCondition();
+
+            int i = Array.Count();
+            int num = letter.Next(0, i);
+            string let = Array[num];
+
+            Game gameToPlay = _database.getOrderToPlay(1, let);
+
+            if (gameToPlay != null)
+            {
+                HttpContext.Current.Session.Add("currentGame", gameToPlay);
+                redirectToGame(gameToPlay.Name);
+            }
+        }
+
+        public static void getNextGame(Game currentGame)
+        {
+            int nextSeq = currentGame.Sequence;
+            Game gameToPlay = _database.getOrderToPlay(nextSeq+1, currentGame.Condition);
+            if(gameToPlay != null)
+            {
+                HttpContext.Current.Session.Add("currentGame", gameToPlay);
+                redirectToGame(gameToPlay.Name);
+            }
+            else 
+            {
+                //No game found, this was the last game, go to end page in that case
+                HttpContext.Current.Response.Redirect("EndPage.aspx");
+            }
+        }
+
+        private static void redirectToGame(String gameName)
+        {
+            switch (gameName)
+            {
+                case "DET_control":
+
+                    break;
+                case "DET_experimental":
+                    HttpContext.Current.Response.Redirect("CardDraw.aspx");
+                    break;                 
+                case "DET_realworld":
+                    HttpContext.Current.Response.Redirect("CardDraw.aspx");
+                    break;
+                case "Instrumental_acq":
+                    HttpContext.Current.Response.Redirect("CardDraw.aspx");
+                    break;
+                case "Instrumental_acq2":
+                    HttpContext.Current.Response.Redirect("CardDraw2.aspx");
+                    break;
+                case "Pavlovian_acq":
+                    HttpContext.Current.Response.Redirect("OneArmdBandit.aspx");
+                    break;
+                case "Pavlovian_extinct":
+                    HttpContext.Current.Response.Redirect("OneArmdBandit.aspx");
+                    break;
+                case "Roulette":
+                    HttpContext.Current.Response.Redirect("Roulette.aspx");
+                    break;
+                case "Transfer_test":
+                    HttpContext.Current.Response.Redirect("CardDraw.aspx");
+                    break;
+            }
+
+
+        }
+    }
+
+}

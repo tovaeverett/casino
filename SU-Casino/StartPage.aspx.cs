@@ -30,53 +30,7 @@ namespace SU_Casino
             //getBetingelse();
         }
 
-        public void getBetingelse()
-        {
-            Random letter = new Random();
-            var Array = _database.GetCondition();
-
-            int i = Array.Count();
-            int num = letter.Next(0, i);
-            string let = Array[num];
-            
-            Game gameToPlay = _database.getOrderToPlay(1, let);
-
-            if (gameToPlay != null)
-            {
-                string value = gameToPlay.Name;
-                Session.Add("currentGame", gameToPlay);
-                switch (value)
-                {
-                    case "DET_control":
-
-                        break;
-                    case "DET_experimental":
-
-                        break;
-                    case "DET_realworld":
-
-                        break;
-                    case "Instrumental_acq":
-                        Response.Redirect("CardDraw.aspx");
-                        break;
-                    case "Instrumental_acq2":
-                        Response.Redirect("CardDraw2.aspx");
-                        break;
-                    case "Pavlovian_acq":
-                        Response.Redirect("OneArmdBandit.aspx");
-                        break;
-                    case "Pavlovian_extinct":
-                        Response.Redirect("OneArmdBandit.aspx");
-                        break;
-                    case "Roulette":
-                        Response.Redirect("Roulette.aspx");
-                        break;
-                    case "Transfer_test":
-                        break;
-                }
-            }
-        }
-
+ 
         protected void btnPlay_Click(object sender, EventArgs e)
         {
             //Save to db
@@ -86,8 +40,8 @@ namespace SU_Casino
         }
         protected void btnStart_Click(object sender, EventArgs e)
         {
-            
-            getBetingelse();
+            GameLogic.getInitialBetingelse();
+            //getBetingelse();
         }
 
         private void saveQuestions()

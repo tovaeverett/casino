@@ -319,20 +319,23 @@ namespace SU_Casino
 
                 da.Fill(ds, "getGameToPlay");
                 dt = ds.Tables["getGameToPlay"];
-
-                foreach (DataRow dr in dt.Rows)
+                if (dt.Rows.Count != 0)
                 {
-                    game.Name = dr[0].ToString();
-                    game.Trials = Convert.ToInt32(dr[1].ToString());
-                    game.Saldo = Convert.ToInt32(dr[2].ToString());
-                    game.Bet_R1 = Convert.ToInt32(dr[3].ToString());
-                    game.Bet_R2 = Convert.ToInt32(dr[4].ToString());
-                    game.Win_O1 = Convert.ToInt32(dr[5].ToString());
-                    game.Win_O2 = Convert.ToInt32(dr[6].ToString());
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        game.Name = dr[0].ToString();
+                        game.Trials = Convert.ToInt32(dr[1].ToString());
+                        game.Saldo = dr[2].ToString() != "" ? Convert.ToInt32(dr[2].ToString()) : 0;
+                        game.Bet_R1 = dr[3].ToString() != "" ? Convert.ToInt32(dr[3].ToString()) : 0;
+                        game.Bet_R2 = dr[4].ToString() != "" ? Convert.ToInt32(dr[4].ToString()) : game.Bet_R1;
+                        game.Win_O1 = dr[5].ToString() != "" ? Convert.ToInt32(dr[5].ToString()) : 0;
+                        game.Win_O2 = dr[6].ToString() != "" ? Convert.ToInt32(dr[6].ToString()) : game.Win_O1;
+                        game.Sequence = seq;
+                        game.Condition = condition;
+                    }
+
+                    return game;
                 }
-                game.Sequence = seq;
-                game.Condition = condition;
-                return game;
             }
             catch (Exception e)
             {
