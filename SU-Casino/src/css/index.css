@@ -420,10 +420,19 @@ legend {
     font-size: 4rem;
 }
 
-
-.validationError{
-    color:red;
+.validationError {
+    color: red;
 }
+
+/*End page*/
+
+#endText {
+    padding: 20px;
+    border: 1px solid#ddd;
+    border-radius: 5px;
+}
+
+/*Other*/
 
 
 .hidden {
@@ -442,7 +451,7 @@ legend {
     max-width: 0;
 }
 
-
+/*Media*/
 @media (min-width: 1600px) {
     .playground-slot{
         margin-top:100px;
