@@ -73,6 +73,7 @@
     <Content Include="CardDraw.aspx" />
     <Content Include="EndPage.aspx" />
     <Content Include="ErrorPage.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="OneArmdBandit.aspx" />
     <Content Include="Roulette.aspx" />
     <Content Include="src\css\bootstrap-responsive.css" />
@@ -230,6 +231,9 @@
       <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Game.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="helpClass.cs" />
     <Compile Include="OneArmdBandit.aspx.cs">
       <DependentUpon>OneArmdBandit.aspx</DependentUpon>
