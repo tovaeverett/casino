@@ -3,20 +3,9 @@
     background-size: cover;
 }
 
-.header {
-    color: #0088cc;
-}
-
-.playground {
-    background-size: cover;
-}
-
 #play-container {
     background: rgba(98, 22, 22, 0.78);
-    padding-top: 5%;
     box-shadow: 0 0 4px 2px rgba(0,0,0,.3);
-    border: 10px solid transparent;
-    padding: 15px;
 }
 
 .playground-slot {
@@ -25,8 +14,6 @@
     padding-top: 20px;
     padding-bottom: 10px;
     background-color: rgba(0, 0, 0, 0.1);
-    /*background: -webkit-gradient(linear, left top, left bottom, from(#fff), color-stop(0.5, #dfdfdf), to(#cecece) );
-    border: 1px solid black;*/
 }
 
 .playground-inner {
@@ -41,16 +28,13 @@
     border: 2px solid rgba(221, 221, 221, 0.48);
 }
 
-.game-panel > ul {
-    list-style-type: none;
-    display: inline-flex;
-}
 
 .round-button {
     background: linear-gradient(to bottom, #7a1717 0%,#de1d1c 50%,#6d1817 100%);
 }
 
-@media (max-width: 510px) {
+
+/*@media (max-width: 510px) {
     #play-container {
         border: 15px solid transparent;
     }
@@ -64,5 +48,5 @@
     #play-container {
         border: 2px solid transparent;
     }
-}
+}*/
 

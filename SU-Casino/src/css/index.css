@@ -205,7 +205,7 @@ button:focus {
 }
 
 .playground {
-    /*background: #000 url("/src/images/backgrounds/body_theme1.jpg") no-repeat center;*/
+
     background-size: cover;
 }
 
@@ -249,11 +249,11 @@ button:focus {
 }
 
 .winner {
-    padding-top: 15%;
+    padding-top: 1px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url(src/images/backgrounds/winCoins.png) no-repeat center center;
+    background: url("/src/images/backgrounds/winCoins.png") no-repeat center center;
     background-size: contain;
     display: none;
 }
@@ -264,7 +264,7 @@ button:focus {
 #message-content-win {
     padding-top: 5rem;
     z-index: 1000;
-    background: url(/src/images/backgrounds/winCoins.png) no-repeat center center;
+    background: url("/src/images/backgrounds/winCoins.png") no-repeat center center;
     background-size: contain;
 }
 .winner-inner {
@@ -479,6 +479,9 @@ legend {
     .playground-slot {
         height: 250px;
     }
+    #message-content{
+       padding-top:10px;
+    }
 }
 
 @media (max-width: 320px) {
@@ -487,7 +490,7 @@ legend {
     }
 }
 @media screen and (max-height:700px) and (max-width:767px) {
-    .overlayer {
+    .info-content {
         position: absolute;
     }
     .winner {
@@ -497,4 +500,10 @@ legend {
         height: 100px;
     }
 }
+@media screen and (max-height:400px) {
+    #message-content {
+        padding-top: 1px;
+    }
+}
+
 

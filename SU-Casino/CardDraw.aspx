@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="src/css/card_game.css"/>
     <link rel="stylesheet" href="src/css/index.css"/>
    <!-- *****Random themes *****-->
-    <!-- behövs den här triggern ??? -->
+   
        <%  var theme = this.HiddenField_theme.Value;
         switch (theme) {
              case "null":%>
@@ -26,10 +26,16 @@
                 <link rel="stylesheet" href="src/css/themeBlue.css" />
                 <% break;
             case "3":%>
-                <link rel="stylesheet" href="src/css/themeRed.css" />
+                <link rel="stylesheet" href="src/css/themeGold.css" />
                <%  break;
             case "4":%>
-                <link rel="stylesheet" href="src/css/themeGold.css" />
+                <link rel="stylesheet" href="src/css/themeRed.css" />
+              <%   break;
+            case "5":%>
+                <link rel="stylesheet" href="src/css/themeRedB.css" />
+              <%   break;
+            case "6":%>
+                <link rel="stylesheet" href="src/css/themeRedC.css" />
               <%   break;
             default:%>
                 <link rel="stylesheet" href="src/css/themeGold.css" />
@@ -124,7 +130,7 @@
     </div>
      <!-- END: Winning chance --> 
    <!-- Start info: Information about the game, visible first time set by hidden field 'HiddenField_showInfo' -->
-            <div id="startInfo" class="container-fluid overlayer">
+            <div id="startInfo" class="container-fluid overlayer info-content">
                  <div class="row">
                         <div class="col-md-2"></div>
                             <div class="col-md-8 text-center div-center" id="message-content">
