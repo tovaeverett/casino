@@ -38,6 +38,7 @@ namespace SU_Casino
                 RandomSpin();
                 HiddenField_showInfo.Value = "1";
                 Hiddenfield_text.Value = _database.getText("playRouletteInfo");
+                HiddenField_credit.Value = currentGame.Win_O1.ToString();
                 setCurrentBalance();
                 trial = 1;
             }

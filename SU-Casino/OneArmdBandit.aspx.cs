@@ -39,6 +39,7 @@ namespace SU_Casino
                 HiddenField_Spin1.Value = randomSlotSpin().ToString();
                 HiddenField_Spin2.Value = randomSlotSpin().ToString();
                 HiddenField_Spin3.Value = randomSlotSpin().ToString();
+                HiddenField_credit.Value = currentGame.Win_O1.ToString();
                 if (HiddenField_Spin1.Value == HiddenField_Spin2.Value && HiddenField_Spin1.Value == HiddenField_Spin3.Value)
                 {
                     HiddenField_WinLose.Value = "win";
