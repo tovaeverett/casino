@@ -103,8 +103,18 @@ namespace SU_Casino
         {
             Random rnd = new Random();
             int randomTheme = rnd.Next(1, 4);
-          //  var theme = _database.getTheme(randomTheme);
-            HiddenField_theme.Value = randomTheme.ToString();
+            //  var theme = _database.getTheme(randomTheme);
+            if (randomTheme == 4 && currentGame.ThemeVariant != "A")
+            {
+                if (currentGame.ThemeVariant == "B")
+                    HiddenField_theme.Value = (randomTheme + 1).ToString();
+                else if (currentGame.ThemeVariant == "C")
+                    HiddenField_theme.Value = (randomTheme + 2).ToString();
+
+            }
+            else
+                HiddenField_theme.Value = randomTheme.ToString();
+
             return randomTheme;
         }
 

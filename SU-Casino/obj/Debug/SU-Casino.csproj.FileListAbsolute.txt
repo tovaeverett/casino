@@ -299,7 +299,6 @@ C:\Users\Murk Gopi Chand\projects\SU Casino\su-casino\SU-Casino\bin\roslyn\Syste
 C:\Users\Murk Gopi Chand\projects\SU Casino\su-casino\SU-Casino\bin\roslyn\System.IO.FileSystem.dll
 C:\Users\Murk Gopi Chand\projects\SU Casino\su-casino\SU-Casino\bin\roslyn\System.IO.FileSystem.Primitives.dll
 C:\Users\Murk Gopi Chand\projects\SU Casino\su-casino\SU-Casino\bin\roslyn\System.Reflection.Metadata.dll
-C:\Users\Murk Gopi Chand\projects\SU Casino\su-casino\SU-Casino\obj\Debug\SU-Casino.csprojAssemblyReference.cache
 C:\Repo\su-casino\su-casino\SU-Casino\bin\Web.config
 C:\Repo\su-casino\su-casino\SU-Casino\bin\Web.Debug.config
 C:\Repo\su-casino\su-casino\SU-Casino\bin\Web.Release.config
@@ -361,3 +360,4 @@ C:\Repo\su-casino\su-casino\SU-Casino\obj\Debug\SU-Casino.csproj.CoreCompileInpu
 C:\Repo\su-casino\su-casino\SU-Casino\obj\Debug\SU-Casino.csproj.CopyComplete
 C:\Repo\su-casino\su-casino\SU-Casino\obj\Debug\SU-Casino.dll
 C:\Repo\su-casino\su-casino\SU-Casino\obj\Debug\SU-Casino.pdb
+C:\Users\Murk Gopi Chand\projects\SU Casino\su-casino\SU-Casino\obj\Debug\SU-Casino.csprojAssemblyReference.cache
