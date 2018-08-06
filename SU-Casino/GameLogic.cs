@@ -11,6 +11,7 @@ namespace SU_Casino
     {
         static Database _database = new Database();
         public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+
         public static void getInitialBetingelse()
         {
             Random letter = new Random();
@@ -25,16 +26,18 @@ namespace SU_Casino
             if (gameToPlay != null)
             {
                 HttpContext.Current.Session.Add("currentGame", gameToPlay);
-                redirectToGame(gameToPlay.Name);
+                //redirectToGame(gameToPlay.Name);
             }
-        }
 
-        public static void getNextGame(Game currentGame)
+        }
+        
+        public static void getNextGame(Game currentGame, int curentUserBalance)
         {
             int nextSeq = currentGame.Sequence;
             Game gameToPlay = _database.getOrderToPlay(nextSeq+1, currentGame.Condition);
             if(gameToPlay != null)
             {
+                gameToPlay.Saldo = curentUserBalance;
                 HttpContext.Current.Session.Add("currentGame", gameToPlay);
                 redirectToGame(gameToPlay.Name);
             }
@@ -45,7 +48,7 @@ namespace SU_Casino
             }
         }
 
-        private static void redirectToGame(String gameName)
+        public static void redirectToGame(String gameName)
         {
             switch (gameName)
             {

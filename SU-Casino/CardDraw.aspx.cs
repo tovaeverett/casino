@@ -108,7 +108,7 @@ namespace SU_Casino
                 setCards();
                 setCurrentBalance();
                 if (trial > currentGame.Trials)
-                    GameLogic.getNextGame(currentGame);
+                    GameLogic.getNextGame(currentGame, money);
         }
         private void checkForWin()
         {
