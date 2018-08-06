@@ -456,6 +456,9 @@ legend {
     .playground-slot{
         margin-top:100px;
     }
+    #message-container {
+        padding-top: 15rem;
+    }
 }
 
 @media (min-width: 1024px) {

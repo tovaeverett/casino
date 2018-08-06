@@ -90,8 +90,8 @@
                                 <asp:HiddenField ID="HiddenField_WinLose" runat="server" />
                                 <asp:HiddenField ID="HiddenField_theme" runat="server" />
                                 <asp:HiddenField ID="HiddenField_showInfo" runat="server" />
-                                <asp:HiddenField ID="HiddenField_bet1" runat="server" />
-                                <asp:HiddenField ID="HiddenField_bet2" runat="server" />
+                                 <asp:HiddenField ID="HiddenField_win1" runat="server" />
+                                <asp:HiddenField ID="HiddenField_win2" runat="server" />
                                 <asp:HiddenField ID="HiddenField_result" runat="server" />
                                 <asp:HiddenField ID="Hiddenfield_text" runat="server" />
                                 <asp:HiddenField ID="HiddenField_game" runat="server" />
