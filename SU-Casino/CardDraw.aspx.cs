@@ -38,7 +38,7 @@ namespace SU_Casino
                 setCards();
                 HiddenField_game.Value = currentGame.Name;
                 HiddenField_win1.Value = currentGame.Win_O1.ToString();
-                HiddenField_win1.Value = currentGame.Win_O2.ToString();
+                HiddenField_win2.Value = currentGame.Win_O2.ToString();
                 money = currentGame.Saldo;   //Convert.ToInt32(Request["saldo"]);
                 lblMoney.Text = money.ToString();
                 HiddenField_showInfo.Value = "1";

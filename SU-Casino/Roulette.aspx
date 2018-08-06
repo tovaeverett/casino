@@ -55,7 +55,7 @@
                             
                             <asp:HiddenField ID="HiddenFieldrouletteNr" runat="server" />
                             <asp:HiddenField ID="Hiddenfield_text" runat="server" />
-                            <asp:HiddenField ID="HiddenField_credit" runat="server" Value="500"/>
+                            <asp:HiddenField ID="HiddenField_credit" runat="server" Value=""/>
                             <asp:HiddenField ID="HiddenField_showInfo" runat="server" />
                             <asp:HiddenField ID="HiddenField_result" runat="server" />
                             <asp:HiddenField ID="HiddenField_currentBalance" runat="server" />

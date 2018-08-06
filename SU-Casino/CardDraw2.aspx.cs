@@ -40,7 +40,7 @@ namespace SU_Casino
                 HiddenField_game.Value = currentGame.Name;
                 money = currentGame.Saldo;
                 HiddenField_win1.Value = currentGame.Win_O1.ToString();
-                HiddenField_win1.Value = currentGame.Win_O2.ToString();
+                HiddenField_win2.Value = currentGame.Win_O2.ToString();
                 lblMoney.Text = money.ToString();
                 HiddenField_showInfo.Value = "1";
                 trial = 1;

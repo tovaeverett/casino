@@ -188,7 +188,7 @@
                 <div class="form-group question">
                     <fieldset>
                         <legend>
-                                Please indicate which forms of gambling that you have engaged in the last 12 months:
+                                Please indicate which forms of gambling that you have engaged in the last 12 months <br /> <i>( Multiple response options are possible )</i>:
                         </legend>
                         <asp:CheckBoxList  CssClass="radioButtonList" ID="q12" runat="server">
                             <asp:ListItem Value="0">Lottery</asp:ListItem>

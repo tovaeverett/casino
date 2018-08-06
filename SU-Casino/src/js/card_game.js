@@ -81,7 +81,7 @@ function cardClicked(selectedCard) {
             $("#winCredit").html("+" + $("#HiddenField_win2").val());
         }
     }
-
+    console.log($("#winCredit").html());
     if (isWinner && cards.game !== "Transfer_test") {
         result = result + "win";
         $("#HiddenField_result").val(result); 
