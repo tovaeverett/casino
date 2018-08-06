@@ -99,7 +99,7 @@ namespace SU_Casino
         {
             checkForWin();
             if (trial > currentGame.Trials)
-                GameLogic.getNextGame(currentGame);
+                GameLogic.getNextGame(currentGame,money);
 
             RandomSpin();
 

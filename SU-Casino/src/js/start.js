@@ -7,7 +7,8 @@ $(document).ready(function () {
     else {
         $("#introInfo").hide();
         $("#startPlay").show();
-        animateValue("value", 0, 1000, 300);
+        var end = parseInt($("#hiddenfield_startCredit").val());
+        animateValue("value", 0, end, 300);
     }
 });
 

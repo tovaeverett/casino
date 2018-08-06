@@ -58,6 +58,15 @@ namespace SU_Casino {
         protected global::System.Web.UI.WebControls.HiddenField hiddenfield_device;
         
         /// <summary>
+        /// hiddenfield_startCredit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenfield_startCredit;
+        
+        /// <summary>
         /// q1 control.
         /// </summary>
         /// <remarks>

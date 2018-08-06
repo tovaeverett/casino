@@ -15,6 +15,7 @@ namespace SU_Casino
     {
         Database _database = new Database();
         public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+        private static Game initialGame;
         protected void Page_Load(object sender, EventArgs e)
         {
             // string name = RegionInfo.CurrentRegion.DisplayName;
@@ -37,11 +38,20 @@ namespace SU_Casino
             saveQuestions();
             hiddenfield_showInfo.Value = "1";
 
+            //To get the start credit from DB
+            GameLogic.getInitialBetingelse();
+            initialGame = (Game)Session["currentGame"];
+            if (initialGame != null)
+                hiddenfield_startCredit.Value = initialGame.Saldo.ToString();
+            else       //error handling?    
+                Response.Redirect("ErrorPage.aspx");
+
         }
         protected void btnStart_Click(object sender, EventArgs e)
         {
-            GameLogic.getInitialBetingelse();
-            //getBetingelse();
+            //GameLogic.getInitialBetingelse();
+            GameLogic.redirectToGame(initialGame.Name);
+ 
         }
 
         private void saveQuestions()
