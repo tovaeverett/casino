@@ -34,10 +34,10 @@ function initCardGame() {
     var baseUrl = "src/images/cards/";
     var theme = $("#HiddenField_theme").val();
     var game = $("#HiddenField_game").val();
-    if (cards.game === "Transfer_test") {
+    if (game === "Transfer_test") {
         $("#moneyLable").hide();
     }
-    if (cards.game === "DET_realworld") {
+    if (game === "DET_realworld") {
         $("#piggySpan").show();
     }
     gameInit(theme);
