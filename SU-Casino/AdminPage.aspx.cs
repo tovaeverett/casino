@@ -168,84 +168,95 @@ namespace SU_Casino
             Label lblRowId = (Label)row.FindControl("lblRowId");
             TextBox txtprop_n = (TextBox)row.FindControl("txtEditProp_N");
             TextBox txtcondition = (TextBox)row.FindControl("txtEditcondition");
-            TextBox txtmoment = (TextBox)row.FindControl("txtEditmoment");
-            TextBox txtname = (TextBox)row.FindControl("txtEditname");
-            TextBox txtprob_S0 = (TextBox)row.FindControl("txtEditprob_S0");
+            TextBox txtseq = (TextBox)row.FindControl("txtEditSeq");
+            TextBox txttrials = (TextBox)row.FindControl("txtEditTrials");
+            TextBox txtname = (TextBox)row.FindControl("txtEditName");
+            TextBox txtsaldo = (TextBox)row.FindControl("txtEditSaldo");
+            TextBox txtperc_S0 = (TextBox)row.FindControl("txtEditperc_S0");
             TextBox txtperc_S1 = (TextBox)row.FindControl("txtEditperc_S1");
+            TextBox txtS1_variant = (TextBox)row.FindControl("txtEditS1_variant");
             TextBox txtperc_S2 = (TextBox)row.FindControl("txtEditperc_S2");
             TextBox txtperc_S3 = (TextBox)row.FindControl("txtEditperc_S3");
             TextBox txtperc_S4 = (TextBox)row.FindControl("txtEditperc_S4");
             TextBox txtbet_R1 = (TextBox)row.FindControl("txtEditbet_R1");
             TextBox txtbet_R2 = (TextBox)row.FindControl("txtEditbet_R2");
+            TextBox txtbet_R3 = (TextBox)row.FindControl("txtEditbet_R3");
+            TextBox txtbet_B4 = (TextBox)row.FindControl("txtEditbet_B4");
+            TextBox txtif_R1 = (TextBox)row.FindControl("txtEditIf_R1");
+            TextBox txtif_R2 = (TextBox)row.FindControl("txtEditIf_R2");
+            TextBox txtif_R3 = (TextBox)row.FindControl("txtEditIf_R3");
+            TextBox txtif_R4 = (TextBox)row.FindControl("txtEditIf_R4");
             TextBox txtprob_O1 = (TextBox)row.FindControl("txtEditprob_O1");
             TextBox txtprob_O2 = (TextBox)row.FindControl("txtEditprob_O2");
             TextBox txtwin_O1 = (TextBox)row.FindControl("txtEditwin_O1");
             TextBox txtwin_O2 = (TextBox)row.FindControl("txtEditwin_O2");
-            TextBox txtifS0 = (TextBox)row.FindControl("txtEditifS0");
             TextBox txtifS1win = (TextBox)row.FindControl("txtEditifS1win");
             TextBox txtifS2win = (TextBox)row.FindControl("txtEditifS2win");
             TextBox txtifS3win = (TextBox)row.FindControl("txtEditifS3win");
             TextBox txtifS4win = (TextBox)row.FindControl("txtEditifS4win");
             TextBox txtifS1probX = (TextBox)row.FindControl("txtEditifS1probX");
             TextBox txtifS2probX = (TextBox)row.FindControl("txtEditifS2probX");
-            TextBox txtifS3probX = (TextBox)row.FindControl("txtEditifS3probX");
-            TextBox txtifS4probX = (TextBox)row.FindControl("txtEditifS4probX");
             TextBox txthide = (TextBox)row.FindControl("txtEdithide");
-
-
-
-            string query = "UPDATE [matris] SET prop_n = @prop_n, condition = @condition, moment = @moment, name = @name, prob_S0 = @prob_S0," +
-                " perc_S1 = @perc_S1, perc_S2 = @perc_S2, perc_S3 = @perc_S3, perc_S4 = @perc_S4, bet_R1 = @bet_R1, bet_R2 = @bet_R2, prob_O1 = @prob_O1, prob_O2 = @prob_O2, win_O1 = @win_O1," +
-                " win_O2 = @win_O2, ifS0 = @ifS0, ifS1win = @ifS1win, ifS2win = @ifS2win, ifS3win = @ifS3win, ifS4win = @ifS4win, ifS1probX = @ifS1probX, ifS2probX = @ifS2probX,  " +
-                "ifS3probX = @ifS3probX, ifS4probX = @ifS4probX , hide = @hide" +
-                " WHERE RowId = @rowId";
+            TextBox txtfreeze_win = (TextBox)row.FindControl("txtEditFreeze_win");
+            
+            string query = "UPDATE [matris] SET prop_n = @prop_n," +
+                " condition = @condition, seq = @seq, trials = @trials, name = @name, saldo = @saldo, perc_S0 = @perc_S0," +
+                " perc_S1 = @perc_S1, S1_variant = @S1_variant, perc_S2 = @perc_S2, perc_S3 = @perc_S3, perc_S4 = @perc_S4, bet_R1 = @bet_R1, bet_R2 = @bet_R2, bet_R3 = @bet_R3, bet_B4 = @bet_B4," +
+                " if_R1 = @if_R1, if_R2 = @if_R2, if_R3 = @if_R3, if_R4 = @if_R4, prob_O1 = @prob_O1, prob_O2 = @prob_O2, win_O1 = @win_O1," +
+                " win_O2 = @win_O2, ifS1win = @ifS1win, ifS2win = @ifS2win, ifS3win = @ifS3win, ifS4win = @ifS4win, ifS1probX = @ifS1probX, ifS2probX = @ifS2probX, hide = @hide, freeze_win = @freeze_win" +
+                " WHERE RowId = @RowID";
 
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ToString()))
             using (SqlCommand command = new SqlCommand(query, connection))
 
-                try
-                {
-                    // open the connection, execute, etc
-                    List<SqlParameter> p = new List<SqlParameter>();
-                    p.Add(new SqlParameter("@rowid", lblRowId.Text));
-                    p.Add(new SqlParameter("@prop_n", txtprop_n.Text));
-                    p.Add(new SqlParameter("@condition", txtcondition.Text));
-                    p.Add(new SqlParameter("@moment", txtmoment.Text));
-                    p.Add(new SqlParameter("@name", txtname.Text));
-                    p.Add(new SqlParameter("@prob_S0", txtprob_S0.Text));
-                    p.Add(new SqlParameter("@perc_S1", txtperc_S1.Text));
-                    p.Add(new SqlParameter("@perc_S2", txtperc_S2.Text));
-                    p.Add(new SqlParameter("@perc_S3", txtperc_S3.Text));
-                    p.Add(new SqlParameter("@perc_S4", txtperc_S4.Text));
-                    p.Add(new SqlParameter("@bet_R1", txtbet_R1.Text));
-                    p.Add(new SqlParameter("@bet_R2", txtbet_R2.Text));
-                    p.Add(new SqlParameter("@prob_O1", txtprob_O1.Text));
-                    p.Add(new SqlParameter("@prob_O2", txtprob_O2.Text));
-                    p.Add(new SqlParameter("@win_O1", txtwin_O1.Text));
-                    p.Add(new SqlParameter("@win_O2", txtwin_O2.Text));
-                    p.Add(new SqlParameter("@ifS0", txtifS0.Text));
-                    p.Add(new SqlParameter("@ifS1win", txtifS1win.Text));
-                    p.Add(new SqlParameter("@ifS2win", txtifS2win.Text));
-                    p.Add(new SqlParameter("@ifS3win", txtifS3win.Text));
-                    p.Add(new SqlParameter("@ifS4win", txtifS4win.Text));
-                    p.Add(new SqlParameter("@ifS1probX", txtifS1probX.Text));
-                    p.Add(new SqlParameter("@ifS2probX", txtifS2probX.Text));
-                    p.Add(new SqlParameter("@ifS3probX", txtifS3probX.Text));
-                    p.Add(new SqlParameter("@ifS4probX", txtifS4probX.Text));
-                    p.Add(new SqlParameter("@hide", txthide.Text));
+            try
+            {
+                // open the connection, execute, etc
+                List<SqlParameter> p = new List<SqlParameter>();
+                p.Add(new SqlParameter("@RowID", lblRowId.Text));
+                p.Add(new SqlParameter("@prop_n", txtprop_n.Text));
+                p.Add(new SqlParameter("@condition", txtcondition.Text));
+                p.Add(new SqlParameter("@seq", txtseq.Text));
+                p.Add(new SqlParameter("@trials", txttrials.Text));
+                p.Add(new SqlParameter("@name", txtname.Text));
+                p.Add(new SqlParameter("@saldo", txtsaldo.Text));
+                p.Add(new SqlParameter("@perc_S0", txtperc_S0.Text));
+                p.Add(new SqlParameter("@perc_S1", txtperc_S1.Text));
+                p.Add(new SqlParameter("@S1_variant", txtS1_variant.Text));
+                p.Add(new SqlParameter("@perc_S2", txtperc_S2.Text));
+                p.Add(new SqlParameter("@perc_S3", txtperc_S3.Text));
+                p.Add(new SqlParameter("@perc_S4", txtperc_S4.Text));
+                p.Add(new SqlParameter("@bet_R1", txtbet_R1.Text));
+                p.Add(new SqlParameter("@bet_R2", txtbet_R2.Text));
+                p.Add(new SqlParameter("@bet_R3", txtbet_R3.Text));
+                p.Add(new SqlParameter("@bet_B4", txtbet_B4.Text));
+                p.Add(new SqlParameter("@if_R1", txtif_R1.Text));
+                p.Add(new SqlParameter("@if_R2", txtif_R2.Text));
+                p.Add(new SqlParameter("@if_R3", txtif_R3.Text));
+                p.Add(new SqlParameter("@if_R4", txtif_R4.Text));
+                p.Add(new SqlParameter("@prob_O1", txtprob_O1.Text));
+                p.Add(new SqlParameter("@prob_O2", txtprob_O2.Text));
+                p.Add(new SqlParameter("@win_O1", txtwin_O1.Text));
+                p.Add(new SqlParameter("@win_O2", txtwin_O2.Text));
+                p.Add(new SqlParameter("@ifS1win", txtifS1win.Text));
+                p.Add(new SqlParameter("@ifS2win", txtifS2win.Text));
+                p.Add(new SqlParameter("@ifS3win", txtifS3win.Text));
+                p.Add(new SqlParameter("@ifS4win", txtifS4win.Text));
+                p.Add(new SqlParameter("@ifS1probX", txtifS1probX.Text));
+                p.Add(new SqlParameter("@ifS2probX", txtifS2probX.Text));
+                p.Add(new SqlParameter("@hide", txthide.Text));
+                p.Add(new SqlParameter("@freeze_win", txtfreeze_win.Text));
 
-                    connection.Open();
-                    GetExample(command, p.ToArray());
-                    command.ExecuteNonQuery();
-                    command.Parameters.Clear();
-                    GetMatris();
-
-
-                }
-                catch (Exception c)
-                {
-                    // log and handle exception(s)
-                }
+                connection.Open();
+                GetExample(command, p.ToArray());
+                command.ExecuteNonQuery();
+                command.Parameters.Clear();
+                GetMatris();
+            }
+            catch (Exception c)
+            {
+                // log and handle exception(s)
+            }
         }
         public void GetExample(SqlCommand command, params SqlParameter[] p)
         {
@@ -270,27 +281,25 @@ namespace SU_Casino
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ToString()))
             using (SqlCommand command = new SqlCommand(query, connection))
 
-                try
-                {
-                    // open the connection, execute, etc
-                    List<SqlParameter> p = new List<SqlParameter>();
-                    p.Add(new SqlParameter("@rowid", lblRowId.Text));
+            try
+            {
+                // open the connection, execute, etc
+                List<SqlParameter> p = new List<SqlParameter>();
+                p.Add(new SqlParameter("@rowid", lblRowId.Text));
 
-                    connection.Open();
-                    GetExample(command, p.ToArray());
-                    command.ExecuteNonQuery();
-                    command.Parameters.Clear();
-                    GetMatris();
+                connection.Open();
+                GetExample(command, p.ToArray());
+                command.ExecuteNonQuery();
+                command.Parameters.Clear();
+                GetMatris();
 
-                }
-                catch (Exception c)
-                {
-                    // log and handle exception(s)
-                }
+            }
+            catch (Exception c)
+            {
+                // log and handle exception(s)
+            }
         }
-
-
-
+        
         protected void gvMatris_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             gvMatris.EditIndex = -1;
@@ -302,8 +311,8 @@ namespace SU_Casino
         {
             using (SqlConnection openCon = connectionstring)
             {
-                string saveStaff = "INSERT into matris (prop_n,condition,moment,name,prob_S0,perc_S1,perc_S2,perc_S3,perc_S4,bet_R1,bet_R2,prob_O1,prob_O2,win_O1,win_O2,ifS0,ifS1win,ifS2win,ifS3win,ifS4win,ifS1probX,ifS2probX,ifS3probX,ifS4probX,hide)" +
-                    " VALUES (@prop_n,@condition,@moment,@name,@prob_S0,@perc_S1,@perc_S2,@perc_S3,@perc_S4,@bet_R1,@bet_R2,@prob_O1,@prob_O2,@win_O1,@win_O2,@ifS0,@ifS1win,@ifS2win,@ifS3win,@ifS4win,@ifS1probX,@ifS2probX,@ifS3probX,@ifS4probX,@hide)";
+                string saveStaff = "INSERT into matris (prop_n,condition,seq,trials,name,saldo,perc_S0,perc_S1,S1_variant,perc_S2,perc_S3,perc_S4,bet_R1,bet_R2,bet_R3,bet_B4,if_R1,if_R2,if_R3,if_R4,prob_O1,prob_O2,win_O1,win_O2,ifS1win,ifS2win,ifS3win,ifS4win,ifS1probX,ifS2probX,hide,freeze_win)" +
+                    " VALUES (@prop_n,@condition,@seq,@trials,@name,@saldo,@perc_S0,@perc_S1,@S1_variant,@perc_S2,@perc_S3,@perc_S4,@bet_R1,@bet_R2,@bet_R3,@bet_B4,@if_R1,@if_R2,@if_R3,@if_R4,  @prob_O1,@prob_O2,@win_O1,@win_O2,@ifS1win,@ifS2win,@ifS3win,@ifS4win,@ifS1probX,@ifS2probX,@hide,@freeze_win)";
 
                 using (SqlCommand Save = new SqlCommand(saveStaff))
                 {
@@ -311,29 +320,36 @@ namespace SU_Casino
 
                     Save.Parameters.Add(new SqlParameter("@prop_n", ""));
                     Save.Parameters.Add(new SqlParameter("@condition", ""));
-                    Save.Parameters.Add(new SqlParameter("@moment", ""));
+                    Save.Parameters.Add(new SqlParameter("@seq", ""));
+                    Save.Parameters.Add(new SqlParameter("@trials", ""));
                     Save.Parameters.Add(new SqlParameter("@name", ""));
-                    Save.Parameters.Add(new SqlParameter("@prob_S0", ""));
+                    Save.Parameters.Add(new SqlParameter("@saldo", ""));
+                    Save.Parameters.Add(new SqlParameter("@perc_S0", ""));
                     Save.Parameters.Add(new SqlParameter("@perc_S1", ""));
+                    Save.Parameters.Add(new SqlParameter("@S1_variant", ""));
                     Save.Parameters.Add(new SqlParameter("@perc_S2", ""));
                     Save.Parameters.Add(new SqlParameter("@perc_S3", ""));
                     Save.Parameters.Add(new SqlParameter("@perc_S4", ""));
                     Save.Parameters.Add(new SqlParameter("@bet_R1", ""));
                     Save.Parameters.Add(new SqlParameter("@bet_R2", ""));
+                    Save.Parameters.Add(new SqlParameter("@bet_R3", ""));
+                    Save.Parameters.Add(new SqlParameter("@bet_B4", ""));
+                    Save.Parameters.Add(new SqlParameter("@if_R1", ""));
+                    Save.Parameters.Add(new SqlParameter("@if_R2", ""));
+                    Save.Parameters.Add(new SqlParameter("@if_R3", ""));
+                    Save.Parameters.Add(new SqlParameter("@if_R4", ""));
                     Save.Parameters.Add(new SqlParameter("@prob_O1", ""));
                     Save.Parameters.Add(new SqlParameter("@prob_O2", ""));
                     Save.Parameters.Add(new SqlParameter("@win_O1", ""));
                     Save.Parameters.Add(new SqlParameter("@win_O2", ""));
-                    Save.Parameters.Add(new SqlParameter("@ifS0", ""));
                     Save.Parameters.Add(new SqlParameter("@ifS1win", ""));
                     Save.Parameters.Add(new SqlParameter("@ifS2win", ""));
                     Save.Parameters.Add(new SqlParameter("@ifS3win", ""));
                     Save.Parameters.Add(new SqlParameter("@ifS4win", ""));
                     Save.Parameters.Add(new SqlParameter("@ifS1probX", ""));
                     Save.Parameters.Add(new SqlParameter("@ifS2probX", ""));
-                    Save.Parameters.Add(new SqlParameter("@ifS3probX", ""));
-                    Save.Parameters.Add(new SqlParameter("@ifS4probX", ""));
                     Save.Parameters.Add(new SqlParameter("@hide", ""));
+                    Save.Parameters.Add(new SqlParameter("@freeze_win", ""));
 
                     openCon.Open();
 
