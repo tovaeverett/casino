@@ -72,10 +72,9 @@ namespace SU_Casino
                 q11.Text
             };
 
-            foreach (ListItem item in q12.Items)
+            foreach (ListItem item in q12.Items.Cast<ListItem>().Where(li => li.Selected))
             {
                 a12 += item.Text + ",";
-                
             }
             answers.Add(a12);
             answers.Add(q13.SelectedItem.Value);
