@@ -49,15 +49,9 @@ namespace SU_Casino
             }
         }
 
-        public string randomCard(int min)
+        public string randomCard(int min, double winChance)
         {
-            Random letter = new Random();
-            char[] Array = "SHDC".ToCharArray();
-
-           
-            int num = letter.Next(0, 4); 
-            char let = Array[num];
-            
+            var cardColor = GetColor();
             Random rnd = new Random();
             int max = 0;
         
@@ -71,33 +65,59 @@ namespace SU_Casino
                 max = 13;
             }
 
-            int randomcard = rnd.Next(min, max);
-           
-            // string url = "src/images/cards/" + randomcard + "C.png";
-            string card = randomcard.ToString()+ let;
-            return card;
+            // få array med "förlorar" korten
+            var losingCards = currentGame.RetrieveLosingNumbers(min, max, CheckCard);
+
+            // vann eller vann inte?
+            if (didWin(winChance))
+            {
+                return CheckCard.ToString() + cardColor;
+            }
+            else
+            {
+                int randomcardIndex = rnd.Next(0, losingCards.Length);
+
+                int randomcard = losingCards[randomcardIndex];
+                // string url = "src/images/cards/" + randomcard + "C.png";
+                string card = randomcard.ToString() + cardColor;
+                return card;
+            }
         }
-
-
-        public string randomStartCard()
+             
+        private char GetColor()
         {
             Random letter = new Random();
             char[] Array = "SHDC".ToCharArray();
+
             int num = letter.Next(0, 4);
             char let = Array[num];
+            return let;
+        }
 
+        private bool didWin(double winChance)
+        {
+            Random winRnd = new Random();
+            var accumulator = 100 / (int)(winChance * 100);
+
+            var res = winRnd.Next(0, accumulator);
+
+            return res == 1 ? true : false;
+        }
+
+        public string randomStartCard()
+        {
             Random rnd = new Random();
             int randomcard = rnd.Next(1, 13);
             //string url = "~/Cards/" + randomcard + ".png";
             CheckCard = randomcard;
-            return randomcard.ToString() + let;
+            return randomcard.ToString() + GetColor();
         }
 
         public void setCards()
         {
             HiddenField_card3.Value = randomStartCard().ToString();
-            HiddenField_card2.Value = randomCard(CheckCard).ToString();
-            HiddenField_card1.Value = randomCard(CheckCard).ToString();
+            HiddenField_card2.Value = randomCard(CheckCard, currentGame.Prob_O2).ToString();
+            HiddenField_card1.Value = randomCard(CheckCard, currentGame.Prob_O1).ToString();
 
        }
         protected void btnPlay_Click(object sender, EventArgs e)

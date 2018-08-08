@@ -328,8 +328,10 @@ namespace SU_Casino
                         game.Saldo = dr[2].ToString() != "" ? Convert.ToInt32(dr[2].ToString()) : 0;
                         game.Bet_R1 = dr[3].ToString() != "" ? Convert.ToInt32(dr[3].ToString()) : 0;
                         game.Bet_R2 = dr[4].ToString() != "" ? Convert.ToInt32(dr[4].ToString()) : game.Bet_R1;
-                        game.Win_O1 = dr[5].ToString() != "" ? Convert.ToInt32(dr[5].ToString()) : 0;
-                        game.Win_O2 = dr[6].ToString() != "" ? Convert.ToInt32(dr[6].ToString()) : game.Win_O1;
+                        game.Prob_O1 = dr[5].ToString() != "" ? Convert.ToDouble(dr[5].ToString()) : 0;
+                        game.Prob_O2 = dr[6].ToString() != "" ? Convert.ToDouble(dr[6].ToString()) : game.Prob_O1;
+                        game.Win_O1 = dr[7].ToString() != "" ? Convert.ToInt32(dr[7].ToString()) : 0;
+                        game.Win_O2 = dr[8].ToString() != "" ? Convert.ToInt32(dr[8].ToString()) : game.Win_O1;
                         game.Sequence = seq;
                         game.Condition = condition;
                     }
