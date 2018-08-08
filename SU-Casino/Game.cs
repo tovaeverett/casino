@@ -18,6 +18,7 @@ namespace SU_Casino
         private double prob_O2;
         private int win_O1;
         private int win_O2;
+        private String themeVariant;
 
         public string Name { get => name; set => name = value; }
         public int Trials { get => trials; set => trials = value; }
@@ -30,6 +31,7 @@ namespace SU_Casino
         public int Win_O2 { get => win_O2; set => win_O2 = value; }
         public string Condition { get => condition; set => condition = value; }
         public int Sequence { get => sequence; set => sequence = value; }
+        public string ThemeVariant { get => themeVariant; set => themeVariant = value; }
 
         public static Game getDummyGame()
         {
