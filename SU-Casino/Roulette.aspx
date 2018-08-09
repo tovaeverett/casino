@@ -52,7 +52,9 @@
                         </ul>
                         <form id="form1" runat="server">
                             
-                            
+                            <asp:HiddenField ID="HiddenField_numorder" runat="server" />
+                            <asp:HiddenField ID="HiddenField_redNum" runat="server" />
+                            <asp:HiddenField ID="HiddenField_blackNum" runat="server" />                            
                             <asp:HiddenField ID="HiddenFieldrouletteNr" runat="server" />
                             <asp:HiddenField ID="Hiddenfield_text" runat="server" />
                             <asp:HiddenField ID="HiddenField_credit" runat="server" Value=""/>
