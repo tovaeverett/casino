@@ -36,9 +36,7 @@ namespace SU_Casino
             {
                 HiddenField_showInfo.Value = "1";
                 Hiddenfield_text.Value = _database.getText("playSlotInfo");
-                HiddenField_Spin1.Value = randomSlotSpin().ToString();
-                HiddenField_Spin2.Value = randomSlotSpin().ToString();
-                HiddenField_Spin3.Value = randomSlotSpin().ToString();
+                SpinIt();
                 HiddenField_credit.Value = currentGame.Win_O1.ToString();
                 if (HiddenField_Spin1.Value == HiddenField_Spin2.Value && HiddenField_Spin1.Value == HiddenField_Spin3.Value)
                 {
@@ -56,11 +54,36 @@ namespace SU_Casino
             }
         }
 
+        private void SpinIt()
+        {
+            var firstSpin = randomSlotSpin();
+            
+            if (currentGame.didWin())
+            {
+                HiddenField_Spin1.Value = firstSpin.ToString();
+                HiddenField_Spin2.Value = firstSpin.ToString();
+                HiddenField_Spin3.Value = firstSpin.ToString();
+            }
+            else
+            {
+                int secondSpin;
+
+                // chansen finns ju alltid att random blir samma som första
+                // trots att man "bestämt" att användaren ska förlora
+                do
+                {
+                    secondSpin = randomSlotSpin();
+                } while (firstSpin == secondSpin);
+
+                HiddenField_Spin1.Value = firstSpin.ToString();
+                HiddenField_Spin2.Value = secondSpin.ToString();
+                HiddenField_Spin3.Value = randomSlotSpin().ToString();
+            }
+        }
+
         protected void btnPlay_Click(object sender, EventArgs e)
         {
-            HiddenField_Spin1.Value = randomSlotSpin().ToString();
-            HiddenField_Spin2.Value = randomSlotSpin().ToString();
-            HiddenField_Spin3.Value = randomSlotSpin().ToString();
+            SpinIt();
             if (Convert.ToInt32(HiddenField_Spin1.Value) == Convert.ToInt32(HiddenField_Spin2.Value) && Convert.ToInt32(HiddenField_Spin1.Value) == Convert.ToInt32(HiddenField_Spin3.Value))
             {
                 HiddenField_WinLose.Value = "win";
