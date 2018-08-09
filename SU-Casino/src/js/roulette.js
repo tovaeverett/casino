@@ -57,7 +57,7 @@
 			p.slowDownStartDistance = p.distance;
 			p.maxDistance = p.distance + (2*p.totalHeight);
 			p.maxDistance += p.imageHeight - p.topPosition % p.imageHeight;
-			if (p.stopImageNumber != null) {
+			if (p.stopImageNumber !== null) {
 				p.maxDistance += (p.totalHeight - (p.maxDistance % p.totalHeight) + (p.stopImageNumber * p.imageHeight))
 						% p.totalHeight;
 			}
@@ -65,17 +65,18 @@
 
 		var roll = function() {
 			var speed_ = p.speed;
+            var rate_;
 
 			if (p.isRunUp) {
 				if (p.distance <= p.runUpDistance) {
-					var rate_ = ~~((p.distance / p.runUpDistance) * p.speed);
+					rate_ = ~~((p.distance / p.runUpDistance) * p.speed);
 					speed_ = rate_ + 1;
 				} else {
 					p.isRunUp = false;
 				}
 
 			} else if (p.isSlowdown) {
-				var rate_ = ~~(((p.maxDistance - p.distance) / (p.maxDistance - p.slowDownStartDistance)) * (p.speed));
+				rate_ = ~~(((p.maxDistance - p.distance) / (p.maxDistance - p.slowDownStartDistance)) * (p.speed));
 				speed_ = rate_ + 1;
 			}
 
