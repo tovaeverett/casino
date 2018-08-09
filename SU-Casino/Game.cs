@@ -51,6 +51,13 @@ namespace SU_Casino
 
         }
 
+        /// <summary>
+        /// Creates and returns a int array within min and max range values. winningNumber is excluded.
+        /// </summary>
+        /// <param name="min">The lowest value for the int array.</param>
+        /// <param name="max">The highest value for the int array.</param>
+        /// <param name="winningNumber">A "winning number", which will be excluded from the array.</param>
+        /// <returns>A int array.</returns>
         public int[] RetrieveLosingNumbers(int min, int max, int winningNumber)
         {
             var range = Math.Abs(min - max) + 1;
@@ -66,7 +73,40 @@ namespace SU_Casino
 
             return losers.ToArray();
         }
-        
+
+        /// <summary>
+        /// Assert if current game did win.
+        /// </summary>
+        /// <returns>True for win, false for lose</returns>
+        public bool didWin()
+        {
+            Random winRnd = new Random();
+            var accumulator = 100 / (int)(getWinningChance() * 100);
+
+            var res = winRnd.Next(0, accumulator);
+
+            return res == 1 ? true : false;
+        }
+
+        /// <summary>
+        /// Assert if current game did win. Parameter is used through CardDraw since Game object uses two probability properties and card game uses two cards.
+        /// </summary>
+        /// <param name="winChance">Decimal value for winning chance</param>
+        /// <returns>True for win, false for lose</returns>
+        public bool didWin(double winChance)
+        {
+            Random winRnd = new Random();
+            var accumulator = 100 / (int)(winChance * 100);
+
+            var res = winRnd.Next(0, accumulator);
+
+            return res == 1 ? true : false;
+        }
+
+        /// <summary>
+        /// Evaluates Game objects two probability properties.
+        /// </summary>
+        /// <returns>Returns one of the probability properties.</returns>
         public double getWinningChance()
         {
             double prob;

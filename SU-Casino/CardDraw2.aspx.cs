@@ -78,7 +78,7 @@ namespace SU_Casino
             var losingCards = currentGame.RetrieveLosingNumbers(min, max, CheckCard);
 
             // vann eller vann inte?
-            if (didWin(winChance))
+            if (currentGame.didWin(winChance))
             {
                 return CheckCard.ToString() + cardColor;
             }
@@ -102,17 +102,7 @@ namespace SU_Casino
             char let = Array[num];
             return let;
         }
-
-        private bool didWin(double winChance)
-        {
-            Random winRnd = new Random();
-            var accumulator = 100 / (int)(winChance * 100);
-
-            var res = winRnd.Next(0, accumulator);
-
-            return res == 1 ? true : false;
-        }
-
+        
         public string randomStartCard()
         {
             Random letter = new Random();
