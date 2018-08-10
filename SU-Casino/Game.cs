@@ -12,6 +12,7 @@ namespace SU_Casino
         private int sequence;
         private int trials;
         private int saldo;
+        private double prob_S0;
         private int bet_R1;
         private int bet_R2;
         private double prob_O1;
@@ -23,6 +24,7 @@ namespace SU_Casino
         public string Name { get => name; set => name = value; }
         public int Trials { get => trials; set => trials = value; }
         public int Saldo { get => saldo; set => saldo = value; }
+        public double Prob_S0 { get => prob_S0; set => prob_S0 = value; }
         public int Bet_R1 { get => bet_R1; set => bet_R1 = value; }
         public int Bet_R2 { get => bet_R2; set => bet_R2 = value; }
         public double Prob_O1 { get => prob_O1; set => prob_O1 = value; }
@@ -41,6 +43,7 @@ namespace SU_Casino
             dummy.sequence = 2;
             dummy.Trials = 2;
             dummy.Saldo = 1500;
+            dummy.Prob_S0 = 0.3;
             dummy.Bet_R1 = -25;
             dummy.Bet_R2 = -45;
             dummy.Prob_O1 = 0.2;
@@ -96,8 +99,11 @@ namespace SU_Casino
         public bool didWin(double winChance)
         {
             Random winRnd = new Random();
+
+            // hur många gånger går vinst chanse in i 100
             var accumulator = 100 / (int)(winChance * 100);
 
+            
             var res = winRnd.Next(0, accumulator);
 
             return res == 1 ? true : false;
@@ -110,23 +116,15 @@ namespace SU_Casino
         public double getWinningChance()
         {
             double prob;
-            
+            var rnd = new Random();
+
             if (this.Prob_O1 == this.Prob_O2)
             {
                 prob = this.Prob_O2;
             }
             else
             {
-                var rnd = new Random();
-
-                if (rnd.Next(1, 2) == 1)
-                {
-                    prob = this.Prob_O1;
-                }
-                else
-                {
-                    prob = this.Prob_O2;
-                }
+                prob = rnd.Next(1, 2) == 1 ? Prob_O1 : Prob_O2;
             }
             return prob;
         }
