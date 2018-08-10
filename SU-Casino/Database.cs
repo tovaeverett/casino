@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 
@@ -11,7 +13,8 @@ namespace SU_Casino
 {
     public class Database
     {
-       public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString); //(@"Data Source=LAPTOP-TGVH7EEV\HUGOSSONSQL;Initial Catalog=SU_Casino;Integrated Security=True");//
+        public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString); //(@"Data Source=LAPTOP-TGVH7EEV\HUGOSSONSQL;Initial Catalog=SU_Casino;Integrated Security=True");//
+
         public string getPlayerCredits(string userid)
         {
             string credit = "";
@@ -31,12 +34,74 @@ namespace SU_Casino
                     credit = dr[0].ToString();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                var log = new EventLog($"Error getting credits for user: {userid}", userid, ex);
+
+                Log(log);
                 // msg = "Error trying login user : " + txtUsername.Text;
             }
             return credit;
         }
+
+        public void Log(EventLog log)
+        {
+            // Finns också en SP som heter insertEventLog men ger samma "fel"...
+            // ... att @userid inte följer med....
+            string query = "INSERT into [eventLog] (user_Id,logDate,title,message) VALUES (@userid,@logDate,@title,@message)";
+
+            using (SqlConnection openCon = connectionstring)
+            using (SqlCommand Save = new SqlCommand(query))
+            {
+                Save.Connection = openCon;
+
+                Save.Parameters.Add(new SqlParameter("@userid", log.userid));
+                Save.Parameters.Add(new SqlParameter("@logDate", DateTime.Now));
+                Save.Parameters.Add(new SqlParameter("@title", log.title));
+                Save.Parameters.Add(new SqlParameter("@message", log.message));
+
+                try
+                {
+                    openCon.Open();
+
+                    Save.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+
+                }
+                finally
+                {
+                    openCon.Close();
+                }
+            }
+                    
+            //SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+            //SqlCommand cmd = new SqlCommand(query, conn);
+            
+            //cmd.Parameters.Add(new SqlParameter("@userid", log.userid));
+            //cmd.Parameters.Add(new SqlParameter("@title", log.title));
+            //cmd.Parameters.Add(new SqlParameter("@message", log.message));
+
+            //try
+            //{
+            //    conn.Open();
+            //    //GetExample(cmd, p.ToArray());
+            //    cmd.ExecuteNonQuery();
+            //    cmd.Parameters.Clear();
+            //}
+            //catch (Exception ex)
+            //{
+            //    //   throw new Exception("Execption adding eventlog. " + ex.Message);
+            //}
+            //finally
+            //{
+            //    conn.Close();
+            //    conn.Dispose();
+            //    cmd.Dispose();
+            //}
+        }
+
         public void updatePlayerLog(Playerlog log)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
@@ -63,22 +128,26 @@ namespace SU_Casino
             }
             catch (Exception ex)
             {
-             //   throw new Exception("Execption adding account. " + ex.Message);
+                var evLog = new EventLog($"Exception adding account: {log.userid}", log.userid, ex);
+
+                Log(evLog);
             }
             finally
             {
                 conn.Close();
             }
         }
+
         public void insertNewPlayer()
         {
 
         }
+
         public bool checkIfPlayerExsist(string userid)
         {
-
             bool userExist = false;
             string user = null;
+
             try
             {
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
@@ -97,22 +166,25 @@ namespace SU_Casino
                     user = dr[0].ToString();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // msg = "Error trying login user : " + txtUsername.Text;
+                var log = new EventLog($"Error checking for user: {userid}", userid, ex);
+
+                Log(log);
             }
+
             if (user != null)
             {
                 userExist = true;
             }
-            return userExist;
 
+            return userExist;
         }
 
         public string getTheme(int randomnr,string gamename = null)
         {
-         
             string theme = "";
+
             try
             {
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
@@ -131,19 +203,16 @@ namespace SU_Casino
                     theme = dr[0].ToString();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // msg = "Error trying login user : " + txtUsername.Text;
+                var log = new EventLog($"Error getting theme for game: {gamename} with random nr: {randomnr}", null, ex);
+
+                Log(log);
             }
-            if (theme != "")
-            {
-                return theme;
-            }
-            else
-            {
-                return null;
-            }
+
+            return theme != "" ? theme : null;
         }
+
         public string getAllThemes(string condition, int moment, string gamename = null)
         {
             if (gamename != null)
@@ -177,13 +246,16 @@ namespace SU_Casino
                     theme4 = Convert.ToInt32(dr[3]);
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // msg = "Error trying login user : " + txtUsername.Text;
+                var log = new EventLog($"Error getting all themes, condition: {condition}, moment: {moment}, gamename: {gamename}", null, ex);
+
+                Log(log);
             }
+
             if (theme1 != 0)
             {
-                 CalculateChance(theme1, theme2, theme3, theme4,gamename).ToString();
+                CalculateChance(theme1, theme2, theme3, theme4,gamename).ToString();
                 return "";
             }
             else
@@ -191,6 +263,7 @@ namespace SU_Casino
                 return null;
             }
         }
+
         private string CalculateChance(int theme1, int theme2, int theme3, int theme4, string gamename)
         {
             Random rnd = new Random();
@@ -214,6 +287,7 @@ namespace SU_Casino
             }
             return "";
         }
+
         public string getText(string infotext)
         {
             string sqlselectQuery = "select Text from InfoText where Text_Name = " + "'" + infotext + "'";
@@ -224,21 +298,102 @@ namespace SU_Casino
             sqlcmd.CommandTimeout = 0;
             sqlcmd.CommandType = CommandType.Text;
             sqlcmd.CommandText = sqlselectQuery;
-            spContentConn.Open();
-            using (spContentConn)
+            try
             {
-                using (SqlDataReader sdr = sqlcmd.ExecuteReader())
+                spContentConn.Open();
+                using (spContentConn)
                 {
-                    while (sdr.Read())
+                    using (SqlDataReader sdr = sqlcmd.ExecuteReader())
                     {
-                        return sdr.GetString(0);
+                        while (sdr.Read())
+                        {
+                            return sdr.GetString(0);
+                        }
                     }
                 }
             }
-            
-            spContentConn.Close();
-            spContentConn.Dispose();
+            catch (Exception ex)
+            {
+                var log = new EventLog("Admin page error", null, ex);
+
+                Log(log);
+            }
+            finally
+            {
+                spContentConn.Close();
+                spContentConn.Dispose();
+            }
+
             return "";
+        }
+
+        public List<string> getTexts()
+        {
+            var texts = new List<string>();
+            string sqlselectQuery = "select Text_Id, Text, Text_Name from InfoText";
+            SqlCommand sqlcmd = new SqlCommand();
+
+            SqlConnection spContentConn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+            sqlcmd.Connection = spContentConn;
+            sqlcmd.CommandTimeout = 0;
+            sqlcmd.CommandType = CommandType.Text;
+            sqlcmd.CommandText = sqlselectQuery;
+
+            try
+            {
+                spContentConn.Open();
+                using (spContentConn)
+                {
+                    using (SqlDataReader sdr = sqlcmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            texts.Add(sdr.GetString(2));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var log = new EventLog("Admin page error", null, ex);
+
+                Log(log);
+            }
+            finally
+            {
+                spContentConn.Close();
+                spContentConn.Dispose();
+            }
+
+            return texts;
+        }
+
+        public void UpdateText(string textName, string infotext)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd =
+                        new SqlCommand("UPDATE InfoText SET Text=@Text" +
+                            " WHERE Text_Name=" + "'" + textName + "'", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Text", infotext);
+
+
+                        int rows = cmd.ExecuteNonQuery();
+
+                        //rows number of record got updated
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                var log = new EventLog("Admin page error", null, ex);
+
+                Log(log);
+            }
         }
 
        public List<string> GetCondition()
@@ -263,8 +418,11 @@ namespace SU_Casino
                    
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                var log = new EventLog($"Error getting conditions", null, ex);
+
+                Log(log);
             }
             return list;
         }
@@ -305,9 +463,10 @@ namespace SU_Casino
         public Game getOrderToPlay(int seq, string condition)
         {
             Game game = new Game();
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+
             try
             {
-                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
                 var sql = "getGameToPlay";
                 var da = new SqlDataAdapter(sql, con);
                 var ds = new DataSet();
@@ -339,12 +498,259 @@ namespace SU_Casino
                     return game;
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                // msg = "Error trying login user : " + txtUsername.Text;
+                var log = new EventLog($"Error getting order to play, seq: {seq}, condition: {condition}", null, ex);
+
+                Log(log);
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
             }
             return null;
         }
+
+        public void GetExample(SqlCommand command, params SqlParameter[] p)
+        {
+            if (p != null && p.Any())
+            {
+                command.Parameters.AddRange(p);
+            }
+        }
+
+        public void DeleteMatris(string rowId)
+        {
+            string query = "Delete from [matris] WHERE RowId = @rowId";
+
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ToString()))
+            using (SqlCommand command = new SqlCommand(query, connection))
+
+            try
+            {
+                // open the connection, execute, etc
+                List<SqlParameter> p = new List<SqlParameter>();
+                p.Add(new SqlParameter("@rowid", rowId));
+
+                connection.Open();
+                GetExample(command, p.ToArray());
+                command.ExecuteNonQuery();
+                command.Parameters.Clear();
+            }
+            catch (Exception ex)
+            {
+                var log = new EventLog($"Error trying to delete matris: {rowId}", null, ex);
+
+                Log(log);
+            }
+            finally
+            {
+                connection.Close();
+                connection.Dispose();
+            }
+        }
+
+        public void InsertMatris()
+        {
+            using (SqlConnection openCon = connectionstring)
+            {
+                string saveStaff = "INSERT into matris (prop_n,condition,seq,trials,name,saldo,perc_S0,perc_S1,S1_variant,perc_S2,perc_S3,perc_S4,bet_R1,bet_R2,bet_R3,bet_B4,if_R1,if_R2,if_R3,if_R4,prob_O1,prob_O2,win_O1,win_O2,ifS1win,ifS2win,ifS3win,ifS4win,ifS1probX,ifS2probX,hide,freeze_win)" +
+                    " VALUES (@prop_n,@condition,@seq,@trials,@name,@saldo,@perc_S0,@perc_S1,@S1_variant,@perc_S2,@perc_S3,@perc_S4,@bet_R1,@bet_R2,@bet_R3,@bet_B4,@if_R1,@if_R2,@if_R3,@if_R4,  @prob_O1,@prob_O2,@win_O1,@win_O2,@ifS1win,@ifS2win,@ifS3win,@ifS4win,@ifS1probX,@ifS2probX,@hide,@freeze_win)";
+
+                using (SqlCommand Save = new SqlCommand(saveStaff))
+                {
+                    Save.Connection = openCon;
+
+                    Save.Parameters.Add(new SqlParameter("@prop_n", ""));
+                    Save.Parameters.Add(new SqlParameter("@condition", ""));
+                    Save.Parameters.Add(new SqlParameter("@seq", ""));
+                    Save.Parameters.Add(new SqlParameter("@trials", ""));
+                    Save.Parameters.Add(new SqlParameter("@name", ""));
+                    Save.Parameters.Add(new SqlParameter("@saldo", ""));
+                    Save.Parameters.Add(new SqlParameter("@perc_S0", ""));
+                    Save.Parameters.Add(new SqlParameter("@perc_S1", ""));
+                    Save.Parameters.Add(new SqlParameter("@S1_variant", ""));
+                    Save.Parameters.Add(new SqlParameter("@perc_S2", ""));
+                    Save.Parameters.Add(new SqlParameter("@perc_S3", ""));
+                    Save.Parameters.Add(new SqlParameter("@perc_S4", ""));
+                    Save.Parameters.Add(new SqlParameter("@bet_R1", ""));
+                    Save.Parameters.Add(new SqlParameter("@bet_R2", ""));
+                    Save.Parameters.Add(new SqlParameter("@bet_R3", ""));
+                    Save.Parameters.Add(new SqlParameter("@bet_B4", ""));
+                    Save.Parameters.Add(new SqlParameter("@if_R1", ""));
+                    Save.Parameters.Add(new SqlParameter("@if_R2", ""));
+                    Save.Parameters.Add(new SqlParameter("@if_R3", ""));
+                    Save.Parameters.Add(new SqlParameter("@if_R4", ""));
+                    Save.Parameters.Add(new SqlParameter("@prob_O1", ""));
+                    Save.Parameters.Add(new SqlParameter("@prob_O2", ""));
+                    Save.Parameters.Add(new SqlParameter("@win_O1", ""));
+                    Save.Parameters.Add(new SqlParameter("@win_O2", ""));
+                    Save.Parameters.Add(new SqlParameter("@ifS1win", ""));
+                    Save.Parameters.Add(new SqlParameter("@ifS2win", ""));
+                    Save.Parameters.Add(new SqlParameter("@ifS3win", ""));
+                    Save.Parameters.Add(new SqlParameter("@ifS4win", ""));
+                    Save.Parameters.Add(new SqlParameter("@ifS1probX", ""));
+                    Save.Parameters.Add(new SqlParameter("@ifS2probX", ""));
+                    Save.Parameters.Add(new SqlParameter("@hide", ""));
+                    Save.Parameters.Add(new SqlParameter("@freeze_win", ""));
+
+                    try
+                    {
+                        openCon.Open();
+
+                        Save.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        var log = new EventLog("Error trying to login user", null, ex);
+
+                        Log(log);
+                    }
+                    finally
+                    {
+                        openCon.Close();
+                    }
+                }
+            }
+        }
+
+        public (DataSet ds, DataRowCollection rows) GetMatris()
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+            var ds = new DataSet();
+            DataTable dt = new DataTable();
+            
+            try
+            {
+                var sql = "getMatris";
+                var da = new SqlDataAdapter(sql, con);
+
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                da.Fill(ds, "getMatris");
+                dt = ds.Tables["getMatris"];
+
+            }
+            catch (Exception ex)
+            {
+                var log = new EventLog("Error trying to get matris", null, ex);
+
+                Log(log);
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
+
+            return (ds, dt.Rows);
+        }
+
+        public void UpdateMatris(string rowId, string[] paramz)
+        {
+            string query = "UPDATE [matris] SET prop_n = @prop_n," +
+                " condition = @condition, seq = @seq, trials = @trials, name = @name, saldo = @saldo, perc_S0 = @perc_S0," +
+                " perc_S1 = @perc_S1, S1_variant = @S1_variant, perc_S2 = @perc_S2, perc_S3 = @perc_S3, perc_S4 = @perc_S4, bet_R1 = @bet_R1, bet_R2 = @bet_R2, bet_R3 = @bet_R3, bet_B4 = @bet_B4," +
+                " if_R1 = @if_R1, if_R2 = @if_R2, if_R3 = @if_R3, if_R4 = @if_R4, prob_O1 = @prob_O1, prob_O2 = @prob_O2, win_O1 = @win_O1," +
+                " win_O2 = @win_O2, ifS1win = @ifS1win, ifS2win = @ifS2win, ifS3win = @ifS3win, ifS4win = @ifS4win, ifS1probX = @ifS1probX, ifS2probX = @ifS2probX, hide = @hide, freeze_win = @freeze_win" +
+                " WHERE RowId = @RowID";
+
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ToString()))
+            using (SqlCommand command = new SqlCommand(query, connection))
+
+            try
+            {
+                // open the connection, execute, etc
+                List<SqlParameter> p = new List<SqlParameter>();
+                p.Add(new SqlParameter("@RowID", rowId));
+                p.Add(new SqlParameter("@prop_n", paramz[0]));
+                p.Add(new SqlParameter("@condition", paramz[1]));
+                p.Add(new SqlParameter("@seq", paramz[2]));
+                p.Add(new SqlParameter("@trials", paramz[3]));
+                p.Add(new SqlParameter("@name", paramz[4]));
+                p.Add(new SqlParameter("@saldo", paramz[5]));
+                p.Add(new SqlParameter("@perc_S0", paramz[6]));
+                p.Add(new SqlParameter("@perc_S1", paramz[7]));
+                p.Add(new SqlParameter("@S1_variant", paramz[8]));
+                p.Add(new SqlParameter("@perc_S2", paramz[9]));
+                p.Add(new SqlParameter("@perc_S3", paramz[10]));
+                p.Add(new SqlParameter("@perc_S4", paramz[11]));
+                p.Add(new SqlParameter("@bet_R1", paramz[12]));
+                p.Add(new SqlParameter("@bet_R2", paramz[13]));
+                p.Add(new SqlParameter("@bet_R3", paramz[14]));
+                p.Add(new SqlParameter("@bet_B4", paramz[15]));
+                p.Add(new SqlParameter("@if_R1", paramz[16]));
+                p.Add(new SqlParameter("@if_R2", paramz[17]));
+                p.Add(new SqlParameter("@if_R3", paramz[18]));
+                p.Add(new SqlParameter("@if_R4", paramz[19]));
+                p.Add(new SqlParameter("@prob_O1", paramz[20]));
+                p.Add(new SqlParameter("@prob_O2", paramz[21]));
+                p.Add(new SqlParameter("@win_O1", paramz[22]));
+                p.Add(new SqlParameter("@win_O2", paramz[23]));
+                p.Add(new SqlParameter("@ifS1win", paramz[24]));
+                p.Add(new SqlParameter("@ifS2win", paramz[25]));
+                p.Add(new SqlParameter("@ifS3win", paramz[26]));
+                p.Add(new SqlParameter("@ifS4win", paramz[27]));
+                p.Add(new SqlParameter("@ifS1probX", paramz[28]));
+                p.Add(new SqlParameter("@ifS2probX", paramz[29]));
+                p.Add(new SqlParameter("@hide", paramz[30]));
+                p.Add(new SqlParameter("@freeze_win", paramz[31]));
+
+                connection.Open();
+                GetExample(command, p.ToArray());
+                command.ExecuteNonQuery();
+                command.Parameters.Clear();
+                GetMatris();
+            }
+            catch (Exception ex)
+            {
+                var log = new EventLog($"Error updating matris with RowID: {rowId}", null, ex);
+
+                Log(log);
+                // log and handle exception(s)
+            }
+            finally
+            {
+                connection.Close();
+                connection.Dispose();
+            }
+        }
+
+        public void GetReport()
+        {
+            string strFilePath = @"C:\temp\testfile.csv";
+            string strSeperator = ",";
+            StringBuilder sbOutput = new StringBuilder();
+
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+            var sql = "getLog";
+            var da = new SqlDataAdapter(sql, con);
+            var ds = new DataSet();
+            DataTable dt = new DataTable();
+
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+            //da.SelectCommand.Parameters.AddWithValue("@UserId", lblUserId.Text);
+
+
+            da.Fill(ds, "getLog");
+            dt = ds.Tables["getLog"];
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                sbOutput.AppendLine(string.Join(strSeperator, dr[0] + strSeperator + dr[1] + strSeperator + dr[2] + strSeperator + dr[3] + strSeperator + dr[4] + strSeperator + dr[5] + strSeperator
+                    + dr[6] + strSeperator + dr[7] + strSeperator + dr[8] + strSeperator + dr[9] + strSeperator + dr[10] + strSeperator + dr[11] + strSeperator + dr[12] + strSeperator + dr[13] + strSeperator));
+            }
+
+            File.WriteAllText(strFilePath, sbOutput.ToString());
+
+            // To append more lines to the csv file
+            // File.AppendAllText(strFilePath, sbOutput.ToString());
+
+        }
+
         public void saveQuestions(List<string> list,string userid)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
@@ -374,13 +780,15 @@ namespace SU_Casino
             }
             catch (Exception ex)
             {
-                //   throw new Exception("Execption adding account. " + ex.Message);
+                var log = new EventLog($"Error saving questions for user: {userid}", userid, ex);
+
+                Log(log);
             }
             finally
             {
                 conn.Close();
+                conn.Dispose();
             }
-
         }
     }
 }
