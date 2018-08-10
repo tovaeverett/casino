@@ -361,3 +361,5 @@ C:\Repo\su-casino\su-casino\SU-Casino\obj\Debug\SU-Casino.csproj.CopyComplete
 C:\Repo\su-casino\su-casino\SU-Casino\obj\Debug\SU-Casino.dll
 C:\Repo\su-casino\su-casino\SU-Casino\obj\Debug\SU-Casino.pdb
 C:\Users\Murk Gopi Chand\projects\SU Casino\su-casino\SU-Casino\obj\Debug\SU-Casino.csprojAssemblyReference.cache
+C:\Repo\su-casino\su-casino\SU-Casino\bin\System.ValueTuple.dll
+C:\Repo\su-casino\su-casino\SU-Casino\bin\System.ValueTuple.xml
