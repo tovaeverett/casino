@@ -9,6 +9,7 @@ namespace SU_Casino
 {
     public class Global : System.Web.HttpApplication
     {
+        Database _database = new Database();
 
         protected void Application_Start(object sender, EventArgs e)
         {
@@ -34,6 +35,8 @@ namespace SU_Casino
         {
             // Code that runs when an unhandled error occurs  
             Exception Ex = Server.GetLastError();
+            var log = new EventLog("Unhandled error", null, Ex);
+            _database.Log(log);
             Server.ClearError();
             Server.Transfer("ErrorPage.aspx");
         }
