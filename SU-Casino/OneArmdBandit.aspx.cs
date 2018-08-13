@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,18 +14,30 @@ namespace SU_Casino
     public partial class OneArmdBandit : System.Web.UI.Page
     {
         Database _database = new Database();
+        public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+
         Random rnd = new Random();
         int money;
+        private Game currentGame;
+        private static int trial;
         protected void Page_Load(object sender, EventArgs e)
         {
-           // applyThemeTemp(); //temporarily added, to be removed when themes are finalized and triggering logic is done
+
+            currentGame = (Game)Session["currentGame"];
+            if (currentGame == null)
+            {
+                currentGame = Game.getDummyGame();
+                //TODO An error page might not be needed. Decide on error handling
+                //Response.Redirect("ErrorPage.aspx");
+            }
+
             HiddenField_showInfo.Value = "0";
             if (!IsPostBack)
             {
                 HiddenField_showInfo.Value = "1";
-                HiddenField_Spin1.Value = randomStartCard().ToString();
-                HiddenField_Spin2.Value = randomStartCard().ToString();
-                HiddenField_Spin3.Value = randomStartCard().ToString();
+                Hiddenfield_text.Value = _database.getText("playSlotInfo");
+                SpinIt();
+                HiddenField_credit.Value = currentGame.Win_O1.ToString();
                 if (HiddenField_Spin1.Value == HiddenField_Spin2.Value && HiddenField_Spin1.Value == HiddenField_Spin3.Value)
                 {
                     HiddenField_WinLose.Value = "win";
@@ -30,15 +46,44 @@ namespace SU_Casino
                 {
                     HiddenField_WinLose.Value = "lose";
                 }
+                money = currentGame.Saldo;   //Convert.ToInt32(Request["saldo"]);
+                lblMoney.Text = money.ToString();
+                setCurrentBalance();
+                trial = 1;
                 setTheme();
+            }
+        }
+
+        private void SpinIt()
+        {
+            var firstSpin = randomSlotSpin();
+            
+            if (currentGame.didWin())
+            {
+                HiddenField_Spin1.Value = firstSpin.ToString();
+                HiddenField_Spin2.Value = firstSpin.ToString();
+                HiddenField_Spin3.Value = firstSpin.ToString();
+            }
+            else
+            {
+                int secondSpin;
+
+                // chansen finns ju alltid att random blir samma som första
+                // trots att man "bestämt" att användaren ska förlora
+                do
+                {
+                    secondSpin = randomSlotSpin();
+                } while (firstSpin == secondSpin);
+
+                HiddenField_Spin1.Value = firstSpin.ToString();
+                HiddenField_Spin2.Value = secondSpin.ToString();
+                HiddenField_Spin3.Value = randomSlotSpin().ToString();
             }
         }
 
         protected void btnPlay_Click(object sender, EventArgs e)
         {
-            HiddenField_Spin1.Value = randomStartCard().ToString();
-            HiddenField_Spin2.Value = randomStartCard().ToString();
-            HiddenField_Spin3.Value = randomStartCard().ToString();
+            SpinIt();
             if (Convert.ToInt32(HiddenField_Spin1.Value) == Convert.ToInt32(HiddenField_Spin2.Value) && Convert.ToInt32(HiddenField_Spin1.Value) == Convert.ToInt32(HiddenField_Spin3.Value))
             {
                 HiddenField_WinLose.Value = "win";
@@ -48,47 +93,32 @@ namespace SU_Casino
                 HiddenField_WinLose.Value = "lose";
             }
             checkForWin();
+            setCurrentBalance();
+
+            if (trial > currentGame.Trials)
+                GameLogic.getNextGame(currentGame, money);
         }
         private void checkForWin()
         {
- 
-            //int CardPressed = 0; 
-            //var winLose = HiddenField_WinLose.Value;
-                int credit = 0;
-            if(lblMoney.Text != "")
-            { 
-             credit = Convert.ToInt32(lblMoney.Text);
-            }
             string WinChance = "";
-            string CardColor = "";
-            string WinLose = "";
-            // string test = "PressCard:1, WinChance: 1, WinLose: lose";
 
             string[] splitCards = HiddenField_result.Value.Split(',');
-          
-                WinChance = splitCards[0].ToString();
-                CardColor = splitCards[1].ToString();
-                WinLose = splitCards[2].ToString();
-           
-            //card1:null,card2:6H,showCard:5H,winChance:1,winLose:lose
+            WinChance = splitCards[0].ToString();
 
-
+            int winningAmount = 0;
             if (HiddenField_WinLose.Value == "win")
             {
-              money = +100;
-                
+                winningAmount = currentGame.Win_O1;
             }
-            else
-            {
-                money = -100;
-            }
-            money = money + credit;
+
+            money = Convert.ToInt32(HiddenField_currentBalance.Value) + currentGame.Bet_R1 + winningAmount;
+
             lblMoney.Text = money.ToString();
-            //SaveToDB(CardPressed, winLose);
+            SaveToDB(currentGame.Bet_R1, winningAmount);
         }
-        public int randomStartCard()
+        public int randomSlotSpin()
         {
-            int randomfruit = rnd.Next(0, 6);
+            int randomfruit = rnd.Next(1, 4);
 
             return randomfruit;
         }
@@ -96,38 +126,48 @@ namespace SU_Casino
         {
             Random rnd = new Random();
             int randomTheme = rnd.Next(1, 4);
-          //  var theme = _database.getTheme(randomTheme);
-            HiddenField_theme.Value = randomTheme.ToString();
+            //  var theme = _database.getTheme(randomTheme);
+            if (randomTheme == 4 && currentGame.ThemeVariant != "A")
+            {
+                if (currentGame.ThemeVariant == "B")
+                    HiddenField_theme.Value = (randomTheme + 1).ToString();
+                else if (currentGame.ThemeVariant == "C")
+                    HiddenField_theme.Value = (randomTheme + 2).ToString();
+
+            }
+            else
+                HiddenField_theme.Value = randomTheme.ToString();
+
             return randomTheme;
         }
 
-        private void applyThemeTemp()
+        private void setCurrentBalance()
         {
-            String themeName = Request.QueryString["theme"];
-            if (themeName == null)
-                themeCSS.Attributes["href"] = "src/css/themeGlow.css";
-            else
-            {
-                switch (themeName)
-                {
-                    case "casino":
-                        themeCSS.Attributes["href"] = "src/css/themeCasino.css";
-                        break;
-                    case "gold":
-                        themeCSS.Attributes["href"] = "src/css/themeGold.css";
-                        break;
-                    case "black":
-                        themeCSS.Attributes["href"] = "src/css/themeBlack.css";
-                        break;
-                    case "glow":
-                        themeCSS.Attributes["href"] = "src/css/themeGlow.css";
-                        break;
-                    default:
-                        themeCSS.Attributes["href"] = "src/css/theme2.css";
-                        break;
-                }
-
-            }
+            HiddenField_currentBalance.Value = money.ToString(); //or get from DB?
         }
+
+        public void SaveToDB(int betAmount, int winAmount)
+        {
+            Playerlog pl = new Playerlog();
+
+            pl.userid = "test1234";
+            pl.balance_in = Convert.ToInt32(HiddenField_currentBalance.Value);
+            pl.balance_out = money;
+            pl.bet = betAmount;
+            pl.condition = currentGame.Condition;
+            pl.gamename = currentGame.Name;
+            pl.moment = currentGame.Sequence;
+            pl.outcome = winAmount;
+            pl.response = "bet_R1";
+            pl.stimuli = currentGame.Name;
+            pl.timestamp_begin = DateTime.Now;
+            pl.timestamp_O = DateTime.Now;
+            pl.timestamp_R = DateTime.Now;
+            pl.trial = trial++;
+
+            _database.updatePlayerLog(pl);
+        }
+
+
     }
 }

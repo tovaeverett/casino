@@ -30,8 +30,8 @@ function initSlotGame() {
     };
 
     var optionFirst = {
-        speed: 10,
-        duration: 0.5,
+        speed: 30,
+        duration: 0.25,
         stopImageNumber: slotContent.img1,
         startCallback: function () {
             
@@ -45,8 +45,8 @@ function initSlotGame() {
     }
 
     var optionSecond = {
-        speed: 10,
-        duration: 1,
+        speed: 30,
+        duration: 0.75,
         stopImageNumber: slotContent.img2,
         startCallback: function () {
            
@@ -60,8 +60,8 @@ function initSlotGame() {
     }
 
     var optionThird = {
-        speed: 10,
-        duration: 1.5,
+        speed: 30,
+        duration: 1,
         stopImageNumber: slotContent.img3,
         startCallback: function () {
            
@@ -71,9 +71,9 @@ function initSlotGame() {
         },
         stopCallback: function ($stopElm) {
             setTimeout(function () { slotContent.sound.pause(); }, 300);
-            slotContent.result === 'Lose' ? $(".lost").show() : $(".winner").show();
+            slotContent.result === 'lose' ? $(".lost").show() : $(".winner").show();
             $("#HiddenField_result").val(slotContent.winChance + ",null," + slotContent.result.toLowerCase());
-            if (slotContent.result === 'Lose')
+            if (slotContent.result === 'lose')
                 setTimeout(function () { $("#btnPlay").click(); }, 1500);
             else
                setTimeout(function () { showWinner(); }, 1000);

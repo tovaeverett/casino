@@ -3,15 +3,6 @@
     background-size: cover;
 }
 
-
-.header {
-    color: #0088cc;
-    padding-top: 25px;
-    padding-bottom: 15px;
-    text-align: center;
-    padding-left: 30px;
-}
-
 #play-container {
     background: #24222226;
 }
@@ -19,18 +10,12 @@
 .playground-slot {
     padding-top: 20px;
     padding-bottom: 10px;
-    /*background: -webkit-gradient(linear, left top, left bottom, from(#fff), color-stop(0.5, #dfdfdf), to(#cecece) );
-    border: 1px solid black;*/
 }
 
 .game-panel {
     background: #d5cec294;
 }
 
-    .game-panel > ul {
-        list-style-type: none;
-        display: inline-flex;
-    }
 
 .round-button {
     height: 100px;
@@ -40,7 +25,8 @@
     background-size: contain;
     background-repeat: no-repeat;
     /* Hide the text. */
-    text-indent: 100%;
+    text-indent: 110%;
     white-space: nowrap;
     overflow: hidden;
+    border:none;
 }

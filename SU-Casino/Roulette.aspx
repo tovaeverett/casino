@@ -7,9 +7,8 @@
     <head runat="server">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <title>Roulette</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/src/css/bootstrap.css" />
-        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css" />
         <link rel="stylesheet" href="/src/css/bootstrap-responsive.css" />
         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css" />
         <link rel="stylesheet" href="src/css/index.css"/>
@@ -17,11 +16,11 @@
         <link rel="stylesheet" href="/src/css/roulette_wheel.css" />
     </head>
 
-    <body>
+    <body id="roulette">
    
         <div class="container">
             <div class="first"></div>
-            <div class="row">
+            <div class="row div-center">
                 <div class="col-md-2 col-xs-0"></div>
                 <div class="col-md-10 col-xs-12" id="roulette-wrapper">
                 
@@ -52,13 +51,13 @@
                             <li><button id="btnRed" class="btn round-button spinnButton"> RED </button></li>
                         </ul>
                         <form id="form1" runat="server">
-                            
-                            <asp:ScriptManager runat="server" EnablePageMethods="true" />
+                                                   
                             <asp:HiddenField ID="HiddenFieldrouletteNr" runat="server" />
-                            <asp:HiddenField ID="HiddenFieldWinLose" runat="server" />
-                            <asp:HiddenField ID="HiddenField_credit" runat="server" />
+                            <asp:HiddenField ID="Hiddenfield_text" runat="server" />
+                            <asp:HiddenField ID="HiddenField_credit" runat="server" Value=""/>
                             <asp:HiddenField ID="HiddenField_showInfo" runat="server" />
                             <asp:HiddenField ID="HiddenField_result" runat="server" />
+                            <asp:HiddenField ID="HiddenField_currentBalance" runat="server" />
                             <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play again!" class="hidden" />
                             <div id="moneyLable">Credit left:&nbsp; 
                                <span class="cash-sum"> 
@@ -92,14 +91,14 @@
         </div>
     </div>
          <!-- Start info: Information about the game, visible first time set by hidden field 'HiddenField_showInfo' -->
-            <div id="startInfo" class="container-fluid overlayer">
+            <div id="startInfo" class="container-fluid overlayer info-content">
                  <div class="row">
                         <div class="col-md-2"></div>
                             <div class="col-md-8 text-center div-center" id="message-content">
                                 <div class="info">
                                     <section>
                                         <h1> LETS PLAY ROULETTE </h1>
-                                        <p>
+                                        <p id="introInfoText">
                                         Lorem ipsum dolor sit amet, sea mundi ponderum neglegentur ex, at munere delicata cum. 
                                         Inani choro per ex, equidem debitis et pro, sea an ludus omnium. Putent commune omnesque no ius, 
                                         ad hinc everti qui. At modus decore sit. Omnes vivendo propriae eu pri, ut alii esse percipitur eos, 
@@ -116,10 +115,10 @@
         </div>
         <!-- END: Start info -->   
         <!-- Winn or Lost: Shows ....  -->
-                  <div id="message-container" class="container-fluid overlayer">
+                  <div id="message-container" class="container-fluid overlayer  winner-content">
                     <div class="row">
                         <div class="col-md-2"></div>
-                            <div class="col-md-8 text-center" id="message-content">
+                            <div class="col-md-8 text-center" id="message-content-win">
                                 <div class="winner">
                                     <!--div class="winner-inner"></div>
                                     <h1> WINNER!!!! </h1-->
@@ -136,11 +135,11 @@
          <!-- End: Winn or Lost  -->
      
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+        <!--script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script-->
         <script src="/src/js/jquery.fireworks-js/jquery.fireworks.js"></script>
         <script src='/src/js/jquery.keyframes.mini.js'></script>
         <script src="/src/js/index.js"></script>
          <script src="/src/js/roulette_wheel.js"></script>
     </body>
 
-    </html>
+</ht

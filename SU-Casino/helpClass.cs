@@ -25,4 +25,18 @@ namespace SU_Casino
 		public DateTime timestamp_R{ get; set;}
 		public DateTime timestamp_O{ get; set;}
     }
+
+    public class EventLog
+    {
+        public string userid { get; set; }
+        public string title { get; set; }
+        public string message { get; set; }
+
+        public EventLog(string title, string userid, Exception ex)
+        {
+            this.title = title;
+            this.message = ex.Message;
+            this.userid = userid;
+        }
+    }
 }

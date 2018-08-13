@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CardDraw2.aspx.cs" Inherits="SU_Casino.CardDraw" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CardDraw2.aspx.cs" Inherits="SU_Casino.CardDraw2" %>
 
 <!DOCTYPE html>
 
@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="src/css/bootstrap.css"/>
     <link rel="stylesheet" href="src/css/bootstrap-responsive.css"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
 	<!--link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css"/-->
 	<link rel="stylesheet" href="src/css/card_game.css"/>
     <link rel="stylesheet" href="src/css/index.css"/>
@@ -27,18 +27,24 @@
                 <link rel="stylesheet" href="src/css/themeBlue.css" />
                 <% break;
             case "3":%>
-                <link rel="stylesheet" href="src/css/themeRed.css" />
+                <link rel="stylesheet" href="src/css/themeGold.css" />
                <%  break;
             case "4":%>
-                <link rel="stylesheet" href="src/css/themeGold.css" />
+                <link rel="stylesheet" href="src/css/themeRed.css" />
+              <%   break;
+            case "5":%>
+                <link rel="stylesheet" href="src/css/themeRedB.css" />
+              <%   break;
+            case "6":%>
+                <link rel="stylesheet" href="src/css/themeRedC.css" />
               <%   break;
             default:%>
                 <link rel="stylesheet" href="src/css/themeGold.css" />
                <%  break;
          }%>
-        
+        <link rel="stylesheet" href="src/css/noTheme.css"/>
 </head>
-<body>
+<body id="cardH">
     <div id="main-container" class="container-fluid">
         <div class="row header">
         </div>
@@ -84,9 +90,12 @@
                                 <asp:HiddenField ID="HiddenField_WinLose" runat="server" />
                                 <asp:HiddenField ID="HiddenField_theme" runat="server" />
                                 <asp:HiddenField ID="HiddenField_showInfo" runat="server" />
-                                <asp:HiddenField ID="HiddenField_bet1" runat="server" />
-                                <asp:HiddenField ID="HiddenField_bet2" runat="server" />
+                                 <asp:HiddenField ID="HiddenField_win1" runat="server" />
+                                <asp:HiddenField ID="HiddenField_win2" runat="server" />
                                 <asp:HiddenField ID="HiddenField_result" runat="server" />
+                                <asp:HiddenField ID="Hiddenfield_text" runat="server" />
+                                <asp:HiddenField ID="HiddenField_game" runat="server" />
+                                <asp:HiddenField ID="HiddenField_currentBalance" runat="server" />
                                 <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play again!" class="hidden" />
                                 <div id="panel1">
                                     <div id="moneyLable">Credit left:&nbsp; 
@@ -108,27 +117,27 @@
         <div class="row text-center" >
            
             <div class="winchance-div">
-                 <h2>What are your chances of winning?</h2>
+                 <h2>Which deck gives most profit?</h2>
                 <br />
                 <ul>
-                    <li id="btnHigh" class="winchance-btn">High (Q)</li>
-                    <li id="btnLow" class="winchance-btn">Low (W)</li>
-                    <li id="btnZero" class="winchance-btn">Zero (E)</li>
-                    <li id="btnDontKnow" class="winchance-btn">Don't know (R)</li>
+                    <li id="btnHigh" class="winchance-btn">Orange deck</li>
+                    <li id="btnLow" class="winchance-btn">Purple deck</li>
+                    <!--li id="btnZero" class="winchance-btn">Zero (E)</!--li>
+                    <li id="btnDontKnow" class="winchance-btn">Don't know (R)</li-->
                 </ul>
             </div>
         </div>
     </div>
      <!-- END: Winning chance --> 
    <!-- Start info: Information about the game, visible first time set by hidden field 'HiddenField_showInfo' -->
-            <div id="startInfo" class="container-fluid overlayer">
+            <div id="startInfo" class="container-fluid overlayer info-content">
                  <div class="row">
                         <div class="col-md-2"></div>
                             <div class="col-md-8 text-center div-center" id="message-content">
                                 <div class="info">
                                     <section>
                                         <h1> LETS PLAY CARDS </h1>
-                                        <p>
+                                        <p id="introInfoText">
                                         Lorem ipsum dolor sit amet, sea mundi ponderum neglegentur ex, at munere delicata cum. 
                                         Inani choro per ex, equidem debitis et pro, sea an ludus omnium. Putent commune omnesque no ius, 
                                         ad hinc everti qui. At modus decore sit. Omnes vivendo propriae eu pri, ut alii esse percipitur eos, 
@@ -145,10 +154,10 @@
         </div>
         <!-- END: Start info -->   
         <!-- Win or Lost: Shows ....  -->
-                  <div id="message-container" class="container-fluid overlayer">
+                  <div id="message-container" class="container-fluid overlayer winner-content">
                     <div class="row">
                         <div class="col-md-2"></div>
-                            <div class="col-md-8 text-center" id="message-content">
+                            <div class="col-md-8 text-center" id="message-content-win">
                                 <div class="winner">
                                    <img src="src/images/other/winntext2.png" class="img-responsive" />
                                     <h2><span class="winSpan"> You got <span id="winCredit">+100</span> !!!!</span></h2>

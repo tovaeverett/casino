@@ -1,10 +1,8 @@
 USE [SU_Casino]
 GO
-
-/****** Object:  StoredProcedure [dbo].[insertQuestionsLog]    Script Date: 2018-07-26 11:27:13 ******/
+/****** Object:  StoredProcedure [dbo].[insertQuestionsLog]    Script Date: 2018-07-27 08:55:42 ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
 
@@ -13,7 +11,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-Create PROCEDURE [dbo].[insertQuestionsLog]
+ALTER PROCEDURE [dbo].[insertQuestionsLog]
 	-- Add the parameters for the stored procedure here
 	@userid varchar(50),
 	@q1 varchar(50),
@@ -29,7 +27,10 @@ Create PROCEDURE [dbo].[insertQuestionsLog]
 	@q11 varchar(50),
 	@q12 varchar(max),
 	@q13 varchar(50),
-	@Date time(7)
+	@Date time(7),
+	@Device varchar(50),
+	@Country varchar(50)
+
 
 AS
 BEGIN
@@ -55,6 +56,8 @@ BEGIN
 			,q12
 			,q13
 			,Date
+			,Device
+			,Country
 	 )
      VALUES
 	 (	
@@ -73,6 +76,8 @@ BEGIN
 		,@q12
 		,@q13
 		,@Date
+		,@Device
+		,@Country
 	)
 END
 -- ================================================
@@ -87,6 +92,3 @@ END
 -- the definition of the procedure.
 -- ================================================
 SET ANSI_NULLS ON
-GO
-
-

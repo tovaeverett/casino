@@ -1,0 +1,35 @@
+﻿body {
+    background: url("/src/images/backgrounds/themeRedC.jpg") no-repeat top center fixed;
+    background-size: cover;
+}
+
+#play-container {
+    background: rgba(98, 22, 22, 0.78);
+    box-shadow: 0 0 4px 2px rgba(0,0,0,.3);
+}
+
+.playground-slot {
+    border-radius: 30px;
+    display: block;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.playground-inner {
+    background: -webkit-gradient(linear, left top, left bottom, from(#000), color-stop(0.5, #de1d1c), to(#000) );
+}
+
+
+
+.game-panel {
+    background: rgb(92, 22, 22);
+    color: #fff;
+    border: 2px solid rgba(221, 221, 221, 0.48);
+}
+
+
+
+.round-button {
+    background: linear-gradient(to bottom, #7a1717 0%,#de1d1c 50%,#6d1817 100%);
+}

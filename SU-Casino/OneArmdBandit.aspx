@@ -38,7 +38,7 @@
          }%>
         
 </head>
-<body>
+<body id="slot">
 <%--form id="form2" runat="server">--%>
 <div id="main-container" class="container-fluid">
         <div class="row header">
@@ -93,7 +93,7 @@
                     </div>
                     <div class="col-md-12 col-sm-12 game-panel">
                         <form id="form1" runat="server">
-                            <button class="round-button  start">SPIN! </button>
+                            <button class="round-button spin start">SPIN! </button>
                             <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play again!" class="hidden" />
                             <asp:HiddenField ID="HiddenField_Spin1" runat="server" />
                             <asp:HiddenField ID="HiddenField_Spin2" runat="server" />
@@ -103,6 +103,8 @@
                             <asp:HiddenField ID="HiddenField_showInfo" runat="server" />
                             <asp:HiddenField ID="HiddenField_credit" runat="server" />
                             <asp:HiddenField ID="HiddenField_result" runat="server" />
+                            <asp:HiddenField ID="Hiddenfield_text" runat="server" />
+                            <asp:HiddenField ID="HiddenField_currentBalance" runat="server" />
                             <div id="panel1">
                                 <div id="moneyLable">Credit left:&nbsp; 
                                 <span class="cash-sum"> 
@@ -146,14 +148,14 @@
     </div>
      <!-- END: Winning chance --> 
    <!-- Start info: Information about the game, visible first time set by hidden field 'HiddenField_showInfo' -->
-            <div id="startInfo" class="container-fluid overlayer">
+            <div id="startInfo" class="container-fluid overlayer info-content">
                  <div class="row">
                         <div class="col-md-2"></div>
                             <div class="col-md-8 text-center div-center" id="message-content">
                                 <div class="info">
                                     <section>
                                         <h1> LETS PLAY SLOT MACHINE </h1>
-                                        <p>
+                                        <p id="introInfoText">
                                         Lorem ipsum dolor sit amet, sea mundi ponderum neglegentur ex, at munere delicata cum. 
                                         Inani choro per ex, equidem debitis et pro, sea an ludus omnium. Putent commune omnesque no ius, 
                                         ad hinc everti qui. At modus decore sit. Omnes vivendo propriae eu pri, ut alii esse percipitur eos, 
@@ -170,13 +172,13 @@
         </div>
         <!-- END: Start info -->    
         <!-- Win or Lost: Shows ....  -->
-                  <div id="message-container" class="container-fluid overlayer">
+                  <div id="message-container" class="container-fluid overlayer  winner-content">
                     <div class="row">
                         <div class="col-md-2"></div>
-                            <div class="col-md-8 text-center" id="message-content">
+                            <div class="col-md-8 text-center" id="message-content-win">
                                 <div class="winner">
                                     <img src="src/images/other/winntext2.png" class="img-responsive" />
-                                    <h2><span class="winSpan"> You got <span id="winCredit">+100</span> !!!!</span></h2>
+                                    <h2><span class="winSpan"> You got <span id="winCredit"></span> !!!!</span></h2>
                                 </div>
                             <button id="btnCloseWin" class="btn btn-large btn-primary" > Play again </button>
                         </div>

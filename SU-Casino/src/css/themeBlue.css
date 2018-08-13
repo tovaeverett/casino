@@ -1,20 +1,16 @@
 ﻿
 body {
-    background: url("https://st2.depositphotos.com/4217442/6278/i/950/depositphotos_62786349-stock-photo-stage-with-casino-coins-and.jpg") no-repeat top center fixed;
+    background: url("/src/images/backgrounds/themeBlue.jpg") no-repeat top center fixed;
     background-size: cover;
 }
 
-.header {
-    color: #0088cc;
-}
 
 .playground {
-    /*background: #000 url("/src/images/backgrounds/body_theme1.jpg") no-repeat center;*/
     background-size: cover;
 }
 
 #play-container {
-    background: url(https://seacoastevents.net/wp-content/uploads/2013/03/SE_Website_Background.jpg) no-repeat center top fixed;
+    background: url(/src/images/backgrounds/themeBluePlayground.jpg) no-repeat center top fixed;
     background-size: cover;
 }
 
@@ -35,19 +31,6 @@ body {
     border: 2px solid rgba(221, 221, 221, 0.48);
 }
 
-.game-panel > ul {
-    list-style-type: none;
-    display: inline-flex;
-}
 
-@media (max-width: 510px) {
 
-    .playground-slot {
-        height: 250px;
-    }
-}
-
-@media (max-width: 320px) {
-    
-}
 

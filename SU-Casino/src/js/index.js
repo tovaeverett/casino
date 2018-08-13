@@ -1,10 +1,15 @@
 var backgroundSound;
+var game = $('body')[0].id;
 
-console.log("nav", window.navigator.appVersion, window.navigator.platform);
+
+
 
 function gameInit(theme) {
     $("#message-container").hide();
     $("#winchance-container").hide();
+    $("#introInfoText").html($("#Hiddenfield_text").val());
+    $("#winCredit").html("+" + $("#HiddenField_credit").val());
+    
     var showInfo = $("#HiddenField_showInfo").val();
     if (showInfo === '1') {
         $("#startInfo").show();
@@ -32,7 +37,8 @@ function gameInit(theme) {
             backgroundSoundSource = "bensound-straight.mp3";
     }
 
-    backgroundSound = sound(baseSoundUrl+backgroundSoundSource);
+    backgroundSound = sound(baseSoundUrl + backgroundSoundSource);
+    //if(theme !== "null")
     //backgroundSound.play();
 }
 
@@ -49,20 +55,19 @@ function getWinChance(button) {
     }
 }
 
-function showWinner() {
+function showWinner(creditAmount) {
     backgroundSound.stop();
     var winnerSound = new Audio("src/sound/effects/cashoutWinning.mp3");
     winnerSound.play();
     $("#message-container").fireworks({
         sound: true, // sound effect
-        opacity: 0.9,
+        opacity: 0.5,
         width: "100%",
         height: "100%"
     });
     $(".winner").show();
     $(".winner-inner").addClass('zoom');
     $("#message-container").show();
-
 }
 
 function sound(src) {
@@ -84,7 +89,8 @@ function sound(src) {
 
 $('#btnShowInfo').click(function () {
     $("#startInfo").hide();
-    $("#winchance-container").show();
+    if(game !== 'roulette')
+        $("#winchance-container").show();
     //backgroundSound.play();
  
 });

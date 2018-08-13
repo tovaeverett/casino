@@ -76,13 +76,22 @@ namespace SU_Casino {
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_showInfo;
         
         /// <summary>
-        /// HiddenField_credit control.
+        /// HiddenField_win1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField_credit;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_win1;
+        
+        /// <summary>
+        /// HiddenField_win2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_win2;
         
         /// <summary>
         /// HiddenField_result control.
@@ -92,6 +101,33 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_result;
+        
+        /// <summary>
+        /// Hiddenfield_text control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField Hiddenfield_text;
+        
+        /// <summary>
+        /// HiddenField_game control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_game;
+        
+        /// <summary>
+        /// HiddenField_currentBalance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_currentBalance;
         
         /// <summary>
         /// btnPlay control.

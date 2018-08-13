@@ -45,6 +45,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -71,6 +74,9 @@
     <Content Include="AdminPage.aspx" />
     <Content Include="CardDraw2.aspx" />
     <Content Include="CardDraw.aspx" />
+    <Content Include="EndPage.aspx" />
+    <Content Include="ErrorPage.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="OneArmdBandit.aspx" />
     <Content Include="Roulette.aspx" />
     <Content Include="src\css\bootstrap-responsive.css" />
@@ -79,12 +85,13 @@
     <Content Include="src\css\card_game.css" />
     <Content Include="src\css\index.css" />
     <Content Include="src\css\roulette_wheel.css" />
-    <Content Include="src\css\roulette_wheel_1.css" />
     <Content Include="src\css\roulette_wheel_base.css" />
     <Content Include="src\css\slot.css" />
     <Content Include="src\css\noTheme.css" />
     <Content Include="src\css\theme1a.css" />
     <Content Include="src\css\themeBlue.css" />
+    <Content Include="src\css\themeRedC.css" />
+    <Content Include="src\css\themeRedB.css" />
     <Content Include="src\css\themeRed.css" />
     <Content Include="src\css\theme1.css" />
     <Content Include="src\css\themeBlack.css" />
@@ -93,6 +100,7 @@
     <Content Include="src\css\themeGold.css" />
     <Content Include="src\images\backgrounds\body_theme1.jpg" />
     <Content Include="src\images\backgrounds\body_theme_black.png" />
+    <Content Include="src\images\backgrounds\depositphotos_180632780-stock-illustration-set-gold-coins-falling-editable.jpg" />
     <Content Include="src\images\cards\10C.png" />
     <Content Include="src\images\cards\10D.png" />
     <Content Include="src\images\cards\10H.png" />
@@ -155,10 +163,13 @@
     <Content Include="src\images\cards\12D.png" />
     <Content Include="src\images\cards\12H.png" />
     <Content Include="src\images\cards\12S.png" />
+    <Content Include="src\images\cards\red_back.png" />
     <Content Include="src\images\cards\red_back_0.png" />
     <Content Include="src\images\cards\yellow_back.png" />
     <Content Include="src\images\frameTest.png" />
     <Content Include="src\images\logos\theme1.png" />
+    <Content Include="src\images\logos\theme1Logo.png" />
+    <Content Include="src\images\other\piggy-bank-icon.png" />
     <Content Include="src\images\other\winntext.png" />
     <Content Include="src\images\other\winntext2.png" />
     <Content Include="src\images\slot\chomp.png" />
@@ -173,6 +184,7 @@
     <Content Include="src\images\slot\random.png" />
     <Content Include="src\images\slot\star.png" />
     <Content Include="src\js\card_game.js" />
+    <Content Include="src\js\end.js" />
     <Content Include="src\js\start.js" />
     <Content Include="src\js\jquery.keyframes.mini.js" />
     <Content Include="src\js\roulette.js" />
@@ -207,6 +219,25 @@
       <DependentUpon>CardDraw.aspx</DependentUpon>
     </Compile>
     <Compile Include="Database.cs" />
+    <Compile Include="EndPage.aspx.cs">
+      <DependentUpon>EndPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EndPage.aspx.designer.cs">
+      <DependentUpon>EndPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.designer.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Game.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="GameLogic.cs" />
     <Compile Include="helpClass.cs" />
     <Compile Include="OneArmdBandit.aspx.cs">
       <DependentUpon>OneArmdBandit.aspx</DependentUpon>
@@ -233,7 +264,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

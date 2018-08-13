@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
-using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -10,27 +13,36 @@ namespace SU_Casino
 {
     public partial class Roulette : System.Web.UI.Page
     {
-        private static int credit = 1500;
         int money;
+        private Game currentGame;
+        private static int trial;
+
+        Database _database = new Database();
+        public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
+            currentGame = (Game)Session["currentGame"];
+            if (currentGame == null)
+            {
+                currentGame = Game.getDummyGame();
+                //TODO An error page might not be needed. Decide on error handling
+                //Response.Redirect("ErrorPage.aspx");
+            }
+
             HiddenField_showInfo.Value = "0";
             if (!IsPostBack)
             {
                 HiddenFieldrouletteNr.Value = RandomSpin().ToString();
-                lblMoney.Text = credit.ToString();
+                money = currentGame.Saldo;
+                lblMoney.Text = money.ToString();
                 RandomSpin();
                 HiddenField_showInfo.Value = "1";
+                Hiddenfield_text.Value = _database.getText("playRouletteInfo");
+                HiddenField_credit.Value = currentGame.Win_O1.ToString();
+                setCurrentBalance();
+                trial = 1;
             }
-        }
 
-        public int GetCssRandom()
-        {
-            Random rnd = new Random();
-
-            var rndNr = rnd.Next(0, 2);
-
-            return rndNr;
         }
 
         public int RandomSpin()
@@ -46,74 +58,70 @@ namespace SU_Casino
         }
         private void checkForWin()
         {
-            //int CardPressed = 0; 
-            //var winLose = HiddenField_WinLose.Value;
-            int credit = 0;
-            if (lblMoney.Text != "")
-            {
-                credit = Convert.ToInt32(lblMoney.Text);
-            }
-            string WinChance = "";
-            string CardColor = "";
+            string bet = "";
             string WinLose = "";
-            // string test = "PressCard:1, WinChance: 1, WinLose: lose";
+            string[] result = HiddenField_result.Value.Split(',');
+            bet = result[1].ToString();
+            WinLose = result[2].ToString();
 
-            string[] splitCards = HiddenField_result.Value.Split(',');
-
-            WinChance = splitCards[0].ToString();
-            CardColor = splitCards[1].ToString();
-            WinLose = splitCards[2].ToString();
-
-            //card1:null,card2:6H,showCard:5H,winChance:1,winLose:lose
-
-
-            if (WinLose == "win")
+            int winningAmount = 0;
+            int betAmount = 0;
+            if (bet.Equals("bet_R1"))
             {
+                betAmount = currentGame.Bet_R1;
+                if (WinLose.Equals("win"))
+                    winningAmount = currentGame.Win_O1;
 
-                if (CardColor == "1")
-                {
-                    money = +500;
-                }
-                else
-                {
-                    money = -500;
-                }
             }
-            else
+            else if (bet.Equals("bet_R2"))
             {
-                if (CardColor == "2")
-                {
-                    money = +500;
-                }
-                else
-                {
-                    money = -500;
-                }
+                betAmount = currentGame.Bet_R2;
+                if (WinLose.Equals("win"))
+                    winningAmount = currentGame.Win_O2;
             }
-            money = money + credit;
+
+            money = Convert.ToInt32(HiddenField_currentBalance.Value) + betAmount + winningAmount;
             lblMoney.Text = money.ToString();
-            //SaveToDB(CardPressed, winLose);
+            SaveToDB(bet, betAmount, winningAmount);
+            setCurrentBalance();
         }
         protected void btnPlay_Click(object sender, EventArgs e)
         {
             checkForWin();
-           // bool isWin = true; //Change...
+            if (trial > currentGame.Trials)
+                GameLogic.getNextGame(currentGame,money);
+
             RandomSpin();
-           // credit = isWin ? credit + 500 : credit - 500;
-           // lblMoney.Text = credit.ToString();
+
+            // credit = isWin ? credit + 500 : credit - 500;
+            // lblMoney.Text = credit.ToString();
         }
 
-        [WebMethod]
-        public static void WinOrLose(string isWin, string betOptions, string expectedWinningChance)
+        private void setCurrentBalance()
         {
-            
+            HiddenField_currentBalance.Value = money.ToString(); //or get from DB?
+        }
 
-            var t = isWin;
-            var t2 = betOptions;
-            var t3 = expectedWinningChance;
-      
-            
-            // send to DB
+        public void SaveToDB(String bet, int betAmount, int winAmount)
+        {
+            Playerlog pl = new Playerlog();
+
+            pl.userid = "test1234"; 
+            pl.balance_in = Convert.ToInt32(HiddenField_currentBalance.Value);
+            pl.balance_out = money;
+            pl.bet = betAmount;
+            pl.condition = currentGame.Condition;
+            pl.gamename = currentGame.Name;
+            pl.moment = currentGame.Sequence;
+            pl.outcome = winAmount;
+            pl.response = bet;
+            pl.stimuli = currentGame.Name;
+            pl.timestamp_begin = DateTime.Now;
+            pl.timestamp_O = DateTime.Now;
+            pl.timestamp_R = DateTime.Now;
+            pl.trial = trial++;
+
+            _database.updatePlayerLog(pl);
         }
     }
 }

@@ -5,6 +5,15 @@
 body {
     position: relative;
 }
+
+.header {
+    color: #0088cc;
+    padding-top: 25px;
+    padding-bottom: 15px;
+    text-align: center;
+    padding-left: 30px;
+}
+
 .overlayer {
     background: rgba(90, 82, 82, 0.79);
     position: fixed;
@@ -61,7 +70,7 @@ button:focus {
    border-spacing: 30px;
    padding: 5px;
 }
-
+/*---Layer for winning chance buttons*/
  #winchance-container {
     background: rgba(90, 82, 82, 0.79);
     position: fixed;
@@ -90,16 +99,16 @@ button:focus {
 
 
 .winchance-btn {
-    display: block;
-    padding: 40px;
+    padding: 30px;
     background: #fff;
     color: black;
     font-size: 1.5em;
     border: 1px solid #ddd;
     margin-left: 10px;
     border-radius: 5px;
+    box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 0.31);
 }
-
+/*---Credit left*/
 .cash-sum {
     display: block;
     background: #fff;
@@ -116,7 +125,7 @@ button:focus {
     display: inline-block;
     text-align: left;
 }
-
+/*---buttons--*/
 .round span.round {
     display: block;
     opacity: 0;
@@ -150,6 +159,40 @@ button:focus {
     margin-bottom: 5px;
 }
 
+#startPlay {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: 20vh;
+    text-align: center;
+    display: none;
+    border: 1px solid #ddd;
+    padding: 40px 20px 0 20px;
+    border-radius: 2px;
+}
+
+.round-button {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #609dcb 0%,#125ead 50%,#476cde 100%);
+    color: white;
+    border-bottom-color: rgba(0, 0, 0, 0.25);
+}
+
+.spin {
+    font-style: oblique;
+    font-weight: 700;
+    font-size: 26px;
+    border: 4px solid silver;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.68);
+    box-shadow: 2px 4px rgba(0, 0, 0, 0.5019607843137255);
+}
+
+/*---Playground--*/
 .div-center {
     display: flex;
     justify-content: center;
@@ -161,21 +204,69 @@ button:focus {
     padding: 15px;
 }
 
+.playground {
+
+    background-size: cover;
+}
+
+.playground-cards, .playground-slot {
+    /*background-color: rgba(221, 221, 221, 0.48);*/
+    border-radius: 30px;
+    display: block;
+    height: 300px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+
+.game-panel {
+    text-align: center;
+    border-radius: 3px;
+    background: #114959;
+    padding-top: 10px;
+    color: #fff;
+    border: 2px solid rgba(221, 221, 221, 0.48);
+    margin-top: 10px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80px;
+}
+
+    .game-panel > ul {
+        list-style-type: none;
+        display: inline-flex;
+    }
+
+
+/*---Layer for win --*/
 #message-content {
     padding-top: 5rem;
     z-index: 1000;
 }
 
 .winner {
-    padding-top: 15%;
+    padding-top: 1px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url(/src/images/backgrounds/Win3Test.png) no-repeat center center;
+    background: url("/src/images/backgrounds/winCoins.png") no-repeat center center;
     background-size: contain;
     display: none;
 }
 
+.winner-content {
+    position: fixed;
+}
+#message-content-win {
+    padding-top: 5rem;
+    z-index: 1000;
+    background: url("/src/images/backgrounds/winCoins.png") no-repeat center center;
+    background-size: contain;
+}
 .winner-inner {
     /*width: 10%;
     height: 10%;
@@ -191,16 +282,46 @@ button:focus {
 }
 
 .winSpan {
-    background: rgba(19, 19, 2, 0.8117647058823529);
-    border: 1px solid transparent;
+    background: rgba(19, 19, 2, 0.55);
+    border: 2px dotted rgba(255, 255, 0, 0.45098039215686275);
     border-radius: 5px;
     padding: 10px;
     font-size: 1.9rem;
     font-weight: 600;
+    color: #ecdd67;
+    /*display: block;*/
+}
+
+.winSpanSpecial{
+    display:block;
+}
+
+#piggySpan {
+    display: block;
+    color: #ecdd67;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 12px;
+}
+#piggySpan > img {
+   height: 50px;
+   width: 50px;
 }
 
 #btnCloseWin{
     margin-top:20px;
+}
+/*- game panel*/
+.game-panel > form > .round-button {
+    margin-left: -1px;
+}
+
+#panel1 {
+    width: 80px;
+    float: right;
+    position: absolute;
+    right: 0;
+    bottom: 10px;
 }
 
 .zoom {
@@ -226,76 +347,7 @@ button:focus {
     padding-top: 10%;
 }
 
-#startPlay {
-    width: 400px;
-    height: 400px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -200px;
-    margin-top: -200px;
-    text-align: center;
-    display: none;
-}
 
-.countCredit {
-    font-size: 1.5rem;
-}
-
-#value {
-    font-weight: 900;
-    font-size: 4rem;
-}
-
-.header {
-    color: #0088cc;
-    padding-top: 25px;
-    padding-bottom: 15px;
-    text-align: center;
-    padding-left: 30px;
-}
-
-.playground {
-    /*background: #000 url("/src/images/backgrounds/body_theme1.jpg") no-repeat center;*/
-    background-size: cover;
- 
-}
-
-.playground-cards, .playground-slot {
-    /*background-color: rgba(221, 221, 221, 0.48);*/
-    border-radius: 30px;
-    display: block;
-    height: 300px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-top: 10px;
-}
-
-.game-panel {
-    text-align: center;
-    border-radius: 3px;
-    background: #114959;
-    padding-top: 10px;
-    color: #fff;
-    border: 2px solid rgba(221, 221, 221, 0.48);
-    margin-top: 10px;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-}
-
-.game-panel > ul {
-   list-style-type: none;
-   display: inline-flex;
-}
-
-.round-button {
-    height: 70px;
-    width:70px;
-    border-radius: 50%;
-    background: linear-gradient(to bottom, #609dcb 0%,#125ead 50%,#476cde 100%);
-    color:white;
-}
 
 /*------StartPage--------*/
 .question-container {
@@ -353,22 +405,38 @@ fieldset {
 }
 
 legend {
-   font-weight: 500;
-   font-size: 1.1rem;
-   margin-bottom: .9rem;
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin-bottom: .9rem;
+    padding-top: 15px;
 }
 
-.game-panel > form > .round-button {
-    margin-left: -20px;
+.countCredit {
+    font-size: 1.5rem;
 }
 
-#panel1 {
-    width: 80px;
-    float: left;
+#value {
+    font-weight: 900;
+    font-size: 4rem;
 }
 
-.hidden{
-    display:none;
+.validationError {
+    color: red;
+}
+
+/*End page*/
+
+#endText {
+    padding: 20px;
+    border: 1px solid#ddd;
+    border-radius: 5px;
+}
+
+/*Other*/
+
+
+.hidden {
+    display: none;
 }
 
 .first {
@@ -383,10 +451,13 @@ legend {
     max-width: 0;
 }
 
-
+/*Media*/
 @media (min-width: 1600px) {
     .playground-slot{
         margin-top:100px;
+    }
+    #message-container {
+        padding-top: 15rem;
     }
 }
 
@@ -396,30 +467,55 @@ legend {
         padding-right: 0;
         padding-left: 0;
     }
+    #piggySpan {
+      font-size: 1rem;
+    }
+    #piggySpan > img {
+        height: 100px;
+        width: 100px;
+    }
 }
 @media (max-width: 767px) {
     .winchance-btn {
         font-size: 1em;
         padding: 10px;
     }
+    .spin {
+        height: 70px;
+        width: 70px;
+        font-size: 18px;
+    }
+    
 }
-    @media (max-width: 510px) {
-        .playground-slot {
-            height: 250px;
-        }
+@media (max-width: 510px) {
+    .playground-slot {
+        height: 250px;
     }
+    #message-content{
+       padding-top:10px;
+    }
+}
 
-    @media (max-width: 320px) {
-        #play-container {
-            height: 400px;
-        }
+@media (max-width: 320px) {
+    #play-container {
+        height: 400px;
     }
-@media screen and ( max-height: 400px) {
-    .winner{
+}
+@media screen and (max-height:700px) and (max-width:767px) {
+    .info-content {
+        position: absolute;
+    }
+    .winner {
         padding-top: 0;
     }
-    .winner > img{
-        height:100px;
+    .winner > img {
+        height: 100px;
     }
 }
+@media screen and (max-height:400px) {
+    #message-content {
+        padding-top: 1px;
+    }
+}
+
 
