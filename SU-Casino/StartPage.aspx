@@ -47,6 +47,9 @@
                <asp:hiddenfield ID="hiddenfield_userid" runat="server"></asp:hiddenfield>
                <asp:hiddenfield ID="hiddenfield_device" runat="server"></asp:hiddenfield>
                <asp:HiddenField ID="hiddenfield_startCredit" runat="server" />
+               <asp:HiddenField ID="hiddenfield_assignmentId" runat="server" />
+               <asp:HiddenField ID="hiddenfield_hitId" runat="server" />
+               <asp:HiddenField ID="hiddenfield_turkSubmitTo" runat="server" />
           </div>
            <div id="form" class="row">
               <div class="col-sm-1 col-md-2 col-xl-2"></div>
