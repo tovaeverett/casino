@@ -98,6 +98,10 @@ namespace SU_Casino
         /// <returns>True for win, false for lose</returns>
         public bool didWin(double winChance)
         {
+            if(winChance == 0)
+            {
+                return false;
+            }
             Random winRnd = new Random();
 
             // hur många gånger går vinst chanse in i 100
