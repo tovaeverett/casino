@@ -6,6 +6,7 @@
 <head runat="server">
     <title></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="src/css/index.css" />
     <style>
         td > a {
             background: #f1698d;
@@ -252,5 +253,29 @@
             </p>
         </div>
     </form>
+      <div id="message-container" class="container-fluid overlayer admin-content">
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                            <div class="col-md-4" id="message-content-admin">
+                                <div class="login">
+                                   
+                                    <h2>Login</h2>
+                                     <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input  class="form-control" id="username" style="max-width:300px;"/>
+                                     </div>
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" style="max-width:300px;" />
+                                     </div>
+
+                                </div>
+                            <button id="btnLogin" class="btn btn-large btn-primary" >Submit </button>
+                        </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="src/js/end.js"></script>
 </body>
 </html>

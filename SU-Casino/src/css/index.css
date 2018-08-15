@@ -433,7 +433,9 @@ legend {
 }
 
 /*Other*/
-
+.admin-content{
+    background:#ddd;
+}
 
 .hidden {
     display: none;
@@ -483,7 +485,7 @@ legend {
     .spin {
         height: 70px;
         width: 70px;
-        font-size: 18px;
+        font-size: 14px;
     }
     
 }
