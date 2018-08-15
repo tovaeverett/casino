@@ -243,6 +243,26 @@
   </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <script src="src/js/start.js"></script>
+    <script type="text/javascript">
+    function WebForm_OnSubmit() {
+        if (typeof (ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) {
+            for (var i in Page_Validators) {
+                try {
+                    if (!Page_Validators[i].isvalid) {
+                        var control = $("#" + Page_Validators[i].controltovalidate);
+ 
+                        var top = control.offset().top;
+                        $('html, body').animate({ scrollTop: top - 10 }, 800);
+                        control.focus();
+                        return;
+                    }
+                } catch (e) { }
+            }
+            return false;
+        }
+        return true;
+    }
+</script>
 </body>
 </html>
 
