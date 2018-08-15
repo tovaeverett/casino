@@ -83,7 +83,7 @@ function sound(src) {
     this.stop = function () {
         this.sound.pause();
     }
-    console.log(this);
+    //console.log(this);
     return this;
 }
 

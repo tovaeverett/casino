@@ -38,10 +38,10 @@ namespace SU_Casino
         public static Game getDummyGame()
         {
             Game dummy = new Game();
-            dummy.Name = "Dummy Test Game";
-            dummy.condition = "testCondition";
+            dummy.Name = "DET_realworld";
+            dummy.condition = "DET_realworld";
             dummy.sequence = 2;
-            dummy.Trials = 2;
+            dummy.Trials = 55;
             dummy.Saldo = 1500;
             dummy.Prob_S0 = 0.3;
             dummy.Bet_R1 = -25;

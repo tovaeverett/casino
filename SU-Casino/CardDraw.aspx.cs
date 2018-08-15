@@ -31,7 +31,19 @@ namespace SU_Casino
                 //Response.Redirect("ErrorPage.aspx");
             }
             HiddenField_showInfo.Value = "0";
-            Hiddenfield_text.Value = _database.getText("playCardInfo");
+            switch (currentGame.Name)
+            {
+                case "DET_realworld":
+                    Hiddenfield_text.Value = _database.getText("playCardWinFreezeInfo");
+                    break;
+                case "Transfer_test":
+                    Hiddenfield_text.Value = _database.getText("playCardNoSaldoInfo");
+                    break;
+                default:
+                    Hiddenfield_text.Value = _database.getText("playCardInfo");
+                    break;
+            }
+            
             if (!IsPostBack)
             {
                 setTheme();
