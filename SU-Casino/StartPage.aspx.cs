@@ -25,13 +25,13 @@ namespace SU_Casino
                 if (Request["workerId"] != null)
                 {
                     hiddenfield_userid.Value = Request["workerId"];
+                    hiddenfield_assignmentId.Value = Request["assignmentId"];
+                    hiddenfield_hitId.Value = Request["hitId"];
+                    hiddenfield_turkSubmitTo.Value = Request["turkSubmitTo"]; // https://www.mturk.com/
                 }
                 else
                 {
-                    //&assignmentId = 123RVWYBAZW00EXAMPLE456RVWYBAZW00EXAMPLE
-                    //& hitId = 123RVWYBAZW00EXAMPLE
-                    //& turkSubmitTo = https://www.mturk.com/
-                    //&workerId = AZ3456EXAMPLE
+                    // Response.Redirect("ErrorPage.aspx"); <--- Aktivera sen.
                 }
             }
             hiddenfield_text.Value = _database.getText("startPage");
