@@ -10,8 +10,7 @@ namespace SU_Casino
     public class Global : System.Web.HttpApplication
     {
         Database _database = new Database();
-
-        protected void Application_Start(object sender, EventArgs e)
+       protected void Application_Start(object sender, EventArgs e)
         {
 
         }

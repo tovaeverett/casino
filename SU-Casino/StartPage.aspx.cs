@@ -22,9 +22,16 @@ namespace SU_Casino
             if (!IsPostBack)
             {
                 hiddenfield_showInfo.Value = "0";
-                if (Request["userid"] != null)
+                if (Request["workerId"] != null)
                 {
-                    hiddenfield_userid.Value = Request["userid"];
+                    hiddenfield_userid.Value = Request["workerId"];
+                }
+                else
+                {
+                    //&assignmentId = 123RVWYBAZW00EXAMPLE456RVWYBAZW00EXAMPLE
+                    //& hitId = 123RVWYBAZW00EXAMPLE
+                    //& turkSubmitTo = https://www.mturk.com/
+                    //&workerId = AZ3456EXAMPLE
                 }
             }
             hiddenfield_text.Value = _database.getText("startPage");
@@ -35,16 +42,21 @@ namespace SU_Casino
         protected void btnPlay_Click(object sender, EventArgs e)
         {
             //Save to db
+           
             saveQuestions();
             hiddenfield_showInfo.Value = "1";
 
-            //To get the start credit from DB
+                //To get the start credit from DB
             GameLogic.getInitialBetingelse();
-            initialGame = (Game)Session["currentGame"];
-            if (initialGame != null)
-                hiddenfield_startCredit.Value = initialGame.Saldo.ToString();
-            else       //error handling?    
+          
+                initialGame = (Game)Session["currentGame"];
+                
+                if (initialGame != null)
+                    hiddenfield_startCredit.Value = initialGame.Saldo.ToString();
+                else
                 Response.Redirect("ErrorPage.aspx");
+
+            
 
         }
         protected void btnStart_Click(object sender, EventArgs e)

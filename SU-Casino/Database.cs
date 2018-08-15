@@ -50,7 +50,7 @@ namespace SU_Casino
             // ... att @userid inte följer med....
             string query = "INSERT into [eventLog] (user_Id,logDate,title,message) VALUES (@userid,@logDate,@title,@message)";
 
-            using (SqlConnection openCon = connectionstring)
+            using (SqlConnection openCon = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
             using (SqlCommand Save = new SqlCommand(query))
             {
                 Save.Connection = openCon;
@@ -68,7 +68,7 @@ namespace SU_Casino
                 }
                 catch (Exception ex)
                 {
-
+                    
                 }
                 finally
                 {
@@ -426,39 +426,6 @@ namespace SU_Casino
             }
             return list;
         }
-
-        //public List<string> getOrderToPlay(int seq, string condition)
-        //{
-        //    List<string> list = new List<string>();        
-        //    try
-        //    {
-        //        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
-        //        var sql = "getGameToPlay";
-        //        var da = new SqlDataAdapter(sql, con);
-        //        var ds = new DataSet();
-        //        DataTable dt = new DataTable();
-
-        //        da.SelectCommand.CommandType = CommandType.StoredProcedure;
-        //        da.SelectCommand.Parameters.AddWithValue("@seq", seq);
-        //        da.SelectCommand.Parameters.AddWithValue("@condition", condition);
-
-        //        da.Fill(ds, "getGameToPlay");
-        //        dt = ds.Tables["getGameToPlay"];
-
-        //        foreach (DataRow dr in dt.Rows)
-        //        {
-        //            list.Add(dr[0].ToString());
-        //            list.Add(dr[1].ToString());
-        //            list.Add(dr[2].ToString());
-        //        }
-        //        return list;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        // msg = "Error trying login user : " + txtUsername.Text;
-        //    }
-        //    return null;
-        //}
 
         public Game getOrderToPlay(int seq, string condition)
         {

@@ -45,8 +45,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -100,7 +100,6 @@
     <Content Include="src\css\themeGold.css" />
     <Content Include="src\images\backgrounds\body_theme1.jpg" />
     <Content Include="src\images\backgrounds\body_theme_black.png" />
-    <Content Include="src\images\backgrounds\depositphotos_180632780-stock-illustration-set-gold-coins-falling-editable.jpg" />
     <Content Include="src\images\cards\10C.png" />
     <Content Include="src\images\cards\10D.png" />
     <Content Include="src\images\cards\10H.png" />
@@ -163,12 +162,10 @@
     <Content Include="src\images\cards\12D.png" />
     <Content Include="src\images\cards\12H.png" />
     <Content Include="src\images\cards\12S.png" />
-    <Content Include="src\images\cards\red_back.png" />
     <Content Include="src\images\cards\red_back_0.png" />
     <Content Include="src\images\cards\yellow_back.png" />
     <Content Include="src\images\frameTest.png" />
     <Content Include="src\images\logos\theme1.png" />
-    <Content Include="src\images\logos\theme1Logo.png" />
     <Content Include="src\images\other\piggy-bank-icon.png" />
     <Content Include="src\images\other\winntext.png" />
     <Content Include="src\images\other\winntext2.png" />
@@ -194,6 +191,7 @@
     <Content Include="StartPage.aspx" />
     <Content Include="Web.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
