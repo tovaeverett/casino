@@ -297,7 +297,7 @@ button:focus {
 }
 
 #piggySpan {
-    display: block;
+    display: none;
     color: #ecdd67;
     padding-bottom: 5px;
     text-align: center;

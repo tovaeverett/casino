@@ -365,3 +365,5 @@ C:\Users\Hugosson\source\repos\SU-Casino2\SU-Casino\obj\Debug\SU-Casino.csproj.C
 C:\Users\Hugosson\source\repos\SU-Casino2\SU-Casino\obj\Debug\SU-Casino.dll
 C:\Users\Hugosson\source\repos\SU-Casino2\SU-Casino\obj\Debug\SU-Casino.pdb
 C:\Users\Hugosson\source\repos\SU-Casino2\SU-Casino\obj\Debug\SU-Casino.csprojAssemblyReference.cache
+C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\System.ValueTuple.dll
+C:\Users\Jeanette Skog\Documents\su\su2\su-casino\SU-Casino\bin\System.ValueTuple.xml

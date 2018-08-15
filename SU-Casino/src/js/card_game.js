@@ -38,7 +38,8 @@ function initCardGame() {
         $("#moneyLable").hide();
     }
     if (game === "DET_realworld") {
-        $("#piggySpan").show();
+        $(".winSpan").addClass("winSpanSpecial"); 
+        $("#piggySpan").css('display','block');
     }
     gameInit(theme);
     var cardSound = new Audio("src/sound/effects/cardSlide.mp3");
@@ -81,7 +82,6 @@ function cardClicked(selectedCard) {
             $("#winCredit").html("+" + $("#HiddenField_win2").val());
         }
     }
-    console.log($("#winCredit").html());
     if (isWinner && cards.game !== "Transfer_test") {
         result = result + "win";
         $("#HiddenField_result").val(result); 
@@ -92,7 +92,7 @@ function cardClicked(selectedCard) {
         $("#HiddenField_result").val(result);
         setTimeout(function () { $("#btnPlay").click(); }, 1500);
     }
-    console.log(result);
+    //console.log(result);
 }
 
 $(function () {
