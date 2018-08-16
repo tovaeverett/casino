@@ -34,6 +34,7 @@ namespace SU_Casino
             HiddenField_showInfo.Value = "0";
             if (!IsPostBack)
             {
+                setTheme();
                 HiddenField_showInfo.Value = "1";
                 Hiddenfield_text.Value = _database.getText("playSlotInfo");
                 SpinIt();
@@ -50,7 +51,7 @@ namespace SU_Casino
                 lblMoney.Text = money.ToString();
                 setCurrentBalance();
                 trial = 1;
-                setTheme();
+                
             }
         }
 
@@ -94,6 +95,7 @@ namespace SU_Casino
             }
             checkForWin();
             setCurrentBalance();
+            setTheme();
 
             if (trial > currentGame.Trials)
                 GameLogic.getNextGame(currentGame, money);

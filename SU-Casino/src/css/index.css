@@ -482,12 +482,20 @@ legend {
         font-size: 1em;
         padding: 10px;
     }
+
     .spin {
         height: 70px;
         width: 70px;
         font-size: 14px;
     }
-    
+
+    .radioButtonList label {
+        font-size: 1.7rem;
+    }
+
+    legend {
+        font-size: 1.7rem;
+    }
 }
 @media (max-width: 510px) {
     .playground-slot {
