@@ -62,20 +62,20 @@ namespace SU_Casino
             char let = Array[num];
             
             Random rnd = new Random();
-            int max = 0;
+            //int max = 0;
         
-            if(min < 8)
-            {
-                max = min +5;
-            }
-            else if(min >= 8)
-            {
-                min = 8;
-                max = 13;
-            }
+            //if(min < 8)
+            //{
+            //    max = min +5;
+            //}
+            //else if(min >= 8)
+            //{
+            //    min = 8;
+            //    max = 13;
+            //}
 
             // få array med "förlorar" korten
-            var losingCards = currentGame.RetrieveLosingNumbers(min, max, CheckCard);
+            var losingCards = currentGame.RetrieveLosingNumbers(1, 13, CheckCard);
 
             // vann eller vann inte?
             if (currentGame.didWin(winChance))
