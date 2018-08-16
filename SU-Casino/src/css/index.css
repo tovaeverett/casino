@@ -329,19 +329,6 @@ button:focus {
     height: 100%;
 }
 
-@-webkit-keyframes zoomin {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.5);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
 
 #intro {
     padding-top: 10%;
@@ -406,9 +393,9 @@ fieldset {
 
 legend {
     font-weight: 500;
-    font-size: 1.1rem;
     margin-bottom: .9rem;
     padding-top: 15px;
+    font-size: 1.7rem;
 }
 
 .countCredit {
@@ -428,7 +415,7 @@ legend {
 
 #endText {
     padding: 20px;
-    border: 1px solid#ddd;
+    border: 1px solid #ddd;
     border-radius: 5px;
 }
 
@@ -453,6 +440,12 @@ legend {
     max-width: 0;
 }
 
+#start, #btnPlay {
+    font-size: 1.7rem;
+}
+
+
+
 /*Media*/
 @media (min-width: 1600px) {
     .playground-slot{
@@ -461,10 +454,18 @@ legend {
     #message-container {
         padding-top: 15rem;
     }
+   
 }
 
 @media (min-width: 1024px) {
-    .smallDev {
+    #start {
+        font-size: 1rem;
+    }
+
+    legend {
+        font-size: 1.1rem;
+    }
+        .smallDev {
         max-width: 1200px;
         padding-right: 0;
         padding-left: 0;
@@ -477,7 +478,9 @@ legend {
         width: 100px;
     }
 }
+
 @media (max-width: 767px) {
+  
     .winchance-btn {
         font-size: 1em;
         padding: 10px;
@@ -488,16 +491,10 @@ legend {
         width: 70px;
         font-size: 14px;
     }
-
-    .radioButtonList label {
-        font-size: 1.7rem;
-    }
-
-    legend {
-        font-size: 1.7rem;
-    }
 }
+
 @media (max-width: 510px) {
+   
     .playground-slot {
         height: 250px;
     }
