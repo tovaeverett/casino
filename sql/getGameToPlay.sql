@@ -1,6 +1,6 @@
 USE [SU_Casino]
 GO
-/****** Object:  StoredProcedure [dbo].[getGameToPlay]    Script Date: 2018-08-15 09:55:36 ******/
+/****** Object:  StoredProcedure [dbo].[getGameToPlay]    Script Date: 2018-08-16 14:46:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22,5 +22,5 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT name, trials, saldo, Prob_S0 ,bet_R1, bet_R2, prob_O1, prob_O2, win_O1, win_O2 from matris where seq = @seq and condition = @condition
+	SELECT name, trials, saldo, Prob_S0 ,bet_R1, bet_R2, prob_O1, prob_O2, win_O1, win_O2, ifS1probX, ifS2probX from matris where seq = @seq and condition = @condition
 END
