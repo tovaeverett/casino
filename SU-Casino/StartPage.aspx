@@ -222,10 +222,10 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ErrorMessage="Please answer this question." CssClass="validationError" Font-Bold="True" SetFocusOnError="True" ForeColor="Red" ControlToValidate="q13"></asp:RequiredFieldValidator>
                      </fieldset>
                 </div>
-
+                  <div class="text-center">
                    <asp:Button ID="btnPlay" runat="server"  Text="Send information" class="btn btn-large btn-primary" OnClick="btnPlay_Click"/>
                   <br />
-
+                  </div>
              </div>
             <div class="col-xs-1 col-sm-1 col-xl-2"></div>
         </div>
