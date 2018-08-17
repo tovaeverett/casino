@@ -693,7 +693,8 @@ namespace SU_Casino
 
         public void GetReport()
         {
-            string strFilePath = @"C:\temp\playerreports_"+ DateTime.Now.ToShortDateString()+".csv";
+            string strFileName = "playerreports_" + DateTime.Now.ToShortDateString();
+            string strFilePath = @"C:\temp\"+ strFileName  + ".csv";
             string strSeperator = ",";
             StringBuilder sbOutput = new StringBuilder();
 
@@ -719,14 +720,28 @@ namespace SU_Casino
             }
 
             File.WriteAllText(strFilePath, sbOutput.ToString());
-
+            SendFile(strFilePath, strFileName);
             // To append more lines to the csv file
             // File.AppendAllText(strFilePath, sbOutput.ToString());
 
         }
+
+        public void SendFile(string strFilePath, string strFileName)
+        {
+            System.Web.HttpResponse Response = System.Web.HttpContext.Current.Response;
+            string fileName = strFileName;
+            byte[] Content = File.ReadAllBytes(strFilePath); //missing ;
+            Response.ContentType = "text/csv";
+            Response.AddHeader("content-disposition", "attachment; filename=" + fileName + ".csv");
+            Response.BufferOutput = true;
+            Response.OutputStream.Write(Content, 0, Content.Length);
+            Response.End();
+        }
         public void GetQuestionReports()
         {
-            string strFilePath = @"C:\temp\questionreports_" + DateTime.Now.ToShortDateString() + ".csv";
+            string strFileName = "questionreports_" + DateTime.Now.ToShortDateString();
+            string strFilePath = @"C:\temp\" + strFileName + ".csv";
+      
             string strSeperator = ",";
             StringBuilder sbOutput = new StringBuilder();
 
@@ -753,7 +768,7 @@ namespace SU_Casino
             }
 
             File.WriteAllText(strFilePath, sbOutput.ToString());
-
+            SendFile(strFilePath, strFileName);
             // To append more lines to the csv file
             // File.AppendAllText(strFilePath, sbOutput.ToString());
 
