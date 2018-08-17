@@ -454,13 +454,17 @@ namespace SU_Casino
                         game.Saldo = dr[2].ToString() != "" ? Convert.ToInt32(dr[2].ToString()) : 0;
                         game.Prob_S0 = dr[3].ToString() != "" ? Convert.ToDouble(dr[3].ToString()) : 0;
                         game.Bet_R1 = dr[4].ToString() != "" ? Convert.ToInt32(dr[4].ToString()) : 0;
-                        game.Bet_R2 = dr[5].ToString() != "" ? Convert.ToInt32(dr[5].ToString()) : game.Bet_R1;
+                        game.Bet_R2 = dr[5].ToString() != "" ? Convert.ToInt32(dr[5].ToString()) : 0;
                         game.Prob_O1 = dr[6].ToString() != "" ? Convert.ToDouble(dr[6].ToString()) : 0;
-                        game.Prob_O2 = dr[7].ToString() != "" ? Convert.ToDouble(dr[7].ToString()) : game.Prob_O1;
+                        game.Prob_O2 = dr[7].ToString() != "" ? Convert.ToDouble(dr[7].ToString()) : 0;
                         game.Win_O1 = dr[8].ToString() != "" ? Convert.ToInt32(dr[8].ToString()) : 0;
-                        game.Win_O2 = dr[9].ToString() != "" ? Convert.ToInt32(dr[9].ToString()) : game.Win_O1;
+                        game.Win_O2 = dr[9].ToString() != "" ? Convert.ToInt32(dr[9].ToString()) : 0;
                         game.IfS1probX = dr[10].ToString() != "" ? Convert.ToInt32(dr[10].ToString()) : 0;
                         game.IfS2probX = dr[11].ToString() != "" ? Convert.ToInt32(dr[11].ToString()) : 0;
+                        game.Perc_S1 = dr[12].ToString() != "" ? Convert.ToInt32(dr[12].ToString()) : 0;
+                        game.Perc_S2 = dr[13].ToString() != "" ? Convert.ToInt32(dr[13].ToString()) : 0;
+                        game.Perc_S3 = dr[14].ToString() != "" ? Convert.ToInt32(dr[14].ToString()) : 0;
+                        game.Perc_S4 = dr[15].ToString() != "" ? Convert.ToInt32(dr[15].ToString()) : 0;
                         game.Sequence = seq;
                         game.Condition = condition;
                     }

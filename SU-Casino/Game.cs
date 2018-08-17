@@ -22,6 +22,10 @@ namespace SU_Casino
         private String themeVariant;
         private int ifS1probX;
         private int ifS2probX;
+        private double perc_S1;
+        private double perc_S2;
+        private double perc_S3;
+        private double perc_S4;
 
         public string Name { get => name; set => name = value; }
         public int Trials { get => trials; set => trials = value; }
@@ -36,9 +40,13 @@ namespace SU_Casino
         public string Condition { get => condition; set => condition = value; }
         public int Sequence { get => sequence; set => sequence = value; }
         public string ThemeVariant { get => themeVariant; set => themeVariant = value; }
-
         public int IfS1probX { get => ifS1probX; set => ifS1probX = value; }
         public int IfS2probX { get => ifS2probX; set => ifS2probX = value; }
+        public double Perc_S1 { get => perc_S1; set => perc_S1 = value; }
+        public double Perc_S2 { get => perc_S2; set => perc_S2 = value; }
+        public double Perc_S3 { get => perc_S3; set => perc_S3 = value; }
+        public double Perc_S4 { get => perc_S4; set => perc_S4 = value; }
+
 
         public static Game getDummyGame()
         {
@@ -57,6 +65,10 @@ namespace SU_Casino
             dummy.Win_O2 = 1000;
             dummy.IfS1probX = 1;
             dummy.IfS2probX = 1;
+            dummy.perc_S1 = 0.25;
+            dummy.perc_S2 = 0;
+            dummy.perc_S3 = 0;
+            dummy.perc_S4 = 0.25;
             return dummy;
 
         }
