@@ -9,8 +9,8 @@ body {
 .header {
     color: #0088cc;
     padding-top: 25px;
-    padding-bottom: 15px;
-    text-align: center;
+  
+    text-align: left;
     padding-left: 30px;
 }
 
@@ -42,13 +42,6 @@ button:focus {
     height:200px;
 }
 
-.header {
-    color: #0088cc;
-    padding-top: 25px;
-    padding-bottom: 15px;
-    text-align: center;
-    padding-left: 30px;
-}
 
 #startInfo{
     display:none;
@@ -322,6 +315,7 @@ button:focus {
     position: absolute;
     right: 0;
     bottom: 10px;
+    font-size: 15px;
 }
 
 .zoom {
@@ -337,6 +331,11 @@ button:focus {
 
 
 /*------StartPage--------*/
+
+#start, #btnPlay {
+    font-size: 1rem;
+}
+
 .question-container {
     padding-bottom: 40px;
 }
@@ -395,7 +394,7 @@ legend {
     font-weight: 500;
     margin-bottom: .9rem;
     padding-top: 15px;
-    font-size: 1.7rem;
+    font-size: 1rem;
 }
 
 .countCredit {
@@ -440,9 +439,6 @@ legend {
     max-width: 0;
 }
 
-#start, #btnPlay {
-    font-size: 1.9rem;
-}
 
 
 
@@ -501,7 +497,31 @@ legend {
             width: 70px;
             font-size: 14px;
         }
-    }
+        .radioButtonList label {
+            padding: 10px 5px;
+            margin-right: 5px;
+            font-size: 10px;
+        }
+        #startPlay {
+            width: 100%;
+            height: auto;
+            position: relative;
+            left: 0;
+            margin-left: 1px;
+            margin-right: 5px;
+            margin-top: 5vh;
+            padding: 10px 20px 20px 20px;
+        }
+        fieldset {
+            padding: 5px;
+        }
+        .header {
+            text-align:center;
+        }
+        .header img{
+            width: 50%;
+        }
+ }
 
     @media (max-width: 510px) {
 

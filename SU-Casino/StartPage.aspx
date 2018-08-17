@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Start</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes"/>
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="src/css/index.css"/>
     <script>
@@ -20,8 +21,8 @@
     </script>
 </head>
 <body class="bodyStart" id="start">
-    <div class="container smallDev">
-        <header></header>
+    <div class="container-fluid smallDev">
+        <header class="header"> <img src="src/images/logos/SU.png" class="img-fluid" title="Stockholms universitet" /></header>
     </div>
     <div class="container-fluid smallDev">
       <form id="form1" runat="server">
@@ -29,6 +30,7 @@
          <div class="row">
              <div class="col-xs-1 col-sm-1 col-xl-2"></div>
               <div id="intro" class="col-xs-10 col-sm-10 col-xl-8">
+                 
                  <section>
                      <h1>Welcome to SU Casino</h1>
                      <div id="introInfoTextDiv">

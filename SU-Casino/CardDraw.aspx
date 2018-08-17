@@ -20,7 +20,7 @@
                 <link rel="stylesheet" href="src/css/noTheme.css" />
               <%   break;
             case "1":%>
-                <link rel="stylesheet" href="src/css/themeBlack.css" />
+                <link rel="stylesheet" href="src/css/themeRed.css" />
               <%   break;
             case "2":%>
                 <link rel="stylesheet" href="src/css/themeBlue.css" />
@@ -29,7 +29,7 @@
                 <link rel="stylesheet" href="src/css/themeGold.css" />
                <%  break;
             case "4":%>
-                <link rel="stylesheet" href="src/css/themeRed.css" />
+                <link rel="stylesheet" href="src/css/themeBlack.css" />
               <%   break;
             case "5":%>
                 <link rel="stylesheet" href="src/css/themeRedB.css" />
