@@ -165,6 +165,7 @@
     <Content Include="src\images\cards\red_back_0.png" />
     <Content Include="src\images\cards\yellow_back.png" />
     <Content Include="src\images\frameTest.png" />
+    <Content Include="src\images\logos\SU.png" />
     <Content Include="src\images\other\wintext.png" />
     <Content Include="src\images\other\piggy-bank-icon.png" />
     <Content Include="src\images\slot\chomp.png" />
@@ -269,9 +270,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\images\logos\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -8,6 +8,7 @@ function gameInit(sentTheme) {
     $("#message-container").hide();
     $("#winchance-container").hide();
     $("#introInfoText").html($("#Hiddenfield_text").val());
+    $("#Hiddenfield_text").val("0");
     $("#winCredit").html("+" + $("#HiddenField_credit").val());
     theme = sentTheme;
     var showInfo = $("#HiddenField_showInfo").val();
