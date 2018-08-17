@@ -75,6 +75,8 @@
                         <asp:TextBox  CssClass="radioButtonList" ID="q11" runat="server"/>
                      </fieldset>
                       <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="Please answer this question." CssClass="validationError" Font-Bold="True" SetFocusOnError="True" ForeColor="Red" ControlToValidate="q11"></asp:RequiredFieldValidator>
+                      <asp:RegularExpressionValidator ID="rev" runat="server"    ControlToValidate="q11" ErrorMessage="Please enter your age in numbers" ValidationExpression="^\d+$" CssClass="validationError" Font-Bold="True"></asp:RegularExpressionValidator>
+                      <asp:RangeValidator ID="val" runat="server" ErrorMessage="<br/>Your age is not valid" SetFocusOnError="true" ControlToValidate="q11" Display="Dynamic" CssClass="validationError"  ForeColor="red" Type="Integer" MinimumValue="18" MaximumValue="150"></asp:RangeValidator>
                 </div>
                   <section class="questionInfoBox">
                        <h5> The following questions concern gambling, by which we mean any activity where money (or something of monetary value) is waged on an uncertain outcome governed (to some extent) by chance, with the primary aim of winning more money (or something greater monetary value).</h5>
