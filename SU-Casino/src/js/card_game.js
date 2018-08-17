@@ -32,7 +32,7 @@ $(".winchance-btn").click(function () {
 
 function initCardGame() {
     var baseUrl = "src/images/cards/";
-    var theme = $("#HiddenField_theme").val();
+    var theme = "";
     var game = $("#HiddenField_game").val();
     if (game === "Transfer_test") {
         $("#moneyLable").hide();
@@ -41,6 +41,8 @@ function initCardGame() {
         $(".winSpan").addClass("winSpanSpecial"); 
         $("#piggySpan").css('display','block');
     }
+    theme = $("#HiddenField_Trail").val() === '0' ? theme = $("#HiddenField_theme").val() : "99";
+
     gameInit(theme);
     var cardSound = new Audio("src/sound/effects/cardSlide.mp3");
     cards = {

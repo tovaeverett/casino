@@ -189,7 +189,7 @@ button:focus {
     font-size: 26px;
     border: 4px solid silver;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.68);
-    box-shadow: 2px 4px rgba(0, 0, 0, 0.5019607843137255);
+    box-shadow: 2px 4px 8px 1px rgba(0, 0, 0, 0.28);
 }
 
 /*---Playground--*/
@@ -441,7 +441,7 @@ legend {
 }
 
 #start, #btnPlay {
-    font-size: 1.7rem;
+    font-size: 1.9rem;
 }
 
 
@@ -458,7 +458,7 @@ legend {
 }
 
 @media (min-width: 1024px) {
-    #start {
+    #start, #btnPlay {
         font-size: 1rem;
     }
 
@@ -479,50 +479,65 @@ legend {
     }
 }
 
-@media (max-width: 767px) {
-  
-    .winchance-btn {
-        font-size: 1em;
-        padding: 10px;
+@media (min-width: 767px) {
+    #start, #btnPlay {
+        font-size: 1rem;
     }
 
-    .spin {
-        height: 70px;
-        width: 70px;
-        font-size: 14px;
+    legend {
+        font-size: 1.1rem;
     }
 }
 
-@media (max-width: 510px) {
-   
-    .playground-slot {
-        height: 250px;
-    }
-    #message-content{
-       padding-top:10px;
-    }
-}
+    @media (max-width: 767px) {
 
-@media (max-width: 320px) {
-    #play-container {
-        height: 400px;
+        .winchance-btn {
+            font-size: 1em;
+            padding: 10px;
+        }
+
+        .spin {
+            height: 70px;
+            width: 70px;
+            font-size: 14px;
+        }
     }
-}
-@media screen and (max-height:700px) and (max-width:767px) {
-    .info-content {
-        position: absolute;
+
+    @media (max-width: 510px) {
+
+        .playground-slot {
+            height: 250px;
+        }
+
+        #message-content {
+            padding-top: 10px;
+        }
     }
-    .winner {
-        padding-top: 0;
+
+    @media (max-width: 320px) {
+        #play-container {
+            height: 400px;
+        }
     }
-    .winner > img {
-        height: 100px;
+
+    @media screen and (max-height:700px) and (max-width:767px) {
+        .info-content {
+            position: absolute;
+        }
+
+        .winner {
+            padding-top: 0;
+        }
+
+            .winner > img {
+                height: 100px;
+            }
     }
-}
-@media screen and (max-height:400px) {
-    #message-content {
-        padding-top: 1px;
+
+    @media screen and (max-height:400px) {
+        #message-content {
+            padding-top: 1px;
+        }
     }
-}
 
 

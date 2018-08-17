@@ -15,7 +15,7 @@
     <link id="themeCSS" runat="server" rel="stylesheet" type="text/css" /> 
 
     <!-- *****Random themes *****-->
-      <%  var theme = this.HiddenField_theme.Value;
+       <%  var theme = this.HiddenField_theme.Value;
         switch (theme) {
              case "null":%>
                 <link rel="stylesheet" href="src/css/noTheme.css" />
@@ -27,10 +27,16 @@
                 <link rel="stylesheet" href="src/css/themeBlue.css" />
                 <% break;
             case "3":%>
-                <link rel="stylesheet" href="src/css/themeRed.css" />
+                <link rel="stylesheet" href="src/css/themeGold.css" />
                <%  break;
             case "4":%>
-                <link rel="stylesheet" href="src/css/themeGold.css" />
+                <link rel="stylesheet" href="src/css/themeRed.css" />
+              <%   break;
+            case "5":%>
+                <link rel="stylesheet" href="src/css/themeRedB.css" />
+              <%   break;
+            case "6":%>
+                <link rel="stylesheet" href="src/css/themeRedC.css" />
               <%   break;
             default:%>
                 <link rel="stylesheet" href="src/css/themeGold.css" />
@@ -106,7 +112,7 @@
                             <asp:HiddenField ID="Hiddenfield_text" runat="server" />
                             <asp:HiddenField ID="HiddenField_currentBalance" runat="server" />
                             <div id="panel1">
-                                <div id="moneyLable">Credit left:&nbsp; 
+                                <div id="moneyLable">Credits left:&nbsp; 
                                 <span class="cash-sum"> 
                                     <asp:Label ID="lblMoney" runat="server"></asp:Label>  
                                 </span>
@@ -154,7 +160,7 @@
                             <div class="col-md-8 text-center div-center" id="message-content">
                                 <div class="info">
                                     <section>
-                                        <h1> LETS PLAY SLOT MACHINE </h1>
+                                        <h1> Let’s play roulette slot machine! </h1>
                                         <p id="introInfoText">
                                         Lorem ipsum dolor sit amet, sea mundi ponderum neglegentur ex, at munere delicata cum. 
                                         Inani choro per ex, equidem debitis et pro, sea an ludus omnium. Putent commune omnesque no ius, 
@@ -177,8 +183,8 @@
                         <div class="col-md-2"></div>
                             <div class="col-md-8 text-center" id="message-content-win">
                                 <div class="winner">
-                                    <img src="src/images/other/winntext2.png" class="img-responsive" />
-                                    <h2><span class="winSpan"> You got <span id="winCredit"></span> !!!!</span></h2>
+                                    <img src="src/images/other/wintext.png" class="img-responsive" />
+                                    <h2><span class="winSpan"> You won <span id="winCredit"></span> !!!!</h2>
                                 </div>
                             <button id="btnCloseWin" class="btn btn-large btn-primary" > Play again </button>
                         </div>

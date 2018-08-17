@@ -166,6 +166,7 @@
     <Content Include="src\images\cards\yellow_back.png" />
     <Content Include="src\images\frameTest.png" />
     <Content Include="src\images\logos\theme1.png" />
+    <Content Include="src\images\other\wintext.png" />
     <Content Include="src\images\other\piggy-bank-icon.png" />
     <Content Include="src\images\other\winntext.png" />
     <Content Include="src\images\other\winntext2.png" />

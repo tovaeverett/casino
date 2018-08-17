@@ -27,9 +27,6 @@ body {
 
 
 .round-button {
-    height: 70px;
-    width: 70px;
-    border-radius: 50%;
     background: linear-gradient(to bottom, #c77e7b 0%,#903532 50%,#5d120d 100%);
     background-size: contain;
     background-repeat: no-repeat;

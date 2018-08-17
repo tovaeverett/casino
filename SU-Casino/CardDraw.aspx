@@ -95,10 +95,11 @@
                                 <asp:HiddenField ID="Hiddenfield_text" runat="server" />
                                 <asp:HiddenField ID="HiddenField_game" runat="server" />
                                 <asp:HiddenField ID="HiddenField_currentBalance" runat="server" />
+                                <asp:HiddenField ID="HiddenField_Trail" runat="server" />
                                  
                                 <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play again!" class="hidden" />
                                 <div id="panel1">
-                                    <div id="moneyLable">Credit left:&nbsp; 
+                                    <div id="moneyLable">Credits left:&nbsp; 
                                         <span class="cash-sum"> 
                                             <asp:Label ID="lblMoney" runat="server"> </asp:Label>
                                         </span>
@@ -136,7 +137,7 @@
                             <div class="col-md-8 text-center div-center" id="message-content">
                                 <div class="info">
                                     <section>
-                                        <h1> LETS PLAY CARDS </h1>
+                                        <h1> Let’s play cards! </h1>
                                         <p id="introInfoText">
                                         Lorem ipsum dolor sit amet, sea mundi ponderum neglegentur ex, at munere delicata cum. 
                                         Inani choro per ex, equidem debitis et pro, sea an ludus omnium. Putent commune omnesque no ius, 
@@ -159,9 +160,9 @@
                         <div class="col-md-2"></div>
                             <div class="col-md-8 text-center" id="message-content-win">
                                 <div class="winner">
-                                   <img src="src/images/other/winntext2.png" class="img-responsive" />
+                                   <img src="src/images/other/wintext.png" class="img-responsive" />
                                     
-                                    <h2><span class="winSpan"> You got <span id="winCredit"></span> !!!!
+                                    <h2><span class="winSpan"> You won <span id="winCredit"></span> !!!!
                                         <span id="piggySpan"><img src="src/images/other/piggy-bank-icon.png"/> <br />
                                        <b> The price has been saved in a piggy bank and you can't gamble with it </b>
                                         </span>
