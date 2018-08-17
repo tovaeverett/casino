@@ -125,14 +125,39 @@ namespace SU_Casino
 
             return randomfruit;
         }
+        public int[] getThemes()
+        {
+            int[] themearray = new int[] { };
+            if (currentGame.Perc_S1 != 0)
+            {
+                themearray = new List<int>(themearray) { 1 }.ToArray();
+            }
+            if(currentGame.Perc_S2 != 0)
+            {
+                themearray = new List<int>(themearray) { 2 }.ToArray();
+            }
+            if (currentGame.Perc_S3 != 0)
+            {
+                themearray = new List<int>(themearray) { 3 }.ToArray();
+            }
+            if (currentGame.Perc_S4 != 0)
+            {
+                themearray = new List<int>(themearray) {4 }.ToArray();
+            }
+            return themearray;
+        }
         public int setTheme()
         {
+            //   var theme = _database.getTheme(currentGame.Name);
+            int[] nr = getThemes();
+         
             Random rnd = new Random();
-            int randomTheme = rnd.Next(1, 4);
-            HiddenField_theme.Value = randomTheme.ToString();
-            //  var theme = _database.getTheme(randomTheme);
-            if (randomTheme == 4 && currentGame.ThemeVariant != "A") //perc_S1 -> themeRed
+            int randomTheme = nr[rnd.Next(0, nr.Length)];
 
+           // int randomTheme = rnd.Next(1, 4);
+            HiddenField_theme.Value = randomTheme.ToString();
+            
+            if (randomTheme == 1 && currentGame.ThemeVariant != "A") //perc_S1 -> themeRed
             {
                 if (currentGame.ThemeVariant == "B")
                     HiddenField_theme.Value = (randomTheme + 1).ToString();
@@ -142,14 +167,20 @@ namespace SU_Casino
             }
             else
                 HiddenField_theme.Value = randomTheme.ToString();
-            if(randomTheme == 4 && currentGame.IfS1probX.ToString() != "")
+            if(randomTheme == 1 && currentGame.IfS1probX.ToString() != "")
             {
                 currentGame.Prob_O1 = currentGame.Prob_O1 * currentGame.IfS1probX;
-                currentGame.Prob_O2 = currentGame.Prob_O2 * currentGame.IfS1probX;
             }
-            if (randomTheme == 4 && currentGame.IfS2probX.ToString() != "")
+            if (randomTheme == 1 && currentGame.IfS2probX.ToString() != "")
             {
-                currentGame.Prob_O1 = currentGame.Prob_O1 * currentGame.IfS2probX;
+                currentGame.Prob_O2 = currentGame.Prob_O2 * currentGame.IfS2probX;
+            }
+            if (randomTheme == 2 && currentGame.IfS1probX.ToString() != "")
+            {
+                currentGame.Prob_O1 = currentGame.Prob_O1 * currentGame.IfS1probX;
+            }
+            if (randomTheme == 2 && currentGame.IfS2probX.ToString() != "")
+            {
                 currentGame.Prob_O2 = currentGame.Prob_O2 * currentGame.IfS2probX;
             }
             return randomTheme;

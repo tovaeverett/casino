@@ -174,9 +174,30 @@ namespace SU_Casino
             lblMoney.Text = money.ToString();
             SaveToDB(CardBet, betAmount, winningAmount);
         }
-
+        public int[] getThemes()
+        {
+            int[] themearray = new int[] { };
+            if (currentGame.Perc_S1 != 0)
+            {
+                themearray = new List<int>(themearray) { 1 }.ToArray();
+            }
+            if (currentGame.Perc_S2 != 0)
+            {
+                themearray = new List<int>(themearray) { 2 }.ToArray();
+            }
+            if (currentGame.Perc_S3 != 0)
+            {
+                themearray = new List<int>(themearray) { 3 }.ToArray();
+            }
+            if (currentGame.Perc_S4 != 0)
+            {
+                themearray = new List<int>(themearray) { 4 }.ToArray();
+            }
+            return themearray;
+        }
         public string setTheme()
         {
+            int[] nr = getThemes();
             if (currentGame != null && currentGame.Name == "Instrumental_acq")
             {
                 HiddenField_theme.Value = "null";
@@ -185,10 +206,10 @@ namespace SU_Casino
             else
             {
                 Random rnd = new Random();
-                int randomTheme = rnd.Next(1, 5);
+                int randomTheme = nr[rnd.Next(0, nr.Length)];
                 //  var theme = _database.getTheme(randomTheme);
 
-                if(randomTheme == 4 && currentGame.ThemeVariant != "A")
+                if (randomTheme == 4 && currentGame.ThemeVariant != "A")
                 {
                     if (currentGame.ThemeVariant == "B")
                         HiddenField_theme.Value = (randomTheme+1).ToString();
