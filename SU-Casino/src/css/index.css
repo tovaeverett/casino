@@ -261,17 +261,7 @@ button:focus {
     background-size: contain;
 }
 .winner-inner {
-    /*width: 10%;
-    height: 10%;
-    -webkit-transition: all 2.5s ease-in-out;
-    -moz-transition: all 2.5s ease-in-out;
-    -ms-transition: all 2.5s ease-in-out;
-    -o-transition: all 2.5s ease-in-out;
-    transition: all 2.5s ease-in-out;*/
-    /*transition: transform .2s;
-        -webkit-animation: zoomin 10s ease-in infinite;
-    animation: zoomout 10s ease-in infinite;
-    transition: all .5s ease-in-out;*/
+    z-index: 1;
 }
 
 .winSpan {
@@ -315,7 +305,7 @@ button:focus {
     position: absolute;
     right: 0;
     bottom: 10px;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .zoom {

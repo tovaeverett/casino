@@ -36,8 +36,8 @@ namespace SU_Casino
             Exception Ex = Server.GetLastError();
             var log = new EventLog("Unhandled error", null, Ex);
             _database.Log(log);
-            Server.ClearError();
-            Server.Transfer("ErrorPage.aspx");
+           // Server.ClearError();
+           // Server.Transfer("ErrorPage.aspx");
         }
 
         protected void Session_End(object sender, EventArgs e)

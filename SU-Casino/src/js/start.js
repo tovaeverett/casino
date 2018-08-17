@@ -10,6 +10,7 @@ $(document).ready(function () {
         var end = parseInt($("#hiddenfield_startCredit").val());
         animateValue("value", 0, end, 300);
     }
+    $("#hiddenfield_text").val("0");
 });
 
 $("#btnCloseWin").click(function () {
