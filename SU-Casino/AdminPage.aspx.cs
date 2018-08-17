@@ -204,6 +204,7 @@ namespace SU_Casino
         {
            
             _database.GetReport();
+            _database.GetQuestionReports();
         }
 
         protected void btnResetMatris_Click(object sender, EventArgs e)

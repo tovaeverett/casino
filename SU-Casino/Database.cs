@@ -693,7 +693,7 @@ namespace SU_Casino
 
         public void GetReport()
         {
-            string strFilePath = @"C:\temp\testfile"+ DateTime.Now.ToShortDateString()+".csv";
+            string strFilePath = @"C:\temp\playerreports_"+ DateTime.Now.ToShortDateString()+".csv";
             string strSeperator = ",";
             StringBuilder sbOutput = new StringBuilder();
 
@@ -716,6 +716,40 @@ namespace SU_Casino
             {
                 sbOutput.AppendLine(string.Join(strSeperator, dr[0] + strSeperator + dr[1] + strSeperator + dr[2] + strSeperator + dr[3] + strSeperator + dr[4] + strSeperator + dr[5] + strSeperator
                     + dr[6] + strSeperator + dr[7] + strSeperator + dr[8] + strSeperator + dr[9] + strSeperator + dr[10] + strSeperator + dr[11] + strSeperator + dr[12] + strSeperator + dr[13] + strSeperator));
+            }
+
+            File.WriteAllText(strFilePath, sbOutput.ToString());
+
+            // To append more lines to the csv file
+            // File.AppendAllText(strFilePath, sbOutput.ToString());
+
+        }
+        public void GetQuestionReports()
+        {
+            string strFilePath = @"C:\temp\questionreports_" + DateTime.Now.ToShortDateString() + ".csv";
+            string strSeperator = ",";
+            StringBuilder sbOutput = new StringBuilder();
+
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+            var sql = "getQuestionLog";
+            var da = new SqlDataAdapter(sql, con);
+            var ds = new DataSet();
+            DataTable dt = new DataTable();
+
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+            //da.SelectCommand.Parameters.AddWithValue("@UserId", lblUserId.Text);
+
+
+            da.Fill(ds, "getQuestionLog");
+            dt = ds.Tables["getQuestionLog"];
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                sbOutput.AppendLine(string.Join(strSeperator, dr[0] + strSeperator + dr[1] + strSeperator + dr[2] + strSeperator + dr[3] + strSeperator + dr[4] + strSeperator + dr[5] + strSeperator
+                    + dr[6] + strSeperator + dr[7] + strSeperator + dr[8] + strSeperator + dr[9] + strSeperator + dr[10] + strSeperator + dr[11] + strSeperator + dr[12] + strSeperator + dr[13] + strSeperator
+                    + dr[14] + strSeperator + dr[15] + strSeperator + dr[16]));
             }
 
             File.WriteAllText(strFilePath, sbOutput.ToString());
