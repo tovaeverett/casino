@@ -67,6 +67,15 @@ namespace SU_Casino {
         protected global::System.Web.UI.WebControls.Button btnAddRow;
         
         /// <summary>
+        /// btnResetMatris control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnResetMatris;
+        
+        /// <summary>
         /// gvMatris control.
         /// </summary>
         /// <remarks>
@@ -83,5 +92,14 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnReport;
+        
+        /// <summary>
+        /// FileUpload1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
     }
 }

@@ -459,6 +459,8 @@ namespace SU_Casino
                         game.Prob_O2 = dr[7].ToString() != "" ? Convert.ToDouble(dr[7].ToString()) : game.Prob_O1;
                         game.Win_O1 = dr[8].ToString() != "" ? Convert.ToInt32(dr[8].ToString()) : 0;
                         game.Win_O2 = dr[9].ToString() != "" ? Convert.ToInt32(dr[9].ToString()) : game.Win_O1;
+                        game.IfS1probX = dr[10].ToString() != "" ? Convert.ToInt32(dr[10].ToString()) : 0;
+                        game.IfS2probX = dr[11].ToString() != "" ? Convert.ToInt32(dr[11].ToString()) : 0;
                         game.Sequence = seq;
                         game.Condition = condition;
                     }
@@ -687,7 +689,7 @@ namespace SU_Casino
 
         public void GetReport()
         {
-            string strFilePath = @"C:\temp\testfile.csv";
+            string strFilePath = @"C:\temp\testfile"+ DateTime.Now.ToShortDateString()+".csv";
             string strSeperator = ",";
             StringBuilder sbOutput = new StringBuilder();
 
@@ -757,6 +759,37 @@ namespace SU_Casino
                 conn.Close();
                 conn.Dispose();
             }
+        }
+
+        public void resetMatris()
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+            var ds = new DataSet();
+            DataTable dt = new DataTable();
+
+            try
+            {
+                var sql = "resetMatris";
+                var da = new SqlDataAdapter(sql, con);
+
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                da.Fill(ds, "resetMatris");
+                dt = ds.Tables["resetMatris"];
+
+            }
+            catch (Exception ex)
+            {
+                var log = new EventLog("Error trying to get matris", null, ex);
+
+                Log(log);
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+                GetMatris();
+            }          
         }
     }
 }

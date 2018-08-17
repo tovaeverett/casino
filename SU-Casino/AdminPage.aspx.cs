@@ -202,7 +202,13 @@ namespace SU_Casino
 
         protected void btnReport_Click(object sender, EventArgs e)
         {
+           
             _database.GetReport();
+        }
+
+        protected void btnResetMatris_Click(object sender, EventArgs e)
+        {
+            _database.resetMatris();
         }
     }
 }
