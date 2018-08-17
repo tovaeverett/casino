@@ -128,7 +128,7 @@ namespace SU_Casino
         {
             Random rnd = new Random();
             int randomTheme = rnd.Next(1, 4);
-            //  var theme = _database.getTheme(randomTheme);
+            var theme = _database.getTheme(randomTheme);
             if (randomTheme == 4 && currentGame.ThemeVariant != "A")
             {
                 if (currentGame.ThemeVariant == "B")
@@ -139,7 +139,16 @@ namespace SU_Casino
             }
             else
                 HiddenField_theme.Value = randomTheme.ToString();
-
+            if(randomTheme == 4 && currentGame.IfS1probX.ToString() != "")
+            {
+                currentGame.Prob_O1 = currentGame.Prob_O1 * currentGame.IfS1probX;
+                currentGame.Prob_O2 = currentGame.Prob_O2 * currentGame.IfS1probX;
+            }
+            if (randomTheme == 4 && currentGame.IfS2probX.ToString() != "")
+            {
+                currentGame.Prob_O1 = currentGame.Prob_O1 * currentGame.IfS2probX;
+                currentGame.Prob_O2 = currentGame.Prob_O2 * currentGame.IfS2probX;
+            }
             return randomTheme;
         }
 
