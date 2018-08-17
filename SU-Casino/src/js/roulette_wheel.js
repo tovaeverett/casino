@@ -1,5 +1,5 @@
 //delete
-$(function() {
+/*$(function() {
   document.addEventListener("keydown", function(event) {
     if (event.keyCode === 81) {
       setSelectedWinningChange("0");
@@ -12,9 +12,9 @@ $(function() {
     }
   });
   btnSpin.prop("disabled", true);
-});
+});*/
 
-var rotationsTime = 9;
+var rotationsTime = 8;
 var wheelSpinTime = 6;
 var ballSpinTime = 5;
 var numorder = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26];
@@ -104,17 +104,6 @@ btnBlack.click(function() {
     btnBlack.prop("disabled", false)
     startSpinn();
 });
-
-//delete
-$(".winchance-btn").click(function () {
-    expectedWinningChance = getWinChance(this.id);
-    $("#winchance-container").hide();
-});
-//delete
-function setSelectedWinningChange(chance) {
-  expectedWinningChance = chance;
-    $("#winchance-container").hide();
-}
 
 function switchButtons(disable) {
   btnBlack.prop("disabled", disable);

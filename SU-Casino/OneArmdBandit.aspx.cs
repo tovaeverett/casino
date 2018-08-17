@@ -84,6 +84,7 @@ namespace SU_Casino
 
         protected void btnPlay_Click(object sender, EventArgs e)
         {
+            checkForWin();
             SpinIt();
             if (Convert.ToInt32(HiddenField_Spin1.Value) == Convert.ToInt32(HiddenField_Spin2.Value) && Convert.ToInt32(HiddenField_Spin1.Value) == Convert.ToInt32(HiddenField_Spin3.Value))
             {
@@ -93,7 +94,7 @@ namespace SU_Casino
             {
                 HiddenField_WinLose.Value = "lose";
             }
-            checkForWin();
+            
             setCurrentBalance();
             setTheme();
 
@@ -128,8 +129,10 @@ namespace SU_Casino
         {
             Random rnd = new Random();
             int randomTheme = rnd.Next(1, 4);
-            var theme = _database.getTheme(randomTheme);
-            if (randomTheme == 4 && currentGame.ThemeVariant != "A")
+            HiddenField_theme.Value = randomTheme.ToString();
+            //  var theme = _database.getTheme(randomTheme);
+            if (randomTheme == 4 && currentGame.ThemeVariant != "A") //perc_S1 -> themeRed
+
             {
                 if (currentGame.ThemeVariant == "B")
                     HiddenField_theme.Value = (randomTheme + 1).ToString();

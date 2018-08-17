@@ -1,15 +1,15 @@
 var backgroundSound;
 var game = $('body')[0].id;
+var theme = "";
 
 
 
-
-function gameInit(theme) {
+function gameInit(sentTheme) {
     $("#message-container").hide();
     $("#winchance-container").hide();
     $("#introInfoText").html($("#Hiddenfield_text").val());
     $("#winCredit").html("+" + $("#HiddenField_credit").val());
-    
+    theme = sentTheme;
     var showInfo = $("#HiddenField_showInfo").val();
     if (showInfo === '1') {
         $("#startInfo").show();
@@ -66,7 +66,7 @@ function showWinner(creditAmount) {
         height: "100%"
     });
     $(".winner").show();
-    $(".winner-inner").addClass('zoom');
+    //$(".winner-inner").addClass('zoom');
     $("#message-container").show();
 }
 
@@ -89,7 +89,7 @@ function sound(src) {
 
 $('#btnShowInfo').click(function () {
     $("#startInfo").hide();
-    if(game !== 'roulette')
+    if(game !== 'roulette' && theme !== '99')
         $("#winchance-container").show();
     //backgroundSound.play();
  
