@@ -693,7 +693,7 @@ namespace SU_Casino
 
         public void GetReport()
         {
-            string strFileName = "playerreports_" + DateTime.Now.ToShortDateString();
+            string strFileName = "playerreports_" + DateTime.Now.ToString("MMddyyyy");
             string strFilePath = @"C:\temp\"+ strFileName  + ".csv";
             string strSeperator = ",";
             StringBuilder sbOutput = new StringBuilder();
@@ -739,7 +739,7 @@ namespace SU_Casino
         }
         public void GetQuestionReports()
         {
-            string strFileName = "questionreports_" + DateTime.Now.ToShortDateString();
+            string strFileName = "questionreports_" + DateTime.Now.ToString("MMddyyyy");
             string strFilePath = @"C:\temp\" + strFileName + ".csv";
       
             string strSeperator = ",";
