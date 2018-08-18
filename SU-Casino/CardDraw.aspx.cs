@@ -43,9 +43,10 @@ namespace SU_Casino
                     Hiddenfield_text.Value = _database.getText("playCardInfo");
                     break;
             }
-            
+
             if (!IsPostBack)
-            {
+            { 
+                currentGame.UserId = Request["workerId"];
                 setTheme();
                 setCards();
                 HiddenField_game.Value = currentGame.Name;
@@ -130,7 +131,7 @@ namespace SU_Casino
                 setCards();
                 setCurrentBalance();
                 if (trial > currentGame.Trials)
-                    GameLogic.getNextGame(currentGame, money);
+                    GameLogic.getNextGame(currentGame, money,currentGame.UserId);
                 else {
                     int trialsLeft = currentGame.Trials - trial;
                     HiddenField_Trail.Value = trialsLeft.ToString();
@@ -198,6 +199,7 @@ namespace SU_Casino
         public string setTheme()
         {
             int[] nr = getThemes();
+
             if (currentGame != null && currentGame.Name == "Instrumental_acq")
             {
                 HiddenField_theme.Value = "null";
@@ -206,9 +208,16 @@ namespace SU_Casino
             else
             {
                 Random rnd = new Random();
-                int randomTheme = nr[rnd.Next(0, nr.Length)];
-                //  var theme = _database.getTheme(randomTheme);
-
+                int randomTheme;
+                if (nr != null)
+                {
+                    randomTheme = 0;
+                }
+                else
+                { 
+                 randomTheme = nr[rnd.Next(0, nr.Length)];
+                    //  var theme = _database.getTheme(randomTheme);
+                }
                 if (randomTheme == 4 && currentGame.ThemeVariant != "A")
                 {
                     if (currentGame.ThemeVariant == "B")
@@ -231,33 +240,13 @@ namespace SU_Casino
         }
 
         //TODO check if these initial values are correct, or may be we do not need this method at all?
-        public void SaveToDB()
-        {
-            Playerlog pl = new Playerlog();
 
-            pl.userid = "test1234"; //getFromSession
-            pl.balance_in = money;  //initial Game saldo
-            pl.balance_out = money;  //in the begininnig balance in and out is same
-            pl.bet = 0; //initial bet is 0
-            pl.condition = currentGame.Condition;
-            pl.gamename = currentGame.Name;
-            pl.stimuli = currentGame.Name;  //is this really needed?
-            pl.moment = currentGame.Sequence;
-            pl.outcome = 0;
-            pl.response = null;
-            pl.timestamp_begin = DateTime.Now;
-            pl.timestamp_O = DateTime.Now;
-            pl.timestamp_R = DateTime.Now;
-            pl.trial = trial;
-           
-            _database.updatePlayerLog(pl);
-        }
 
         public void SaveToDB(String CardBetResponse, int betAmount, int winAmount)
         {
             Playerlog pl = new Playerlog();
 
-            pl.userid = "test1234";
+            pl.userid = currentGame.UserId;
             pl.balance_in = Convert.ToInt32(HiddenField_currentBalance.Value);
             pl.balance_out = money;
             pl.bet = betAmount;
@@ -267,9 +256,9 @@ namespace SU_Casino
             pl.outcome = winAmount;
             pl.response = CardBetResponse;
             pl.stimuli = currentGame.Name;
-            pl.timestamp_begin = DateTime.Now;
-            pl.timestamp_O = DateTime.Now;
-            pl.timestamp_R = DateTime.Now;
+            pl.timestamp_begin = DateTime.Now; // TIMEbegin.
+            pl.timestamp_O = DateTime.Now; // Time ? 
+            pl.timestamp_R = DateTime.Now; // Time ? 
             pl.trial = trial++;
 
             _database.updatePlayerLog(pl);

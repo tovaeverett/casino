@@ -461,10 +461,10 @@ namespace SU_Casino
                         game.Win_O2 = dr[9].ToString() != "" ? Convert.ToInt32(dr[9].ToString()) : 0;
                         game.IfS1probX = dr[10].ToString() != "" ? Convert.ToInt32(dr[10].ToString()) : 0;
                         game.IfS2probX = dr[11].ToString() != "" ? Convert.ToInt32(dr[11].ToString()) : 0;
-                        game.Perc_S1 = dr[12].ToString() != "" ? Convert.ToInt32(dr[12].ToString()) : 0;
-                        game.Perc_S2 = dr[13].ToString() != "" ? Convert.ToInt32(dr[13].ToString()) : 0;
-                        game.Perc_S3 = dr[14].ToString() != "" ? Convert.ToInt32(dr[14].ToString()) : 0;
-                        game.Perc_S4 = dr[15].ToString() != "" ? Convert.ToInt32(dr[15].ToString()) : 0;
+                        game.Perc_S1 = dr[12].ToString() != "" ? Convert.ToDouble(dr[12].ToString()) : 0;
+                        game.Perc_S2 = dr[13].ToString() != "" ? Convert.ToDouble(dr[13].ToString()) : 0;
+                        game.Perc_S3 = dr[14].ToString() != "" ? Convert.ToDouble(dr[14].ToString()) : 0;
+                        game.Perc_S4 = dr[15].ToString() != "" ? Convert.ToDouble(dr[15].ToString()) : 0;
                         game.Sequence = seq;
                         game.Condition = condition;
                     }
@@ -693,7 +693,7 @@ namespace SU_Casino
 
         public void GetReport()
         {
-            string strFilePath = @"C:\temp\playerreports_"+ DateTime.Now.ToShortDateString()+".csv";
+            string strFilePath = @"C:\temp\playerreports_"+ DateTime.Now.ToString()+".csv";
             string strSeperator = ",";
             StringBuilder sbOutput = new StringBuilder();
 

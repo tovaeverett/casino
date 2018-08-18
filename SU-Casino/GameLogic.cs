@@ -31,7 +31,7 @@ namespace SU_Casino
 
         }
         
-        public static void getNextGame(Game currentGame, int curentUserBalance)
+        public static void getNextGame(Game currentGame, int curentUserBalance, string userid)
         {
             int nextSeq = currentGame.Sequence;
             Game gameToPlay = _database.getOrderToPlay(nextSeq+1, currentGame.Condition);
@@ -39,7 +39,7 @@ namespace SU_Casino
             {
                 gameToPlay.Saldo = curentUserBalance;
                 HttpContext.Current.Session.Add("currentGame", gameToPlay);
-                redirectToGame(gameToPlay.Name);
+                redirectToGame(gameToPlay.Name,userid);
             }
             else 
             {
@@ -48,7 +48,7 @@ namespace SU_Casino
             }
         }
 
-        public static void redirectToGame(String gameName)
+        public static void redirectToGame(String gameName, string userid)
         {
             switch (gameName)
             {
@@ -56,28 +56,28 @@ namespace SU_Casino
 
                     break;
                 case "DET_experimental":
-                    HttpContext.Current.Response.Redirect("CardDraw.aspx");
+                    HttpContext.Current.Response.Redirect("CardDraw.aspx?workerid="+userid);
                     break;                 
                 case "DET_realworld":
-                    HttpContext.Current.Response.Redirect("CardDraw.aspx");
+                    HttpContext.Current.Response.Redirect("CardDraw.aspx?workerid=" + userid);
                     break;
                 case "Instrumental_acq":
-                    HttpContext.Current.Response.Redirect("CardDraw.aspx");
+                    HttpContext.Current.Response.Redirect("CardDraw.aspx?workerid=" + userid);
                     break;
                 case "Instrumental_acq2":
-                    HttpContext.Current.Response.Redirect("CardDraw2.aspx");
+                    HttpContext.Current.Response.Redirect("CardDraw2.aspx?workerid=" + userid);
                     break;
                 case "Pavlovian_acq":
-                    HttpContext.Current.Response.Redirect("OneArmdBandit.aspx");
+                    HttpContext.Current.Response.Redirect("OneArmdBandit.aspx?workerid=" + userid);
                     break;
                 case "Pavlovian_extinct":
-                    HttpContext.Current.Response.Redirect("OneArmdBandit.aspx");
+                    HttpContext.Current.Response.Redirect("OneArmdBandit.aspx?workerid=" + userid);
                     break;
                 case "Roulette":
-                    HttpContext.Current.Response.Redirect("Roulette.aspx");
+                    HttpContext.Current.Response.Redirect("Roulette.aspx?workerid=" + userid);
                     break;
                 case "Transfer_test":
-                    HttpContext.Current.Response.Redirect("CardDraw.aspx");
+                    HttpContext.Current.Response.Redirect("CardDraw.aspx?workerid=" + userid);
                     break;
             }
 
