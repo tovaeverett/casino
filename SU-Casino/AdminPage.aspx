@@ -250,8 +250,8 @@
             <br />
             <h3>Export</h3>
             <p>
-                <asp:Button ID="btnReport" runat="server" OnClick="btnReport_Click" Text="Report" Width="125px" />
-                <asp:FileUpload ID="FileUpload1" runat="server" />
+                <asp:Button ID="btnReport" runat="server" OnClick="btnReport_Click" Text="Game Report" Width="125px" />
+                <asp:Button ID="btnReportQuestions" runat="server" Text="Questions Report" Width="178px" OnClick="btnReportQuestions_Click" />
             </p>
         </div>
     </form>
