@@ -693,7 +693,7 @@ namespace SU_Casino
 
         public void GetReport()
         {
-            string strFileName = "playerreports_" + DateTime.Now.ToShortDateString();
+            string strFileName = "playerreports_" + DateTime.Now.ToString("ddMMyyyy");
             string strFilePath = @"C:\temp\"+ strFileName  + ".csv";
             string strSeperator = ",";
             StringBuilder sbOutput = new StringBuilder();
@@ -728,6 +728,7 @@ namespace SU_Casino
 
         public void SendFile(string strFilePath, string strFileName)
         {
+            //System.IO.File.WriteAllText(@"C:\temp\WriteText.txt", "SendFile: 731");
             System.Web.HttpResponse Response = System.Web.HttpContext.Current.Response;
             string fileName = strFileName;
             byte[] Content = File.ReadAllBytes(strFilePath); //missing ;
@@ -739,7 +740,8 @@ namespace SU_Casino
         }
         public void GetQuestionReports()
         {
-            string strFileName = "questionreports_" + DateTime.Now.ToShortDateString();
+            
+            string strFileName = "questionreports_" + DateTime.Now.ToString("ddMMyyyy");
             string strFilePath = @"C:\temp\" + strFileName + ".csv";
       
             string strSeperator = ",";
@@ -751,7 +753,6 @@ namespace SU_Casino
             var da = new SqlDataAdapter(sql, con);
             var ds = new DataSet();
             DataTable dt = new DataTable();
-
             da.SelectCommand.CommandType = CommandType.StoredProcedure;
 
             //da.SelectCommand.Parameters.AddWithValue("@UserId", lblUserId.Text);
@@ -759,6 +760,7 @@ namespace SU_Casino
 
             da.Fill(ds, "getQuestionLog");
             dt = ds.Tables["getQuestionLog"];
+            
 
             foreach (DataRow dr in dt.Rows)
             {
@@ -766,8 +768,13 @@ namespace SU_Casino
                     + dr[6] + strSeperator + dr[7] + strSeperator + dr[8] + strSeperator + dr[9] + strSeperator + dr[10] + strSeperator + dr[11] + strSeperator + dr[12] + strSeperator + dr[13] + strSeperator
                     + dr[14] + strSeperator + dr[15] + strSeperator + dr[16]));
             }
-
+            try { 
             File.WriteAllText(strFilePath, sbOutput.ToString());
+            }
+            catch(Exception ex) {
+                System.IO.File.WriteAllText(@"C:\temp\WriteText.txt", "GetQuestionReports: 772: "+ ex + " "+ strFilePath);
+            }
+            
             SendFile(strFilePath, strFileName);
             // To append more lines to the csv file
             // File.AppendAllText(strFilePath, sbOutput.ToString());
