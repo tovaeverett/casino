@@ -100,6 +100,8 @@
     <Content Include="src\css\themeGold.css" />
     <Content Include="src\images\backgrounds\body_theme1.jpg" />
     <Content Include="src\images\backgrounds\body_theme_black.png" />
+    <Content Include="src\images\backgrounds\themeBlue.jpg" />
+    <Content Include="src\images\backgrounds\themeGold.jpg" />
     <Content Include="src\images\cards\10C.png" />
     <Content Include="src\images\cards\10D.png" />
     <Content Include="src\images\cards\10H.png" />
@@ -179,6 +181,7 @@
     <Content Include="src\images\slot\mshroom.png" />
     <Content Include="src\images\slot\random.png" />
     <Content Include="src\images\slot\star.png" />
+    <Content Include="src\images\themeBluePlayground.jpg" />
     <Content Include="src\js\card_game.js" />
     <Content Include="src\js\end.js" />
     <Content Include="src\js\start.js" />

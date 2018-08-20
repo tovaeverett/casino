@@ -11,6 +11,9 @@ function gameInit(sentTheme) {
     $("#Hiddenfield_text").val("0");
     $("#winCredit").html("+" + $("#HiddenField_credit").val());
     theme = sentTheme;
+    var StartTime = new Date();
+    $("#HiddenField_Time1").val(StartTime.getTime());
+    console.log(StartTime.getTime());
     var showInfo = $("#HiddenField_showInfo").val();
     if (showInfo === '1') {
         $("#startInfo").show();
@@ -101,6 +104,8 @@ $("#btnClose").click(function () {
 });
 
 $("#btnCloseWin").click(function () {
+    var EndTime = new Date();
+    $("#HiddenField_Time3").val(EndTime.getTime());
     $("#btnPlay").trigger("click");
     return false;
 });

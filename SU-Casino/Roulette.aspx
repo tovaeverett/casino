@@ -58,6 +58,9 @@
                             <asp:HiddenField ID="HiddenField_showInfo" runat="server" />
                             <asp:HiddenField ID="HiddenField_result" runat="server" />
                             <asp:HiddenField ID="HiddenField_currentBalance" runat="server" />
+                            <asp:HiddenField ID="HiddenField_Time1" runat="server" />
+                            <asp:HiddenField ID="HiddenField_Time2" runat="server" />
+                            <asp:HiddenField ID="HiddenField_Time3" runat="server" />
                             <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play again!" class="hidden" />
                             <div id="moneyLable">Credits left:&nbsp; 
                                <span class="cash-sum"> 
