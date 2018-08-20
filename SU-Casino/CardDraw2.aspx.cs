@@ -191,11 +191,23 @@ namespace SU_Casino
             {
                 themearray = new List<int>(themearray) { 4 }.ToArray();
             }
+
             return themearray;
         }
         public String setTheme()
         {
+            Random rnd = new Random();
+            int randomTheme;
             int[] nr = getThemes();
+            if (nr.Length == 0)
+            {
+                randomTheme = 0;
+            }
+            else
+            {
+                randomTheme = nr[rnd.Next(0, nr.Length)];
+                //  var theme = _database.getTheme(randomTheme);
+            }
             if (currentGame != null && currentGame.Name == "Instrumental_acq2")
             {
                 HiddenField_theme.Value = "null";
@@ -203,10 +215,8 @@ namespace SU_Casino
             }
             else
             {
-                Random rnd = new Random();
-                int randomTheme = nr[rnd.Next(0, nr.Length)];
                 //  var theme = _database.getTheme(randomTheme);
-                if (randomTheme == 4 && currentGame.ThemeVariant != "A")
+                if (randomTheme == 1 && currentGame.ThemeVariant != "A")
                 {
                     if (currentGame.ThemeVariant == "B")
                         HiddenField_theme.Value = (randomTheme + 1).ToString();

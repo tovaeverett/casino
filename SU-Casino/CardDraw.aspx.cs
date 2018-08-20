@@ -209,7 +209,7 @@ namespace SU_Casino
             {
                 Random rnd = new Random();
                 int randomTheme;
-                if (nr != null)
+                if (nr.Length == 0)
                 {
                     randomTheme = 0;
                 }
@@ -218,7 +218,7 @@ namespace SU_Casino
                  randomTheme = nr[rnd.Next(0, nr.Length)];
                     //  var theme = _database.getTheme(randomTheme);
                 }
-                if (randomTheme == 4 && currentGame.ThemeVariant != "A")
+                if (randomTheme == 1 && currentGame.ThemeVariant != "A")
                 {
                     if (currentGame.ThemeVariant == "B")
                         HiddenField_theme.Value = (randomTheme+1).ToString();

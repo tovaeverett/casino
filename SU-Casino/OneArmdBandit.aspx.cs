@@ -151,11 +151,19 @@ namespace SU_Casino
         {
             //   var theme = _database.getTheme(currentGame.Name);
             int[] nr = getThemes();
-         
-            Random rnd = new Random();
-            int randomTheme = nr[rnd.Next(0, nr.Length)];
+            int randomTheme;
 
-           // int randomTheme = rnd.Next(1, 4);
+            
+            Random rnd = new Random();
+            if (nr.Length == 0)
+            {
+                randomTheme = 0;
+            }
+            else
+            { 
+                randomTheme = nr[rnd.Next(0, nr.Length)];
+            }
+            // int randomTheme = rnd.Next(1, 4);
             HiddenField_theme.Value = randomTheme.ToString();
             
             if (randomTheme == 1 && currentGame.ThemeVariant != "A") //perc_S1 -> themeRed

@@ -465,6 +465,7 @@ namespace SU_Casino
                         game.Perc_S2 = dr[13].ToString() != "" ? Convert.ToDouble(dr[13].ToString()) : 0;
                         game.Perc_S3 = dr[14].ToString() != "" ? Convert.ToDouble(dr[14].ToString()) : 0;
                         game.Perc_S4 = dr[15].ToString() != "" ? Convert.ToDouble(dr[15].ToString()) : 0;
+                        game.ThemeVariant = dr[16].ToString() != "" ? dr[16].ToString() : "";
                         game.Sequence = seq;
                         game.Condition = condition;
                     }
