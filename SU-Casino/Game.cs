@@ -26,6 +26,7 @@ namespace SU_Casino
         private double perc_S2;
         private double perc_S3;
         private double perc_S4;
+        private string userid;
 
         public string Name { get => name; set => name = value; }
         public int Trials { get => trials; set => trials = value; }
@@ -46,7 +47,7 @@ namespace SU_Casino
         public double Perc_S2 { get => perc_S2; set => perc_S2 = value; }
         public double Perc_S3 { get => perc_S3; set => perc_S3 = value; }
         public double Perc_S4 { get => perc_S4; set => perc_S4 = value; }
-
+        public string UserId { get => userid; set => userid = value; }
 
         public static Game getDummyGame()
         {

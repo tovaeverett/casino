@@ -34,6 +34,7 @@ namespace SU_Casino
             HiddenField_showInfo.Value = "0";
             if (!IsPostBack)
             {
+                currentGame.UserId = Request["workerId"];
                 setTheme();
                 HiddenField_showInfo.Value = "1";
                 Hiddenfield_text.Value = _database.getText("playSlotInfo");
@@ -99,7 +100,7 @@ namespace SU_Casino
             setTheme();
 
             if (trial > currentGame.Trials)
-                GameLogic.getNextGame(currentGame, money);
+                GameLogic.getNextGame(currentGame, money, currentGame.UserId);
         }
         private void checkForWin()
         {

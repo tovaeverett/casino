@@ -32,6 +32,7 @@ namespace SU_Casino
             HiddenField_showInfo.Value = "0";
             if (!IsPostBack)
             {
+                currentGame.UserId = Request["workerId"];
                 HiddenFieldrouletteNr.Value = RandomSpin().ToString();
                 money = currentGame.Saldo;
                 lblMoney.Text = money.ToString();
@@ -89,7 +90,7 @@ namespace SU_Casino
         {
             checkForWin();
             if (trial > currentGame.Trials)
-                GameLogic.getNextGame(currentGame,money);
+                GameLogic.getNextGame(currentGame,money, currentGame.UserId);
 
             RandomSpin();
 
@@ -106,7 +107,7 @@ namespace SU_Casino
         {
             Playerlog pl = new Playerlog();
 
-            pl.userid = "test1234"; 
+            pl.userid = currentGame.UserId; 
             pl.balance_in = Convert.ToInt32(HiddenField_currentBalance.Value);
             pl.balance_out = money;
             pl.bet = betAmount;

@@ -19,6 +19,7 @@ namespace SU_Casino
         protected void Page_Load(object sender, EventArgs e)
         {
             // string name = RegionInfo.CurrentRegion.DisplayName;
+            hiddenfield_userid.Value = Request["workerId"];
             if (!IsPostBack)
             {
                 hiddenfield_showInfo.Value = "0";
@@ -28,6 +29,8 @@ namespace SU_Casino
                     hiddenfield_assignmentId.Value = Request["assignmentId"];
                     hiddenfield_hitId.Value = Request["hitId"];
                     hiddenfield_turkSubmitTo.Value = Request["turkSubmitTo"]; // https://www.mturk.com/
+                   // initialGame.UserId = Request["workerId"];
+
                 }
                 else
                 {
@@ -50,7 +53,7 @@ namespace SU_Casino
             GameLogic.getInitialBetingelse();
           
                 initialGame = (Game)Session["currentGame"];
-                
+            initialGame.UserId = hiddenfield_userid.Value;
                 if (initialGame != null)
                     hiddenfield_startCredit.Value = initialGame.Saldo.ToString();
                 else
@@ -62,7 +65,7 @@ namespace SU_Casino
         protected void btnStart_Click(object sender, EventArgs e)
         {
             //GameLogic.getInitialBetingelse();
-            GameLogic.redirectToGame(initialGame.Name);
+            GameLogic.redirectToGame(initialGame.Name, hiddenfield_userid.Value);
  
         }
 

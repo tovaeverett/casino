@@ -35,6 +35,7 @@ namespace SU_Casino
             Hiddenfield_text.Value = _database.getText("playCardInfo");
             if (!IsPostBack)
             {
+                currentGame.UserId = Request["workerId"];
                 setTheme();
                 setCards();
                 HiddenField_game.Value = currentGame.Name;
@@ -132,7 +133,7 @@ namespace SU_Casino
             setCards();
             setCurrentBalance();
             if (trial > currentGame.Trials)
-                GameLogic.getNextGame(currentGame, money);
+                GameLogic.getNextGame(currentGame, money,currentGame.UserId);
 
         }
         private void checkForWin()
@@ -253,7 +254,7 @@ namespace SU_Casino
         {
             Playerlog pl = new Playerlog();
 
-            pl.userid = "test1234";
+            pl.userid = currentGame.UserId;
             pl.balance_in = Convert.ToInt32(HiddenField_currentBalance.Value);
             pl.balance_out = money;
             pl.bet = betAmount;
