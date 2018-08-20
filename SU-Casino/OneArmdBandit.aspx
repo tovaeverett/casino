@@ -14,9 +14,12 @@
     <%--<link rel="stylesheet" href="src/css/theme1b.css"/>--%>
     <link id="themeCSS" runat="server" rel="stylesheet" type="text/css" /> 
 
-   <%  var theme = this.HiddenField_theme.Value;
+    <%  var theme = this.HiddenField_theme.Value;
         switch (theme) {
              case "null":%>
+                <link rel="stylesheet" href="src/css/noTheme.css" />
+              <%   break;
+             case "0":%>
                 <link rel="stylesheet" href="src/css/noTheme.css" />
               <%   break;
             case "1":%>
@@ -73,7 +76,7 @@
 				            <div class="col-md-3 slotSpan">
  					            <div class="roulette_container" >
 						            <div class="roulette2 roulette" style="display:none;">
-							            <img id="slot_1_1" src="src/images/slot/img1.png"/>
+							            <img id="slot_2_1" src="src/images/slot/img1.png"/>
 		                                <img id="slot_1_2" src="src/images/slot/img2.png"/>
 		                                <img id="slot_1_3" src="src/images/slot/img3.png"/>
 	                                    <img id="slot_1_4" src="src/images/slot/img4.png"/>
@@ -85,7 +88,7 @@
                             <div class="col-md-3 slotSpan">
 				                <div class="roulette_container" >
 						            <div class="roulette3 roulette" style="display:none;">
-							            <img id="slot_1_1" src="src/images/slot/img1.png"/>
+							            <img id="slot_3_1" src="src/images/slot/img1.png"/>
 		                                <img id="slot_1_2" src="src/images/slot/img2.png"/>
 		                                <img id="slot_1_3" src="src/images/slot/img3.png"/>
 	                                    <img id="slot_1_4" src="src/images/slot/img4.png"/>
@@ -110,6 +113,9 @@
                             <asp:HiddenField ID="HiddenField_result" runat="server" />
                             <asp:HiddenField ID="Hiddenfield_text" runat="server" />
                             <asp:HiddenField ID="HiddenField_currentBalance" runat="server" />
+                            <asp:HiddenField ID="HiddenField_Time1" runat="server" />
+                            <asp:HiddenField ID="HiddenField_Time2" runat="server" />
+                            <asp:HiddenField ID="HiddenField_Time3" runat="server" />
                             <div id="panel1">
                                 <div id="moneyLable">Credits left:&nbsp; 
                                 <span class="cash-sum"> 

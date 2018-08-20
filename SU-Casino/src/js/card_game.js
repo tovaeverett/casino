@@ -64,6 +64,10 @@ function initCardGame() {
 }
 
 function cardClicked(selectedCard) {
+
+    var ClickTime = new Date();
+    $("#HiddenField_Time2").val(ClickTime.getTime());
+
     disable = true;
     var isWinner = false;
     var result = cards.winChance + ",";
@@ -92,7 +96,11 @@ function cardClicked(selectedCard) {
     else {
         result = result + "lose";
         $("#HiddenField_result").val(result);
-        setTimeout(function () { $("#btnPlay").click(); }, 1500);
+        setTimeout(function () { 
+            var EndTime = new Date();
+            $("#HiddenField_Time3").val(EndTime.getTime());
+            $("#btnPlay").click(); 
+        }, 1500);
     }
     //console.log(result);
 }

@@ -1,18 +1,3 @@
-//delete
-/*$(function() {
-  document.addEventListener("keydown", function(event) {
-    if (event.keyCode === 81) {
-      setSelectedWinningChange("0");
-    } else if (event.keyCode === 87) {
-      setSelectedWinningChange("1");
-    } else if (event.keyCode === 69) {
-      setSelectedWinningChange("2");
-    } else if (event.keyCode === 82) {
-      setSelectedWinningChange("3");
-    }
-  });
-  btnSpin.prop("disabled", true);
-});*/
 
 var rotationsTime = 8;
 var wheelSpinTime = 6;
@@ -91,14 +76,18 @@ function createWheel() {
   }
 }
 
-btnRed.click(function() {
+btnRed.click(function () {
+    var ClickTime = new Date();
+    $("#HiddenField_Time2").val(ClickTime.getTime());
     betOption = "bet_R2";
     btnRed.prop("disabled", false);
     btnBlack.prop("disabled", false);
     startSpinn(); 
 });
 
-btnBlack.click(function() {
+btnBlack.click(function () {
+    var ClickTime = new Date();
+    $("#HiddenField_Time2").val(ClickTime.getTime());
     betOption = "bet_R1";
     btnRed.prop("disabled", false);
     btnBlack.prop("disabled", false)
@@ -139,7 +128,11 @@ function finishSpin() {
     else {
         result = result + "win";
         $("#HiddenField_result").val(result);
-        setTimeout(function () { showWinner(); }, 300);
+        setTimeout(function () {
+            var EndTime = new Date();
+            $("#HiddenField_Time3").val(EndTime.getTime());
+            $("#btnPlay").click();
+        }, 1500);
     }
 //delete
   betOption = "";

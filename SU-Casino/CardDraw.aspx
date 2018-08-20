@@ -19,6 +19,9 @@
              case "null":%>
                 <link rel="stylesheet" href="src/css/noTheme.css" />
               <%   break;
+             case "0":%>
+                <link rel="stylesheet" href="src/css/noTheme.css" />
+              <%   break;
             case "1":%>
                 <link rel="stylesheet" href="src/css/themeRed.css" />
               <%   break;
@@ -56,7 +59,7 @@
                             <div class="col-md-3 cardSpan">
 					            <div class="scene scene--card">
 	  					            <div class="betCard" id="betCard1">
-						                <div class="card__face card__face--front"><img src="src/images/cards/blue_back.png"/></div>
+						                <div class="card__face card__face--front"><img src="src/images/cards/blue_back_1.png"/></div>
 						                <div class="card__face card__face--back"><img id="imgCard1" src="src/images/cards/3C.png"/></div>
 	  					            </div>
 				 	            </div>
@@ -71,7 +74,7 @@
                             <div class="col-md-3 cardSpan">
 				                <div class="scene scene--card">
 	  					            <div class="betCard" id="betCard2">
-						                <div class="card__face card__face--front"><img src="src/images/cards/red_back_0.png"/></div>
+						                <div class="card__face card__face--front"><img src="src/images/cards/red_back_1.png"/></div>
 						                <div class="card__face card__face--back"><img id="imgCard2" src="src/images/cards/2C.png"/></div>
 	  					            </div>
 					             </div>
@@ -96,7 +99,9 @@
                                 <asp:HiddenField ID="HiddenField_game" runat="server" />
                                 <asp:HiddenField ID="HiddenField_currentBalance" runat="server" />
                                 <asp:HiddenField ID="HiddenField_Trail" runat="server" />
-                                 
+                                <asp:HiddenField ID="HiddenField_Time1" runat="server" />
+                                <asp:HiddenField ID="HiddenField_Time2" runat="server" />
+                                <asp:HiddenField ID="HiddenField_Time3" runat="server" />
                                 <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play again!" class="hidden" />
                                 <div id="panel1">
                                     <div id="moneyLable">Credits left:&nbsp; 

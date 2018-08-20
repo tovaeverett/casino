@@ -15,6 +15,26 @@ $(".winchance-btn").click(function () {
 
 
 function initSlotGame() {
+    console.log(localStorage.getItem("images")); 
+
+    if (localStorage.getItem("images") && localStorage.getItem("images")!== null ) {
+        var images = localStorage.getItem("images").split(',');
+        images[0] = Number(images[0]) + 1;
+        images[1] = Number(images[1]) + 1;
+        images[2] = Number(images[2]) + 1;
+        var src1 = "/src/images/slot/img" + Number(images[0])+ ".png";
+        var src2 = "/src/images/slot/img" + Number(images[1]) + ".png";
+        var src3 = "/src/images/slot/img" + Number(images[2]) + ".png";
+    }
+    else {
+        var src1 = "/src/images/slot/img" + Math.floor(Math.random() * 5) + ".png";
+        var src2 = "/src/images/slot/img" + Math.floor(Math.random() * 5) + ".png";
+        var src3 = "/src/images/slot/img" + Math.floor(Math.random() * 5) + ".png";
+    }
+    $("#slot_1_1").attr('src', src1);
+    $("#slot_2_1").attr('src', src2);
+    $("#slot_3_1").attr('src', src3);
+
     var theme = $("#HiddenField_theme").val();
     gameInit(theme);
     $(".winner").hide();
@@ -73,8 +93,13 @@ function initSlotGame() {
             setTimeout(function () { slotContent.sound.pause(); }, 300);
             slotContent.result === 'lose' ? $(".lost").show() : $(".winner").show();
             $("#HiddenField_result").val(slotContent.winChance + ",null," + slotContent.result.toLowerCase());
+            localStorage.setItem("images", slotContent.img1 + ',' + slotContent.img2 + ',' + slotContent.img3);
             if (slotContent.result === 'lose')
-                setTimeout(function () { $("#btnPlay").click(); }, 1500);
+                setTimeout(function () {
+                    var EndTime = new Date();
+                    $("#HiddenField_Time3").val(EndTime.getTime());
+                    $("#btnPlay").click();
+                }, 1500);
             else
                setTimeout(function () { showWinner(); }, 1000);
             

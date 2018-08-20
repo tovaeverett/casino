@@ -229,10 +229,15 @@ button:focus {
     min-height: 80px;
 }
 
-    .game-panel > ul {
-        list-style-type: none;
-        display: inline-flex;
-    }
+ .game-panel > ul {
+    list-style-type: none;
+    display: inline-flex;
+ }
+#winCredit {
+    font-size: 2.3rem;
+    color: #ffc107;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
 
 
 /*---Layer for win --*/

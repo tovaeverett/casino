@@ -22,7 +22,7 @@
             }
     </style>
 </head>
-<body>
+<body id="admin">
     <form id="form1" runat="server">
         <div class="container-fluid">
             <h1>Admin page</h1>
