@@ -96,6 +96,7 @@
                                 <asp:HiddenField ID="Hiddenfield_text" runat="server" />
                                 <asp:HiddenField ID="HiddenField_game" runat="server" />
                                 <asp:HiddenField ID="HiddenField_currentBalance" runat="server" />
+                                <asp:HiddenField ID="HiddenField_Trail" runat="server" />
                                 <asp:HiddenField ID="HiddenField_Time1" runat="server" />
                                 <asp:HiddenField ID="HiddenField_Time2" runat="server" />
                                 <asp:HiddenField ID="HiddenField_Time3" runat="server" />

@@ -46,7 +46,7 @@ namespace SU_Casino
                 HiddenField_showInfo.Value = "1";
                 trial = 1;
                 setCurrentBalance();
-
+                HiddenField_Trail.Value = currentGame.Trials.ToString();
                 //SaveToDB(); //Is this really needed? User has not begun playing yet
             }
         }
@@ -133,7 +133,12 @@ namespace SU_Casino
             setCards();
             setCurrentBalance();
             if (trial > currentGame.Trials)
-                GameLogic.getNextGame(currentGame, money,currentGame.UserId);
+                GameLogic.getNextGame(currentGame, money, currentGame.UserId);
+            else
+            {
+                int trialsLeft = currentGame.Trials - trial;
+                HiddenField_Trail.Value = trialsLeft.ToString();
+            }
 
         }
         private void checkForWin()
