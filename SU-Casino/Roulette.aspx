@@ -124,7 +124,7 @@
                             <div class="col-md-8 text-center" id="message-content-win">
                                 <div class="winner">
                                     <img src="src/images/other/wintext.png" class="img-responsive" />
-                                    <h2><span class="winSpan"> You won <span id="winCredit"></span> !!!!</h2>
+                                    <h2><span class="winSpan"> You won <span id="winCredit"></span> !</h2>
                                   
                                      <button id="btnCloseWin" class="btn btn-large btn-primary" > Play again </button>
                                         
