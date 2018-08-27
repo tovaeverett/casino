@@ -256,9 +256,9 @@ namespace SU_Casino
             pl.outcome = winAmount;
             pl.response = CardBetResponse;
             pl.stimuli = currentGame.Name;
-            pl.timestamp_begin = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time1.Value));//dDateTime.Now; // TIMEbegin.
-            pl.timestamp_O = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time2.Value)); //DateTime.Now; // Time ? 
-            pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value)); // Time ? 
+            pl.timestamp_begin = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time1.Value)).ToLocalTime(); //dDateTime.Now; // TIMEbegin.
+            pl.timestamp_O = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time2.Value)).ToLocalTime(); //DateTime.Now; // Time ? 
+            pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value)).ToLocalTime(); // Time ? 
             pl.trial = trial++;
 
             _database.updatePlayerLog(pl);
