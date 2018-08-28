@@ -102,7 +102,7 @@
                     <div class="col-md-12 col-sm-12 game-panel">
                         <form id="form1" runat="server">
                             <button class="round-button spin start">SPIN! </button>
-                            <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play again!" class="hidden" />
+                            <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play!" class="hidden" />
                             <asp:HiddenField ID="HiddenField_Spin1" runat="server" />
                             <asp:HiddenField ID="HiddenField_Spin2" runat="server" />
                             <asp:HiddenField ID="HiddenField_Spin3" runat="server" />
@@ -172,7 +172,7 @@
                                         ad hinc everti qui. At modus decore sit. Omnes vivendo propriae eu pri, ut alii esse percipitur eos, 
                                         eu est nibh assentior. Impetus legendos duo an.
                                         </p>
-                                        <button id="btnShowInfo"class="btn btn-large btn-primary"> Start to play </button>
+                                        <button id="btnShowInfo"class="btn btn-large btn-primary"> Play! </button>
                                     </section>
                                 </div>
                                 
@@ -189,9 +189,9 @@
                             <div class="col-md-8 text-center" id="message-content-win">
                                 <div class="winner">
                                     <img src="src/images/other/wintext.png" class="img-responsive" />
-                                    <h2><span class="winSpan"> You won <span id="winCredit"></span> !!!!</h2>
+                                    <h2><span class="winSpan"> You won <span id="winCredit"></span> !</h2>
                                 </div>
-                            <button id="btnCloseWin" class="btn btn-large btn-primary" > Play again </button>
+                            <button id="btnCloseWin" class="btn btn-large btn-primary" >Play! </button>
                         </div>
                     <div class="col-md-2"></div>
                 </div>
