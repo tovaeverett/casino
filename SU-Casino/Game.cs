@@ -67,8 +67,8 @@ namespace SU_Casino
             dummy.IfS1probX = 1;
             dummy.IfS2probX = 1;
             dummy.perc_S1 = 0.25;
-            dummy.perc_S2 = 0;
-            dummy.perc_S3 = 0;
+            dummy.perc_S2 = 0.25;
+            dummy.perc_S3 = 0.25;
             dummy.perc_S4 = 0.25;
             return dummy;
 
@@ -151,6 +151,65 @@ namespace SU_Casino
                 prob = rnd.Next(1, 2) == 1 ? Prob_O1 : Prob_O2;
             }
             return prob;
+        }
+
+        public bool getTheme(double winChance)
+        {
+            if (winChance == 0)
+            {
+                return false;
+            }
+            int[] i = getThemes();
+            Random winRnd = new Random();
+
+            // hur många gånger går vinst chanse in i 100
+            var accumulator = 100 / (int)(winChance * 100);
+
+
+            var res = winRnd.Next(0, accumulator);
+
+            return res == 1 ? true : false;
+        }
+
+        /// <summary>
+        /// Evaluates Game objects two probability properties.
+        /// </summary>
+        /// <returns>Returns one of the probability properties.</returns>
+        public double getWinningTheme()
+        {
+            double prob;
+            var rnd = new Random();
+
+            if (this.Perc_S1 == this.Perc_S2 && this.Perc_S3 == this.Perc_S4 && this.Perc_S1 == this.Perc_S3)
+            {
+                prob = this.Perc_S2;
+            }
+            else
+            {
+                prob = rnd.Next() == 1 ? Prob_O1 : Prob_O2;
+            }
+            return prob;
+        }
+        public int[] getThemes()
+        {
+            int[] themearray = new int[] { };
+            if (this.Perc_S1 != 0)
+            {
+                themearray = new List<int>(themearray) { 1 }.ToArray();
+            }
+            if (this.Perc_S2 != 0)
+            {
+                themearray = new List<int>(themearray) { 2 }.ToArray();
+            }
+            if (this.Perc_S3 != 0)
+            {
+                themearray = new List<int>(themearray) { 3 }.ToArray();
+            }
+            if (this.Perc_S4 != 0)
+            {
+                themearray = new List<int>(themearray) { 4 }.ToArray();
+            }
+            return themearray;
         }
     }
 }
