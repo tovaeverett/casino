@@ -100,7 +100,7 @@
                                 <asp:HiddenField ID="HiddenField_Time1" runat="server" />
                                 <asp:HiddenField ID="HiddenField_Time2" runat="server" />
                                 <asp:HiddenField ID="HiddenField_Time3" runat="server" />
-                                <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play again!" class="hidden" />
+                                <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play!" class="hidden" />
                                 <div id="panel1">
                                     <div id="moneyLable">Credits left:&nbsp; 
                                         <span class="cash-sum"> 
@@ -167,7 +167,7 @@
                                     
                                     <h2><span class="winSpan"> You won <span id="winCredit"></span> !</h2>
                                 </div>
-                            <button id="btnCloseWin" class="btn btn-large btn-primary" > Play again </button>
+                            <button id="btnCloseWin" class="btn btn-large btn-primary" > Play! </button>
                         </div>
                     <div class="col-md-2"></div>
                 </div>
