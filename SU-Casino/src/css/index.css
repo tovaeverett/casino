@@ -101,7 +101,7 @@ button:focus {
     border-radius: 5px;
     box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 0.31);
 }
-/*---Credit left*/
+/*---Credits left*/
 .cash-sum {
     display: block;
     background: #fff;
@@ -241,6 +241,10 @@ button:focus {
 
 
 /*---Layer for win --*/
+
+#message-container {
+    display: none;
+}
 #message-content {
     padding-top: 5rem;
     z-index: 1000;
@@ -258,6 +262,7 @@ button:focus {
 
 .winner-content {
     position: fixed;
+    box-sizing: border-box;
 }
 #message-content-win {
     padding-top: 5rem;

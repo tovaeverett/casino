@@ -21,6 +21,7 @@ body {
     box-sizing: unset;
     padding-top: 10px;
     padding-bottom: 10px;
+    box-sizing: content-box;
 }
 
 /* Winner announcer */
@@ -76,7 +77,9 @@ body {
 }
 
 
-
+*, ::after, ::before {
+    box-sizing: content-box;
+}
 
 
 

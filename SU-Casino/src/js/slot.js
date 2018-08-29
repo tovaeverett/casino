@@ -27,9 +27,12 @@ function initSlotGame() {
         var src3 = "/src/images/slot/img" + Number(images[2]) + ".png";
     }
     else {
-        var src1 = "/src/images/slot/img" + Math.floor(Math.random() * 5) + ".png";
+        /*var src1 = "/src/images/slot/img" + Math.floor(Math.random() * 5) + ".png";
         var src2 = "/src/images/slot/img" + Math.floor(Math.random() * 5) + ".png";
-        var src3 = "/src/images/slot/img" + Math.floor(Math.random() * 5) + ".png";
+        var src3 = "/src/images/slot/img" + Math.floor(Math.random() * 5) + ".png";*/
+        var src1 = "/src/images/slot/img1.png";
+        var src2 = "/src/images/slot/img2.png";
+        var src3 = "/src/images/slot/img3.png";
     }
     $("#slot_1_1").attr('src', src1);
     $("#slot_2_1").attr('src', src2);

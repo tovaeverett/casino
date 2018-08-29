@@ -149,7 +149,7 @@
                                         ad hinc everti qui. At modus decore sit. Omnes vivendo propriae eu pri, ut alii esse percipitur eos, 
                                         eu est nibh assentior. Impetus legendos duo an.
                                         </p>
-                                        <button id="btnShowInfo"class="btn btn-large btn-primary"> Start to play </button>
+                                        <button id="btnShowInfo"class="btn btn-large btn-primary"> Play! </button>
                                     </section>
                                 </div>
                                 
