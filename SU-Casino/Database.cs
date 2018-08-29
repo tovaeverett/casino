@@ -818,18 +818,17 @@ namespace SU_Casino
         public void resetMatris()
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
-            var ds = new DataSet();
-            DataTable dt = new DataTable();
 
             try
             {
-                var sql = "resetMatris";
-                var da = new SqlDataAdapter(sql, con);
-
-                da.SelectCommand.CommandType = CommandType.StoredProcedure;
-
-                da.Fill(ds, "resetMatris");
-                dt = ds.Tables["resetMatris"];
+                using (var command = new SqlCommand("resetMatris", con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                })
+                {
+                    con.Open();
+                    command.ExecuteNonQuery();
+                }
 
             }
             catch (Exception ex)
