@@ -15,6 +15,8 @@ namespace SU_Casino
         private double prob_S0;
         private int bet_R1;
         private int bet_R2;
+        private int bet_R3;
+        private int bet_R4;
         private double prob_O1;
         private double prob_O2;
         private int win_O1;
@@ -34,6 +36,8 @@ namespace SU_Casino
         public double Prob_S0 { get => prob_S0; set => prob_S0 = value; }
         public int Bet_R1 { get => bet_R1; set => bet_R1 = value; }
         public int Bet_R2 { get => bet_R2; set => bet_R2 = value; }
+        public int Bet_R3 { get => bet_R3; set => bet_R3 = value;}
+        public int Bet_R4 { get => bet_R4; set => bet_R4 = value; }
         public double Prob_O1 { get => prob_O1; set => prob_O1 = value; }
         public double Prob_O2 { get => prob_O2; set => prob_O2 = value; }
         public int Win_O1 { get => win_O1; set => win_O1 = value; }
@@ -60,6 +64,8 @@ namespace SU_Casino
             dummy.Prob_S0 = 0.3;
             dummy.Bet_R1 = -25;
             dummy.Bet_R2 = -45;
+            dummy.Bet_R3 = -25;
+            dummy.Bet_R4 = -50;
             dummy.Prob_O1 = 0.2;
             dummy.Prob_O2 = 0.2;
             dummy.Win_O1 = 500;
