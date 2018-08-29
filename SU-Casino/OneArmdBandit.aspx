@@ -165,7 +165,7 @@
                             <div class="col-md-8 text-center div-center" id="message-content">
                                 <div class="info">
                                     <section>
-                                        <h1> Let’s play roulette slot machine! </h1>
+                                        <h1> Let’s play slot machine! </h1>
                                         <p id="introInfoText">
                                         Lorem ipsum dolor sit amet, sea mundi ponderum neglegentur ex, at munere delicata cum. 
                                         Inani choro per ex, equidem debitis et pro, sea an ludus omnium. Putent commune omnesque no ius, 

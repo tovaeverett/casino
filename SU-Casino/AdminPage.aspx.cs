@@ -212,6 +212,7 @@ namespace SU_Casino
         protected void btnResetMatris_Click(object sender, EventArgs e)
         {
             _database.resetMatris();
+            GetMatris();
         }
 
         protected void btnReportQuestions_Click(object sender, EventArgs e)
