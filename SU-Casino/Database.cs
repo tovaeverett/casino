@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Globalization;
 
 
 namespace SU_Casino
@@ -799,7 +800,7 @@ namespace SU_Casino
             cmd.Parameters.AddWithValue("q13", list[12].ToString());
             cmd.Parameters.AddWithValue("Date", DateTime.Now);
             cmd.Parameters.AddWithValue("Device", list[13].ToString());
-            cmd.Parameters.AddWithValue("Country", "sweden");
+            cmd.Parameters.AddWithValue("Country", RegionInfo.CurrentRegion.DisplayName);
             try
             {
                 conn.Open();
