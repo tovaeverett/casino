@@ -161,14 +161,14 @@ namespace SU_Casino
             //card1:null,card2:6H,showCard:5H,winChance:1,winLose:lose
             int winningAmount = 0;
             int betAmount = 0;
-            if (CardBet.Equals("bet_R1"))
+            if (CardBet.Equals("bet_R3"))
             {
-                betAmount = currentGame.Bet_R1;
+                betAmount = currentGame.Bet_R3;
                 if (WinLose.Equals("win"))                    
                     winningAmount = currentGame.Win_O1;
 
-            }else if (CardBet.Equals("bet_R2")) { 
-                betAmount = currentGame.Bet_R2;
+            }else if (CardBet.Equals("bet_R4")) { 
+                betAmount = currentGame.Bet_R4;
                 if (WinLose.Equals("win"))
                     winningAmount = currentGame.Win_O2;
             }

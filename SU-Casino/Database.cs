@@ -466,6 +466,8 @@ namespace SU_Casino
                         game.Perc_S3 = dr[14].ToString() != "" ? Convert.ToDouble(dr[14].ToString()) : 0;
                         game.Perc_S4 = dr[15].ToString() != "" ? Convert.ToDouble(dr[15].ToString()) : 0;
                         game.ThemeVariant = dr[16].ToString() != "" ? dr[16].ToString() : "";
+                        game.Bet_R3 = dr[17].ToString() != "" ? Convert.ToInt32(dr[17].ToString()) : 0;
+                        game.Bet_R4 = dr[18].ToString() != "" ? Convert.ToInt32(dr[18].ToString()) : 0;
                         game.Sequence = seq;
                         game.Condition = condition;
                     }
@@ -671,6 +673,7 @@ namespace SU_Casino
                 p.Add(new SqlParameter("@ifS2probX", paramz[29]));
                 p.Add(new SqlParameter("@hide", paramz[30]));
                 p.Add(new SqlParameter("@freeze_win", paramz[31]));
+
 
                 connection.Open();
                 GetExample(command, p.ToArray());
