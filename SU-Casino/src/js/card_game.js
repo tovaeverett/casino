@@ -1,6 +1,7 @@
 var cards = {};
 var disable = false;
 
+//Create card 1
 var card1 = document.querySelector('#betCard1');
 card1.addEventListener('click', function () {
     if (!disable) {
@@ -9,7 +10,7 @@ card1.addEventListener('click', function () {
         setTimeout(function () { cardClicked(card1); }, 500);
     }
 });
-
+//Create card 2
 var card2 = document.querySelector('#betCard2');
 card2.addEventListener('click', function () {
     if (!disable) {
@@ -34,17 +35,19 @@ function initCardGame() {
     var baseUrl = "src/images/cards/";
     var theme = "";
     var game = $("#HiddenField_game").val();
-    if (game === "Transfer_test") {
+    if (game === "Transfer_test") {//Hide credits
         $("#moneyLable").hide();
     }
-    if (game === "DET_realworld") {
+    if (game === "DET_realworld") {//Show the piggy bank image
         $(".winSpan").addClass("winSpanSpecial"); 
         $("#piggySpan").css('display','block');
     }
+    //Determinates when the win chance question shall be shown
     theme = $("#HiddenField_Trail").val() === '0' ? theme = $("#HiddenField_theme").val() : "99";
 
-    gameInit(theme);
+    gameInit(theme);//in index.js
     var cardSound = new Audio("src/sound/effects/cardSlide.mp3");
+    //Sets values for the cards and the type of card game, showCard is the card in the middle.
     cards = {
         card1: $("#HiddenField_card1").val(),
         card2: $("#HiddenField_card2").val(),
@@ -55,7 +58,6 @@ function initCardGame() {
         game: game
     };
    
-    $("[id ^= 'notEqual']").hide();
     $("#imgCard1").attr("src", baseUrl + cards.card1 + ".png");
     $("#imgCard2").attr("src", baseUrl + cards.card2 + ".png");
     $("#imgCard3").attr("src", baseUrl + cards.showCard + ".png");
