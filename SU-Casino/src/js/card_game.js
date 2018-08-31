@@ -32,6 +32,7 @@ $(".winchance-btn").click(function () {
 });
 
 function initCardGame() {
+    
     var baseUrl = "src/images/cards/";
     var theme = "";
     var game = $("#HiddenField_game").val();
@@ -77,14 +78,14 @@ function cardClicked(selectedCard) {
     $(".lost").hide();
     $(".winner").hide();
     if (selectedCard.id === 'betCard1') {
-        result = result + "bet_R1,";
+        result = cards.game === 'Instrumental_acq2' ? result + "bet_R3," : result + "bet_R1,";
         if (cards.card1 === cards.showCard) {
             isWinner = true;
             $("#winCredit").html("+" + $("#HiddenField_win1").val());
         }
     }
     else {
-        result = result + "bet_R2,";
+        result = cards.game === 'Instrumental_acq2' ? result + "bet_R4," : result + "bet_R2,";
         if (cards.card2 === cards.showCard) {
             isWinner = true;
             $("#winCredit").html("+" + $("#HiddenField_win2").val());

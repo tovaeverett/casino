@@ -268,6 +268,25 @@ namespace SU_Casino
         public void SaveToDB(String CardBetResponse, int betAmount, int winAmount)
         {
             Playerlog pl = new Playerlog();
+            string themeToSave = "";
+
+            switch (HiddenField_theme.Value)
+            {
+                case "1":
+                    themeToSave = "perc_S1";
+                    break;
+                case "3":
+                    themeToSave = "perc_S2";
+                    break;
+                case "4":
+                    themeToSave = "perc_S3";
+                    break;
+                case "5":
+                    themeToSave = "perc_S4";
+                    break;
+            }
+            if (themeToSave.Length == 0)
+                themeToSave = currentGame.Name;
 
             pl.userid = currentGame.UserId;
             pl.balance_in = Convert.ToInt32(HiddenField_currentBalance.Value);

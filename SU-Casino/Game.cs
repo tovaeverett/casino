@@ -56,22 +56,22 @@ namespace SU_Casino
         public static Game getDummyGame()
         {
             Game dummy = new Game();
-            dummy.Name = "DET_realworld";
-            dummy.condition = "DET_realworld";
+            dummy.Name = "Pavlovian_extinct";
+            dummy.condition = "Pavlovian_extinct";
             dummy.sequence = 2;
             dummy.Trials = 55;
-            dummy.Saldo = 1500;
-            dummy.Prob_S0 = 0.3;
-            dummy.Bet_R1 = -25;
+            dummy.Saldo = 1000;
+            dummy.Prob_S0 = 0.2;
+            dummy.Bet_R1 = -10;
             dummy.Bet_R2 = -45;
             dummy.Bet_R3 = -25;
             dummy.Bet_R4 = -50;
-            dummy.Prob_O1 = 0.2;
-            dummy.Prob_O2 = 0.2;
-            dummy.Win_O1 = 500;
-            dummy.Win_O2 = 1000;
+            dummy.Prob_O1 = 0.9;
+            dummy.Prob_O2 = 0.5;
+            dummy.Win_O1 = 50;
+            dummy.Win_O2 = 20;
             dummy.IfS1probX = 1;
-            dummy.IfS2probX = 1;
+            dummy.IfS2probX = 0;
             dummy.perc_S1 = 0.25;
             dummy.perc_S2 = 0.25;
             dummy.perc_S3 = 0.25;
@@ -115,6 +115,17 @@ namespace SU_Casino
             var res = winRnd.Next(0, accumulator);
 
             return res == 1 ? true : false;
+        }
+
+        public bool didWinSlot()
+        {
+            Random winRnd = new Random();
+            //double winNumber=
+            var accumulator = (getWinningChance() * 100);
+
+            var res = winRnd.Next(1, 100);
+
+            return res < accumulator ? true : false;
         }
 
         /// <summary>
@@ -192,7 +203,7 @@ namespace SU_Casino
             }
             else
             {
-                prob = rnd.Next() == 1 ? Prob_O1 : Prob_O2;
+                prob = rnd.Next(1,2) == 1 ? Prob_O1 : Prob_O2;
             }
             return prob;
         }
