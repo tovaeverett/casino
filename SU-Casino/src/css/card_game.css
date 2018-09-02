@@ -73,11 +73,6 @@ body { font-family: sans-serif; }
 }
 
 
-.notEqual {
-    padding-top: 180px;
-    font-size: 100px;
-}
-
 @media (min-width: 1600px) {
     .playground {
         height: 700px;

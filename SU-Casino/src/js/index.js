@@ -46,6 +46,8 @@ function gameInit(sentTheme) {
     //backgroundSound.play();
 }
 
+
+
 function getWinChance(button) {
     switch (button) {
         case 'btnHigh':

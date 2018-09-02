@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
+//using System.Globalization;
 
 
 namespace SU_Casino
@@ -699,7 +700,7 @@ namespace SU_Casino
         {
             string strFileName = "playerreports_" + DateTime.Now.ToString("MMddyyyy");
             string strFilePath = @"C:\temp\"+ strFileName  + ".csv";
-            string strSeperator = ",";
+            string strSeperator = ";";
             StringBuilder sbOutput = new StringBuilder();
 
 
@@ -716,7 +717,7 @@ namespace SU_Casino
 
             da.Fill(ds, "getLog");
             dt = ds.Tables["getLog"];
-
+            sbOutput.AppendLine("ID;condition;name;moment;trail;timestamp_begin;timestam_R;timestamp_O;balance_in;response;bet;stimuli;outcome;balance_out");
             foreach (DataRow dr in dt.Rows)
             {
                 sbOutput.AppendLine(string.Join(strSeperator, dr[0] + strSeperator + dr[1] + strSeperator + dr[2] + strSeperator + dr[3] + strSeperator + dr[4] + strSeperator + dr[5] + strSeperator
@@ -746,7 +747,7 @@ namespace SU_Casino
             string strFileName = "questionreports_" + DateTime.Now.ToString("MMddyyyy");
             string strFilePath = @"C:\temp\" + strFileName + ".csv";
       
-            string strSeperator = ",";
+            string strSeperator = ";";
             StringBuilder sbOutput = new StringBuilder();
 
 
@@ -763,12 +764,12 @@ namespace SU_Casino
 
             da.Fill(ds, "getQuestionLog");
             dt = ds.Tables["getQuestionLog"];
-
+            sbOutput.AppendLine("ID;q1;q2;q3;q4;q5;q6;q7;q8;q9;q10;age;gambling;average;date;device;country");
             foreach (DataRow dr in dt.Rows)
             {
                 sbOutput.AppendLine(string.Join(strSeperator, dr[0] + strSeperator + dr[1] + strSeperator + dr[2] + strSeperator + dr[3] + strSeperator + dr[4] + strSeperator + dr[5] + strSeperator
                     + dr[6] + strSeperator + dr[7] + strSeperator + dr[8] + strSeperator + dr[9] + strSeperator + dr[10] + strSeperator + dr[11] + strSeperator + dr[12] + strSeperator + dr[13] + strSeperator
-                    + dr[14] + strSeperator + dr[15] + strSeperator + dr[16]));
+                    + dr[14] + strSeperator + dr[15].ToString().Replace(';', ':') + strSeperator + dr[16]));
             }
 
             File.WriteAllText(strFilePath, sbOutput.ToString());
@@ -799,7 +800,7 @@ namespace SU_Casino
             cmd.Parameters.AddWithValue("q13", list[12].ToString());
             cmd.Parameters.AddWithValue("Date", DateTime.Now);
             cmd.Parameters.AddWithValue("Device", list[13].ToString());
-            cmd.Parameters.AddWithValue("Country", "sweden");
+            cmd.Parameters.AddWithValue("Country", "Sweden"); // RegionInfo.CurrentRegion.DisplayName);
             try
             {
                 conn.Open();

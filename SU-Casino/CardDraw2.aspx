@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="src/css/bootstrap-responsive.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
 	<!--link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css"/-->
-	<link rel="stylesheet" href="src/css/card_game.css"/>
+	
     <link rel="stylesheet" href="src/css/index.css"/>
+    <link rel="stylesheet" href="src/css/card_game.css"/>
     <link rel="stylesheet" href="src/css/card_game2.css"/>
    <!-- *****Random themes *****-->
     <!-- behövs den här triggern ??? -->

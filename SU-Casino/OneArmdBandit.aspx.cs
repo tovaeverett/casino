@@ -60,7 +60,7 @@ namespace SU_Casino
         {
             var firstSpin = randomSlotSpin();
             
-            if (currentGame.didWin())
+            if (currentGame.didWinSlot())
             {
                 HiddenField_Spin1.Value = firstSpin.ToString();
                 HiddenField_Spin2.Value = firstSpin.ToString();
@@ -86,6 +86,7 @@ namespace SU_Casino
         protected void btnPlay_Click(object sender, EventArgs e)
         {
             checkForWin();
+            setTheme();
             SpinIt();
             if (Convert.ToInt32(HiddenField_Spin1.Value) == Convert.ToInt32(HiddenField_Spin2.Value) && Convert.ToInt32(HiddenField_Spin1.Value) == Convert.ToInt32(HiddenField_Spin3.Value))
             {
@@ -97,7 +98,7 @@ namespace SU_Casino
             }
             
             setCurrentBalance();
-            setTheme();
+            
 
             if (trial > currentGame.Trials)
                 GameLogic.getNextGame(currentGame, money, currentGame.UserId);
@@ -203,8 +204,27 @@ namespace SU_Casino
         public void SaveToDB(int betAmount, int winAmount)
         {
             Playerlog pl = new Playerlog();
+            string themeToSave="";
 
-            pl.userid = "test1234";
+            switch (HiddenField_theme.Value)
+            {
+                case "1": themeToSave= "perc_S1";
+                    break;
+                case "3":
+                    themeToSave = "perc_S2";
+                    break;
+                case "4":
+                    themeToSave = "perc_S3";
+                    break;
+                case "5":
+                    themeToSave = "perc_S4";
+                    break;
+            }
+            if(themeToSave.Length == 0 )
+                themeToSave = currentGame.Name;
+
+
+            pl.userid = currentGame.UserId;
             pl.balance_in = Convert.ToInt32(HiddenField_currentBalance.Value);
             pl.balance_out = money;
             pl.bet = betAmount;
@@ -213,7 +233,7 @@ namespace SU_Casino
             pl.moment = currentGame.Sequence;
             pl.outcome = winAmount;
             pl.response = "bet_R1";
-            pl.stimuli = currentGame.Name;
+            pl.stimuli = themeToSave;
             pl.timestamp_begin = DateTime.Now;
             pl.timestamp_O = DateTime.Now;
             pl.timestamp_R = DateTime.Now;
