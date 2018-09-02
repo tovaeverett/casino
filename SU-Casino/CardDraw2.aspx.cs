@@ -27,6 +27,7 @@ namespace SU_Casino
             if (currentGame == null)
             {
                 currentGame = Game.getDummyGame();
+                currentGame.getTheme();
                 //TODO An error page might not be needed. Decide on error handling
                 //Response.Redirect("ErrorPage.aspx");
             }

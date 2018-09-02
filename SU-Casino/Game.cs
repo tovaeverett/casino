@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -73,8 +74,8 @@ namespace SU_Casino
             dummy.IfS1probX = 1;
             dummy.IfS2probX = 1;
             dummy.perc_S1 = 0.25;
-            dummy.perc_S2 = 0.25;
-            dummy.perc_S3 = 0.25;
+            dummy.perc_S2 = 0.50;
+            dummy.perc_S3 = 0;
             dummy.perc_S4 = 0.25;
             return dummy;
 
@@ -159,22 +160,61 @@ namespace SU_Casino
             return prob;
         }
 
-        public bool getTheme(double winChance)
+        public string getTheme()
         {
-            if (winChance == 0)
+
+            var dict = getThemes();
+            int d = 0;
+            int team1 = 0;
+            int team2 = 0;
+            int team3 = 0;
+            int team4 = 0;
+            foreach(var x in dict)
             {
-                return false;
+                if(x.Key == "s1")
+                {
+                    team1 = (100 / x.Value);
+                }
+                else if(x.Key == "s2")
+                {
+                    team2 =+ team1+ (100 / x.Value);
+                }
+                else if (x.Key == "s3")
+                {
+                    team3 = team2 + (100 / x.Value);
+                }
+                else if (x.Key == "s4")
+                {
+                    team4 = team3 + (100 / x.Value);
+                }
+               
             }
-            int[] i = getThemes();
+
             Random winRnd = new Random();
-
+            //kolla vilket värde som ligger närmast vilket teamn.
+            
             // hur många gånger går vinst chanse in i 100
-            var accumulator = 100 / (int)(winChance * 100);
-
-
-            var res = winRnd.Next(0, accumulator);
-
-            return res == 1 ? true : false;
+          //  var accumulator = 100 / (int)(winChance * 100);
+            var res = winRnd.Next(0, 100);
+            if (Enumerable.Range(0, team1).Contains(res))
+            {
+                return "team1";
+            }
+            else if(Enumerable.Range(team1,team2).Contains(res))
+            {
+                return "team2";
+            }
+            else if(Enumerable.Range(team2,team3).Contains(res))
+            {
+                return "team3";
+            }
+            else if(Enumerable.Range(team3,team4).Contains(res))
+            {
+                return "team4";
+            }
+            // var res = winRnd.Next(0, accumulator);
+            return "";
+           // return res == 1 ? true : false;
         }
 
         /// <summary>
@@ -196,26 +236,44 @@ namespace SU_Casino
             }
             return prob;
         }
-        public int[] getThemes()
+        public Dictionary<string, int> getThemes()
         {
+            var dict = new Dictionary<string, int>();
+
             int[] themearray = new int[] { };
+            int acc1 = 0;
+            int acc2 = 0;
+            int acc3 = 0;
+            int acc4 = 0;
             if (this.Perc_S1 != 0)
             {
-                themearray = new List<int>(themearray) { 1 }.ToArray();
+                // hur många gånger går vinst chanse in i 100
+                acc1 = 100 / (int)(Perc_S1 * 100);
+                dict.Add("s1", acc1);
+             //   themearray = new List<int>(themearray) { acc1 }.ToArray();
             }
             if (this.Perc_S2 != 0)
             {
-                themearray = new List<int>(themearray) { 2 }.ToArray();
+                
+                acc2 = 100 / (int)(Perc_S2 * 100);
+                dict.Add("s2", acc2);
+                //    themearray = new List<int>(themearray) { acc2 }.ToArray();
             }
             if (this.Perc_S3 != 0)
             {
-                themearray = new List<int>(themearray) { 3 }.ToArray();
+                
+                acc3 = 100 / (int)(Perc_S3 * 100);
+                dict.Add("s3", acc3);
+                //  themearray = new List<int>(themearray) { acc3 }.ToArray();
             }
             if (this.Perc_S4 != 0)
             {
-                themearray = new List<int>(themearray) { 4 }.ToArray();
+              
+                acc4 = 100 / (int)(Perc_S4 * 100);
+                dict.Add("s4", acc4);
+                // themearray = new List<int>(themearray) { acc4 }.ToArray();
             }
-            return themearray;
+            return dict;
         }
     }
 }
