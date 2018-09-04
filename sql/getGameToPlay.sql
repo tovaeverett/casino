@@ -10,7 +10,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-ALTER PROCEDURE [dbo].[getGameToPlay]
+create or ALTER PROCEDURE [dbo].[getGameToPlay]
 	-- Add the parameters for the stored procedure here
 	@seq int,
 	@condition varchar(50)

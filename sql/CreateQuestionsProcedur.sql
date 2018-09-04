@@ -11,7 +11,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-ALTER PROCEDURE [dbo].[insertQuestionsLog]
+create or alter PROCEDURE [dbo].[insertQuestionsLog]
 	-- Add the parameters for the stored procedure here
 	@userid varchar(50),
 	@q1 varchar(50),
