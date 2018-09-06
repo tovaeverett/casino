@@ -145,13 +145,13 @@ namespace SU_Casino
             {
                 case "1": themeToSave= "perc_S1";
                     break;
-                case "3":
+                case "2":
                     themeToSave = "perc_S2";
                     break;
-                case "4":
+                case "3":
                     themeToSave = "perc_S3";
                     break;
-                case "5":
+                case "4":
                     themeToSave = "perc_S4";
                     break;
             }

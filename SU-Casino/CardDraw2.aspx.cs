@@ -93,8 +93,8 @@ namespace SU_Casino
         public void setCards()
         {
             HiddenField_card3.Value = randomStartCard().ToString();
-            HiddenField_card2.Value = randomCard("R2").ToString();
-            HiddenField_card1.Value = randomCard("R1").ToString();
+            HiddenField_card2.Value = randomCard("R4").ToString();
+            HiddenField_card1.Value = randomCard("R3").ToString();
 
        }
         protected void btnPlay_Click(object sender, EventArgs e)
@@ -204,13 +204,13 @@ namespace SU_Casino
                 case "1":
                     themeToSave = "perc_S1";
                     break;
-                case "3":
+                case "2":
                     themeToSave = "perc_S2";
                     break;
-                case "4":
+                case "3":
                     themeToSave = "perc_S3";
                     break;
-                case "5":
+                case "4":
                     themeToSave = "perc_S4";
                     break;
             }
