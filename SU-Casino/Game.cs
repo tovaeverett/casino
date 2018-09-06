@@ -75,10 +75,10 @@ namespace SU_Casino
             dummy.Saldo = 1000;
             dummy.Bet_R1 = -10; // blått kort. eller rött. Definerar bettinstats på de kortet eller knappen
             dummy.Bet_R2 = 0;  // rött kort. eller blått Definerar bettinstats på de kortet eller knappen.
-            dummy.Bet_R3 = 0; 
-            dummy.Bet_R4 = 0;
-            dummy.Prob_O1 = 0.5;
-            dummy.Prob_O2 = 0.5;
+            dummy.Bet_R3 = 100; 
+            dummy.Bet_R4 = -50;
+            dummy.Prob_O1 = 0;
+            dummy.Prob_O2 = 1;
             dummy.Win_O1 = 50;
             dummy.Win_O2 = 20;
             dummy.Perc_S1 = 0.25;

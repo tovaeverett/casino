@@ -13,7 +13,8 @@ namespace SU_Casino
 {
     public partial class CardDraw2 : System.Web.UI.Page
     {
-        private int CheckCard;
+        private int startCard;
+        private char startCardColor;
         public int money;
         private Game currentGame;
         private static int trial;
@@ -55,22 +56,21 @@ namespace SU_Casino
         {
 
             Random rand = new Random();
-            var cardColor = GetColor(rand);
 
             // få array med "förlorar" korten
-            var losingCards = currentGame.RetrieveLosingNumbers(1, 13, CheckCard);
+            var losingCards = currentGame.RetrieveLosingNumbers(1, 13, startCard);
 
             // vann eller vann inte?
             if (currentGame.didWinDrawCards(cardPosition))
             {
-                return CheckCard.ToString() + cardColor;
+                return startCard.ToString() + startCardColor;
             }
             else
             {
                 int randomcardIndex = rand.Next(0, losingCards.Length);
                 int randomcard = losingCards[randomcardIndex];
                 // string url = "src/images/cards/" + randomcard + "C.png";
-                string card = randomcard.ToString() + cardColor;
+                string card = randomcard.ToString() + GetColor(rand);
                 return card;
             }
         }
@@ -85,8 +85,9 @@ namespace SU_Casino
         {
             Random rnd = new Random();
             int randomcard = rnd.Next(1, 14);
-            CheckCard = randomcard;
-            return randomcard.ToString() + GetColor(rnd);
+            startCard = randomcard;
+            startCardColor = GetColor(rnd);
+            return randomcard.ToString() + startCardColor;
         }
 
         public void setCards()
