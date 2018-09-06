@@ -122,17 +122,14 @@ namespace SU_Casino
             return losers.ToArray();
         }
 
-        /// <summary>
-        /// Assert if current game did win.
-        /// </summary>
-        /// <returns>True for win, false for lose</returns>
-        public bool didWin()
+
+        public bool didWinDrawCards(String cardPosition)
         {
-            return CalculateWinOrNot(GetWinningChans(), new Random());
+            return CalculateWinOrNot(getWinningChanceCardDraw(cardPosition), new Random());
         }
-        public bool didWin(String cardPosition)
+        public bool didWinSlot()
         {
-            return CalculateWinOrNot(GetWinningChans(cardPosition), new Random());
+            return CalculateWinOrNot(getWinningChanceOneArmedBandit(), new Random());
         }
 
         public bool CalculateWinOrNot(double winChance, Random rand)
@@ -141,19 +138,7 @@ namespace SU_Casino
             return winChance >= winningNumber ? true : false;
         }
 
-
-        private double GetWinningChans(string cardPosition)
-        {
-               return getWinningChanceCardDraw(cardPosition);
-        }
-        private double GetWinningChans()
-            {
-                if (Name.Equals("Pavlovian_acq	") || Name.Equals("Pavlovian_extinct"))
-                return getWinningChanceOneArmedBandit();
-
-             return 0;
-        }
-
+        
         public double getWinningChanceCardDraw(string cardPosition)
         {
             string probO = "";
@@ -169,69 +154,24 @@ namespace SU_Casino
             return probO.Equals("O1") ? Prob_O1 : Prob_O2;
         }
 
-        public bool didWinSlot()
-        {
-            Random winRnd = new Random();
-            var accumulator = (GetWinningChans() * 100);
 
-            var res = winRnd.Next(1, 100);
-
-            return res < accumulator ? true : false;
-        }
-
-        /// <summary>
-        /// Assert if current game did win. Parameter is used through CardDraw since Game object uses two probability properties and card game uses two cards.
-        /// </summary>
-        /// <param name="winChance">Decimal value for winning chance</param>
-        /// <returns>True for win, false for lose</returns>
-        public bool didWin(double winChance)
-        {
-            if(winChance == 0)
-            {
-                return false;
-            }
-            Random winRnd = new Random();
-
-            // hur många gånger går vinst chanse in i 100
-            var accumulator = 100 / (int)(winChance * 100);
-
-            
-            var res = winRnd.Next(0, accumulator);
-
-            return res == 1 ? true : false;
-        }
-
-        /// <summary>
-        /// Evaluates Game objects two probability properties.
-        /// </summary>
-        /// <returns>Returns one of the probability properties.</returns>
         public double getWinningChanceOneArmedBandit()
         {
             double prob = 0;
+            prob += GetPercentBasedOnIfSxwinForGame("1", IfS1win) * IfS1probX;
+            prob += GetPercentBasedOnIfSxwinForGame("2", IfS2win) * IfS2probX;
+            prob += GetPercentBasedOnIfSxwinForGame("3", IfS3win);
+            prob += GetPercentBasedOnIfSxwinForGame("4", IfS4win);
 
-            if (CurrentTheme.Equals("1"))
+            return prob;
+        }
+
+        private double GetPercentBasedOnIfSxwinForGame(string game, string ifSxwin)
+        {
+            double prob = 0;
+            if (CurrentTheme.Equals(game))
             {
-                prob = GetPercentBasedOnIfSxwin(IfS1win);
-                if (IfS1probX.ToString() != "")
-                {
-                    prob *= IfS1probX;
-                }
-            }
-            else if (CurrentTheme.Equals("2"))
-            {
-                prob = GetPercentBasedOnIfSxwin(IfS2win);
-                if (IfS2probX.ToString() != "")
-                {
-                    prob *= IfS2probX;
-                }
-            }
-            else if (CurrentTheme.Equals("3"))
-            {
-                prob = GetPercentBasedOnIfSxwin(IfS3win);
-            }
-            else if (CurrentTheme.Equals("4"))
-            {
-                prob = GetPercentBasedOnIfSxwin(IfS4win);
+                prob = GetPercentBasedOnIfSxwin(ifSxwin);
             }
             return prob;
         }
@@ -260,25 +200,7 @@ namespace SU_Casino
             return theme;
         }
 
-        /// <summary>
-        /// Evaluates Game objects two probability properties.
-        /// </summary>
-        /// <returns>Returns one of the probability properties.</returns>
-        public double getWinningTheme()
-        {
-            double prob;
-            var rnd = new Random();
 
-            if (this.Perc_S1 == this.Perc_S2 && this.Perc_S3 == this.Perc_S4 && this.Perc_S1 == this.Perc_S3)
-            {
-                prob = this.Perc_S2;
-            }
-            else
-            {
-                prob = rnd.Next(1,2) == 1 ? Prob_O1 : Prob_O2;
-            }
-            return prob;
-        }
         private Dictionary<string, double> getThemes()
         {
             Dictionary<string, double> themes = new Dictionary<string, double>();

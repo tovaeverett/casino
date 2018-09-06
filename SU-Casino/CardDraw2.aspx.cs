@@ -61,7 +61,7 @@ namespace SU_Casino
             var losingCards = currentGame.RetrieveLosingNumbers(1, 13, CheckCard);
 
             // vann eller vann inte?
-            if (currentGame.didWin(cardPosition))
+            if (currentGame.didWinDrawCards(cardPosition))
             {
                 return CheckCard.ToString() + cardColor;
             }
