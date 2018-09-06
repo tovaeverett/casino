@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -10,18 +8,12 @@ namespace SU_Casino
     public class GameLogic
     {
         static Database _database = new Database();
-        public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
 
         public static void getInitialBetingelse()
         {
-            Random letter = new Random();
-            var Array = _database.GetCondition();
 
-            int i = Array.Count();
-            int num = letter.Next(0, i);
-            string let = Array[num];
-
-            Game gameToPlay = _database.getOrderToPlay(1, let);
+            string condition = getRandomConditionFromConditions(new Random(), _database.GetCondition());
+            Game gameToPlay = _database.getOrderToPlay(1, condition);
 
             if (gameToPlay != null)
             {
@@ -30,7 +22,12 @@ namespace SU_Casino
             }
 
         }
-        
+
+        public static string getRandomConditionFromConditions(Random rand, List<string> conditions)
+        {
+            return conditions[rand.Next(0, conditions.Count())];
+        }
+
         public static void getNextGame(Game currentGame, int curentUserBalance, string userid)
         {
             int nextSeq = currentGame.Sequence;
@@ -83,6 +80,36 @@ namespace SU_Casino
 
 
         }
+
+        public static string CalculateCurrentThemeBasedOnPercent(Dictionary<string, double> themeNumberAndPercentage)
+        {
+            return CalculateCurrentThemeBasedOnPercent(themeNumberAndPercentage, new Random());
+        }
+
+        public static string CalculateCurrentThemeBasedOnPercent(Dictionary<string, double> themeNumberAndPercentage, Random rand)
+        {
+            if (themeNumberAndPercentage.Max(i => i.Value).Equals(0))
+            {
+                return "0";
+            }
+
+            IOrderedEnumerable<KeyValuePair<string, double>> enumerable =
+                        themeNumberAndPercentage.OrderByDescending(i => i.Key);
+
+            double random = rand.NextDouble();
+            double baseValue = 0.0;
+            foreach (KeyValuePair<string, double> theme in enumerable)
+            {
+                if (baseValue + theme.Value > random)
+                {
+                    return theme.Key;
+                }
+                baseValue += theme.Value;
+            }
+
+            throw new NotSupportedException("Unable to find theme, please make sure the percentages equals to 1.");
+        }
+
     }
 
 }

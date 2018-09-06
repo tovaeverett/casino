@@ -19,7 +19,6 @@ namespace SU_Casino
         private static int trial;
 
         Database _database = new Database();
-        public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -175,30 +174,19 @@ namespace SU_Casino
             lblMoney.Text = money.ToString();
             SaveToDB(CardBet, betAmount, winningAmount);
         }
-        public int[] getThemes()
+        public Dictionary<string, double> getThemes()
         {
-            int[] themearray = new int[] { };
-            if (currentGame.Perc_S1 != 0)
-            {
-                themearray = new List<int>(themearray) { 1 }.ToArray();
-            }
-            if (currentGame.Perc_S2 != 0)
-            {
-                themearray = new List<int>(themearray) { 2 }.ToArray();
-            }
-            if (currentGame.Perc_S3 != 0)
-            {
-                themearray = new List<int>(themearray) { 3 }.ToArray();
-            }
-            if (currentGame.Perc_S4 != 0)
-            {
-                themearray = new List<int>(themearray) { 4 }.ToArray();
-            }
-            return themearray;
+            Dictionary<string, double> themes = new Dictionary<string, double>();
+
+            themes.Add("1", currentGame.Perc_S1);
+            themes.Add("2", currentGame.Perc_S2);
+            themes.Add("3", currentGame.Perc_S3);
+            themes.Add("4", currentGame.Perc_S4);
+
+            return themes;
         }
         public string setTheme()
         {
-            int[] nr = getThemes();
 
             if (currentGame != null && currentGame.Name == "Instrumental_acq")
             {
@@ -207,27 +195,19 @@ namespace SU_Casino
             }
             else
             {
-                Random rnd = new Random();
-                int randomTheme;
-                if (nr.Length == 0)
-                {
-                    randomTheme = 0;
-                }
-                else
-                { 
-                 randomTheme = nr[rnd.Next(0, nr.Length)];
-                    //  var theme = _database.getTheme(randomTheme);
-                }
-                if (randomTheme == 1 && currentGame.ThemeVariant != "A")
+
+                Dictionary<string, double> themeNumberAndPercentage = getThemes();
+                string randomTheme = GameLogic.CalculateCurrentThemeBasedOnPercent(themeNumberAndPercentage);
+
+                if (randomTheme == "1" && currentGame.ThemeVariant != "A")
                 {
                     if (currentGame.ThemeVariant == "B")
-                        HiddenField_theme.Value = (randomTheme+1).ToString();
+                        HiddenField_theme.Value = "2";
                     else if(currentGame.ThemeVariant == "C")
-                        HiddenField_theme.Value = (randomTheme+2).ToString();
-           
+                        HiddenField_theme.Value = "3";
                 }
                 else
-                    HiddenField_theme.Value = randomTheme.ToString();
+                    HiddenField_theme.Value = randomTheme;
 
                 return HiddenField_theme.Value;
             }
