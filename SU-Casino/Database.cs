@@ -455,6 +455,12 @@ namespace SU_Casino
                         game.Saldo = getIntValueDefault0(dr, "saldo");
                         game.Bet_R1 = getIntValueDefault0(dr, "bet_R1");
                         game.Bet_R2 = getIntValueDefault0(dr, "bet_R2");
+                        game.Bet_R3 = getIntValueDefault0(dr, "bet_R3");
+                        game.Bet_R4 = getIntValueDefault0(dr, "bet_B4");
+                        game.If_R1 = getValueFromColumnWithName(dr, "If_R1");
+                        game.If_R2 = getValueFromColumnWithName(dr, "If_R2");
+                        game.If_R3 = getValueFromColumnWithName(dr, "If_R3");
+                        game.If_R4 = getValueFromColumnWithName(dr, "If_R4");
                         game.Prob_O1 = getDoubleDefault0(dr, "prob_O1");
                         game.Prob_O2 = getDoubleDefault0(dr, "prob_O2");
                         game.Win_O1 = getIntValueDefault0(dr, "win_O1");
@@ -466,8 +472,6 @@ namespace SU_Casino
                         game.Perc_S3 = getDoubleDefault0(dr, "perc_S3");
                         game.Perc_S4 = getDoubleDefault0(dr, "perc_S4");
                         game.ThemeVariant = getValueFromColumnWithName(dr, "S1_variant");
-                        game.Bet_R3 = getIntValueDefault0(dr, "bet_R3");
-                        game.Bet_R4 = getIntValueDefault0(dr, "bet_B4");
                         game.IfS1win = getValueFromColumnWithName(dr, "ifS1win");
                         game.IfS2win = getValueFromColumnWithName(dr, "ifS2win");
                         game.IfS3win = getValueFromColumnWithName(dr, "ifS3win");

@@ -31,6 +31,7 @@ namespace SU_Casino
         private double perc_S4;
         private string userid;
         private String ifS1win, ifS2win, ifS3win, ifS4win;
+        private string currentTheme;
 
         public string Name { get => name; set => name = value; }
         public int Trials { get => trials; set => trials = value; }
@@ -58,13 +59,18 @@ namespace SU_Casino
         public string IfS4win { get => ifS4win; set => ifS4win = value; }
            
         public string UserId { get => userid; set => userid = value; }
+        public string CurrentTheme { get => currentTheme; set => currentTheme = value; }
+        public string If_R1 { get; set; }
+        public string If_R2 { get; set; }
+        public string If_R3 { get; set; }
+        public string If_R4 { get; set; }
 
         public static Game getDummyGame()
         {
             Game dummy = new Game();
             dummy.Name = "Pavlovian_extinct";
-            dummy.condition = "Pavlovian_extinct";
-            dummy.sequence = 1;
+            dummy.Condition = "Pavlovian_extinct";
+            dummy.Sequence = 1;
             dummy.Trials = 24;
             dummy.Saldo = 1000;
             dummy.Bet_R1 = -10; // blått kort. eller rött. Definerar bettinstats på de kortet eller knappen
@@ -75,13 +81,20 @@ namespace SU_Casino
             dummy.Prob_O2 = 0.5;
             dummy.Win_O1 = 50;
             dummy.Win_O2 = 20;
+            dummy.Perc_S1 = 0.25;
+            dummy.Perc_S2 = 0.25;
+            dummy.Perc_S3 = 0.25;
+            dummy.Perc_S4 = 0.25;
+            dummy.IfS1win = "O1";
+            dummy.IfS2win = "O1";
+            dummy.IfS3win = "O2";
+            dummy.IfS4win = "O2";
             dummy.IfS1probX = 1;
             dummy.IfS2probX = 0;
-            dummy.perc_S1 = 0.25;
-            dummy.perc_S2 = 0.25;
-            dummy.perc_S3 = 0.25;
-            dummy.perc_S4 = 0.25;
-            
+            dummy.If_R1 = "O1";
+            dummy.If_R2 = "O2";
+            dummy.If_R3 = "O1";
+            dummy.If_R4 = "O2";
             return dummy;
 
         }
@@ -115,19 +128,51 @@ namespace SU_Casino
         /// <returns>True for win, false for lose</returns>
         public bool didWin()
         {
-            Random winRnd = new Random();
-            var accumulator = 100 / (int)(getWinningChance() * 100);
+            return CalculateWinOrNot(GetWinningChans(), new Random());
+        }
+        public bool didWin(String cardPosition)
+        {
+            return CalculateWinOrNot(GetWinningChans(cardPosition), new Random());
+        }
 
-            var res = winRnd.Next(0, accumulator);
+        public bool CalculateWinOrNot(double winChance, Random rand)
+        {
+            double winningNumber = rand.NextDouble();
+            return winChance >= winningNumber ? true : false;
+        }
 
-            return res == 1 ? true : false;
+
+        private double GetWinningChans(string cardPosition)
+        {
+               return getWinningChanceCardDraw(cardPosition);
+        }
+        private double GetWinningChans()
+            {
+                if (Name.Equals("Pavlovian_acq	") || Name.Equals("Pavlovian_extinct"))
+                return getWinningChanceOneArmedBandit();
+
+             return 0;
+        }
+
+        public double getWinningChanceCardDraw(string cardPosition)
+        {
+            string probO = "";
+            if (cardPosition.Equals("R1"))
+                probO = If_R1;
+            else if (cardPosition.Equals("R2"))
+                probO = If_R2;
+            else if (cardPosition.Equals("R3"))
+                probO = If_R3;
+            else if (cardPosition.Equals("R4"))
+                probO = If_R4;
+
+            return probO.Equals("O1") ? Prob_O1 : Prob_O2;
         }
 
         public bool didWinSlot()
         {
             Random winRnd = new Random();
-            //double winNumber=
-            var accumulator = (getWinningChance() * 100);
+            var accumulator = (GetWinningChans() * 100);
 
             var res = winRnd.Next(1, 100);
 
@@ -160,25 +205,59 @@ namespace SU_Casino
         /// Evaluates Game objects two probability properties.
         /// </summary>
         /// <returns>Returns one of the probability properties.</returns>
-        public double getWinningChance()
+        public double getWinningChanceOneArmedBandit()
         {
-            double prob;
-            var rnd = new Random();
+            double prob = 0;
 
-            if (this.Prob_O1 == this.Prob_O2)
+            if (CurrentTheme.Equals("1"))
             {
-                prob = this.Prob_O2;
+                prob = GetPercentBasedOnIfSxwin(IfS1win);
+                if (IfS1probX.ToString() != "")
+                {
+                    prob *= IfS1probX;
+                }
             }
-            else
+            else if (CurrentTheme.Equals("2"))
             {
-                prob = rnd.Next(1, 2) == 1 ? Prob_O1 : Prob_O2;
+                prob = GetPercentBasedOnIfSxwin(IfS2win);
+                if (IfS2probX.ToString() != "")
+                {
+                    prob *= IfS2probX;
+                }
+            }
+            else if (CurrentTheme.Equals("3"))
+            {
+                prob = GetPercentBasedOnIfSxwin(IfS3win);
+            }
+            else if (CurrentTheme.Equals("4"))
+            {
+                prob = GetPercentBasedOnIfSxwin(IfS4win);
             }
             return prob;
         }
 
-        public string getTheme()
+        private double GetPercentBasedOnIfSxwin(String ifwin)
         {
-            return GameLogic.CalculateCurrentThemeBasedOnPercent(getThemes());
+            return ifwin.Equals("O1") ? Prob_O1 : Prob_O2;
+        }
+
+        public string getRandomThemeBasedOnProcAndVariant()
+        {
+            CurrentTheme = ChangeTemeBasedOnThemeVariant(GameLogic.CalculateCurrentThemeBasedOnPercent(getThemes()));
+            return CurrentTheme;
+
+        }
+
+        private string ChangeTemeBasedOnThemeVariant(string theme)
+        {
+            if (theme.Equals("1")) //perc_S1 -> themeRed
+            {
+                if (ThemeVariant == "B")
+                    theme = "5";
+                else if (ThemeVariant == "C")
+                    theme = "6";
+            }
+            return theme;
         }
 
         /// <summary>
@@ -200,7 +279,7 @@ namespace SU_Casino
             }
             return prob;
         }
-        public Dictionary<string, double> getThemes()
+        private Dictionary<string, double> getThemes()
         {
             Dictionary<string, double> themes = new Dictionary<string, double>();
 

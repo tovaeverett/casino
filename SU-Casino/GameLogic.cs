@@ -100,7 +100,7 @@ namespace SU_Casino
             double baseValue = 0.0;
             foreach (KeyValuePair<string, double> theme in enumerable)
             {
-                if (baseValue + theme.Value > random)
+                if (baseValue + theme.Value >= random)
                 {
                     return theme.Key;
                 }

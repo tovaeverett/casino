@@ -17,7 +17,7 @@ namespace SU_Casino
         public int money;
         private Game currentGame;
         private static int trial;
-
+    
         Database _database = new Database();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -61,27 +61,17 @@ namespace SU_Casino
             }
         }
 
-        public string randomCard(int min, double winChance)
+        public string randomCard(string cardPosition)
         {
-            var cardColor = GetColor();
+
             Random rnd = new Random();
-            //int max = 0;
-        
-            //if(min < 8)
-            //{
-            //    max = min +5;
-            //}
-            //else if(min >= 8)
-            //{
-            //    min = 8;
-            //    max = 13;
-            //}
+            var cardColor = GetColor(rnd);
 
             // få array med "förlorar" korten
             var losingCards = currentGame.RetrieveLosingNumbers(1, 13, CheckCard);
 
             // vann eller vann inte?
-            if (currentGame.didWin(winChance))
+            if (currentGame.didWin(cardPosition))
             {
                 return CheckCard.ToString() + cardColor;
             }
@@ -96,30 +86,26 @@ namespace SU_Casino
             }
         }
              
-        private char GetColor()
+        private char GetColor(Random rand)
         {
-            Random letter = new Random();
-            char[] Array = "SHDC".ToCharArray();
-
-            int num = letter.Next(0, 4);
-            char let = Array[num];
-            return let;
+            int num = rand.Next(0, 4);
+            return "SHDC".ToCharArray()[num];
         }
+        
         
         public string randomStartCard()
         {
             Random rnd = new Random();
-            int randomcard = rnd.Next(1, 13);
-            //string url = "~/Cards/" + randomcard + ".png";
+            int randomcard = rnd.Next(1, 14);
             CheckCard = randomcard;
-            return randomcard.ToString() + GetColor();
+            return randomcard.ToString() + GetColor(rnd);
         }
 
         public void setCards()
         {
             HiddenField_card3.Value = randomStartCard().ToString();
-            HiddenField_card2.Value = randomCard(CheckCard, currentGame.Prob_O2).ToString();
-            HiddenField_card1.Value = randomCard(CheckCard, currentGame.Prob_O1).ToString();
+            HiddenField_card2.Value = randomCard("R2").ToString();
+            HiddenField_card1.Value = randomCard("R1").ToString();
 
        }
         protected void btnPlay_Click(object sender, EventArgs e)
@@ -174,17 +160,7 @@ namespace SU_Casino
             lblMoney.Text = money.ToString();
             SaveToDB(CardBet, betAmount, winningAmount);
         }
-        public Dictionary<string, double> getThemes()
-        {
-            Dictionary<string, double> themes = new Dictionary<string, double>();
 
-            themes.Add("1", currentGame.Perc_S1);
-            themes.Add("2", currentGame.Perc_S2);
-            themes.Add("3", currentGame.Perc_S3);
-            themes.Add("4", currentGame.Perc_S4);
-
-            return themes;
-        }
         public string setTheme()
         {
 
@@ -195,20 +171,7 @@ namespace SU_Casino
             }
             else
             {
-
-                Dictionary<string, double> themeNumberAndPercentage = getThemes();
-                string randomTheme = GameLogic.CalculateCurrentThemeBasedOnPercent(themeNumberAndPercentage);
-
-                if (randomTheme == "1" && currentGame.ThemeVariant != "A")
-                {
-                    if (currentGame.ThemeVariant == "B")
-                        HiddenField_theme.Value = "2";
-                    else if(currentGame.ThemeVariant == "C")
-                        HiddenField_theme.Value = "3";
-                }
-                else
-                    HiddenField_theme.Value = randomTheme;
-
+                HiddenField_theme.Value = currentGame.getRandomThemeBasedOnProcAndVariant();
                 return HiddenField_theme.Value;
             }
         }

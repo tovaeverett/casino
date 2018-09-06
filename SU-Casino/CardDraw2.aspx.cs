@@ -19,7 +19,6 @@ namespace SU_Casino
         private static int trial;
 
         Database _database = new Database();
-        public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,7 +26,7 @@ namespace SU_Casino
             if (currentGame == null)
             {
                 currentGame = Game.getDummyGame();
-                currentGame.getTheme();
+                currentGame.getRandomThemeBasedOnProcAndVariant();
                 //TODO An error page might not be needed. Decide on error handling
                 //Response.Redirect("ErrorPage.aspx");
             }
@@ -52,42 +51,23 @@ namespace SU_Casino
             }
         }
 
-        public string randomCard(int min, double winChance)
+        public string randomCard(string cardPosition)
         {
-            var cardColor = GetColor();
 
-            Random letter = new Random();
-            char[] Array = "SHDC".ToCharArray();
-
-           
-            int num = letter.Next(0, 4); 
-            char let = Array[num];
-            
-            Random rnd = new Random();
-            //int max = 0;
-        
-            //if(min < 8)
-            //{
-            //    max = min +5;
-            //}
-            //else if(min >= 8)
-            //{
-            //    min = 8;
-            //    max = 13;
-            //}
+            Random rand = new Random();
+            var cardColor = GetColor(rand);
 
             // få array med "förlorar" korten
             var losingCards = currentGame.RetrieveLosingNumbers(1, 13, CheckCard);
 
             // vann eller vann inte?
-            if (currentGame.didWin(winChance))
+            if (currentGame.didWin(cardPosition))
             {
                 return CheckCard.ToString() + cardColor;
             }
             else
             {
-                int randomcardIndex = rnd.Next(0, losingCards.Length);
-
+                int randomcardIndex = rand.Next(0, losingCards.Length);
                 int randomcard = losingCards[randomcardIndex];
                 // string url = "src/images/cards/" + randomcard + "C.png";
                 string card = randomcard.ToString() + cardColor;
@@ -95,35 +75,25 @@ namespace SU_Casino
             }
         }
 
-        private char GetColor()
+        private char GetColor(Random rand)
         {
-            Random letter = new Random();
-            char[] Array = "SHDC".ToCharArray();
-
-            int num = letter.Next(0, 4);
-            char let = Array[num];
-            return let;
+            int num = rand.Next(0, 4);
+            return "SHDC".ToCharArray()[num];
         }
         
         public string randomStartCard()
         {
-            Random letter = new Random();
-            char[] Array = "SHDC".ToCharArray();
-            int num = letter.Next(0, 4);
-            char let = Array[num];
-
             Random rnd = new Random();
-            int randomcard = rnd.Next(1, 13);
-            //string url = "~/Cards/" + randomcard + ".png";
+            int randomcard = rnd.Next(1, 14);
             CheckCard = randomcard;
-            return randomcard.ToString() + let;
+            return randomcard.ToString() + GetColor(rnd);
         }
 
         public void setCards()
         {
             HiddenField_card3.Value = randomStartCard().ToString();
-            HiddenField_card2.Value = randomCard(CheckCard, currentGame.Prob_O2).ToString();
-            HiddenField_card1.Value = randomCard(CheckCard, currentGame.Prob_O1).ToString();
+            HiddenField_card2.Value = randomCard("R2").ToString();
+            HiddenField_card1.Value = randomCard("R1").ToString();
 
        }
         protected void btnPlay_Click(object sender, EventArgs e)
@@ -178,42 +148,10 @@ namespace SU_Casino
             lblMoney.Text = money.ToString();
             SaveToDB(CardBet, betAmount, winningAmount);
         }
-        public int[] getThemes()
-        {
-            int[] themearray = new int[] { };
-            if (currentGame.Perc_S1 != 0)
-            {
-                themearray = new List<int>(themearray) { 1 }.ToArray();
-            }
-            if (currentGame.Perc_S2 != 0)
-            {
-                themearray = new List<int>(themearray) { 2 }.ToArray();
-            }
-            if (currentGame.Perc_S3 != 0)
-            {
-                themearray = new List<int>(themearray) { 3 }.ToArray();
-            }
-            if (currentGame.Perc_S4 != 0)
-            {
-                themearray = new List<int>(themearray) { 4 }.ToArray();
-            }
-
-            return themearray;
-        }
+     
         public String setTheme()
         {
-            Random rnd = new Random();
-            int randomTheme;
-            int[] nr = getThemes();
-            if (nr.Length == 0)
-            {
-                randomTheme = 0;
-            }
-            else
-            {
-                randomTheme = nr[rnd.Next(0, nr.Length)];
-                //  var theme = _database.getTheme(randomTheme);
-            }
+
             if (currentGame != null && currentGame.Name == "Instrumental_acq2")
             {
                 HiddenField_theme.Value = "null";
@@ -221,18 +159,7 @@ namespace SU_Casino
             }
             else
             {
-                //  var theme = _database.getTheme(randomTheme);
-                if (randomTheme == 1 && currentGame.ThemeVariant != "A")
-                {
-                    if (currentGame.ThemeVariant == "B")
-                        HiddenField_theme.Value = (randomTheme + 1).ToString();
-                    else if (currentGame.ThemeVariant == "C")
-                        HiddenField_theme.Value = (randomTheme + 2).ToString();
-
-                }
-                else
-                    HiddenField_theme.Value = randomTheme.ToString();
-
+                HiddenField_theme.Value = currentGame.getRandomThemeBasedOnProcAndVariant();
                 return HiddenField_theme.Value;
             }
         }

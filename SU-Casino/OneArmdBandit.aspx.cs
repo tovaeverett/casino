@@ -14,8 +14,7 @@ namespace SU_Casino
     public partial class OneArmdBandit : System.Web.UI.Page
     {
         Database _database = new Database();
-        public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
-
+        
         Random rnd = new Random();
         int money;
         private Game currentGame;
@@ -105,10 +104,9 @@ namespace SU_Casino
         }
         private void checkForWin()
         {
-            string WinChance = "";
 
             string[] splitCards = HiddenField_result.Value.Split(',');
-            WinChance = splitCards[0].ToString();
+            string WinChance = splitCards[0].ToString();
 
             int winningAmount = 0;
             if (HiddenField_WinLose.Value == "win")
@@ -127,73 +125,10 @@ namespace SU_Casino
 
             return randomfruit;
         }
-        public int[] getThemes()
-        {
-            int[] themearray = new int[] { };
-            if (currentGame.Perc_S1 != 0)
-            {
-                themearray = new List<int>(themearray) { 1 }.ToArray();
-            }
-            if(currentGame.Perc_S2 != 0)
-            {
-                themearray = new List<int>(themearray) { 2 }.ToArray();
-            }
-            if (currentGame.Perc_S3 != 0)
-            {
-                themearray = new List<int>(themearray) { 3 }.ToArray();
-            }
-            if (currentGame.Perc_S4 != 0)
-            {
-                themearray = new List<int>(themearray) {4 }.ToArray();
-            }
-            return themearray;
-        }
-        public int setTheme()
-        {
-            //   var theme = _database.getTheme(currentGame.Name);
-            int[] nr = getThemes();
-            int randomTheme;
 
-            
-            Random rnd = new Random();
-            if (nr.Length == 0)
-            {
-                randomTheme = 0;
-            }
-            else
-            { 
-                randomTheme = nr[rnd.Next(0, nr.Length)];
-            }
-            // int randomTheme = rnd.Next(1, 4);
-            HiddenField_theme.Value = randomTheme.ToString();
-            
-            if (randomTheme == 1 && currentGame.ThemeVariant != "A") //perc_S1 -> themeRed
-            {
-                if (currentGame.ThemeVariant == "B")
-                    HiddenField_theme.Value = (randomTheme + 1).ToString();
-                else if (currentGame.ThemeVariant == "C")
-                    HiddenField_theme.Value = (randomTheme + 2).ToString();
-
-            }
-            else
-                HiddenField_theme.Value = randomTheme.ToString();
-            if(randomTheme == 1 && currentGame.IfS1probX.ToString() != "")
-            {
-                currentGame.Prob_O1 = currentGame.Prob_O1 * currentGame.IfS1probX;
-            }
-            if (randomTheme == 1 && currentGame.IfS2probX.ToString() != "")
-            {
-                currentGame.Prob_O2 = currentGame.Prob_O2 * currentGame.IfS2probX;
-            }
-            if (randomTheme == 2 && currentGame.IfS1probX.ToString() != "")
-            {
-                currentGame.Prob_O1 = currentGame.Prob_O1 * currentGame.IfS1probX;
-            }
-            if (randomTheme == 2 && currentGame.IfS2probX.ToString() != "")
-            {
-                currentGame.Prob_O2 = currentGame.Prob_O2 * currentGame.IfS2probX;
-            }
-            return randomTheme;
+        public void setTheme()
+        {          
+            HiddenField_theme.Value = currentGame.getRandomThemeBasedOnProcAndVariant(); ;
         }
 
         private void setCurrentBalance()
