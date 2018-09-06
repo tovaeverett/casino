@@ -30,11 +30,11 @@ namespace SU_Casino
         private double perc_S3;
         private double perc_S4;
         private string userid;
+        private String ifS1win, ifS2win, ifS3win, ifS4win;
 
         public string Name { get => name; set => name = value; }
         public int Trials { get => trials; set => trials = value; }
         public int Saldo { get => saldo; set => saldo = value; }
-        public double Prob_S0 { get => prob_S0; set => prob_S0 = value; }
         public int Bet_R1 { get => bet_R1; set => bet_R1 = value; }
         public int Bet_R2 { get => bet_R2; set => bet_R2 = value; }
         public int Bet_R3 { get => bet_R3; set => bet_R3 = value;}
@@ -52,6 +52,11 @@ namespace SU_Casino
         public double Perc_S2 { get => perc_S2; set => perc_S2 = value; }
         public double Perc_S3 { get => perc_S3; set => perc_S3 = value; }
         public double Perc_S4 { get => perc_S4; set => perc_S4 = value; }
+        public string IfS1win { get => ifS1win; set => ifS1win = value; }
+        public string IfS2win { get => ifS2win; set => ifS2win = value; }
+        public string IfS3win { get => ifS3win; set => ifS3win = value; }
+        public string IfS4win { get => ifS4win; set => ifS4win = value; }
+           
         public string UserId { get => userid; set => userid = value; }
 
         public static Game getDummyGame()
@@ -59,24 +64,24 @@ namespace SU_Casino
             Game dummy = new Game();
             dummy.Name = "Pavlovian_extinct";
             dummy.condition = "Pavlovian_extinct";
-            dummy.sequence = 2;
-            dummy.Trials = 55;
+            dummy.sequence = 1;
+            dummy.Trials = 24;
             dummy.Saldo = 1000;
-            dummy.Prob_S0 = 0.2;
-            dummy.Bet_R1 = -10;
-            dummy.Bet_R2 = -45;
-            dummy.Bet_R3 = -25;
-            dummy.Bet_R4 = -50;
-            dummy.Prob_O1 = 0.9;
+            dummy.Bet_R1 = -10; // blått kort. eller rött. Definerar bettinstats på de kortet eller knappen
+            dummy.Bet_R2 = 0;  // rött kort. eller blått Definerar bettinstats på de kortet eller knappen.
+            dummy.Bet_R3 = 0; 
+            dummy.Bet_R4 = 0;
+            dummy.Prob_O1 = 0.5;
             dummy.Prob_O2 = 0.5;
             dummy.Win_O1 = 50;
             dummy.Win_O2 = 20;
             dummy.IfS1probX = 1;
             dummy.IfS2probX = 0;
             dummy.perc_S1 = 0.25;
-            dummy.perc_S2 = 0.50;
-            dummy.perc_S3 = 0;
+            dummy.perc_S2 = 0.25;
+            dummy.perc_S3 = 0.25;
             dummy.perc_S4 = 0.25;
+            
             return dummy;
 
         }
@@ -173,59 +178,7 @@ namespace SU_Casino
 
         public string getTheme()
         {
-
-            var dict = getThemes();
-            int d = 0;
-            int team1 = 0;
-            int team2 = 0;
-            int team3 = 0;
-            int team4 = 0;
-            foreach(var x in dict)
-            {
-                if(x.Key == "s1")
-                {
-                    team1 = (100 / x.Value);
-                }
-                else if(x.Key == "s2")
-                {
-                    team2 =+ team1+ (100 / x.Value);
-                }
-                else if (x.Key == "s3")
-                {
-                    team3 = team2 + (100 / x.Value);
-                }
-                else if (x.Key == "s4")
-                {
-                    team4 = team3 + (100 / x.Value);
-                }
-               
-            }
-
-            Random winRnd = new Random();
-            //kolla vilket värde som ligger närmast vilket teamn.
-            
-            // hur många gånger går vinst chanse in i 100
-          //  var accumulator = 100 / (int)(winChance * 100);
-            var res = winRnd.Next(0, 100);
-            if (Enumerable.Range(0, team1).Contains(res))
-            {
-                return "team1";
-            }
-            else if(Enumerable.Range(team1,team2).Contains(res))
-            {
-                return "team2";
-            }
-            else if(Enumerable.Range(team2,team3).Contains(res))
-            {
-                return "team3";
-            }
-            else if(Enumerable.Range(team3,team4).Contains(res))
-            {
-                return "team4";
-            }
-            // var res = winRnd.Next(0, accumulator);
-            return "";
-           // return res == 1 ? true : false;
+            return GameLogic.CalculateCurrentThemeBasedOnPercent(getThemes());
         }
 
         /// <summary>
@@ -247,44 +200,16 @@ namespace SU_Casino
             }
             return prob;
         }
-        public Dictionary<string, int> getThemes()
+        public Dictionary<string, double> getThemes()
         {
-            var dict = new Dictionary<string, int>();
+            Dictionary<string, double> themes = new Dictionary<string, double>();
 
-            int[] themearray = new int[] { };
-            int acc1 = 0;
-            int acc2 = 0;
-            int acc3 = 0;
-            int acc4 = 0;
-            if (this.Perc_S1 != 0)
-            {
-                // hur många gånger går vinst chanse in i 100
-                acc1 = 100 / (int)(Perc_S1 * 100);
-                dict.Add("s1", acc1);
-             //   themearray = new List<int>(themearray) { acc1 }.ToArray();
-            }
-            if (this.Perc_S2 != 0)
-            {
-                
-                acc2 = 100 / (int)(Perc_S2 * 100);
-                dict.Add("s2", acc2);
-                //    themearray = new List<int>(themearray) { acc2 }.ToArray();
-            }
-            if (this.Perc_S3 != 0)
-            {
-                
-                acc3 = 100 / (int)(Perc_S3 * 100);
-                dict.Add("s3", acc3);
-                //  themearray = new List<int>(themearray) { acc3 }.ToArray();
-            }
-            if (this.Perc_S4 != 0)
-            {
-              
-                acc4 = 100 / (int)(Perc_S4 * 100);
-                dict.Add("s4", acc4);
-                // themearray = new List<int>(themearray) { acc4 }.ToArray();
-            }
-            return dict;
+            themes.Add("1", Perc_S1);
+            themes.Add("2", Perc_S2);
+            themes.Add("3", Perc_S3);
+            themes.Add("4", Perc_S4);
+
+            return themes;
         }
     }
 }

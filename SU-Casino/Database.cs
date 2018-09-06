@@ -14,8 +14,7 @@ namespace SU_Casino
 {
     public class Database
     {
-        public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString); //(@"Data Source=LAPTOP-TGVH7EEV\HUGOSSONSQL;Initial Catalog=SU_Casino;Integrated Security=True");//
-
+        
         public string getPlayerCredits(string userid)
         {
             string credit = "";
@@ -450,25 +449,30 @@ namespace SU_Casino
                 {
                     foreach (DataRow dr in dt.Rows)
                     {
-                        game.Name = dr[0].ToString();
-                        game.Trials = Convert.ToInt32(dr[1].ToString());
-                        game.Saldo = dr[2].ToString() != "" ? Convert.ToInt32(dr[2].ToString()) : 0;
-                        game.Prob_S0 = dr[3].ToString() != "" ? Convert.ToDouble(dr[3].ToString()) : 0;
-                        game.Bet_R1 = dr[4].ToString() != "" ? Convert.ToInt32(dr[4].ToString()) : 0;
-                        game.Bet_R2 = dr[5].ToString() != "" ? Convert.ToInt32(dr[5].ToString()) : 0;
-                        game.Prob_O1 = dr[6].ToString() != "" ? Convert.ToDouble(dr[6].ToString()) : 0;
-                        game.Prob_O2 = dr[7].ToString() != "" ? Convert.ToDouble(dr[7].ToString()) : 0;
-                        game.Win_O1 = dr[8].ToString() != "" ? Convert.ToInt32(dr[8].ToString()) : 0;
-                        game.Win_O2 = dr[9].ToString() != "" ? Convert.ToInt32(dr[9].ToString()) : 0;
-                        game.IfS1probX = dr[10].ToString() != "" ? Convert.ToInt32(dr[10].ToString()) : 0;
-                        game.IfS2probX = dr[11].ToString() != "" ? Convert.ToInt32(dr[11].ToString()) : 0;
-                        game.Perc_S1 = dr[12].ToString() != "" ? Convert.ToDouble(dr[12].ToString()) : 0;
-                        game.Perc_S2 = dr[13].ToString() != "" ? Convert.ToDouble(dr[13].ToString()) : 0;
-                        game.Perc_S3 = dr[14].ToString() != "" ? Convert.ToDouble(dr[14].ToString()) : 0;
-                        game.Perc_S4 = dr[15].ToString() != "" ? Convert.ToDouble(dr[15].ToString()) : 0;
-                        game.ThemeVariant = dr[16].ToString() != "" ? dr[16].ToString() : "";
-                        game.Bet_R3 = dr[17].ToString() != "" ? Convert.ToInt32(dr[17].ToString()) : 0;
-                        game.Bet_R4 = dr[18].ToString() != "" ? Convert.ToInt32(dr[18].ToString()) : 0;
+
+                        game.Name = getValueFromColumnWithName(dr, "name");
+                        game.Trials = getIntValueDefault0(dr, "trials");
+                        game.Saldo = getIntValueDefault0(dr, "saldo");
+                        game.Bet_R1 = getIntValueDefault0(dr, "bet_R1");
+                        game.Bet_R2 = getIntValueDefault0(dr, "bet_R2");
+                        game.Prob_O1 = getDoubleDefault0(dr, "prob_O1");
+                        game.Prob_O2 = getDoubleDefault0(dr, "prob_O2");
+                        game.Win_O1 = getIntValueDefault0(dr, "win_O1");
+                        game.Win_O2 = getIntValueDefault0(dr, "win_O2");
+                        game.IfS1probX = getIntValueDefault0(dr, "ifS1probX");
+                        game.IfS2probX = getIntValueDefault0(dr, "ifS2probX");
+                        game.Perc_S1 = getDoubleDefault0(dr, "perc_S1");
+                        game.Perc_S2 = getDoubleDefault0(dr, "perc_S2");
+                        game.Perc_S3 = getDoubleDefault0(dr, "perc_S3");
+                        game.Perc_S4 = getDoubleDefault0(dr, "perc_S4");
+                        game.ThemeVariant = getValueFromColumnWithName(dr, "S1_variant");
+                        game.Bet_R3 = getIntValueDefault0(dr, "bet_R3");
+                        game.Bet_R4 = getIntValueDefault0(dr, "bet_B4");
+                        game.IfS1win = getValueFromColumnWithName(dr, "ifS1win");
+                        game.IfS2win = getValueFromColumnWithName(dr, "ifS2win");
+                        game.IfS3win = getValueFromColumnWithName(dr, "ifS3win");
+                        game.IfS4win = getValueFromColumnWithName(dr, "ifS4win");
+
                         game.Sequence = seq;
                         game.Condition = condition;
                     }
@@ -481,6 +485,7 @@ namespace SU_Casino
                 var log = new EventLog($"Error getting order to play, seq: {seq}, condition: {condition}", null, ex);
 
                 Log(log);
+      
             }
             finally
             {
@@ -489,6 +494,24 @@ namespace SU_Casino
             }
             return null;
         }
+
+        private static double getDoubleDefault0(DataRow dr, string ColumnName1)
+        {
+            string value = getValueFromColumnWithName(dr, ColumnName1);
+            return Convert.ToDouble(value != "" ? value : "0");
+        }
+
+        private static int getIntValueDefault0(DataRow dr, string ColumnName)
+        {
+            string value = getValueFromColumnWithName(dr, ColumnName);
+            return Convert.ToInt32(value != "" ? value : "0");
+        }
+
+        private static string getValueFromColumnWithName(DataRow dr, string columnName)
+        {
+            return dr[dr.Table.Columns[columnName].Ordinal].ToString() != "" ? dr[dr.Table.Columns[columnName].Ordinal].ToString() : "";
+        }
+      
 
         public void GetExample(SqlCommand command, params SqlParameter[] p)
         {
@@ -531,7 +554,7 @@ namespace SU_Casino
 
         public void InsertMatris()
         {
-            using (SqlConnection openCon = connectionstring)
+            using (SqlConnection openCon = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString) )
             {
                 string saveStaff = "INSERT into matris (prop_n,condition,seq,trials,name,saldo,perc_S0,perc_S1,S1_variant,perc_S2,perc_S3,perc_S4,bet_R1,bet_R2,bet_R3,bet_B4,if_R1,if_R2,if_R3,if_R4,prob_O1,prob_O2,win_O1,win_O2,ifS1win,ifS2win,ifS3win,ifS4win,ifS1probX,ifS2probX,hide,freeze_win)" +
                     " VALUES (@prop_n,@condition,@seq,@trials,@name,@saldo,@perc_S0,@perc_S1,@S1_variant,@perc_S2,@perc_S3,@perc_S4,@bet_R1,@bet_R2,@bet_R3,@bet_B4,@if_R1,@if_R2,@if_R3,@if_R4,  @prob_O1,@prob_O2,@win_O1,@win_O2,@ifS1win,@ifS2win,@ifS3win,@ifS4win,@ifS1probX,@ifS2probX,@hide,@freeze_win)";
