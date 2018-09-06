@@ -11,6 +11,7 @@ namespace SU_Casino.Tests
     [TestClass()]
     public class GameLogicTests
     {
+        const string no_theme = "0";
         const string theme_one = "1";
         const string theme_two = "2";
         const string theme_three = "3";
@@ -65,7 +66,8 @@ namespace SU_Casino.Tests
         {
             Dictionary<string, double> themesToTest = new Dictionary<string, double>();
             themesToTest.Add(theme_one, 0);
-            Assert.ThrowsException<NotSupportedException>(() => GameLogic.CalculateCurrentThemeBasedOnPercent(themesToTest));
+            string theme = GameLogic.CalculateCurrentThemeBasedOnPercent(themesToTest);
+            Assert.AreEqual(no_theme, theme);
         }
 
         private static void testThatMultipleThemesGetPicked()
