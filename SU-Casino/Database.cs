@@ -744,7 +744,7 @@ namespace SU_Casino
 
             da.Fill(ds, "getLog");
             dt = ds.Tables["getLog"];
-            sbOutput.AppendLine("ID;condition;name;moment;trail;timestamp_begin;timestam_R;timestamp_O;balance_in;response;bet;stimuli;outcome;balance_out");
+            sbOutput.AppendLine("studyID;condition;name;moment;trail;timestamp_begin;timestam_R;timestamp_O;balance_in;response;bet;stimuli;outcome;balance_out");
             foreach (DataRow dr in dt.Rows)
             {
                 sbOutput.AppendLine(string.Join(strSeperator, dr[0] + strSeperator + dr[1] + strSeperator + dr[2] + strSeperator + dr[3] + strSeperator + dr[4] + strSeperator + dr[5] + strSeperator
@@ -791,7 +791,7 @@ namespace SU_Casino
 
             da.Fill(ds, "getQuestionLog");
             dt = ds.Tables["getQuestionLog"];
-            sbOutput.AppendLine("ID;q1;q2;q3;q4;q5;q6;q7;q8;q9;q10;age;gambling;average;date;device;country");
+            sbOutput.AppendLine("studyID;q1;q2;q3;q4;q5;q6;q7;q8;q9;q10;age;gambling;average;date;device;country");
             foreach (DataRow dr in dt.Rows)
             {
                 sbOutput.AppendLine(string.Join(strSeperator, dr[0] + strSeperator + dr[1] + strSeperator + dr[2] + strSeperator + dr[3] + strSeperator + dr[4] + strSeperator + dr[5] + strSeperator
