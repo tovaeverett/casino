@@ -489,7 +489,7 @@ namespace SU_Casino
                 var log = new EventLog($"Error getting order to play, seq: {seq}, condition: {condition}", null, ex);
 
                 Log(log);
-      
+                throw ex;
             }
             finally
             {

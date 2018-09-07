@@ -67,6 +67,7 @@ namespace SU_Casino
 
         public static Game getDummyGame()
         {
+            throw new Exception("Not allowd to use dummy game at the moment!");
             Game dummy = new Game();
             dummy.Name = "Pavlovian_extinct";
             dummy.Condition = "Pavlovian_extinct";
