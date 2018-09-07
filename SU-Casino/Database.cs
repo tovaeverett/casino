@@ -806,7 +806,7 @@ namespace SU_Casino
 
         }
 
-        public void saveQuestions(List<string> list,string userid)
+        public void saveQuestions(List<string> list,string userid, string regionalInfo)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
             SqlCommand cmd = new SqlCommand("insertQuestionsLog", conn);
@@ -827,7 +827,7 @@ namespace SU_Casino
             cmd.Parameters.AddWithValue("q13", list[12].ToString());
             cmd.Parameters.AddWithValue("Date", DateTime.Now);
             cmd.Parameters.AddWithValue("Device", list[13].ToString());
-            cmd.Parameters.AddWithValue("Country", "Sweden"); // RegionInfo.CurrentRegion.DisplayName);
+            cmd.Parameters.AddWithValue("Country", regionalInfo);
             try
             {
                 conn.Open();

@@ -18,7 +18,6 @@ namespace SU_Casino
         private static Game initialGame;
         protected void Page_Load(object sender, EventArgs e)
         {
-            // string name = RegionInfo.CurrentRegion.DisplayName;
             hiddenfield_userid.Value = Request["workerId"];
             if (!IsPostBack)
             {
@@ -95,7 +94,7 @@ namespace SU_Casino
             answers.Add(q13.SelectedItem.Value);
             answers.Add(hiddenfield_device.Value);
 
-            _database.saveQuestions(answers, hiddenfield_userid.Value);
+            _database.saveQuestions(answers, hiddenfield_userid.Value, RegionInfo.CurrentRegion.DisplayName);
         }
 
         protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
