@@ -81,11 +81,6 @@ namespace SU_Casino
 
         }
 
-        public static string CalculateCurrentThemeBasedOnPercent(Dictionary<string, double> themeNumberAndPercentage)
-        {
-            return CalculateCurrentThemeBasedOnPercent(themeNumberAndPercentage, new Random());
-        }
-
         public static string CalculateCurrentThemeBasedOnPercent(Dictionary<string, double> themeNumberAndPercentage, Random rand)
         {
             if (themeNumberAndPercentage.Max(i => i.Value).Equals(0))

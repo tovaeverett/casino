@@ -18,6 +18,7 @@ namespace SU_Casino
         public int money;
         private Game currentGame;
         private static int trial;
+        Random rnd = new Random();
 
         Database _database = new Database();
 
@@ -27,7 +28,7 @@ namespace SU_Casino
             if (currentGame == null)
             {
                 currentGame = Game.getDummyGame();
-                currentGame.getRandomThemeBasedOnProcAndVariant();
+                currentGame.getRandomThemeBasedOnProcAndVariant(rnd);
                 //TODO An error page might not be needed. Decide on error handling
                 //Response.Redirect("ErrorPage.aspx");
             }
@@ -54,23 +55,21 @@ namespace SU_Casino
 
         public string randomCard(string cardPosition)
         {
-
-            Random rand = new Random();
-
+            
             // få array med "förlorar" korten
             var losingCards = currentGame.RetrieveLosingNumbers(1, 13, startCard);
 
             // vann eller vann inte?
-            if (currentGame.didWinDrawCards(cardPosition))
+            if (currentGame.didWinDrawCards(cardPosition, rnd))
             {
                 return startCard.ToString() + startCardColor;
             }
             else
             {
-                int randomcardIndex = rand.Next(0, losingCards.Length);
+                int randomcardIndex = rnd.Next(0, losingCards.Length);
                 int randomcard = losingCards[randomcardIndex];
                 // string url = "src/images/cards/" + randomcard + "C.png";
-                string card = randomcard.ToString() + GetColor(rand);
+                string card = randomcard.ToString() + GetColor(rnd);
                 return card;
             }
         }
@@ -83,7 +82,6 @@ namespace SU_Casino
         
         public string randomStartCard()
         {
-            Random rnd = new Random();
             int randomcard = rnd.Next(1, 14);
             startCard = randomcard;
             startCardColor = GetColor(rnd);
@@ -160,7 +158,7 @@ namespace SU_Casino
             }
             else
             {
-                HiddenField_theme.Value = currentGame.getRandomThemeBasedOnProcAndVariant();
+                HiddenField_theme.Value = currentGame.getRandomThemeBasedOnProcAndVariant(rnd);
                 return HiddenField_theme.Value;
             }
         }

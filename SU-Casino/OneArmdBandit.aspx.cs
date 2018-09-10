@@ -59,7 +59,7 @@ namespace SU_Casino
         {
             var firstSpin = randomSlotSpin();
             
-            if (currentGame.didWinSlot())
+            if (currentGame.didWinSlot(rnd))
             {
                 HiddenField_Spin1.Value = firstSpin.ToString();
                 HiddenField_Spin2.Value = firstSpin.ToString();
@@ -85,6 +85,7 @@ namespace SU_Casino
         protected void btnPlay_Click(object sender, EventArgs e)
         {
             checkForWin();
+         
             setTheme();
             SpinIt();
             if (Convert.ToInt32(HiddenField_Spin1.Value) == Convert.ToInt32(HiddenField_Spin2.Value) && Convert.ToInt32(HiddenField_Spin1.Value) == Convert.ToInt32(HiddenField_Spin3.Value))
@@ -122,13 +123,12 @@ namespace SU_Casino
         public int randomSlotSpin()
         {
             int randomfruit = rnd.Next(1, 4);
-
             return randomfruit;
         }
 
         public void setTheme()
         {          
-            HiddenField_theme.Value = currentGame.getRandomThemeBasedOnProcAndVariant(); ;
+            HiddenField_theme.Value = currentGame.getRandomThemeBasedOnProcAndVariant(rnd); 
         }
 
         private void setCurrentBalance()

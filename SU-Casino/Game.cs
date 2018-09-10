@@ -67,7 +67,7 @@ namespace SU_Casino
 
         public static Game getDummyGame()
         {
-            throw new Exception("Not allowd to use dummy game at the moment!");
+//            throw new Exception("Not allowd to use dummy game at the moment!");
             Game dummy = new Game();
             dummy.Name = "Pavlovian_extinct";
             dummy.Condition = "Pavlovian_extinct";
@@ -78,23 +78,23 @@ namespace SU_Casino
             dummy.Bet_R2 = 0;  // rött kort. eller blått Definerar bettinstats på de kortet eller knappen.
             dummy.Bet_R3 = 100; 
             dummy.Bet_R4 = -50;
-            dummy.Prob_O1 = 0;
-            dummy.Prob_O2 = 1;
+            dummy.Prob_O1 = 0.5;
+            dummy.Prob_O2 = 0.5;
             dummy.Win_O1 = 50;
-            dummy.Win_O2 = 20;
+            dummy.Win_O2 = 100;
             dummy.Perc_S1 = 0.25;
             dummy.Perc_S2 = 0.25;
             dummy.Perc_S3 = 0.25;
             dummy.Perc_S4 = 0.25;
-            dummy.IfS1win = "O1";
-            dummy.IfS2win = "O1";
-            dummy.IfS3win = "O2";
-            dummy.IfS4win = "O2";
+            dummy.IfS1win = "O2";
+            dummy.IfS2win = "O2";
+            dummy.IfS3win = "O1";
+            dummy.IfS4win = "O1";
             dummy.IfS1probX = 1;
-            dummy.IfS2probX = 0;
+            dummy.IfS2probX = 1;
             dummy.If_R1 = "O1";
-            dummy.If_R2 = "O2";
-            dummy.If_R3 = "O1";
+            dummy.If_R2 = "O1";
+            dummy.If_R3 = "O2";
             dummy.If_R4 = "O2";
             return dummy;
 
@@ -124,19 +124,19 @@ namespace SU_Casino
         }
 
 
-        public bool didWinDrawCards(String cardPosition)
+        public bool didWinDrawCards(String cardPosition, Random rand)
         {
-            return CalculateWinOrNot(getWinningChanceCardDraw(cardPosition), new Random());
+            return CalculateWinOrNot(getWinningChanceCardDraw(cardPosition), rand);
         }
-        public bool didWinSlot()
+        public bool didWinSlot(Random rand)
         {
-            return CalculateWinOrNot(getWinningChanceOneArmedBandit(), new Random());
+            return CalculateWinOrNot(getWinningChanceOneArmedBandit(), rand);
         }
 
         public bool CalculateWinOrNot(double winChance, Random rand)
         {
             double winningNumber = rand.NextDouble();
-            return winChance >= winningNumber ? true : false;
+            return winChance >= winningNumber;
         }
 
         
@@ -182,9 +182,9 @@ namespace SU_Casino
             return ifwin.Equals("O1") ? Prob_O1 : Prob_O2;
         }
 
-        public string getRandomThemeBasedOnProcAndVariant()
+        public string getRandomThemeBasedOnProcAndVariant(Random rand)
         {
-            CurrentTheme = ChangeTemeBasedOnThemeVariant(GameLogic.CalculateCurrentThemeBasedOnPercent(getThemes()));
+            CurrentTheme = ChangeTemeBasedOnThemeVariant(GameLogic.CalculateCurrentThemeBasedOnPercent(getThemes(),rand));
             return CurrentTheme;
 
         }

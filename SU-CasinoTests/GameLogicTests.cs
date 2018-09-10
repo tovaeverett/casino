@@ -93,7 +93,7 @@ namespace SU_Casino.Tests
             Assert.IsTrue(result.Contains(theme_two));
         }
 
-        private static void testThatThepercentageIsCorrect()
+        private static void testThatThePercentageIsCorrect()
         {
 
             Dictionary<string, double> themesToTest = new Dictionary<string, double>();

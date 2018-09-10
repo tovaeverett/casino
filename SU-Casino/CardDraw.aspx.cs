@@ -18,6 +18,7 @@ namespace SU_Casino
         public int money;
         private Game currentGame;
         private static int trial;
+        Random rnd = new Random();
     
         Database _database = new Database();
 
@@ -64,14 +65,11 @@ namespace SU_Casino
 
         public string randomCard(string cardPosition)
         {
-
-            Random rnd = new Random();
-
             // få array med "förlorar" korten
             var losingCards = currentGame.RetrieveLosingNumbers(1, 13, startCard);
 
             // vann eller vann inte?
-            if (currentGame.didWinDrawCards(cardPosition))
+            if (currentGame.didWinDrawCards(cardPosition, rnd))
             {
                 return startCard.ToString() + startCardColor;
             }
@@ -81,24 +79,23 @@ namespace SU_Casino
 
                 int randomcard = losingCards[randomcardIndex];
                 // string url = "src/images/cards/" + randomcard + "C.png";
-                string card = randomcard.ToString() + GetColor(rnd);
+                string card = randomcard.ToString() + GetColor();
                 return card;
             }
         }
              
-        private char GetColor(Random rand)
+        private char GetColor()
         {
-            int num = rand.Next(0, 4);
+            int num = rnd.Next(0, 4);
             return "SHDC".ToCharArray()[num];
         }
         
         
         public string randomStartCard()
         {
-            Random rnd = new Random();
             int randomcard = rnd.Next(1, 14);
             startCard = randomcard;
-            startCardColor = GetColor(rnd);
+            startCardColor = GetColor();
             return randomcard.ToString() + startCardColor;
         }
 
@@ -172,7 +169,7 @@ namespace SU_Casino
             }
             else
             {
-                HiddenField_theme.Value = currentGame.getRandomThemeBasedOnProcAndVariant();
+                HiddenField_theme.Value = currentGame.getRandomThemeBasedOnProcAndVariant(rnd);
                 return HiddenField_theme.Value;
             }
         }
