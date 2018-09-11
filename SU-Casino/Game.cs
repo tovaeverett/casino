@@ -8,12 +8,18 @@ namespace SU_Casino
 {
     public class Game
     {
+        private const string Theme_RED = "1";
+        private const string Theme_BLUE = "2";
+        private const string Theme_GOLD = "3";
+        private const string Theme_BLACK = "4";
+        private const string Theme_RED_Version_A = Theme_RED;
+        private const string Theme_RED_Version_B = "5";
+        private const string Theme_RED_Version_C = "6";
         private String name;
         private String condition;
         private int sequence;
         private int trials;
         private int saldo;
-        private double prob_S0;
         private int bet_R1;
         private int bet_R2;
         private int bet_R3;
@@ -124,18 +130,18 @@ namespace SU_Casino
         }
 
 
-        public bool didWinDrawCards(String cardPosition, Random rand)
+        public bool didWinDrawCards(String cardPosition)
         {
-            return CalculateWinOrNot(getWinningChanceCardDraw(cardPosition), rand);
+            return IsWinOrLoseBasedOnPercent(getWinningChanceCardDraw(cardPosition));
         }
-        public bool didWinSlot(Random rand)
+        public bool didWinSlot()
         {
-            return CalculateWinOrNot(getWinningChanceOneArmedBandit(), rand);
+            return IsWinOrLoseBasedOnPercent(getWinningChanceOneArmedBandit());
         }
 
-        public bool CalculateWinOrNot(double winChance, Random rand)
+        public bool IsWinOrLoseBasedOnPercent(double winChance)
         {
-            double winningNumber = rand.NextDouble();
+            double winningNumber = RandomSingleton.NextDouble();
             return winChance >= winningNumber;
         }
 
@@ -159,18 +165,18 @@ namespace SU_Casino
         public double getWinningChanceOneArmedBandit()
         {
             double prob = 0;
-            prob += GetPercentBasedOnIfSxwinForGame("1", IfS1win) * IfS1probX;
-            prob += GetPercentBasedOnIfSxwinForGame("2", IfS2win) * IfS2probX;
-            prob += GetPercentBasedOnIfSxwinForGame("3", IfS3win);
-            prob += GetPercentBasedOnIfSxwinForGame("4", IfS4win);
+            prob += GetPercentBasedOnIfSxwinForTheme(Theme_RED, IfS1win) * IfS1probX;
+            prob += GetPercentBasedOnIfSxwinForTheme(Theme_BLUE, IfS2win) * IfS2probX;
+            prob += GetPercentBasedOnIfSxwinForTheme(Theme_GOLD, IfS3win);
+            prob += GetPercentBasedOnIfSxwinForTheme(Theme_BLACK, IfS4win);
 
             return prob;
         }
 
-        private double GetPercentBasedOnIfSxwinForGame(string game, string ifSxwin)
+        private double GetPercentBasedOnIfSxwinForTheme(string theme, string ifSxwin)
         {
             double prob = 0;
-            if (CurrentTheme.Equals(game))
+            if (CurrentTheme.Equals(theme))
             {
                 prob = GetPercentBasedOnIfSxwin(ifSxwin);
             }
@@ -182,21 +188,23 @@ namespace SU_Casino
             return ifwin.Equals("O1") ? Prob_O1 : Prob_O2;
         }
 
-        public string getRandomThemeBasedOnProcAndVariant(Random rand)
+        public string getRandomThemeBasedOnProcAndVariant()
         {
-            CurrentTheme = ChangeTemeBasedOnThemeVariant(GameLogic.CalculateCurrentThemeBasedOnPercent(getThemes(),rand));
+            CurrentTheme = ChangeTemeBasedOnThemeVariant(GameLogic.CalculateCurrentThemeBasedOnPercent(getThemes()));
             return CurrentTheme;
 
         }
 
         private string ChangeTemeBasedOnThemeVariant(string theme)
         {
-            if (theme.Equals("1")) //perc_S1 -> themeRed
+            if (theme.Equals(Theme_RED)) 
             {
                 if (ThemeVariant == "B")
-                    theme = "5";
+                    theme = Theme_RED_Version_B;
                 else if (ThemeVariant == "C")
-                    theme = "6";
+                    theme = Theme_RED_Version_C;
+                else
+                    theme = Theme_RED_Version_A;
             }
             return theme;
         }
@@ -206,10 +214,10 @@ namespace SU_Casino
         {
             Dictionary<string, double> themes = new Dictionary<string, double>();
 
-            themes.Add("1", Perc_S1);
-            themes.Add("2", Perc_S2);
-            themes.Add("3", Perc_S3);
-            themes.Add("4", Perc_S4);
+            themes.Add(Theme_RED, Perc_S1);
+            themes.Add(Theme_BLUE, Perc_S2);
+            themes.Add(Theme_GOLD, Perc_S3);
+            themes.Add(Theme_BLACK, Perc_S4);
 
             return themes;
         }

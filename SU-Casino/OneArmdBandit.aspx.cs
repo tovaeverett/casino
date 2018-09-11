@@ -14,8 +14,7 @@ namespace SU_Casino
     public partial class OneArmdBandit : System.Web.UI.Page
     {
         Database _database = new Database();
-        
-        Random rnd = new Random();
+
         int money;
         private Game currentGame;
         private static int trial;
@@ -39,15 +38,8 @@ namespace SU_Casino
                 Hiddenfield_text.Value = _database.getText("playSlotInfo");
                 SpinIt();
                 HiddenField_credit.Value = currentGame.Win_O1.ToString();
-                if (HiddenField_Spin1.Value == HiddenField_Spin2.Value && HiddenField_Spin1.Value == HiddenField_Spin3.Value)
-                {
-                    HiddenField_WinLose.Value = "win";
-                }
-                else
-                {
-                    HiddenField_WinLose.Value = "lose";
-                }
-                money = currentGame.Saldo;   //Convert.ToInt32(Request["saldo"]);
+                HiddenField_WinLose.Value = HiddenField_Spin1.Value.Equals(HiddenField_Spin2.Value) && HiddenField_Spin1.Value.Equals(HiddenField_Spin3.Value) ? "win" : "lose";
+                money = currentGame.Saldo;
                 lblMoney.Text = money.ToString();
                 setCurrentBalance();
                 trial = 1;
@@ -59,7 +51,7 @@ namespace SU_Casino
         {
             var firstSpin = randomSlotSpin();
             
-            if (currentGame.didWinSlot(rnd))
+            if (currentGame.didWinSlot())
             {
                 HiddenField_Spin1.Value = firstSpin.ToString();
                 HiddenField_Spin2.Value = firstSpin.ToString();
@@ -122,13 +114,15 @@ namespace SU_Casino
         }
         public int randomSlotSpin()
         {
-            int randomfruit = rnd.Next(1, 4);
+            int randomfruit = RandomSingleton.Next(1, 4);
             return randomfruit;
         }
 
+
+
         public void setTheme()
         {          
-            HiddenField_theme.Value = currentGame.getRandomThemeBasedOnProcAndVariant(rnd); 
+            HiddenField_theme.Value = currentGame.getRandomThemeBasedOnProcAndVariant(); 
         }
 
         private void setCurrentBalance()

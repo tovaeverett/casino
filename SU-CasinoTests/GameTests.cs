@@ -14,7 +14,6 @@ namespace SU_Casino.Tests
         [TestMethod()]
         public void getWinningChanceTest()
         {
-
             Game testgame = new Game();
             testgame.CurrentTheme = "1";
             testgame.Prob_O1 = 0.6;
@@ -76,24 +75,21 @@ namespace SU_Casino.Tests
             Assert.AreEqual(0.8, testgame.getWinningChanceCardDraw("R3"), 0.001);
             testgame.If_R3 = "O1";
             Assert.AreEqual(0.2, testgame.getWinningChanceCardDraw("R3"), 0.001);
-
-
         }
 
         [TestMethod()]
-        public void CalculateWinOrNotTest()
-        {
-            Random rand = new Random();
+        public void IsWinOrLoseBasedOnPercentTest()
+        { 
             Game game = new Game();
-            Assert.IsTrue(game.CalculateWinOrNot(1, rand));
-            Assert.IsFalse(game.CalculateWinOrNot(0, rand));
+            Assert.IsTrue(game.IsWinOrLoseBasedOnPercent(1));
+            Assert.IsFalse(game.IsWinOrLoseBasedOnPercent(0));
 
             List<bool> result = new List<bool>();
 
             const int iterations = 10000;
             for (int i = 0; i < iterations; i++)
             {
-                result.Add(game.CalculateWinOrNot(0.5, rand));
+                result.Add(game.IsWinOrLoseBasedOnPercent(0.5));
             }
 
             Assert.AreEqual(0.5, (double)result.Where(i => i == true).Count() / (double)iterations, 0.03);
@@ -104,15 +100,13 @@ namespace SU_Casino.Tests
         [TestMethod()]
         public void CalculateWinTest20Percent()
         {
-            Random rand = new Random();
             Game game = new Game();
-
             List<bool> result = new List<bool>();
 
             const int iterations = 10000;
             for (int i = 0; i < iterations; i++)
             {
-                result.Add(game.CalculateWinOrNot(0.2, rand));
+                result.Add(game.IsWinOrLoseBasedOnPercent(0.2));
             }
 
             Assert.AreEqual(0.2, (double)result.Where(i => i == true).Count() / (double)iterations, 0.03);
