@@ -48,8 +48,7 @@ namespace SU_Casino
 
         public int RandomSpin()
         {
-            Random rnd = new Random();
-            int randomNr = rnd.Next(1, 37);
+            int randomNr = RandomSingleton.Next(1, 37);
             return randomNr;
         }
 

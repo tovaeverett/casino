@@ -12,7 +12,7 @@ namespace SU_Casino
         public static void getInitialBetingelse()
         {
 
-            string condition = getRandomConditionFromConditions(new Random(), _database.GetCondition());
+            string condition = getRandomConditionFromConditions(_database.GetCondition());
             Game gameToPlay = _database.getOrderToPlay(1, condition);
 
             if (gameToPlay != null)
@@ -23,9 +23,9 @@ namespace SU_Casino
 
         }
 
-        public static string getRandomConditionFromConditions(Random rand, List<string> conditions)
+        public static string getRandomConditionFromConditions(List<string> conditions)
         {
-            return conditions[rand.Next(0, conditions.Count())];
+            return conditions[RandomSingleton.Next(0, conditions.Count())];
         }
 
         public static void getNextGame(Game currentGame, int curentUserBalance, string userid)
@@ -81,7 +81,7 @@ namespace SU_Casino
 
         }
 
-        public static string CalculateCurrentThemeBasedOnPercent(Dictionary<string, double> themeNumberAndPercentage, Random rand)
+        public static string CalculateCurrentThemeBasedOnPercent(Dictionary<string, double> themeNumberAndPercentage)
         {
             if (themeNumberAndPercentage.Max(i => i.Value).Equals(0))
             {
@@ -91,8 +91,9 @@ namespace SU_Casino
             IOrderedEnumerable<KeyValuePair<string, double>> enumerable =
                         themeNumberAndPercentage.OrderByDescending(i => i.Key);
 
-            double random = rand.NextDouble();
+            double random = RandomSingleton.NextDouble();
             double baseValue = 0.0;
+
             foreach (KeyValuePair<string, double> theme in enumerable)
             {
                 if (baseValue + theme.Value >= random)

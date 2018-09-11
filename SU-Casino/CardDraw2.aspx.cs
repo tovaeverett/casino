@@ -18,7 +18,6 @@ namespace SU_Casino
         public int money;
         private Game currentGame;
         private static int trial;
-        Random rnd = new Random();
 
         Database _database = new Database();
 
@@ -28,7 +27,7 @@ namespace SU_Casino
             if (currentGame == null)
             {
                 currentGame = Game.getDummyGame();
-                currentGame.getRandomThemeBasedOnProcAndVariant(rnd);
+                currentGame.getRandomThemeBasedOnProcAndVariant();
                 //TODO An error page might not be needed. Decide on error handling
                 //Response.Redirect("ErrorPage.aspx");
             }
@@ -60,31 +59,31 @@ namespace SU_Casino
             var losingCards = currentGame.RetrieveLosingNumbers(1, 13, startCard);
 
             // vann eller vann inte?
-            if (currentGame.didWinDrawCards(cardPosition, rnd))
+            if (currentGame.didWinDrawCards(cardPosition))
             {
                 return startCard.ToString() + startCardColor;
             }
             else
             {
-                int randomcardIndex = rnd.Next(0, losingCards.Length);
+                int randomcardIndex = RandomSingleton.Next(0, losingCards.Length);
                 int randomcard = losingCards[randomcardIndex];
                 // string url = "src/images/cards/" + randomcard + "C.png";
-                string card = randomcard.ToString() + GetColor(rnd);
+                string card = randomcard.ToString() + GetColor();
                 return card;
             }
         }
 
-        private char GetColor(Random rand)
+        private char GetColor()
         {
-            int num = rand.Next(0, 4);
+            int num = RandomSingleton.Next(0, 4);
             return "SHDC".ToCharArray()[num];
         }
         
         public string randomStartCard()
         {
-            int randomcard = rnd.Next(1, 14);
+            int randomcard = RandomSingleton.Next(1, 14);
             startCard = randomcard;
-            startCardColor = GetColor(rnd);
+            startCardColor = GetColor();
             return randomcard.ToString() + startCardColor;
         }
 
@@ -158,7 +157,7 @@ namespace SU_Casino
             }
             else
             {
-                HiddenField_theme.Value = currentGame.getRandomThemeBasedOnProcAndVariant(rnd);
+                HiddenField_theme.Value = currentGame.getRandomThemeBasedOnProcAndVariant();
                 return HiddenField_theme.Value;
             }
         }

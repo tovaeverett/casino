@@ -247,6 +247,7 @@
       <DependentUpon>OneArmdBandit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomSingleton.cs" />
     <Compile Include="Roulette.aspx.cs">
       <DependentUpon>Roulette.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
