@@ -68,7 +68,7 @@
 		                                <img id="slot_1_2" src="src/images/slot/img2.png"/>
 		                                <img id="slot_1_3" src="src/images/slot/img3.png"/>
 	                                    <img id="slot_1_4" src="src/images/slot/img4.png"/>
-		                                <img id="slot_1_5" src="src/images/slot/img1.png"/>
+		                                <img id="slot_1_5" src="src/images/slot/img5.png"/>
 						            </div>
 					            </div>
 				            </div>
@@ -80,7 +80,7 @@
 		                                <img id="slot_1_2" src="src/images/slot/img2.png"/>
 		                                <img id="slot_1_3" src="src/images/slot/img3.png"/>
 	                                    <img id="slot_1_4" src="src/images/slot/img4.png"/>
-		                                <img id="slot_1_5" src="src/images/slot/img1.png"/>
+		                                <img id="slot_1_5" src="src/images/slot/img5.png"/>
 						            </div>
 					            </div>
     		                 </div>
@@ -92,7 +92,7 @@
 		                                <img id="slot_1_2" src="src/images/slot/img2.png"/>
 		                                <img id="slot_1_3" src="src/images/slot/img3.png"/>
 	                                    <img id="slot_1_4" src="src/images/slot/img4.png"/>
-		                                <img id="slot_1_5" src="src/images/slot/img1.png"/>
+		                                <img id="slot_1_5" src="src/images/slot/img5.png"/>
 						            </div>
 					            </div>
                             </div>
@@ -116,6 +116,8 @@
                             <asp:HiddenField ID="HiddenField_Time1" runat="server" />
                             <asp:HiddenField ID="HiddenField_Time2" runat="server" />
                             <asp:HiddenField ID="HiddenField_Time3" runat="server" />
+                            <asp:HiddenField ID="HiddenField_Trail" runat="server" />
+                            
                             <div id="panel1">
                                 <div id="moneyLable">Credits left:&nbsp; 
                                 <span class="cash-sum"> 

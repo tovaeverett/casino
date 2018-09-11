@@ -5,16 +5,21 @@ var theme = "";
 
 
 function gameInit(sentTheme) {
+    var StartTime = new Date();
+    var showInfo = $("#HiddenField_showInfo").val();
+    //Hides messages layers
     $("#message-container").hide();
     $("#winchance-container").hide();
+    //If first sequence show start info and sets hidden field to empty
     $("#introInfoText").html($("#Hiddenfield_text").val());
-    $("#Hiddenfield_text").val("0");
+    $("#Hiddenfield_text").val("");
+    //Gets the win amount 
     $("#winCredit").html("+" + $("#HiddenField_credit").val());
     theme = sentTheme;
-    var StartTime = new Date();
+    
     $("#HiddenField_Time1").val(StartTime.getTime());
     console.log(StartTime.getTime());
-    var showInfo = $("#HiddenField_showInfo").val();
+   
     if (showInfo === '1') {
         $("#startInfo").show();
     }
@@ -22,6 +27,8 @@ function gameInit(sentTheme) {
         if (theme !== '99')
             $("#winchance-container").show();
     }
+
+    //Not used - depricated
     var backgroundSoundSource = "";
     var baseSoundUrl = "src/sound/background/";
     switch (theme) {
@@ -41,9 +48,7 @@ function gameInit(sentTheme) {
             backgroundSoundSource = "bensound-straight.mp3";
     }
 
-    backgroundSound = sound(baseSoundUrl + backgroundSoundSource);
-    //if(theme !== "null")
-    //backgroundSound.play();
+   // backgroundSound = sound(baseSoundUrl + backgroundSoundSource);
 }
 
 
@@ -62,7 +67,7 @@ function getWinChance(button) {
 }
 
 function showWinner(creditAmount) {
-    backgroundSound.stop();
+   // backgroundSound.stop();
     var winnerSound = new Audio("src/sound/effects/cashoutWinning.mp3");
     winnerSound.play();
     $("#message-container").fireworks({
@@ -72,7 +77,6 @@ function showWinner(creditAmount) {
         height: "100%"
     });
     $(".winner").show();
-    //$(".winner-inner").addClass('zoom');
     $("#message-container").show();
 }
 
@@ -93,6 +97,8 @@ function sound(src) {
     return this;
 }
 
+
+//Closing the start information layer
 $('#btnShowInfo').click(function () {
     $("#startInfo").hide();
     if(game !== 'roulette' && theme !== '99')
@@ -105,6 +111,7 @@ $("#btnClose").click(function () {
     $("#message-container").hide();
 });
 
+//Closing the win announce layer
 $("#btnCloseWin").click(function () {
     var EndTime = new Date();
     $("#HiddenField_Time3").val(EndTime.getTime());

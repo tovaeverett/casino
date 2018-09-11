@@ -48,15 +48,15 @@ namespace SU_Casino
             saveQuestions();
             hiddenfield_showInfo.Value = "1";
 
-                //To get the start credit from DB
+            //To get the start credit from DB
             GameLogic.getInitialBetingelse();
           
-                initialGame = (Game)Session["currentGame"];
+            initialGame = (Game)Session["currentGame"];
             initialGame.UserId = hiddenfield_userid.Value;
-                if (initialGame != null)
-                    hiddenfield_startCredit.Value = initialGame.Saldo.ToString();
-                else
-                Response.Redirect("ErrorPage.aspx");
+            if (initialGame != null)
+               hiddenfield_startCredit.Value = initialGame.Saldo.ToString();
+            else
+               Response.Redirect("ErrorPage.aspx");
 
             
 
@@ -94,7 +94,7 @@ namespace SU_Casino
             answers.Add(q13.SelectedItem.Value);
             answers.Add(hiddenfield_device.Value);
 
-            _database.saveQuestions(answers, hiddenfield_userid.Value, RegionInfo.CurrentRegion.DisplayName);
+            _database.saveQuestions(answers, hiddenfield_userid.Value, hiddenfield_country.Value);
         }
 
         protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)

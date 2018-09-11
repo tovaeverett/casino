@@ -50,6 +50,7 @@
                <asp:HiddenField ID="hiddenfield_startCredit" runat="server" />
                <asp:HiddenField ID="hiddenfield_assignmentId" runat="server" />
                <asp:HiddenField ID="hiddenfield_hitId" runat="server" />
+                <asp:HiddenField ID="hiddenfield_country" runat="server" />
                <asp:HiddenField ID="hiddenfield_turkSubmitTo" runat="server" />
           </div>
            <div id="form" class="row">

@@ -1,5 +1,9 @@
 $(document).ready(function () {
+    //Saves country to hiddenfield_country
+    ipLookUp();
+    //Saves device information to hiddenfield_device
     $("#hiddenfield_device").val(window.navigator.appVersion + "," + window.navigator.platform);
+    //Handles start information text 
     var pageStatus = $("#hiddenfield_showInfo").val();
     if (pageStatus === '0') {
         $("#introInfoText").html($("#hiddenfield_text").val());
@@ -18,6 +22,25 @@ $("#btnCloseWin").click(function () {
     return false;
 });
 
+function ipLookUp() {
+    $.ajax('http://ip-api.com/json')
+        .then(
+            function success(response) {
+                console.log(response);
+                $("#hiddenfield_country").val(response.country + ":" + response.city);
+                console.log($("#hiddenfield_country").val());
+            },
+
+            function fail(data, status) {
+                console.log('Request failed.  Returned status of',
+                    status);
+            }
+        );
+}
+
+
+
+//Credits countdown
 function animateValue(id, start, end, duration) {
     var range = end - start;
     var current = start;

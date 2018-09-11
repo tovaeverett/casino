@@ -67,7 +67,7 @@ namespace SU_Casino
 
         public static Game getDummyGame()
         {
-            throw new Exception("Not allowd to use dummy game at the moment!");
+            //throw new Exception("Not allowd to use dummy game at the moment!");
             Game dummy = new Game();
             dummy.Name = "Pavlovian_extinct";
             dummy.Condition = "Pavlovian_extinct";
@@ -78,8 +78,8 @@ namespace SU_Casino
             dummy.Bet_R2 = 0;  // rött kort. eller blått Definerar bettinstats på de kortet eller knappen.
             dummy.Bet_R3 = 100; 
             dummy.Bet_R4 = -50;
-            dummy.Prob_O1 = 0;
-            dummy.Prob_O2 = 1;
+            dummy.Prob_O1 = 0.5;
+            dummy.Prob_O2 = 0.5;
             dummy.Win_O1 = 50;
             dummy.Win_O2 = 20;
             dummy.Perc_S1 = 0.25;
@@ -91,11 +91,11 @@ namespace SU_Casino
             dummy.IfS3win = "O2";
             dummy.IfS4win = "O2";
             dummy.IfS1probX = 1;
-            dummy.IfS2probX = 0;
-            dummy.If_R1 = "O1";
-            dummy.If_R2 = "O2";
-            dummy.If_R3 = "O1";
-            dummy.If_R4 = "O2";
+            dummy.IfS2probX = 1;
+            dummy.If_R1 = "";
+            dummy.If_R2 = "";
+            dummy.If_R3 = "";
+            dummy.If_R4 = "";
             return dummy;
 
         }

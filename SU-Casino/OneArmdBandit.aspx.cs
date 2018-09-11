@@ -51,7 +51,8 @@ namespace SU_Casino
                 lblMoney.Text = money.ToString();
                 setCurrentBalance();
                 trial = 1;
-                
+                HiddenField_Trail.Value = currentGame.Trials.ToString();
+
             }
         }
 
@@ -101,6 +102,11 @@ namespace SU_Casino
 
             if (trial > currentGame.Trials)
                 GameLogic.getNextGame(currentGame, money, currentGame.UserId);
+            else
+            {
+                int trialsLeft = currentGame.Trials - trial;
+                HiddenField_Trail.Value = trialsLeft.ToString();
+            }
         }
         private void checkForWin()
         {
@@ -121,7 +127,7 @@ namespace SU_Casino
         }
         public int randomSlotSpin()
         {
-            int randomfruit = rnd.Next(1, 4);
+            int randomfruit = rnd.Next(1, 5);
 
             return randomfruit;
         }

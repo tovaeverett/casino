@@ -22,14 +22,11 @@ function initSlotGame() {
         images[0] = Number(images[0]) + 1;
         images[1] = Number(images[1]) + 1;
         images[2] = Number(images[2]) + 1;
-        var src1 = "/src/images/slot/img" + Number(images[0])+ ".png";
-        var src2 = "/src/images/slot/img" + Number(images[1]) + ".png";
-        var src3 = "/src/images/slot/img" + Number(images[2]) + ".png";
+        var src1 = "/src/images/slot/img" + images[0] + ".png";
+        var src2 = "/src/images/slot/img" + images[1] + ".png";
+        var src3 = "/src/images/slot/img" + images[2] + ".png";
     }
     else {
-        /*var src1 = "/src/images/slot/img" + Math.floor(Math.random() * 5) + ".png";
-        var src2 = "/src/images/slot/img" + Math.floor(Math.random() * 5) + ".png";
-        var src3 = "/src/images/slot/img" + Math.floor(Math.random() * 5) + ".png";*/
         var src1 = "/src/images/slot/img1.png";
         var src2 = "/src/images/slot/img2.png";
         var src3 = "/src/images/slot/img3.png";
@@ -97,6 +94,7 @@ function initSlotGame() {
             slotContent.result === 'lose' ? $(".lost").show() : $(".winner").show();
             $("#HiddenField_result").val(slotContent.winChance + ",null," + slotContent.result.toLowerCase());
             localStorage.setItem("images", slotContent.img1 + ',' + slotContent.img2 + ',' + slotContent.img3);
+            console.log(slotContent);
             if (slotContent.result === 'lose')
                 setTimeout(function () {
                     var EndTime = new Date();
