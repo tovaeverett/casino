@@ -115,7 +115,7 @@ namespace SU_Casino
             pl.moment = currentGame.Sequence;
             pl.outcome = winAmount;
             pl.response = bet;
-            pl.stimuli = currentGame.Name;
+            pl.stimuli = "S0";
             pl.timestamp_begin = DateTime.Now;
             pl.timestamp_O = DateTime.Now;
             pl.timestamp_R = DateTime.Now;
