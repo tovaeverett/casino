@@ -199,16 +199,22 @@ namespace SU_Casino
             switch (HiddenField_theme.Value)
             {
                 case "1":
-                    themeToSave = "perc_S1";
+                    themeToSave = "S1A";
                     break;
                 case "2":
-                    themeToSave = "perc_S2";
+                    themeToSave = "S2";
                     break;
                 case "3":
-                    themeToSave = "perc_S3";
+                    themeToSave = "S3";
                     break;
                 case "4":
-                    themeToSave = "perc_S4";
+                    themeToSave = "S4";
+                    break;
+                case "5":
+                    themeToSave = "S1B";
+                    break;
+                case "6":
+                    themeToSave = "S1C";
                     break;
             }
             if (themeToSave.Length == 0)
