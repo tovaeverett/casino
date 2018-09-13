@@ -48,7 +48,6 @@ namespace SU_Casino
                 trial = 1;
                 setCurrentBalance();
                 HiddenField_Trail.Value = currentGame.Trials.ToString();
-                //SaveToDB(); //Is this really needed? User has not begun playing yet
             }
         }
 
@@ -67,7 +66,6 @@ namespace SU_Casino
             {
                 int randomcardIndex = RandomSingleton.Next(0, losingCards.Length);
                 int randomcard = losingCards[randomcardIndex];
-                // string url = "src/images/cards/" + randomcard + "C.png";
                 string card = randomcard.ToString() + GetColor();
                 return card;
             }
@@ -229,10 +227,10 @@ namespace SU_Casino
             pl.moment = currentGame.Sequence;
             pl.outcome = winAmount;
             pl.response = CardBetResponse;
-            pl.stimuli = currentGame.Name;
-            pl.timestamp_begin = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time1.Value));//dDateTime.Now; // TIMEbegin.
-            pl.timestamp_O = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time2.Value)); //DateTime.Now; // Time ? 
-            pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value)); // Time ? 
+            pl.stimuli = themeToSave;
+            pl.timestamp_begin = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time1.Value));
+            pl.timestamp_O = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time2.Value)); 
+            pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value)); 
 
             pl.trial = trial++;
 

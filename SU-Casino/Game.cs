@@ -75,6 +75,7 @@ namespace SU_Casino
         {
 //            throw new Exception("Not allowd to use dummy game at the moment!");
             Game dummy = new Game();
+            dummy.UserId = "dummy_test";
             dummy.Name = "Pavlovian_extinct";
             dummy.Condition = "Pavlovian_extinct";
             dummy.Sequence = 1;

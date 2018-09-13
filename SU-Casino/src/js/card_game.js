@@ -43,8 +43,6 @@ function initCardGame() {
         $(".winSpan").addClass("winSpanSpecial"); 
         $("#piggySpan").css('display','block');
     }
-    //Determinates when the win chance question shall be shown
-    theme = $("#HiddenField_Trail").val() === '0' ? theme = $("#HiddenField_theme").val() : "99";
 
     gameInit(theme);//in index.js
     var cardSound = new Audio("src/sound/effects/cardSlide.mp3");
@@ -91,10 +89,18 @@ function cardClicked(selectedCard) {
             $("#winCredit").html("+" + $("#HiddenField_win2").val());
         }
     }
-    if (isWinner && cards.game !== "Transfer_test") {
+    if (isWinner) {
         result = result + "win";
-        $("#HiddenField_result").val(result); 
-        setTimeout(function () { showWinner(winningAmount); }, 1500);
+        $("#HiddenField_result").val(result);
+        if (cards.game !== "Transfer_test") {
+            setTimeout(function () { showWinner(winningAmount); }, 1500);
+        }
+        else
+            setTimeout(function () {
+                var EndTime = new Date();
+                $("#HiddenField_Time3").val(EndTime.getTime());
+                $("#btnPlay").click();
+            }, 1500);
     }
     else {
         result = result + "lose";
@@ -105,7 +111,6 @@ function cardClicked(selectedCard) {
             $("#btnPlay").click(); 
         }, 1500);
     }
-    //console.log(result);
 }
 
 $(function () {
