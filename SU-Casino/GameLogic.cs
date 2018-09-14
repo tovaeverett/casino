@@ -7,7 +7,7 @@ namespace SU_Casino
 {
     public class GameLogic
     {
-        static Database _database = new Database();
+        private Database _database = new Database();
 
         public void getInitialBetingelse()
         {
