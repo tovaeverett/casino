@@ -115,6 +115,8 @@ function initSlotGame() {
 
 $('.start').click(function (e) {
     e.preventDefault();
+    var ClickTime = new Date();
+    $("#HiddenField_Time2").val(ClickTime.getTime());
     $(this).prop("disabled", true);
     slotContent.sound.loop = true;
     slotContent.sound.play();

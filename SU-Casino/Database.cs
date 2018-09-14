@@ -264,8 +264,8 @@ namespace SU_Casino
                         game.Prob_O2 = getDoubleDefault0(dr, "prob_O2");
                         game.Win_O1 = getIntValueDefault0(dr, "win_O1");
                         game.Win_O2 = getIntValueDefault0(dr, "win_O2");
-                        game.IfS1probX = getIntValueDefault0(dr, "ifS1probX");
-                        game.IfS2probX = getIntValueDefault0(dr, "ifS2probX");
+                        game.IfS1probX = getIntValueDefault1(dr, "ifS1probX");
+                        game.IfS2probX = getIntValueDefault1(dr, "ifS2probX"); 
                         game.Perc_S1 = getDoubleDefault0(dr, "perc_S1");
                         game.Perc_S2 = getDoubleDefault0(dr, "perc_S2");
                         game.Perc_S3 = getDoubleDefault0(dr, "perc_S3");
@@ -304,10 +304,17 @@ namespace SU_Casino
             return Convert.ToDouble(value != "" ? value : "0");
         }
 
+
         private static int getIntValueDefault0(DataRow dr, string ColumnName)
         {
             string value = getValueFromColumnWithName(dr, ColumnName);
             return Convert.ToInt32(value != "" ? value : "0");
+        }
+
+        private static int getIntValueDefault1(DataRow dr, string ColumnName)
+        {
+            string value = getValueFromColumnWithName(dr, ColumnName);
+            return Convert.ToInt32(value != "" ? value : "1");
         }
 
         private static string getValueFromColumnWithName(DataRow dr, string columnName)

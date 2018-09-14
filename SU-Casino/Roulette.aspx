@@ -143,4 +143,4 @@
          <script src="/src/js/roulette_wheel.js"></script>
     </body>
 
-</ht
+</html>

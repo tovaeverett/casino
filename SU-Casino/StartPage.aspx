@@ -36,7 +36,7 @@
                      <div id="introInfoTextDiv">
                       <p id="introInfoText">
 
-                          <!----TEXT FROM DB ---->
+                          <!--TEXT FROM DB -->
 
                       </p>
                   </div>

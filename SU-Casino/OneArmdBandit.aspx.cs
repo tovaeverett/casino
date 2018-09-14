@@ -45,7 +45,7 @@ namespace SU_Casino
                 lblMoney.Text = money.ToString();
                 setCurrentBalance();
                 trial = 1;
-                
+                HiddenField_Trail.Value = currentGame.Trials.ToString();
             }
         }
 
@@ -92,10 +92,17 @@ namespace SU_Casino
             }
             
             setCurrentBalance();
-            
+
 
             if (trial > currentGame.Trials)
+            {
                 gameLogic.getNextGame(currentGame, money, currentGame.UserId);
+            }
+            else
+            {
+                int trialsLeft = currentGame.Trials - trial;
+                HiddenField_Trail.Value = trialsLeft.ToString();
+            }
         }
         private void checkForWin()
         {
@@ -171,9 +178,9 @@ namespace SU_Casino
             pl.outcome = winAmount;
             pl.response = "bet_R1";
             pl.stimuli = themeToSave;
-            pl.timestamp_begin = DateTime.Now;
-            pl.timestamp_O = DateTime.Now;
-            pl.timestamp_R = DateTime.Now;
+            pl.timestamp_begin = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time1.Value)).ToLocalTime();
+            pl.timestamp_O = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time2.Value)).ToLocalTime(); 
+            pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value)).ToLocalTime(); 
             pl.trial = trial++;
 
             _database.updatePlayerLog(pl);

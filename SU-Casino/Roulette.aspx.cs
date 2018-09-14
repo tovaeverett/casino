@@ -117,9 +117,9 @@ namespace SU_Casino
             pl.outcome = winAmount;
             pl.response = bet;
             pl.stimuli = "S0";
-            pl.timestamp_begin = DateTime.Now;
-            pl.timestamp_O = DateTime.Now;
-            pl.timestamp_R = DateTime.Now;
+            pl.timestamp_begin = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time1.Value));
+            pl.timestamp_O = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time2.Value)); 
+            pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value)); 
             pl.trial = trial++;
 
             _database.updatePlayerLog(pl);

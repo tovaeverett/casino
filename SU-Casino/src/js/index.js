@@ -7,6 +7,7 @@ var theme = "";
 function gameInit(sentTheme) {
     var StartTime = new Date();
     var showInfo = $("#HiddenField_showInfo").val();
+    
     //Hides messages layers
     $("#message-container").hide();
     $("#winchance-container").hide();
@@ -24,11 +25,11 @@ function gameInit(sentTheme) {
         $("#startInfo").show();
     }
     else {
-        if (theme !== '99')
+        if ( game !== 'roulette' && $("#HiddenField_Trail").val() === '0')
             $("#winchance-container").show();
     }
 
-    //Not used - depricated
+    //Not used - deprecated
     var backgroundSoundSource = "";
     var baseSoundUrl = "src/sound/background/";
     switch (theme) {
@@ -101,7 +102,7 @@ function sound(src) {
 //Closing the start information layer
 $('#btnShowInfo').click(function () {
     $("#startInfo").hide();
-    if(game !== 'roulette' && theme !== '99')
+    if (game !== 'roulette' && $("#HiddenField_Trail").val() === '0')
         $("#winchance-container").show();
     //backgroundSound.play();
  

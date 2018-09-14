@@ -221,7 +221,7 @@ namespace SU_Casino
             pl.moment = currentGame.Sequence;
             pl.outcome = winAmount;
             pl.response = CardBetResponse;
-            pl.stimuli = currentGame.Name;
+            pl.stimuli = themeToSave;
             pl.timestamp_begin = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time1.Value)).ToLocalTime(); //dDateTime.Now; // TIMEbegin.
             pl.timestamp_O = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time2.Value)).ToLocalTime(); //DateTime.Now; // Time ? 
             pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value)).ToLocalTime(); // Time ? 
