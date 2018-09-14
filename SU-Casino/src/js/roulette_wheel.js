@@ -138,7 +138,7 @@ function finishSpin() {
     }
 //delete
   betOption = "";
-  switchButtons(false);
+  //switchButtons(false);
 }
 
 function failed(error) {

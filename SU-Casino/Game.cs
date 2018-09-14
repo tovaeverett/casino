@@ -76,10 +76,10 @@ namespace SU_Casino
 //            throw new Exception("Not allowd to use dummy game at the moment!");
             Game dummy = new Game();
             dummy.UserId = "dummy_test";
-            dummy.Name = "Pavlovian_extinct";
-            dummy.Condition = "Pavlovian_extinct";
+            dummy.Name = "Roulette";
+            dummy.Condition = "one.one";
             dummy.Sequence = 1;
-            dummy.Trials = 24;
+            dummy.Trials = 1;
             dummy.Saldo = 1000;
             dummy.Bet_R1 = -10; // blått kort. eller rött. Definerar bettinstats på de kortet eller knappen
             dummy.Bet_R2 = 0;  // rött kort. eller blått Definerar bettinstats på de kortet eller knappen.
