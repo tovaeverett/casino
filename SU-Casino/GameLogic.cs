@@ -7,9 +7,9 @@ namespace SU_Casino
 {
     public class GameLogic
     {
-        static Database _database = new Database();
+        private Database _database = new Database();
 
-        public static void getInitialBetingelse()
+        public void getInitialBetingelse()
         {
 
             string condition = getRandomConditionFromConditions(_database.GetCondition());
@@ -23,12 +23,12 @@ namespace SU_Casino
 
         }
 
-        public static string getRandomConditionFromConditions(List<string> conditions)
+        public string getRandomConditionFromConditions(List<string> conditions)
         {
             return conditions[RandomSingleton.Next(0, conditions.Count())];
         }
 
-        public static void getNextGame(Game currentGame, int curentUserBalance, string userid)
+        public void getNextGame(Game currentGame, int curentUserBalance, string userid)
         {
             int nextSeq = currentGame.Sequence;
             Game gameToPlay = _database.getOrderToPlay(nextSeq+1, currentGame.Condition);
@@ -45,7 +45,7 @@ namespace SU_Casino
             }
         }
 
-        public static void redirectToGame(String gameName, string userid)
+        public void redirectToGame(String gameName, string userid)
         {
             switch (gameName)
             {
@@ -81,7 +81,7 @@ namespace SU_Casino
 
         }
 
-        public static string CalculateCurrentThemeBasedOnPercent(Dictionary<string, double> themeNumberAndPercentage)
+        public string CalculateCurrentThemeBasedOnPercent(Dictionary<string, double> themeNumberAndPercentage)
         {
             if (themeNumberAndPercentage.Max(i => i.Value).Equals(0))
             {

@@ -16,6 +16,7 @@ namespace SU_Casino
         int money;
         private Game currentGame;
         private static int trial;
+        private GameLogic gameLogic = new GameLogic();
 
         Database _database = new Database();
         public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
@@ -89,7 +90,7 @@ namespace SU_Casino
         {
             checkForWin();
             if (trial > currentGame.Trials)
-                GameLogic.getNextGame(currentGame,money, currentGame.UserId);
+                gameLogic.getNextGame(currentGame,money, currentGame.UserId);
 
             RandomSpin();
 

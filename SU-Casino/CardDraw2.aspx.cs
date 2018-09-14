@@ -18,6 +18,7 @@ namespace SU_Casino
         public int money;
         private Game currentGame;
         private static int trial;
+        private GameLogic gameLogic = new GameLogic();
 
         Database _database = new Database();
 
@@ -100,7 +101,7 @@ namespace SU_Casino
             setCards();
             setCurrentBalance();
             if (trial > currentGame.Trials)
-                GameLogic.getNextGame(currentGame, money, currentGame.UserId);
+                gameLogic.getNextGame(currentGame, money, currentGame.UserId);
             else
             {
                 int trialsLeft = currentGame.Trials - trial;

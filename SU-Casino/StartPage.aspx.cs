@@ -16,6 +16,7 @@ namespace SU_Casino
         Database _database = new Database();
         public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
         private Game initialGame;
+        private GameLogic gameLogic = new GameLogic();
         protected void Page_Load(object sender, EventArgs e)
         {
             hiddenfield_userid.Value = Request["workerId"];
@@ -49,7 +50,7 @@ namespace SU_Casino
             hiddenfield_showInfo.Value = "1";
 
             //To get the start credit from DB
-            GameLogic.getInitialBetingelse();
+            gameLogic.getInitialBetingelse();
           
             initialGame = (Game)Session["currentGame"];
             initialGame.UserId = hiddenfield_userid.Value;
@@ -64,7 +65,7 @@ namespace SU_Casino
         protected void btnStart_Click(object sender, EventArgs e)
         {
             //GameLogic.getInitialBetingelse();
-            GameLogic.redirectToGame(((Game)Session["currentGame"]).Name, hiddenfield_userid.Value);
+            gameLogic.redirectToGame(((Game)Session["currentGame"]).Name, hiddenfield_userid.Value);
  
         }
 
