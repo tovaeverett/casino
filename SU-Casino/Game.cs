@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace SU_Casino
 {
@@ -89,10 +86,10 @@ namespace SU_Casino
             dummy.Prob_O2 = 0.5;
             dummy.Win_O1 = 50;
             dummy.Win_O2 = 100;
-            dummy.Perc_S1 = 0.25;
-            dummy.Perc_S2 = 0.25;
-            dummy.Perc_S3 = 0.25;
-            dummy.Perc_S4 = 0.25;
+            dummy.Perc_S1 = 0;
+            dummy.Perc_S2 = 1;
+            dummy.Perc_S3 = 0;
+            dummy.Perc_S4 = 0;
             dummy.IfS1win = "O2";
             dummy.IfS2win = "O2";
             dummy.IfS3win = "O1";
@@ -151,42 +148,64 @@ namespace SU_Casino
         {
             string probO = "";
             if (cardPosition.Equals("R1"))
+            {
                 probO = If_R1;
+            }
             else if (cardPosition.Equals("R2"))
+            {
                 probO = If_R2;
+            }
             else if (cardPosition.Equals("R3"))
+            {
                 probO = If_R3;
+            }
             else if (cardPosition.Equals("R4"))
+            {
                 probO = If_R4;
-
-            return probO.Equals("O1") ? Prob_O1 : Prob_O2;
+            }
+            return CurrentTheme != null ? GetPercentBasedOnProbValueForTheme(CurrentTheme, probO) : GetPercentBasedProbValue(probO);
         }
 
 
         public double getWinningChanceOneArmedBandit()
         {
             double prob = 0;
-            prob += GetPercentBasedOnIfSxwinForTheme(Theme_RED, IfS1win) * IfS1probX;
-            prob += GetPercentBasedOnIfSxwinForTheme(Theme_BLUE, IfS2win) * IfS2probX;
-            prob += GetPercentBasedOnIfSxwinForTheme(Theme_GOLD, IfS3win);
-            prob += GetPercentBasedOnIfSxwinForTheme(Theme_BLACK, IfS4win);
+            prob += GetPercentBasedOnProbValueForTheme(Theme_RED, IfS1win);
+            prob += GetPercentBasedOnProbValueForTheme(Theme_BLUE, IfS2win);
+            prob += GetPercentBasedOnProbValueForTheme(Theme_GOLD, IfS3win);
+            prob += GetPercentBasedOnProbValueForTheme(Theme_BLACK, IfS4win);
 
             return prob;
         }
 
-        private double GetPercentBasedOnIfSxwinForTheme(string theme, string ifSxwin)
+        private double GetPercentBasedOnProbValueForTheme(string theme, string O1orO2)
         {
             double prob = 0;
             if (CurrentTheme.Equals(theme))
             {
-                prob = GetPercentBasedOnIfSxwin(ifSxwin);
+                prob = GetPercentBasedProbValue(O1orO2);
             }
+
+            return addLogicForProbX(prob);
+        }
+
+        private double addLogicForProbX(double prob)
+        {
+            if (CurrentTheme.Equals(Theme_RED))
+            {
+                prob *= IfS1probX;
+            }
+            if (CurrentTheme.Equals(Theme_BLUE))
+            {
+                prob *= IfS2probX;
+            }
+
             return prob;
         }
 
-        private double GetPercentBasedOnIfSxwin(String ifwin)
+        private double GetPercentBasedProbValue(String O1orO2)
         {
-            return ifwin.Equals("O1") ? Prob_O1 : Prob_O2;
+            return O1orO2.Equals("O1") ? Prob_O1 : Prob_O2;
         }
 
         public string getRandomThemeBasedOnProcAndVariant()
