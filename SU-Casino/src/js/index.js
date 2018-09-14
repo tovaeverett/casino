@@ -1,9 +1,14 @@
+//Functins for game logic in the application
+
+//**Globals**//
 var backgroundSound;
 var game = $('body')[0].id;
 var theme = "";
 
 
+/*
 
+*/
 function gameInit(sentTheme) {
     var StartTime = new Date();
     var showInfo = $("#HiddenField_showInfo").val();
@@ -11,9 +16,11 @@ function gameInit(sentTheme) {
     //Hides messages layers
     $("#message-container").hide();
     $("#winchance-container").hide();
+
     //If first sequence show start info and sets hidden field to empty
     $("#introInfoText").html($("#Hiddenfield_text").val());
     $("#Hiddenfield_text").val("");
+
     //Gets the win amount 
     $("#winCredit").html("+" + $("#HiddenField_credit").val());
     theme = sentTheme;
@@ -29,7 +36,7 @@ function gameInit(sentTheme) {
             $("#winchance-container").show();
     }
 
-    //Not used - deprecated
+    //Deprecated - Not used but keeping the code if they should want it again //
     var backgroundSoundSource = "";
     var baseSoundUrl = "src/sound/background/";
     switch (theme) {
@@ -81,22 +88,6 @@ function showWinner(creditAmount) {
     $("#message-container").show();
 }
 
-function sound(src) {
-    this.sound = document.createElement("audio");
-    this.sound.src = src;
-    this.sound.setAttribute("preload", "");
-    this.sound.setAttribute("controls", "none");
-    this.sound.style.display = "none";
-    document.body.appendChild(this.sound);
-    this.play = function () {
-        this.sound.play();
-    }
-    this.stop = function () {
-        this.sound.pause();
-    }
-    //console.log(this);
-    return this;
-}
 
 
 //Closing the start information layer
@@ -121,4 +112,20 @@ $("#btnCloseWin").click(function () {
 });
 
 
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function () {
+        this.sound.play();
+    }
+    this.stop = function () {
+        this.sound.pause();
+    }
+    //console.log(this);
+    return this;
+}
 

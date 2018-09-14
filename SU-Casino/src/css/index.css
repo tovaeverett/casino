@@ -328,6 +328,10 @@ button:focus {
     padding-top: 10%;
 }
 
+#introInfoText{
+    padding: 20px 5px;
+}
+
 
 
 /*------StartPage--------*/

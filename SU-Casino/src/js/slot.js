@@ -1,3 +1,8 @@
+//Game logic for OneArmdBandt.aspx
+//Using functions in index.js
+//Using roulette.js
+
+/**Globals**/
 var slotContent = {};
 var rouletter = {};
 var rouletter2 = {};
@@ -6,17 +11,12 @@ var rouletter3 = {};
 
 $(document).ready(function () {
     initSlotGame();
-});
-
-$(".winchance-btn").click(function () {
-    slotContent.winChance = getWinChance(this.id);
-    $("#winchance-container").hide();
+    $(".winner").hide();
 });
 
 
 function initSlotGame() {
-    console.log(localStorage.getItem("images")); 
-
+ /*** Sets the start images from local storage if not the first trail ***/
     if (localStorage.getItem("images") && localStorage.getItem("images")!== null ) {
         var images = localStorage.getItem("images").split(',');
         images[0] = Number(images[0]) + 1;
@@ -36,10 +36,10 @@ function initSlotGame() {
     $("#slot_3_1").attr('src', src3);
 
     var theme = $("#HiddenField_theme").val();
-    gameInit(theme);
-    $(".winner").hide();
-    $(".lost").hide();
+    gameInit(theme);// in index.js
+
     var slotSound = new Audio("src/sound/effects/slotMachine.wav");
+
     slotContent = {
         img1: $("#HiddenField_Spin1").val(),
         img2: $("#HiddenField_Spin2").val(),
@@ -49,10 +49,11 @@ function initSlotGame() {
         sound: slotSound
     };
 
+    /**** First  slot animation object ****/
     var optionFirst = {
         speed: 30,
         duration: 0.25,
-        stopImageNumber: slotContent.img1,
+        stopImageNumber: slotContent.img1, 
         startCallback: function () {
             
         },
@@ -63,7 +64,7 @@ function initSlotGame() {
            
         }
     }
-
+ /**** Second slot animation object ****/
     var optionSecond = {
         speed: 30,
         duration: 0.75,
@@ -78,7 +79,7 @@ function initSlotGame() {
            
         }
     }
-
+ /**** Third slot animation object ****/
     var optionThird = {
         speed: 30,
         duration: 1,
@@ -89,12 +90,16 @@ function initSlotGame() {
         slowDownCallback: function () {
            
         },
+        /** 
+        checking if it's a win or lose, which card that was selected and saving that with the winchance response to HiddenField_result,
+        example: 1, bet_R1, win
+       **/
         stopCallback: function ($stopElm) {
             setTimeout(function () { slotContent.sound.pause(); }, 300);
             slotContent.result === 'lose' ? $(".lost").show() : $(".winner").show();
             $("#HiddenField_result").val(slotContent.winChance + ",null," + slotContent.result.toLowerCase());
             localStorage.setItem("images", slotContent.img1 + ',' + slotContent.img2 + ',' + slotContent.img3);
-            console.log(slotContent);
+         
             if (slotContent.result === 'lose')
                 setTimeout(function () {
                     var EndTime = new Date();
@@ -123,6 +128,13 @@ $('.start').click(function (e) {
 	rouletter.roulette('start');
 	rouletter2.roulette('start');
 	rouletter3.roulette('start');
+});
+
+
+
+$(".winchance-btn").click(function () {
+    slotContent.winChance = getWinChance(this.id);
+    $("#winchance-container").hide();
 });
 
 $(function () {

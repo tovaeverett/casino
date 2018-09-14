@@ -1,7 +1,11 @@
+//Game logic for CardDraw.aspx
+//Using functions in index.js
+
+//****Globals 
 var cards = {};
 var disable = false;
 
-//Create card 1
+//**** Creates card 1 *****//
 var card1 = document.querySelector('#betCard1');
 card1.addEventListener('click', function () {
     if (!disable) {
@@ -10,7 +14,7 @@ card1.addEventListener('click', function () {
         setTimeout(function () { cardClicked(card1); }, 500);
     }
 });
-//Create card 2
+//****Creates card 2*****//
 var card2 = document.querySelector('#betCard2');
 card2.addEventListener('click', function () {
     if (!disable) {
@@ -20,33 +24,45 @@ card2.addEventListener('click', function () {
     }
 });
 
+
+
+
+
+
 $(document).ready(function () {
     initCardGame();
-    $("#message-container").hide();
-   
+    $("#message-container").hide(); 
+    $(".winner").hide();
 });
 
-$(".winchance-btn").click(function () {
-    cards.winChance = getWinChance(this.id);
-    $("#winchance-container").hide();
-});
+/****
+    Init the cardgame:
+    - if the game is Transfer_test: hide the credit sum  
+    - if the game is DET_realworld: show an image of a piggy bank and additional text 
+    - 
+ ****/
 
 function initCardGame() {
-    
+  
     var baseUrl = "src/images/cards/";
+    var cardSound = new Audio("src/sound/effects/cardSlide.mp3");
     var theme = "";
     var game = $("#HiddenField_game").val();
-    if (game === "Transfer_test") {//Hide credits
+
+    //**Hide credits**//
+    if (game === "Transfer_test") {
         $("#moneyLable").hide();
     }
-    if (game === "DET_realworld") {//Show the piggy bank image
+    //** Show the piggy bank image and text **//
+    if (game === "DET_realworld") {
         $(".winSpan").addClass("winSpanSpecial"); 
         $("#piggySpan").css('display','block');
     }
 
     gameInit(theme);//in index.js
-    var cardSound = new Audio("src/sound/effects/cardSlide.mp3");
-    //Sets values for the cards and the type of card game, showCard is the card in the middle.
+
+    
+    //**Sets values for the cards and the type of card game, showCard is the card in the middle.**//
     cards = {
         card1: $("#HiddenField_card1").val(),
         card2: $("#HiddenField_card2").val(),
@@ -64,17 +80,23 @@ function initCardGame() {
     disable = false;
 }
 
-function cardClicked(selectedCard) {
 
+ /*
+    Card selected: checking if it's a win or lose, which card that was selected and saving that with the winchance response to HiddenField_result,
+    example:1,bet_R1,win
+    - if the game is Instrumental_acq2: bet_R3 or bet_R4 is saved for selected card
+    - if the game is Transfer_test: No winning animation should be shown
+    - HiddenField_win1 & HiddenField_win2 contains the winning amount that is shown in the winning animation
+ */
+
+function cardClicked(selectedCard) {
     var ClickTime = new Date();
     $("#HiddenField_Time2").val(ClickTime.getTime());
 
-    disable = true;
     var isWinner = false;
     var result = cards.winChance + ",";
-    var winningAmount;
-    $(".lost").hide();
-    $(".winner").hide();
+    disable = true;
+   
     if (selectedCard.id === 'betCard1') {
         result = cards.game === 'Instrumental_acq2' ? result + "bet_R3," : result + "bet_R1,";
         if (cards.card1 === cards.showCard) {
@@ -93,7 +115,7 @@ function cardClicked(selectedCard) {
         result = result + "win";
         $("#HiddenField_result").val(result);
         if (cards.game !== "Transfer_test") {
-            setTimeout(function () { showWinner(winningAmount); }, 1500);
+            setTimeout(function () { showWinner(); }, 1500);
         }
         else
             setTimeout(function () {
@@ -102,6 +124,7 @@ function cardClicked(selectedCard) {
                 $("#btnPlay").click();
             }, 1500);
     }
+   
     else {
         result = result + "lose";
         $("#HiddenField_result").val(result);
@@ -112,6 +135,14 @@ function cardClicked(selectedCard) {
         }, 1500);
     }
 }
+
+
+
+$(".winchance-btn").click(function () {
+    cards.winChance = getWinChance(this.id);
+    $("#winchance-container").hide();
+});
+
 
 $(function () {
     document.addEventListener("keydown", function (event) {
