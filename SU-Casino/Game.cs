@@ -190,7 +190,8 @@ namespace SU_Casino
 
         public string getRandomThemeBasedOnProcAndVariant()
         {
-            CurrentTheme = ChangeTemeBasedOnThemeVariant(GameLogic.CalculateCurrentThemeBasedOnPercent(getThemes()));
+            GameLogic gameLogic = new GameLogic();
+            CurrentTheme = ChangeTemeBasedOnThemeVariant(gameLogic.CalculateCurrentThemeBasedOnPercent(getThemes()));
             return CurrentTheme;
 
         }

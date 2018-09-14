@@ -18,6 +18,8 @@ namespace SU_Casino
         int money;
         private Game currentGame;
         private static int trial;
+        private GameLogic gameLogic = new GameLogic();
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -93,7 +95,7 @@ namespace SU_Casino
             
 
             if (trial > currentGame.Trials)
-                GameLogic.getNextGame(currentGame, money, currentGame.UserId);
+                gameLogic.getNextGame(currentGame, money, currentGame.UserId);
         }
         private void checkForWin()
         {

@@ -19,6 +19,7 @@ namespace SU_Casino.Tests
         [TestMethod()]
         public void getRandomConditionFromConditionsTest()
         {
+            GameLogic gameLogic = new GameLogic();
             List<string> conditions = new List<string>();
             conditions.Add("first");
             conditions.Add("second");
@@ -29,7 +30,7 @@ namespace SU_Casino.Tests
             List<string> result = new List<string>();
             for (int i = 0; i < 100; i++)
             {
-                string item = GameLogic.getRandomConditionFromConditions(conditions);
+                string item = gameLogic.getRandomConditionFromConditions(conditions);
                 result.Add(item);
                 Assert.IsTrue(conditions.Contains(item));
             }
@@ -45,32 +46,34 @@ namespace SU_Casino.Tests
         public void test100percentCase()
         {
             Dictionary<string, double> themesToTest = new Dictionary<string, double>();
+            GameLogic gameLogic = new GameLogic();
 
             themesToTest.Add(theme_one, 0);
             themesToTest.Add(theme_two, 1);
-            Assert.AreEqual(theme_two, GameLogic.CalculateCurrentThemeBasedOnPercent(themesToTest));
+            Assert.AreEqual(theme_two, gameLogic.CalculateCurrentThemeBasedOnPercent(themesToTest));
         }
 
         [TestMethod()]
         public void testNoThemeIsPicked()
         {
+            GameLogic gameLogic = new GameLogic();
             Dictionary<string, double> themesToTest = new Dictionary<string, double>();
             themesToTest.Add(theme_one, 0);
-            string theme = GameLogic.CalculateCurrentThemeBasedOnPercent(themesToTest);
+            string theme = gameLogic.CalculateCurrentThemeBasedOnPercent(themesToTest);
             Assert.AreEqual(no_theme, theme);
         }
         [TestMethod()]
         public void testThatMultipleThemesGetPicked()
         {
             List<string> result;
-    
+            GameLogic gameLogic = new GameLogic();
             Dictionary<string, double> themesToTest = new Dictionary<string, double>();
             themesToTest.Add(theme_one, 0.50);
             themesToTest.Add(theme_two, 0.50);
             result = new List<string>();
             for (int i = 0; i < 100; i++)
             {
-                string theme = GameLogic.CalculateCurrentThemeBasedOnPercent(themesToTest);
+                string theme = gameLogic.CalculateCurrentThemeBasedOnPercent(themesToTest);
                 if (!result.Contains(theme))
                 {
                     result.Add(theme);
@@ -85,7 +88,7 @@ namespace SU_Casino.Tests
         [TestMethod()]
         public void testThatThePercentageIsCorrect()
         {
-
+            GameLogic gameLogic = new GameLogic();
             Dictionary<string, double> themesToTest = new Dictionary<string, double>();
             themesToTest.Add(theme_one, 0.33);
             themesToTest.Add(theme_two, 0.33);
@@ -95,7 +98,7 @@ namespace SU_Casino.Tests
             const int iterations = 10000;
             for (int i = 0; i < iterations; i++)
             {
-               result.Add(GameLogic.CalculateCurrentThemeBasedOnPercent(themesToTest));
+               result.Add(gameLogic.CalculateCurrentThemeBasedOnPercent(themesToTest));
              }
 
       
