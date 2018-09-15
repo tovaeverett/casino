@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SU_Casino.game;
+using SU_Casino.model;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -14,36 +16,58 @@ namespace SU_Casino
     public partial class Roulette : System.Web.UI.Page
     {
         int money;
-        private Game currentGame;
-        private static int trial;
-        private GameLogic gameLogic = new GameLogic();
+        //private Game currentGame;
+        //private static int trial;
+        //private GameLogic gameLogic = new GameLogic();
 
-        Database _database = new Database();
-        public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+        //Database _database = new Database();
+        //public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+
+        GamesSssion gamesSssion;
+
+        private void LoadGameSessoin()
+        {
+            if (Session["GamesSssion"] == null)
+                Session["GamesSssion"] = new GamesSssion();
+
+            gamesSssion = (GamesSssion)Session["GamesSssion"];
+        }
+
+        private void MoveToNextGame(int cuttrentBalance)
+        {
+            gamesSssion.gameToPlay.Saldo = cuttrentBalance;
+            gamesSssion.LoadNextGame();
+            String gameUrl = gamesSssion.GetGameUUrl();
+            HttpContext.Current.Response.Redirect(gameUrl);
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            currentGame = (Game)Session["currentGame"];
-            if (currentGame == null)
+            //currentGame = (Game)Session["currentGame"];
+            LoadGameSessoin();
+            if (gamesSssion.gameToPlay == null)
             {
-                currentGame = Game.getDummyGame();
+                gamesSssion.gameToPlay = Game.getDummyGame();
                 //TODO An error page might not be needed. Decide on error handling
                 //Response.Redirect("ErrorPage.aspx");
-            }
+            }            
 
             HiddenField_showInfo.Value = "0";
             if (!IsPostBack)
             {
-                currentGame.UserId = Request["workerId"];
+                gamesSssion.gameToPlay.UserId = Request["workerId"];
                 HiddenFieldrouletteNr.Value = RandomSpin().ToString();
-                money = currentGame.Saldo;
+                money = gamesSssion.gameToPlay.Saldo;
                 lblMoney.Text = money.ToString();
                 RandomSpin();
-                HiddenField_showInfo.Value = "1";
-                Hiddenfield_text.Value = _database.getText("playRouletteInfo");
-                HiddenField_credit.Value = currentGame.Win_O1.ToString();
+                HiddenField_showInfo.Value = "1";                
+                Hiddenfield_text.Value = gamesSssion.GetText(InfoTextType.playRouletteInfo);
+                HiddenField_credit.Value = gamesSssion.gameToPlay.Win_O1.ToString();
                 setCurrentBalance();
-                trial = 1;
+                gamesSssion.gameToPlay.TrialCount = 1;
+                //trial = 1;
             }
+            
 
         }
 
@@ -69,16 +93,16 @@ namespace SU_Casino
             int betAmount = 0;
             if (bet.Equals("bet_R1"))
             {
-                betAmount = currentGame.Bet_R1;
+                betAmount = gamesSssion.gameToPlay.Bet_R1;
                 if (WinLose.Equals("win"))
-                    winningAmount = currentGame.Win_O1;
+                    winningAmount = gamesSssion.gameToPlay.Win_O1;
 
             }
             else if (bet.Equals("bet_R2"))
             {
-                betAmount = currentGame.Bet_R2;
+                betAmount = gamesSssion.gameToPlay.Bet_R2;
                 if (WinLose.Equals("win"))
-                    winningAmount = currentGame.Win_O2;
+                    winningAmount = gamesSssion.gameToPlay.Win_O2;
             }
 
             money = Convert.ToInt32(HiddenField_currentBalance.Value) + betAmount + winningAmount;
@@ -89,8 +113,12 @@ namespace SU_Casino
         protected void btnPlay_Click(object sender, EventArgs e)
         {
             checkForWin();
-            if (trial > currentGame.Trials)
-                gameLogic.getNextGame(currentGame,money, currentGame.UserId);
+            //if (trial > gamesSssion.gameToPlay.Trials)
+            if (gamesSssion.gameToPlay.TrialCount > gamesSssion.gameToPlay.Trials)
+            {
+                MoveToNextGame(money);
+            }
+                //gameLogic.getNextGame(gamesSssion.gameToPlay, money, gamesSssion.gameToPlay.UserId);
 
             RandomSpin();
 
@@ -107,22 +135,24 @@ namespace SU_Casino
         {
             Playerlog pl = new Playerlog();
 
-            pl.userid = currentGame.UserId; 
+            pl.userid = gamesSssion.gameToPlay.UserId; 
             pl.balance_in = Convert.ToInt32(HiddenField_currentBalance.Value);
             pl.balance_out = money;
             pl.bet = betAmount;
-            pl.condition = currentGame.Condition;
-            pl.gamename = currentGame.Name;
-            pl.moment = currentGame.Sequence;
+            pl.condition = gamesSssion.gameToPlay.Condition;
+            pl.gamename = gamesSssion.gameToPlay.Name;
+            pl.moment = gamesSssion.gameToPlay.Sequence;
             pl.outcome = winAmount;
             pl.response = bet;
             pl.stimuli = "S0";
             pl.timestamp_begin = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time1.Value));
             pl.timestamp_O = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time2.Value)); 
-            pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value)); 
-            pl.trial = trial++;
+            pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value));
+            //pl.trial = trial++;            
+            pl.trial = gamesSssion.gameToPlay.TrialCount++;
 
-            _database.updatePlayerLog(pl);
+            gamesSssion.UpdatePlayerLog(pl);
+            //_database.updatePlayerLog(pl);
         }
     }
 }

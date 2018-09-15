@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SU_Casino.game;
+using SU_Casino.model;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -16,39 +18,61 @@ namespace SU_Casino
         private int startCard;
         private char startCardColor;
         public int money;
-        private Game currentGame;
-        private static int trial;
-        private GameLogic gameLogic = new GameLogic();
+        //private Game currentGame;
+        //private static int trial;
+        //private GameLogic gameLogic = new GameLogic();
 
-        Database _database = new Database();
+        //Database _database = new Database();
+
+        GamesSssion gamesSssion;
+
+        private void LoadGameSessoin()
+        {
+            if (Session["GamesSssion"] == null)
+                Session["GamesSssion"] = new GamesSssion();
+
+            gamesSssion = (GamesSssion)Session["GamesSssion"];
+        }
+
+        private void MoveToNextGame(int cuttrentBalance)
+        {
+            gamesSssion.gameToPlay.Saldo = cuttrentBalance;
+            gamesSssion.LoadNextGame();
+            String gameUrl = gamesSssion.GetGameUUrl();
+            HttpContext.Current.Response.Redirect(gameUrl);
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            currentGame = (Game)Session["currentGame"];
-            if (currentGame == null)
+            LoadGameSessoin();
+
+            //currentGame = (Game)Session["currentGame"];
+            if (gamesSssion.gameToPlay == null)
             {
-                currentGame = Game.getDummyGame();
-                currentGame.getRandomThemeBasedOnProcAndVariant();
+                gamesSssion.gameToPlay = Game.getDummyGame();
+                gamesSssion.gameToPlay.getRandomThemeBasedOnProcAndVariant();
                 //TODO An error page might not be needed. Decide on error handling
                 //Response.Redirect("ErrorPage.aspx");
             }
 
             HiddenField_showInfo.Value = "0";
-            Hiddenfield_text.Value = _database.getText("playCardInfo");
+            //Hiddenfield_text.Value = _database.getText("playCardInfo");
+            Hiddenfield_text.Value = gamesSssion.GetText(InfoTextType.playCardInfo);
             if (!IsPostBack)
             {
-                currentGame.UserId = Request["workerId"];
+                gamesSssion.gameToPlay.UserId = Request["workerId"];
                 setTheme();
                 setCards();
-                HiddenField_game.Value = currentGame.Name;
-                money = currentGame.Saldo;
-                HiddenField_win1.Value = currentGame.Win_O1.ToString();
-                HiddenField_win2.Value = currentGame.Win_O2.ToString();
+                HiddenField_game.Value = gamesSssion.gameToPlay.Name;
+                money = gamesSssion.gameToPlay.Saldo;
+                HiddenField_win1.Value = gamesSssion.gameToPlay.Win_O1.ToString();
+                HiddenField_win2.Value = gamesSssion.gameToPlay.Win_O2.ToString();
                 lblMoney.Text = money.ToString();
                 HiddenField_showInfo.Value = "1";
-                trial = 1;
+                //trial = 1;
+                gamesSssion.gameToPlay.TrialCount = 1;
                 setCurrentBalance();
-                HiddenField_Trail.Value = currentGame.Trials.ToString();
+                HiddenField_Trail.Value = gamesSssion.gameToPlay.Trials.ToString();
             }
         }
 
@@ -56,10 +80,10 @@ namespace SU_Casino
         {
             
             // få array med "förlorar" korten
-            var losingCards = currentGame.RetrieveLosingNumbers(1, 13, startCard);
+            var losingCards = gamesSssion.gameToPlay.RetrieveLosingNumbers(1, 13, startCard);
 
             // vann eller vann inte?
-            if (currentGame.didWinDrawCards(cardPosition))
+            if (gamesSssion.gameToPlay.didWinDrawCards(cardPosition))
             {
                 return startCard.ToString() + startCardColor;
             }
@@ -100,11 +124,13 @@ namespace SU_Casino
             checkForWin();
             setCards();
             setCurrentBalance();
-            if (trial > currentGame.Trials)
-                gameLogic.getNextGame(currentGame, money, currentGame.UserId);
+            if (gamesSssion.gameToPlay.TrialCount > gamesSssion.gameToPlay.Trials) {
+                //gameLogic.getNextGame(gamesSssion.gameToPlay, money, gamesSssion.gameToPlay.UserId);
+                MoveToNextGame(money);
+            }                
             else
             {
-                int trialsLeft = currentGame.Trials - trial;
+                int trialsLeft = gamesSssion.gameToPlay.Trials - gamesSssion.gameToPlay.TrialCount;
                 HiddenField_Trail.Value = trialsLeft.ToString();
             }
 
@@ -131,14 +157,14 @@ namespace SU_Casino
             int betAmount = 0;
             if (CardBet.Equals("bet_R3"))
             {
-                betAmount = currentGame.Bet_R3;
+                betAmount = gamesSssion.gameToPlay.Bet_R3;
                 if (WinLose.Equals("win"))                    
-                    winningAmount = currentGame.Win_O1;
+                    winningAmount = gamesSssion.gameToPlay.Win_O1;
 
             }else if (CardBet.Equals("bet_R4")) { 
-                betAmount = currentGame.Bet_R4;
+                betAmount = gamesSssion.gameToPlay.Bet_R4;
                 if (WinLose.Equals("win"))
-                    winningAmount = currentGame.Win_O2;
+                    winningAmount = gamesSssion.gameToPlay.Win_O2;
             }
 
             money = Convert.ToInt32(HiddenField_currentBalance.Value) + betAmount + winningAmount;
@@ -149,14 +175,14 @@ namespace SU_Casino
         public String setTheme()
         {
 
-            if (currentGame != null && currentGame.Name == "Instrumental_acq2")
+            if (gamesSssion.gameToPlay != null && gamesSssion.gameToPlay.Name == "Instrumental_acq2")
             {
                 HiddenField_theme.Value = "null";
                 return "null";
             }
             else
             {
-                HiddenField_theme.Value = currentGame.getRandomThemeBasedOnProcAndVariant();
+                HiddenField_theme.Value = gamesSssion.gameToPlay.getRandomThemeBasedOnProcAndVariant();
                 return HiddenField_theme.Value;
             }
         }
@@ -168,6 +194,7 @@ namespace SU_Casino
         }
 
         //TODO check if these initial values are correct, or may be we do not need this method at all?
+        /*
         public void SaveToDB()
         {
             Playerlog pl = new Playerlog();
@@ -176,20 +203,21 @@ namespace SU_Casino
             pl.balance_in = money;  //initial Game saldo
             pl.balance_out = money;  //in the begininnig balance in and out is same
             pl.bet = 0; //initial bet is 0
-            pl.condition = currentGame.Condition;
-            pl.gamename = currentGame.Name;
-            pl.stimuli = currentGame.Name;  //is this really needed?
-            pl.moment = currentGame.Sequence;
+            pl.condition = gamesSssion.gameToPlay.Condition;
+            pl.gamename = gamesSssion.gameToPlay.Name;
+            pl.stimuli = gamesSssion.gameToPlay.Name;  //is this really needed?
+            pl.moment = gamesSssion.gameToPlay.Sequence;
             pl.outcome = 0;
             pl.response = null;
             pl.timestamp_begin = DateTime.Now;
             pl.timestamp_O = DateTime.Now;
             pl.timestamp_R = DateTime.Now;
-            pl.trial = trial;
-           
-            _database.updatePlayerLog(pl);
-        }
+            pl.trial = gamesSssion.gameToPlay.TrialCount;
 
+            //_database.updatePlayerLog(pl);
+            gamesSssion.UpdatePlayerLog(pl);
+        }
+        */
         public void SaveToDB(String CardBetResponse, int betAmount, int winAmount)
         {
             Playerlog pl = new Playerlog();
@@ -217,15 +245,15 @@ namespace SU_Casino
                     break;
             }
             if (themeToSave.Length == 0)
-                themeToSave = currentGame.Name;
+                themeToSave = gamesSssion.gameToPlay.Name;
 
-            pl.userid = currentGame.UserId;
+            pl.userid = gamesSssion.gameToPlay.UserId;
             pl.balance_in = Convert.ToInt32(HiddenField_currentBalance.Value);
             pl.balance_out = money;
             pl.bet = betAmount;
-            pl.condition = currentGame.Condition;
-            pl.gamename = currentGame.Name;
-            pl.moment = currentGame.Sequence;
+            pl.condition = gamesSssion.gameToPlay.Condition;
+            pl.gamename = gamesSssion.gameToPlay.Name;
+            pl.moment = gamesSssion.gameToPlay.Sequence;
             pl.outcome = winAmount;
             pl.response = CardBetResponse;
             pl.stimuli = themeToSave;
@@ -233,9 +261,10 @@ namespace SU_Casino
             pl.timestamp_O = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time2.Value)); 
             pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value)); 
 
-            pl.trial = trial++;
+            pl.trial = gamesSssion.gameToPlay.TrialCount++;
 
-            _database.updatePlayerLog(pl);
+            //_database.updatePlayerLog(pl);
+            gamesSssion.UpdatePlayerLog(pl);
         }
     }
 }
