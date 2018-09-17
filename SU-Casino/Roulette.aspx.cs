@@ -16,13 +16,6 @@ namespace SU_Casino
     public partial class Roulette : System.Web.UI.Page
     {
         int money;
-        //private Game currentGame;
-        //private static int trial;
-        //private GameLogic gameLogic = new GameLogic();
-
-        //Database _database = new Database();
-        //public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
-
         GamesSssion gamesSssion;
 
         private void LoadGameSessoin()
@@ -43,13 +36,10 @@ namespace SU_Casino
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //currentGame = (Game)Session["currentGame"];
             LoadGameSessoin();
             if (gamesSssion.gameToPlay == null)
             {
                 gamesSssion.gameToPlay = Game.getDummyGame();
-                //TODO An error page might not be needed. Decide on error handling
-                //Response.Redirect("ErrorPage.aspx");
             }            
 
             HiddenField_showInfo.Value = "0";
@@ -65,7 +55,6 @@ namespace SU_Casino
                 HiddenField_credit.Value = gamesSssion.gameToPlay.Win_O1.ToString();
                 setCurrentBalance();
                 gamesSssion.gameToPlay.TrialCount = 1;
-                //trial = 1;
             }
             
 
@@ -113,17 +102,12 @@ namespace SU_Casino
         protected void btnPlay_Click(object sender, EventArgs e)
         {
             checkForWin();
-            //if (trial > gamesSssion.gameToPlay.Trials)
             if (gamesSssion.gameToPlay.TrialCount > gamesSssion.gameToPlay.Trials)
             {
                 MoveToNextGame(money);
             }
-                //gameLogic.getNextGame(gamesSssion.gameToPlay, money, gamesSssion.gameToPlay.UserId);
 
             RandomSpin();
-
-            // credit = isWin ? credit + 500 : credit - 500;
-            // lblMoney.Text = credit.ToString();
         }
 
         private void setCurrentBalance()
@@ -148,11 +132,9 @@ namespace SU_Casino
             pl.timestamp_begin = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time1.Value));
             pl.timestamp_O = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time2.Value)); 
             pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value));
-            //pl.trial = trial++;            
             pl.trial = gamesSssion.gameToPlay.TrialCount++;
 
-            gamesSssion.UpdatePlayerLog(pl);
-            //_database.updatePlayerLog(pl);
+            gamesSssion.UpdatePlayerLog(pl);            
         }
     }
 }

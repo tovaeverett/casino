@@ -15,13 +15,7 @@ namespace SU_Casino
 {
     public partial class OneArmdBandit : System.Web.UI.Page
     {
-        //Database _database = new Database();
-
         int money;
-        //private Game currentGame;
-        //private static int trial;
-        //private GameLogic gameLogic = new GameLogic();
-
         GamesSssion gamesSssion;
 
         private void LoadGameSessoin()
@@ -43,12 +37,9 @@ namespace SU_Casino
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadGameSessoin();
-            //currentGame = (Game)Session["currentGame"];
             if (gamesSssion.gameToPlay == null)
             {
                 gamesSssion.gameToPlay = Game.getDummyGame();
-                //TODO An error page might not be needed. Decide on error handling
-                //Response.Redirect("ErrorPage.aspx");
             }
 
             HiddenField_showInfo.Value = "0";
@@ -57,7 +48,6 @@ namespace SU_Casino
                 gamesSssion.gameToPlay.UserId = Request["workerId"];
                 setTheme();
                 HiddenField_showInfo.Value = "1";
-                //Hiddenfield_text.Value = _database.getText("playSlotInfo");
                 Hiddenfield_text.Value = gamesSssion.GetText(InfoTextType.playSlotInfo);
                 SpinIt();
                 HiddenField_credit.Value = gamesSssion.gameToPlay.Win_O1.ToString();
@@ -117,7 +107,6 @@ namespace SU_Casino
 
             if (gamesSssion.gameToPlay.TrialCount > gamesSssion.gameToPlay.Trials)
             {
-                //gameLogic.getNextGame(gamesSssion.gameToPlay, money, gamesSssion.gameToPlay.UserId);
                 MoveToNextGame(money);
             }
             else
@@ -205,7 +194,6 @@ namespace SU_Casino
             pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value)).ToLocalTime(); 
             pl.trial = gamesSssion.gameToPlay.TrialCount++;
 
-            //_database.updatePlayerLog(pl);
             gamesSssion.UpdatePlayerLog(pl);
         }
 
