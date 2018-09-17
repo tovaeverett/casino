@@ -31,9 +31,13 @@ namespace SU_Casino
         protected void Page_Load(object sender, EventArgs e)
         {            
 
-            hiddenfield_userid.Value = Request["workerId"];
+            //hiddenfield_userid.Value = Request["workerId"];
+            String workerid = Request["workerId"];
             if (!IsPostBack)
             {
+                if (String.IsNullOrWhiteSpace(workerid))
+                    workerid = Guid.NewGuid().ToString();
+
                 // reset session
                 Session["GamesSssion"] = null;
 
@@ -51,6 +55,8 @@ namespace SU_Casino
                     // Response.Redirect("ErrorPage.aspx"); <--- Aktivera sen.
                 }
             }
+            if (String.IsNullOrWhiteSpace(hiddenfield_userid.Value))
+                hiddenfield_userid.Value = workerid;
             LoadGameSessoin();
             //hiddenfield_text.Value = _database.getText("startPage");
             hiddenfield_text.Value = gamesSssion.GetText(InfoTextType.startPage);

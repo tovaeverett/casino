@@ -102,7 +102,7 @@ namespace SU_Casino
             {
                 betAmount = gamesSssion.gameToPlay.Bet_R2;
                 if (WinLose.Equals("win"))
-                    winningAmount = gamesSssion.gameToPlay.Win_O2;
+                    winningAmount = gamesSssion.gameToPlay.Win_O1;
             }
 
             money = Convert.ToInt32(HiddenField_currentBalance.Value) + betAmount + winningAmount;
