@@ -23,6 +23,9 @@
                               <!----TEXT FROM DB ---->
 
                           </p>
+                        
+                            <h5>Use this code to confirm that you have completed the casino:  <b> <asp:Label ID="lblCode" runat="server"></asp:Label> </b> </h5>
+                             <br />
                              <asp:Button ID="btnStart" runat="server"  Text="Submit" class="btn btn-large btn-primary" OnClick="btnStart_Click" />
                       </div>
                 </section>  

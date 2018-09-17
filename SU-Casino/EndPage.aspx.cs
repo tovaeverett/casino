@@ -34,6 +34,7 @@ namespace SU_Casino
 
             //hiddenfield_text.Value = _database.getText("endPage");
             hiddenfield_text.Value = gamesSssion.GetText(InfoTextType.endPage);
+            lblCode.Text = "xxx123xx890";
         }
 
         protected void btnStart_Click(object sender, EventArgs e)
