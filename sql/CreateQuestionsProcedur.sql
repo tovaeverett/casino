@@ -27,7 +27,7 @@ create or alter PROCEDURE [dbo].[insertQuestionsLog]
 	@q11 varchar(50),
 	@q12 varchar(max),
 	@q13 varchar(50),
-	@Date time(7),
+	@Date datetime,
 	@Device varchar(50),
 	@Country varchar(50)
 

@@ -23,7 +23,7 @@ CREATE TABLE [dbo].[QuestionsLog](
 	[q11] [varchar](50) NULL,
 	[q12] [varchar](max) NULL,
 	[q13] [varchar](50) NULL,
-	[Date] [time](7) NULL,
+	[Date] datetime NULL,
 	[Device] [varchar](50) NULL,
 	[Country] [varchar](50) NULL
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]

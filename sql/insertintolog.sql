@@ -26,9 +26,9 @@ CREATE PROCEDURE [dbo].[insertIntoLog]
 	@bet int,
 	@outcome int,
 	@response varchar(50),
-	@timestamp_begin time(7),
-	@timestamp_R time(7),
-	@timestamp_O time(7)
+	@timestamp_begin datetime,
+	@timestamp_R datetime,
+	@timestamp_O datetime
 
 AS
 BEGIN

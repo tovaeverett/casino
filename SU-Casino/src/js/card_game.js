@@ -5,26 +5,30 @@
 var cards = {};
 var disable = false;
 
-//**** Creates card 1 *****//
+//**** Animation for card 1 *****//
 var card1 = document.querySelector('#betCard1');
-card1.addEventListener('click', function () {
+$('#betCard1').one('click', function (event) {
+    event.preventDefault();
     if (!disable) {
         card1.classList.toggle('is-flipped');
         cards.sound.play();
         setTimeout(function () { cardClicked(card1); }, 500);
     }
+    $(this).prop('disabled', true);
 });
-//****Creates card 2*****//
+
+
+//**** Animation for card 2*****//
 var card2 = document.querySelector('#betCard2');
-card2.addEventListener('click', function () {
+$('#betCard2').one('click', function (event) {
+    event.preventDefault();
     if (!disable) {
         card2.classList.toggle('is-flipped');
         cards.sound.play();
         setTimeout(function () { cardClicked(card2); }, 500);
     }
+    $(this).prop('disabled', true);
 });
-
-
 
 
 
