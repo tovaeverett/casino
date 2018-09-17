@@ -47,9 +47,11 @@ namespace SU_Casino.game
 
             switch (gameToPlay.Name)
             {
+                case "DET_control":
+                    return "CardDraw.aspx?workerid=" + gameToPlay.UserId;
                 case "DET_experimental":
                     return "CardDraw.aspx?workerid=" + gameToPlay.UserId;
-                case "DET_realworld":
+                case "DET_realworld": // is this still in use? doesn´t exist in metrics table
                     return "CardDraw.aspx?workerid=" + gameToPlay.UserId;
                 case "Instrumental_acq":
                     return "CardDraw.aspx?workerid=" + gameToPlay.UserId;
