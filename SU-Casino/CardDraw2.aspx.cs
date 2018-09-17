@@ -18,12 +18,6 @@ namespace SU_Casino
         private int startCard;
         private char startCardColor;
         public int money;
-        //private Game currentGame;
-        //private static int trial;
-        //private GameLogic gameLogic = new GameLogic();
-
-        //Database _database = new Database();
-
         GamesSssion gamesSssion;
 
         private void LoadGameSessoin()
@@ -46,17 +40,13 @@ namespace SU_Casino
         {
             LoadGameSessoin();
 
-            //currentGame = (Game)Session["currentGame"];
             if (gamesSssion.gameToPlay == null)
             {
                 gamesSssion.gameToPlay = Game.getDummyGame();
-                gamesSssion.gameToPlay.getRandomThemeBasedOnProcAndVariant();
-                //TODO An error page might not be needed. Decide on error handling
-                //Response.Redirect("ErrorPage.aspx");
+                gamesSssion.gameToPlay.getRandomThemeBasedOnProcAndVariant();                
             }
 
             HiddenField_showInfo.Value = "0";
-            //Hiddenfield_text.Value = _database.getText("playCardInfo");
             Hiddenfield_text.Value = gamesSssion.GetText(InfoTextType.playCardInfo);
             if (!IsPostBack)
             {
@@ -69,7 +59,6 @@ namespace SU_Casino
                 HiddenField_win2.Value = gamesSssion.gameToPlay.Win_O2.ToString();
                 lblMoney.Text = money.ToString();
                 HiddenField_showInfo.Value = "1";
-                //trial = 1;
                 gamesSssion.gameToPlay.TrialCount = 1;
                 setCurrentBalance();
                 HiddenField_Trail.Value = gamesSssion.gameToPlay.Trials.ToString();
@@ -125,7 +114,6 @@ namespace SU_Casino
             setCards();
             setCurrentBalance();
             if (gamesSssion.gameToPlay.TrialCount > gamesSssion.gameToPlay.Trials) {
-                //gameLogic.getNextGame(gamesSssion.gameToPlay, money, gamesSssion.gameToPlay.UserId);
                 MoveToNextGame(money);
             }                
             else
@@ -137,13 +125,11 @@ namespace SU_Casino
         }
         private void checkForWin()
         {
-           //int CardPressed = 0; 
            //var winLose = HiddenField_WinLose.Value;
             var credit = Int32.Parse(lblMoney.Text);
             string WinChance = "";
             string CardBet = "";
             string WinLose = "";
-           // string test = "PressCard:1, WinChance: 1, WinLose: lose";
            
             string[] splitCards = HiddenField_result.Value.Split(',');
            //( foreach(var value in splitCards)
@@ -193,31 +179,6 @@ namespace SU_Casino
             HiddenField_currentBalance.Value = money.ToString();
         }
 
-        //TODO check if these initial values are correct, or may be we do not need this method at all?
-        /*
-        public void SaveToDB()
-        {
-            Playerlog pl = new Playerlog();
-
-            pl.userid = "test1234"; //getFromSession
-            pl.balance_in = money;  //initial Game saldo
-            pl.balance_out = money;  //in the begininnig balance in and out is same
-            pl.bet = 0; //initial bet is 0
-            pl.condition = gamesSssion.gameToPlay.Condition;
-            pl.gamename = gamesSssion.gameToPlay.Name;
-            pl.stimuli = gamesSssion.gameToPlay.Name;  //is this really needed?
-            pl.moment = gamesSssion.gameToPlay.Sequence;
-            pl.outcome = 0;
-            pl.response = null;
-            pl.timestamp_begin = DateTime.Now;
-            pl.timestamp_O = DateTime.Now;
-            pl.timestamp_R = DateTime.Now;
-            pl.trial = gamesSssion.gameToPlay.TrialCount;
-
-            //_database.updatePlayerLog(pl);
-            gamesSssion.UpdatePlayerLog(pl);
-        }
-        */
         public void SaveToDB(String CardBetResponse, int betAmount, int winAmount)
         {
             Playerlog pl = new Playerlog();
@@ -263,7 +224,6 @@ namespace SU_Casino
 
             pl.trial = gamesSssion.gameToPlay.TrialCount++;
 
-            //_database.updatePlayerLog(pl);
             gamesSssion.UpdatePlayerLog(pl);
         }
     }

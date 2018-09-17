@@ -18,12 +18,6 @@ namespace SU_Casino
         private int startCard;
         private char startCardColor;
         public int money;
-        //private Game currentGame;
-        //private static int trial;
-        //private GameLogic gameLogic = new GameLogic();
-
-        //Database _database = new Database();
-
         GamesSssion gamesSssion;
 
         private void LoadGameSessoin()
@@ -46,26 +40,20 @@ namespace SU_Casino
 
             LoadGameSessoin();
 
-            //currentGame = (Game)Session["currentGame"];
             if (gamesSssion.gameToPlay == null) 
             {
                 gamesSssion.gameToPlay = Game.getDummyGame();
-                //TODO An error page might not be needed. Decide on error handling
-                //Response.Redirect("ErrorPage.aspx");
             }
             HiddenField_showInfo.Value = "0";
             switch (gamesSssion.gameToPlay.Name)
             {
                 case "DET_realworld":
-                    //Hiddenfield_text.Value = _database.getText("playCardWinFreezeInfo");
                     Hiddenfield_text.Value = gamesSssion.GetText(InfoTextType.playCardWinFreezeInfo);
                     break;
                 case "Transfer_test":
-                    //Hiddenfield_text.Value = _database.getText("playCardNoSaldoInfo");
                     Hiddenfield_text.Value = gamesSssion.GetText(InfoTextType.playCardNoSaldoInfo);
                     break;
                 default:
-                    //Hiddenfield_text.Value = _database.getText("playCardInfo");
                     Hiddenfield_text.Value = gamesSssion.GetText(InfoTextType.playCardInfo);
                     break;
             }
@@ -85,7 +73,6 @@ namespace SU_Casino
                 gamesSssion.gameToPlay.TrialCount = 1;
                 setCurrentBalance();
                 HiddenField_Trail.Value = gamesSssion.gameToPlay.Trials.ToString();
-                //SaveToDB(); //Is this really needed? User has not begun playing yet
             }
         }
 
@@ -140,7 +127,6 @@ namespace SU_Casino
                 setCards();
                 setCurrentBalance();
             if (gamesSssion.gameToPlay.TrialCount > gamesSssion.gameToPlay.Trials) {
-                //gameLogic.getNextGame(gamesSssion.gameToPlay, money, gamesSssion.gameToPlay.UserId);
                 MoveToNextGame(money);                
             }
             else {
@@ -255,7 +241,6 @@ namespace SU_Casino
             pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value)).ToLocalTime(); 
             pl.trial = gamesSssion.gameToPlay.TrialCount++;
 
-            //_database.updatePlayerLog(pl);
             gamesSssion.UpdatePlayerLog(pl);
         }
     }
