@@ -37,10 +37,6 @@ namespace SU_Casino
 
                     Save.ExecuteNonQuery();
                 }
-                catch (Exception ex)
-                {
-                    
-                }
                 finally
                 {
                     openCon.Close();
@@ -246,6 +242,7 @@ namespace SU_Casino
                 dt = ds.Tables["getGameToPlay"];
                 if (dt.Rows.Count != 0)
                 {
+                    // TODO: can this be multiple rows? last one wins?
                     foreach (DataRow dr in dt.Rows)
                     {
 

@@ -16,6 +16,7 @@ namespace SU_Casino
         private String condition;
         private int sequence;
         private int trials;
+        private int trialCount = 1;
         private int saldo;
         private int bet_R1;
         private int bet_R2;
@@ -38,6 +39,7 @@ namespace SU_Casino
 
         public string Name { get => name; set => name = value; }
         public int Trials { get => trials; set => trials = value; }
+        public int TrialCount { get => trialCount; set => trialCount = value; }
         public int Saldo { get => saldo; set => saldo = value; }
         public int Bet_R1 { get => bet_R1; set => bet_R1 = value; }
         public int Bet_R2 { get => bet_R2; set => bet_R2 = value; }

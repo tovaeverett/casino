@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SU_Casino.game;
+using SU_Casino.model;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -16,49 +18,73 @@ namespace SU_Casino
         private int startCard;
         private char startCardColor;
         public int money;
-        private Game currentGame;
-        private static int trial;
-        private GameLogic gameLogic = new GameLogic();
+        //private Game currentGame;
+        //private static int trial;
+        //private GameLogic gameLogic = new GameLogic();
 
-        Database _database = new Database();
+        //Database _database = new Database();
 
+        GamesSssion gamesSssion;
+
+        private void LoadGameSessoin()
+        {
+            if (Session["GamesSssion"] == null)
+                Session["GamesSssion"] = new GamesSssion();
+
+            gamesSssion = (GamesSssion)Session["GamesSssion"];
+        }
+
+        private void MoveToNextGame(int cuttrentBalance) {
+            gamesSssion.gameToPlay.Saldo = cuttrentBalance;
+            gamesSssion.LoadNextGame();
+            String gameUrl = gamesSssion.GetGameUUrl();
+            HttpContext.Current.Response.Redirect(gameUrl);
+        }            
+        
         protected void Page_Load(object sender, EventArgs e)
         {
-            currentGame = (Game)Session["currentGame"];
-            if (currentGame == null) 
+
+            LoadGameSessoin();
+
+            //currentGame = (Game)Session["currentGame"];
+            if (gamesSssion.gameToPlay == null) 
             {
-                currentGame = Game.getDummyGame();
+                gamesSssion.gameToPlay = Game.getDummyGame();
                 //TODO An error page might not be needed. Decide on error handling
                 //Response.Redirect("ErrorPage.aspx");
             }
             HiddenField_showInfo.Value = "0";
-            switch (currentGame.Name)
+            switch (gamesSssion.gameToPlay.Name)
             {
                 case "DET_realworld":
-                    Hiddenfield_text.Value = _database.getText("playCardWinFreezeInfo");
+                    //Hiddenfield_text.Value = _database.getText("playCardWinFreezeInfo");
+                    Hiddenfield_text.Value = gamesSssion.GetText(InfoTextType.playCardWinFreezeInfo);
                     break;
                 case "Transfer_test":
-                    Hiddenfield_text.Value = _database.getText("playCardNoSaldoInfo");
+                    //Hiddenfield_text.Value = _database.getText("playCardNoSaldoInfo");
+                    Hiddenfield_text.Value = gamesSssion.GetText(InfoTextType.playCardNoSaldoInfo);
                     break;
                 default:
-                    Hiddenfield_text.Value = _database.getText("playCardInfo");
+                    //Hiddenfield_text.Value = _database.getText("playCardInfo");
+                    Hiddenfield_text.Value = gamesSssion.GetText(InfoTextType.playCardInfo);
                     break;
             }
 
             if (!IsPostBack)
-            { 
-                currentGame.UserId = Request["workerId"];
+            {
+                gamesSssion.gameToPlay.UserId = Request["workerId"];
                 setTheme();
                 setCards();
-                HiddenField_game.Value = currentGame.Name;
-                HiddenField_win1.Value = currentGame.Win_O1.ToString();
-                HiddenField_win2.Value = currentGame.Win_O2.ToString();
-                money = currentGame.Saldo;   //Convert.ToInt32(Request["saldo"]);
+                HiddenField_game.Value = gamesSssion.gameToPlay.Name;
+                HiddenField_win1.Value = gamesSssion.gameToPlay.Win_O1.ToString();
+                HiddenField_win2.Value = gamesSssion.gameToPlay.Win_O2.ToString();
+                money = gamesSssion.gameToPlay.Saldo;   //Convert.ToInt32(Request["saldo"]);
                 lblMoney.Text = money.ToString();
                 HiddenField_showInfo.Value = "1";
-                trial = 1;
+                //trial = 1;
+                gamesSssion.gameToPlay.TrialCount = 1;
                 setCurrentBalance();
-                HiddenField_Trail.Value = currentGame.Trials.ToString();
+                HiddenField_Trail.Value = gamesSssion.gameToPlay.Trials.ToString();
                 //SaveToDB(); //Is this really needed? User has not begun playing yet
             }
         }
@@ -66,10 +92,10 @@ namespace SU_Casino
         public string randomCard(string cardPosition)
         {
             // få array med "förlorar" korten
-            var losingCards = currentGame.RetrieveLosingNumbers(1, 13, startCard);
+            var losingCards = gamesSssion.gameToPlay.RetrieveLosingNumbers(1, 13, startCard);
 
             // vann eller vann inte?
-            if (currentGame.didWinDrawCards(cardPosition))
+            if (gamesSssion.gameToPlay.didWinDrawCards(cardPosition))
             {
                 return startCard.ToString() + startCardColor;
             }
@@ -113,10 +139,12 @@ namespace SU_Casino
                 checkForWin();
                 setCards();
                 setCurrentBalance();
-                if (trial > currentGame.Trials)
-                    gameLogic.getNextGame(currentGame, money,currentGame.UserId);
-                else {
-                    int trialsLeft = currentGame.Trials - trial;
+            if (gamesSssion.gameToPlay.TrialCount > gamesSssion.gameToPlay.Trials) {
+                //gameLogic.getNextGame(gamesSssion.gameToPlay, money, gamesSssion.gameToPlay.UserId);
+                MoveToNextGame(money);                
+            }
+            else {
+                    int trialsLeft = gamesSssion.gameToPlay.Trials - gamesSssion.gameToPlay.TrialCount;
                     HiddenField_Trail.Value = trialsLeft.ToString();
                 }
         }
@@ -139,17 +167,17 @@ namespace SU_Casino
             int betAmount = 0;
             if (CardBet.Equals("bet_R1"))
             {
-                betAmount = currentGame.Bet_R1;
+                betAmount = gamesSssion.gameToPlay.Bet_R1;
                 if (WinLose.Equals("win"))                    
-                    winningAmount = currentGame.Win_O1;
+                    winningAmount = gamesSssion.gameToPlay.Win_O1;
 
             }else if (CardBet.Equals("bet_R2")) { 
-                betAmount = currentGame.Bet_R2;
+                betAmount = gamesSssion.gameToPlay.Bet_R2;
                 if (WinLose.Equals("win"))
-                    winningAmount = currentGame.Win_O2;
+                    winningAmount = gamesSssion.gameToPlay.Win_O2;
             }
 
-            if (currentGame.Name != "DET_realworld")
+            if (gamesSssion.gameToPlay.Name != "DET_realworld")
                 money = Convert.ToInt32(HiddenField_currentBalance.Value) + betAmount + winningAmount;
             else
                 money = Convert.ToInt32(HiddenField_currentBalance.Value) + betAmount;
@@ -162,14 +190,14 @@ namespace SU_Casino
         public string setTheme()
         {
 
-            if (currentGame != null && currentGame.Name == "Instrumental_acq")
+            if (gamesSssion.gameToPlay != null && gamesSssion.gameToPlay.Name == "Instrumental_acq")
             {
                 HiddenField_theme.Value = "null";
                 return "null";
             }
             else
             {
-                HiddenField_theme.Value = currentGame.getRandomThemeBasedOnProcAndVariant();
+                HiddenField_theme.Value = gamesSssion.gameToPlay.getRandomThemeBasedOnProcAndVariant();
                 return HiddenField_theme.Value;
             }
         }
@@ -210,24 +238,25 @@ namespace SU_Casino
                     break;
             }
             if (themeToSave.Length == 0)
-                themeToSave = currentGame.Name;
+                themeToSave = gamesSssion.gameToPlay.Name;
 
-            pl.userid = currentGame.UserId;
+            pl.userid = gamesSssion.gameToPlay.UserId;
             pl.balance_in = Convert.ToInt32(HiddenField_currentBalance.Value);
             pl.balance_out = money;
             pl.bet = betAmount;
-            pl.condition = currentGame.Condition;
-            pl.gamename = currentGame.Name;
-            pl.moment = currentGame.Sequence;
+            pl.condition = gamesSssion.gameToPlay.Condition;
+            pl.gamename = gamesSssion.gameToPlay.Name;
+            pl.moment = gamesSssion.gameToPlay.Sequence;
             pl.outcome = winAmount;
             pl.response = CardBetResponse;
             pl.stimuli = themeToSave;
             pl.timestamp_begin = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time1.Value)).ToLocalTime(); 
             pl.timestamp_O = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time2.Value)).ToLocalTime(); 
             pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value)).ToLocalTime(); 
-            pl.trial = trial++;
+            pl.trial = gamesSssion.gameToPlay.TrialCount++;
 
-            _database.updatePlayerLog(pl);
+            //_database.updatePlayerLog(pl);
+            gamesSssion.UpdatePlayerLog(pl);
         }
     }
 }
