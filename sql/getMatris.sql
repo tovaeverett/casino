@@ -22,7 +22,7 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	select * from matris 
+	SELECT * FROM matris ORDER BY condition, seq;
 END
 GO
 
