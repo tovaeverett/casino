@@ -32,7 +32,7 @@
 </table>
 <!-- End Content for Worker --><!-- Input from Worker -->
 
-<div class="form-group"><label for="surveycode">Provide the survey code here:</label> <input class="form-control" id="surveycode" name="surveycode" placeholder="e.g. ABCDE12345" required="" type="text" /></div>
+<div class="form-group"><label for="surveycode">Provide the survey code here:</label><div id="surveycodeErrMsg"></div> <input class="form-control" id="surveycode" name="surveycode" placeholder="e.g. ABCDE12345" required="" type="text" /></div>
 <!-- End input from Worker --></div>
 </div>
 <!-- End Survey Link Layout --></section>
@@ -84,6 +84,27 @@
 		// go to casino
         var casinoUrl = "http://18.130.226.124/StartPage.aspx" + "?workerid=" + $('input#assignmentId').val();
 		window.open(casinoUrl, 'Windows', 'toolbar=no,menubar=no,scrollbars=yes,resizable=yes,location=no,directories=no,status=no');		
+		return false;
+    });
+
+	var surveyCode = ["SPADER102", "SPADER158", "SPADER201", "RUTER110", "RUTER331", "RUTER023", "HJARTER409", "HJARTER254", "HJARTER651", "KLOVER570", "KLOVER190", "KLOVER812"];
+
+	$('input#submitButton').click(function(e) {		
+       
+		var testString = $('input#surveycode').val();
+		var matched = 0;	
+	
+    	surveyCode.map( function(item) {
+		   if (item == testString)
+          		matched = 1;
+		})
+        
+        if (matched == 1)
+			return true;
+		
+		var errMsg = testString + " is not a valid surveyCode.";
+		$('div#surveycodeErrMsg').text(errMsg);
+		
 		return false;
     });
   });
