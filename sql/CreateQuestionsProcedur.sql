@@ -29,8 +29,8 @@ create or alter PROCEDURE [dbo].[insertQuestionsLog]
 	@q13 varchar(50),
 	@Date datetime,
 	@Device varchar(50),
-	@Country varchar(50)
-
+	@Country varchar(50),
+	@SurveyCode varchar(50)
 
 AS
 BEGIN
@@ -58,6 +58,7 @@ BEGIN
 			,Date
 			,Device
 			,Country
+			,SurveyCode
 	 )
      VALUES
 	 (	
@@ -78,6 +79,7 @@ BEGIN
 		,@Date
 		,@Device
 		,@Country
+		,@SurveyCode
 	)
 END
 -- ================================================

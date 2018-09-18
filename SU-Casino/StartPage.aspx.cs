@@ -94,7 +94,9 @@ namespace SU_Casino
             answers.Add(a12);
             answers.Add(q13.SelectedItem.Value);
             answers.Add(hiddenfield_device.Value);
-            
+            answers.Add(gamesSssion.surveyCode.ToString());
+
+
             gamesSssion.SaveQuestions(answers, hiddenfield_userid.Value, hiddenfield_country.Value);
         }
 

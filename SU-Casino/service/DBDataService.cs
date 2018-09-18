@@ -476,6 +476,7 @@ namespace SU_Casino.service
             cmd.Parameters.AddWithValue("Date", DateTime.Now);
             cmd.Parameters.AddWithValue("Device", list[13].ToString());
             cmd.Parameters.AddWithValue("Country", regionalInfo);
+            cmd.Parameters.AddWithValue("SurveyCode", list[14].ToString());
             try
             {
                 conn.Open();

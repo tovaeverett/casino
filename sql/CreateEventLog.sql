@@ -12,7 +12,7 @@ CREATE TABLE [dbo].[eventLog](
 	[id] int identity,
 	[user_Id] [varchar](50) NULL,
 	[logDate] [datetime] NULL,
-	[title] [varchar](50) NULL,
+	[title] [varchar](100) NULL,
 	[message] [varchar](max) NULL
 ) ON [PRIMARY]
 GO

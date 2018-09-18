@@ -31,10 +31,9 @@ namespace SU_Casino
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadGameSessoin();
-
-            //hiddenfield_text.Value = _database.getText("endPage");
+            
             hiddenfield_text.Value = gamesSssion.GetText(InfoTextType.endPage);
-            lblCode.Text = "xxx123xx890";
+            lblCode.Text = gamesSssion.surveyCode.ToString();
         }
 
         protected void btnStart_Click(object sender, EventArgs e)

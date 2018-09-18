@@ -191,6 +191,7 @@
     <Content Include="src\images\themeBluePlayground.jpg" />
     <Content Include="src\js\card_game.js" />
     <Content Include="src\js\end.js" />
+    <Content Include="src\js\jquery.fireworks-js\jquery.fireworks.js" />
     <Content Include="src\js\start.js" />
     <Content Include="src\js\jquery.keyframes.mini.js" />
     <Content Include="src\js\roulette.js" />
@@ -248,6 +249,7 @@
     <Compile Include="helpClass.cs" />
     <Compile Include="model\GameName.cs" />
     <Compile Include="model\InfoTextType.cs" />
+    <Compile Include="model\SurveyCode.cs" />
     <Compile Include="OneArmdBandit.aspx.cs">
       <DependentUpon>OneArmdBandit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -266,6 +268,7 @@
     </Compile>
     <Compile Include="service\DBDataService.cs" />
     <Compile Include="service\IDataService.cs" />
+    <Compile Include="service\SurveyCodeService.cs" />
     <Compile Include="service\TestDataService.cs" />
     <Compile Include="StartPage.aspx.cs">
       <DependentUpon>StartPage.aspx</DependentUpon>

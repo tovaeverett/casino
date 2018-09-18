@@ -25,7 +25,8 @@ CREATE TABLE [dbo].[QuestionsLog](
 	[q13] [varchar](50) NULL,
 	[Date] datetime NULL,
 	[Device] [varchar](50) NULL,
-	[Country] [varchar](50) NULL
+	[Country] [varchar](50) NULL,
+	[SurveyCode] [varchar](50) NULL
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 

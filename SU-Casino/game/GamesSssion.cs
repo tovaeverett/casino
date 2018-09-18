@@ -10,13 +10,19 @@ namespace SU_Casino.game
     public class GamesSssion
     {
         private IDataService dataService;
-        public Game gameToPlay { get; set; }
+        private SurveyCodeService surveyCodeService;
 
-        public GamesSssion() : this(new DBDataService()) { 
+        public Game gameToPlay { get; set; }
+        public SurveyCode surveyCode { get; set; }
+
+        public GamesSssion() : this(new DBDataService(), new SurveyCodeService()) { 
         }
 
-        public GamesSssion(IDataService dataService) {
+        public GamesSssion(IDataService dataService, SurveyCodeService surveyCodeService) {
             this.dataService = dataService;
+            this.surveyCodeService = surveyCodeService;
+
+            this.surveyCode = GetNewSurveyCode();
         }
 
         public String GetText(InfoTextType infoTextType) {
@@ -91,6 +97,10 @@ namespace SU_Casino.game
 
         public void UpdatePlayerLog(Playerlog log) {
             dataService.UpdatePlayerLog(log);
+        }
+
+        private SurveyCode GetNewSurveyCode() {
+            return surveyCodeService.GetNewSurveyCode();
         }
     }
 }
