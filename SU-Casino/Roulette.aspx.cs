@@ -39,7 +39,7 @@ namespace SU_Casino
             LoadGameSessoin();
             if (gamesSssion.gameToPlay == null)
             {
-                gamesSssion.gameToPlay = Game.getDummyGame();
+                gamesSssion.gameToPlay = Game.getDummyGame(GameName.Roulette);
             }            
 
             HiddenField_showInfo.Value = "0";

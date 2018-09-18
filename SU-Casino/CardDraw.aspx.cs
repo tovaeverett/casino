@@ -42,7 +42,7 @@ namespace SU_Casino
 
             if (gamesSssion.gameToPlay == null) 
             {
-                gamesSssion.gameToPlay = Game.getDummyGame();
+                gamesSssion.gameToPlay = Game.getDummyGame(GameName.Roulette);
             }
             HiddenField_showInfo.Value = "0";
             switch (gamesSssion.gameToPlay.Name)
