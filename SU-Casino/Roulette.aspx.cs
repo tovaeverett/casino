@@ -1,5 +1,6 @@
 ﻿using SU_Casino.game;
 using SU_Casino.model;
+using SU_Casino.util;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -39,13 +40,15 @@ namespace SU_Casino
             LoadGameSessoin();
             if (gamesSssion.gameToPlay == null)
             {
-                gamesSssion.gameToPlay = Game.getDummyGame(GameName.Roulette);
+                gamesSssion.gameToPlay = GameDummy.getDummyGame(GameName.Roulette);
             }            
 
             HiddenField_showInfo.Value = "0";
             if (!IsPostBack)
             {
-                gamesSssion.gameToPlay.UserId = Request["workerId"];
+                if (!String.IsNullOrWhiteSpace(Request["workerId"]))
+                    gamesSssion.gameToPlay.UserId = Request["workerId"];
+                
                 HiddenFieldrouletteNr.Value = RandomSpin().ToString();
                 money = gamesSssion.gameToPlay.Saldo;
                 lblMoney.Text = money.ToString();
@@ -133,6 +136,7 @@ namespace SU_Casino
             pl.timestamp_O = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time2.Value)); 
             pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value));
             pl.trial = gamesSssion.gameToPlay.TrialCount++;
+            pl.questionForWinChance = "";
 
             gamesSssion.UpdatePlayerLog(pl);            
         }

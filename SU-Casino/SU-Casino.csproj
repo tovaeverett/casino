@@ -277,6 +277,7 @@
     <Compile Include="StartPage.aspx.designer.cs">
       <DependentUpon>StartPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="util\GameDummy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

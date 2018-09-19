@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SU_Casino.model;
+using SU_Casino.service;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -14,8 +16,7 @@ namespace SU_Casino
 {
     public partial class AdminPage : System.Web.UI.Page
     {
-        public SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
-        Database _database = new Database();
+        IDataService dataService = new DBDataService();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,17 +35,17 @@ namespace SU_Casino
 
         private void SelectText()
         {
-            txtText.Text = _database.getText(ddlText.SelectedItem.Text);
+            txtText.Text = dataService.GetText((InfoTextType)Enum.Parse(typeof(InfoTextType), ddlText.SelectedItem.Text));
         }
         private void FillDropDown()
         {
-            var texts = _database.getTexts();
+            var texts = dataService.GetTexts();
 
             texts.ForEach(x => ddlText.Items.Add(x));
         }
         private void UpdateText()
         {
-            _database.UpdateText(ddlText.SelectedItem.Text, txtText.Text);
+            dataService.UpdateText(ddlText.SelectedItem.Text, txtText.Text);
         }
 
         protected void btnText_Click(object sender, EventArgs e)
@@ -54,7 +55,7 @@ namespace SU_Casino
 
         public void GetMatris()
         {
-            var matris = _database.GetMatris();
+            var matris = dataService.GetMatris();
 
             var ds = matris.ds;
 
@@ -156,7 +157,7 @@ namespace SU_Casino
                 txtfreeze_win.Text
             };
 
-            _database.UpdateMatris(lblRowId.Text, paramz);
+            dataService.UpdateMatris(lblRowId.Text, paramz);
         }
         public void GetExample(SqlCommand command, params SqlParameter[] p)
         {
@@ -177,7 +178,7 @@ namespace SU_Casino
             GridViewRow row = (GridViewRow)gvMatris.Rows[e.RowIndex];
             Label lblRowId = (Label)row.FindControl("lblRowId");
 
-            _database.DeleteMatris(lblRowId.Text);
+            dataService.DeleteMatris(lblRowId.Text);
             GetMatris();
         }
         
@@ -190,7 +191,7 @@ namespace SU_Casino
 
         private void InsertMatris()
         {
-            _database.InsertMatris();
+            dataService.InsertMatris();
 
             GetMatris();
         }
@@ -202,8 +203,8 @@ namespace SU_Casino
 
         protected void btnReport_Click(object sender, EventArgs e)
         {
-            
-            _database.GetReport();
+
+            dataService.GetReport();
            
 
 
@@ -211,13 +212,13 @@ namespace SU_Casino
 
         protected void btnResetMatris_Click(object sender, EventArgs e)
         {
-            _database.resetMatris();
+            dataService.ResetMatris();
             GetMatris();
         }
 
         protected void btnReportQuestions_Click(object sender, EventArgs e)
         {
-            _database.GetQuestionReports();
+            dataService.GetQuestionReports();
         }
     }
 }

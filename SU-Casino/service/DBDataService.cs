@@ -206,11 +206,11 @@ namespace SU_Casino.service
 
             da.Fill(ds, "getLog");
             dt = ds.Tables["getLog"];
-            sbOutput.AppendLine("studyID;condition;name;moment;trail;timestamp_begin;timestam_R;timestamp_O;balance_in;response;bet;stimuli;outcome;balance_out");
+            sbOutput.AppendLine("studyID;condition;name;moment;trail;timestamp_begin;timestam_R;timestamp_O;balance_in;response;bet;stimuli;outcome;balance_out;q_win_chance");
             foreach (DataRow dr in dt.Rows)
             {
                 sbOutput.AppendLine(string.Join(strSeperator, dr[0] + strSeperator + dr[1] + strSeperator + dr[2] + strSeperator + dr[3] + strSeperator + dr[4] + strSeperator + dr[5] + strSeperator
-                    + dr[6] + strSeperator + dr[7] + strSeperator + dr[8] + strSeperator + dr[9] + strSeperator + dr[10] + strSeperator + dr[11] + strSeperator + dr[12] + strSeperator + dr[13] + strSeperator));
+                    + dr[6] + strSeperator + dr[7] + strSeperator + dr[8] + strSeperator + dr[9] + strSeperator + dr[10] + strSeperator + dr[11] + strSeperator + dr[12] + strSeperator + dr[13] + strSeperator + dr[14]));
             }
 
             File.WriteAllText(strFilePath, sbOutput.ToString());
@@ -597,6 +597,7 @@ namespace SU_Casino.service
             cmd.Parameters.AddWithValue("timestamp_begin", log.timestamp_begin);
             cmd.Parameters.AddWithValue("timestamp_R", log.timestamp_R);
             cmd.Parameters.AddWithValue("timestamp_O", log.timestamp_O);
+            cmd.Parameters.AddWithValue("q_win_chance", log.questionForWinChance);
             try
             {
                 conn.Open();

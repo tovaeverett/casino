@@ -28,7 +28,8 @@ CREATE PROCEDURE [dbo].[insertIntoLog]
 	@response varchar(50),
 	@timestamp_begin datetime,
 	@timestamp_R datetime,
-	@timestamp_O datetime
+	@timestamp_O datetime,
+	@q_win_chance varchar(50)
 
 AS
 BEGIN
@@ -53,6 +54,7 @@ BEGIN
 		   ,timestamp_begin
 		   ,timestamp_O
 		   ,timestamp_R
+		   ,q_win_chance
 	 )
      VALUES
 	 (	
@@ -68,8 +70,9 @@ BEGIN
 		@outcome,
 		@response,
 		@timestamp_begin,
+		@timestamp_O,
 		@timestamp_R,
-		@timestamp_O
+		@q_win_chance
 	)
 END
 GO

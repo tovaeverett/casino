@@ -1,5 +1,6 @@
 ﻿using SU_Casino.game;
 using SU_Casino.model;
+using SU_Casino.util;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -42,7 +43,7 @@ namespace SU_Casino
 
             if (gamesSssion.gameToPlay == null)
             {
-                gamesSssion.gameToPlay = Game.getDummyGame(GameName.Roulette);
+                gamesSssion.gameToPlay = GameDummy.getDummyGame(GameName.Transfer_test);
                 gamesSssion.gameToPlay.getRandomThemeBasedOnProcAndVariant();                
             }
 
@@ -50,7 +51,9 @@ namespace SU_Casino
             Hiddenfield_text.Value = gamesSssion.GetText(InfoTextType.playCardInfo);
             if (!IsPostBack)
             {
-                gamesSssion.gameToPlay.UserId = Request["workerId"];
+                if (!String.IsNullOrWhiteSpace(Request["workerId"]))
+                    gamesSssion.gameToPlay.UserId = Request["workerId"];
+                
                 setTheme();
                 setCards();
                 HiddenField_game.Value = gamesSssion.gameToPlay.Name;
@@ -134,7 +137,7 @@ namespace SU_Casino
             string[] splitCards = HiddenField_result.Value.Split(',');
            //( foreach(var value in splitCards)
             
-                WinChance = splitCards[0].ToString();
+                WinChance = GetQuestionForWinChanceText(splitCards[0].ToString());
                 CardBet = splitCards[1].ToString();
                 WinLose = splitCards[2].ToString();
 
@@ -155,7 +158,7 @@ namespace SU_Casino
 
             money = Convert.ToInt32(HiddenField_currentBalance.Value) + betAmount + winningAmount;
             lblMoney.Text = money.ToString();
-            SaveToDB(CardBet, betAmount, winningAmount);
+            SaveToDB(CardBet, betAmount, winningAmount, WinChance);
         }
      
         public String setTheme()
@@ -179,7 +182,21 @@ namespace SU_Casino
             HiddenField_currentBalance.Value = money.ToString();
         }
 
-        public void SaveToDB(String CardBetResponse, int betAmount, int winAmount)
+        //TODO refactor this.
+        private String GetQuestionForWinChanceText(String questionForWinChanceId)
+        {
+            switch (questionForWinChanceId)
+            {
+                case "3":
+                    return "Orange deck";
+                case "2":
+                    return "Purple deck";
+                default:
+                    return "";
+            }
+        }
+
+        public void SaveToDB(String CardBetResponse, int betAmount, int winAmount, String questionForWinChance)
         {
             Playerlog pl = new Playerlog();
             string themeToSave = "";
@@ -220,7 +237,8 @@ namespace SU_Casino
             pl.stimuli = themeToSave;
             pl.timestamp_begin = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time1.Value));
             pl.timestamp_O = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time2.Value)); 
-            pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value)); 
+            pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value));
+            pl.questionForWinChance = questionForWinChance;
 
             pl.trial = gamesSssion.gameToPlay.TrialCount++;
 

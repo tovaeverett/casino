@@ -22,7 +22,9 @@ CREATE TABLE [dbo].[playerLog](
 	[bet] [int] NULL,
 	[stimuli] [varchar](50) NULL,
 	[outcome] [int] NULL,
-	[balance_out] [int] NULL
+	[balance_out] [int] NULL,
+	[q_win_chance_id] [int] NULL,
+	[q_win_chance_text] [varchar](50) NULL
 ) ON [PRIMARY]
 GO
 

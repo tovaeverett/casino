@@ -1,5 +1,6 @@
 ﻿using SU_Casino.game;
 using SU_Casino.model;
+using SU_Casino.util;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -39,7 +40,7 @@ namespace SU_Casino
             LoadGameSessoin();
             if (gamesSssion.gameToPlay == null)
             {
-                gamesSssion.gameToPlay = Game.getDummyGame(GameName.Pavlovian_extinct);
+                gamesSssion.gameToPlay = GameDummy.getDummyGame(GameName.Pavlovian_extinct);
             }
 
             HiddenField_showInfo.Value = "0";
@@ -124,7 +125,7 @@ namespace SU_Casino
         {
 
             string[] splitCards = HiddenField_result.Value.Split(',');
-            string WinChance = splitCards[0].ToString();
+            string WinChance = GetQuestionForWinChanceText(splitCards[0].ToString()); ;
 
             int winningAmount = 0;
             if (HiddenField_WinLose.Value == "win")
@@ -136,7 +137,7 @@ namespace SU_Casino
             money = Convert.ToInt32(HiddenField_currentBalance.Value) + gamesSssion.gameToPlay.Bet_R1 + winningAmount;
 
             lblMoney.Text = money.ToString();
-            SaveToDB(gamesSssion.gameToPlay.Bet_R1, winningAmount);
+            SaveToDB(gamesSssion.gameToPlay.Bet_R1, winningAmount, WinChance);
         }
         public int randomSlotSpin()
         {
@@ -156,7 +157,25 @@ namespace SU_Casino
             HiddenField_currentBalance.Value = money.ToString(); //or get from DB?
         }
 
-        public void SaveToDB(int betAmount, int winAmount)
+        //TODO refactor this.
+        private String GetQuestionForWinChanceText(String questionForWinChanceId)
+        {
+            switch (questionForWinChanceId)
+            {
+                case "3":
+                    return "High";
+                case "2":
+                    return "Low";
+                case "1":
+                    return "Zero";
+                case "0":
+                    return "Don't know";
+                default:
+                    return "";                    
+            }
+        }
+
+        public void SaveToDB(int betAmount, int winAmount, String questionForWinChance)
         {
             Playerlog pl = new Playerlog();
             string themeToSave="";
@@ -199,6 +218,7 @@ namespace SU_Casino
             pl.timestamp_O = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time2.Value)).ToLocalTime(); 
             pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value)).ToLocalTime(); 
             pl.trial = gamesSssion.gameToPlay.TrialCount++;
+            pl.questionForWinChance = questionForWinChance;
 
             gamesSssion.UpdatePlayerLog(pl);
         }
