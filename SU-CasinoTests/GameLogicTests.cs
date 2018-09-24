@@ -15,6 +15,7 @@ namespace SU_Casino.Tests
         const string theme_one = "1";
         const string theme_two = "2";
         const string theme_three = "3";
+        const string theme_four = "4";
 
         [TestMethod()]
         public void getRandomConditionFromConditionsTest()
@@ -90,9 +91,14 @@ namespace SU_Casino.Tests
         {
             GameLogic gameLogic = new GameLogic();
             Dictionary<string, double> themesToTest = new Dictionary<string, double>();
-            themesToTest.Add(theme_one, 0.33);
-            themesToTest.Add(theme_two, 0.33);
-            themesToTest.Add(theme_three, 0.34);
+            themesToTest.Add(theme_one, 0.25);
+            themesToTest.Add(theme_two, 0.25);
+            themesToTest.Add(theme_three, 0.25);
+            themesToTest.Add(theme_four, 0.25);
+
+            Dictionary<string, double> themes = new Dictionary<string, double>();
+
+            
 
             List<string> result = new List<string>();
             const int iterations = 10000;
