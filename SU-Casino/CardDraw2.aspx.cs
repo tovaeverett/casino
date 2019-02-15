@@ -156,7 +156,11 @@ namespace SU_Casino
                     winningAmount = gamesSssion.gameToPlay.Win_O2;
             }
 
-            money = Convert.ToInt32(HiddenField_currentBalance.Value) + betAmount + winningAmount;
+            if (WinLose.Equals("win"))
+                money = Convert.ToInt32(HiddenField_currentBalance.Value) + winningAmount;
+            else
+                money = Convert.ToInt32(HiddenField_currentBalance.Value) + betAmount;
+
             lblMoney.Text = money.ToString();
             SaveToDB(CardBet, betAmount, winningAmount, WinChance);
         }

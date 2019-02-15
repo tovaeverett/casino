@@ -166,10 +166,11 @@ namespace SU_Casino
                     winningAmount = gamesSssion.gameToPlay.Win_O2;
             }
 
-            if (gamesSssion.gameToPlay.Name != "DET_realworld")
-                money = Convert.ToInt32(HiddenField_currentBalance.Value) + betAmount + winningAmount;
-            else
+            if (gamesSssion.gameToPlay.Name != "DET_realworld" && WinLose.Equals("win")) 
+                money = Convert.ToInt32(HiddenField_currentBalance.Value) + winningAmount;
+            else 
                 money = Convert.ToInt32(HiddenField_currentBalance.Value) + betAmount;
+            
 
 
             lblMoney.Text = money.ToString();

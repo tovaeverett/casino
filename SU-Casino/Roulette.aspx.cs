@@ -85,19 +85,23 @@ namespace SU_Casino
             int betAmount = 0;
             if (bet.Equals("bet_R1"))
             {
-                betAmount = gamesSssion.gameToPlay.Bet_R1;
-                if (WinLose.Equals("win"))
-                    winningAmount = gamesSssion.gameToPlay.Win_O1;
-
+                betAmount = gamesSssion.gameToPlay.Bet_R1;                
             }
             else if (bet.Equals("bet_R2"))
             {
-                betAmount = gamesSssion.gameToPlay.Bet_R2;
-                if (WinLose.Equals("win"))
-                    winningAmount = gamesSssion.gameToPlay.Win_O1;
+                betAmount = gamesSssion.gameToPlay.Bet_R2;                
             }
 
-            money = Convert.ToInt32(HiddenField_currentBalance.Value) + betAmount + winningAmount;
+            if (WinLose.Equals("win"))
+            {
+                winningAmount = gamesSssion.gameToPlay.Win_O1;
+                money = Convert.ToInt32(HiddenField_currentBalance.Value) + winningAmount;
+            }
+            else {
+                money = Convert.ToInt32(HiddenField_currentBalance.Value) + betAmount;
+            }
+
+            
             lblMoney.Text = money.ToString();
             SaveToDB(bet, betAmount, winningAmount);
             setCurrentBalance();

@@ -132,10 +132,12 @@ namespace SU_Casino
             {
                 //winningAmount = gamesSssion.gameToPlay.Win_O1;
                 winningAmount = GetWinAmount(gamesSssion.gameToPlay);
+                money = Convert.ToInt32(HiddenField_currentBalance.Value) + winningAmount;
             }
-
-            money = Convert.ToInt32(HiddenField_currentBalance.Value) + gamesSssion.gameToPlay.Bet_R1 + winningAmount;
-
+            else {
+                money = Convert.ToInt32(HiddenField_currentBalance.Value) + gamesSssion.gameToPlay.Bet_R1;
+            }
+            
             lblMoney.Text = money.ToString();
             SaveToDB(gamesSssion.gameToPlay.Bet_R1, winningAmount, WinChance);
         }
