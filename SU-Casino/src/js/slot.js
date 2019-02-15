@@ -140,14 +140,17 @@ $(".winchance-btn").click(function () {
 $(function () {
     document.addEventListener("keydown", function (event) {
         if (event.keyCode === 81) {
-            slotContent.winChance="0";
+            slotContent.winChance = "0";
+            $("#winchance-container").hide();
         } else if (event.keyCode === 87) {
             slotContent.winChance = "1";
-        } else if (event.keyCode === 69) {
-            slotContent.winChance = "2";
+            $("#winchance-container").hide();
+        /*} else if (event.keyCode === 69) {
+            slotContent.winChance = "2";*/
         } else if (event.keyCode === 82) {
             slotContent.winChance = "3";
+            $("#winchance-container").hide();
         }
-        $("#winchance-container").hide();
+        //$("#winchance-container").hide();
     });
 });

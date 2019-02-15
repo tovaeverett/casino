@@ -148,12 +148,14 @@
         <div class="row text-center" >
            
             <div class="winchance-div">
-                 <h2>What are your chances of winning?</h2>
+                 <h2>What are your chances of winning on this next spin, with this particular visual theme, compared to spins with other themes?</h2>
                 <br />
                 <ul>
-                    <li id="btnHigh" class="winchance-btn">High (Q)</li>
-                    <li id="btnLow" class="winchance-btn">Low (W)</li>
+                    <li id="btnHigh" class="winchance-btn">Higher (Q)</li>
+                    <li id="btnLow" class="winchance-btn">Lower (W)</li>
+                    <!--
                     <li id="btnZero" class="winchance-btn">Zero (E)</li>
+                    -->
                     <li id="btnDontKnow" class="winchance-btn">Don't know (R)</li>
                 </ul>
             </div>
