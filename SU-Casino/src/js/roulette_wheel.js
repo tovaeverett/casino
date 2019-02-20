@@ -82,7 +82,7 @@ btnRed.click(function () {
     betOption = "bet_R2";
     btnRed.prop("disabled", false);
     btnBlack.prop("disabled", false);    
-    showBet(event, $("#HiddenField_Bet_R2").val(),startSpinn());
+    showBet(event, $("#HiddenField_Bet_R2").val(), 25, 30,startSpinn());
     //startSpinn(); 
 });
 
@@ -92,7 +92,7 @@ btnBlack.click(function () {
     betOption = "bet_R1";
     btnRed.prop("disabled", false);
     btnBlack.prop("disabled", false)
-    showBet(event, $("#HiddenField_Bet_R1").val(), startSpinn());
+    showBet(event, $("#HiddenField_Bet_R1").val(), 25, 30, startSpinn());
     //startSpinn();
 });
 

@@ -129,11 +129,11 @@ function sound(src) {
     return this;
 }
 
-function showBet(event, betValue, callback) {
+function showBet(event, betValue, offSetX, offSetY, callback) {
     const x = event.clientX;
     const y = event.clientY;
     document.getElementById("currentBet").innerText = betValue;
-    document.getElementById("currentBet").setAttribute(`style`, `position: fixed; top: ${y - 30}px; left: ${x - 25}px; font-size: 40px;`);
+    document.getElementById("currentBet").setAttribute(`style`, `position: fixed; top: ${y - offSetY}px; left: ${x - offSetX}px; font-size: 40px;`);
     animateCss('#currentBet', 'zoomOut', function () {
         document.getElementById("currentBet").setAttribute(`style`, `display: none;`);
         if (typeof callback === 'function') callback();

@@ -10,7 +10,8 @@ var card1 = document.querySelector('#betCard1');
 $('#betCard1').one('click', function (event) {
     event.preventDefault();
     if (!disable) {
-        showBet(event, $("#HiddenField_Bet_Card1").val(), () => {
+        disable = true;
+        showBet(event, $("#HiddenField_Bet_Card1").val(), 28, 50, () => {
             card1.classList.toggle('is-flipped');
             cards.sound.play();
             setTimeout(function () { cardClicked(card1); }, 500);
@@ -25,7 +26,8 @@ var card2 = document.querySelector('#betCard2');
 $('#betCard2').one('click', function (event) {
     event.preventDefault();
     if (!disable) {
-        showBet(event, $("#HiddenField_Bet_Card2").val(), () => {
+        disable = true;
+        showBet(event, $("#HiddenField_Bet_Card2").val(), 28, 50, () => {
             card2.classList.toggle('is-flipped');
             cards.sound.play();
             setTimeout(function () { cardClicked(card2); }, 500);
@@ -103,7 +105,7 @@ function cardClicked(selectedCard) {
 
     var isWinner = false;
     var result = cards.winChance + ",";
-    disable = true;
+    //disable = true;
    
     if (selectedCard.id === 'betCard1') {
         result = cards.game === 'Instrumental_acq2' ? result + "bet_R3," : result + "bet_R1,";

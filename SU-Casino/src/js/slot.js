@@ -123,7 +123,7 @@ $('.start').click(function (e) {
     var ClickTime = new Date();
     $("#HiddenField_Time2").val(ClickTime.getTime());
     $(this).prop("disabled", true);
-    showBet(event, $("#HiddenField_Bet_R1").val(), () => {
+    showBet(event, $("#HiddenField_Bet_R1").val(), 28, 50, () => {
         slotContent.sound.loop = true;
         slotContent.sound.play();
 	    rouletter.roulette('start');
