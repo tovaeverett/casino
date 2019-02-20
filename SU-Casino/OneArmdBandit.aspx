@@ -11,6 +11,8 @@
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css"/>
 	<link rel="stylesheet" href="src/css/slot.css"/>
     <link rel="stylesheet" href="src/css/index.css"/>
+    <link rel="stylesheet" href="/src/css/animate.css" />
+    <link rel="stylesheet" href="/src/css/textShadowBorder.css" />
     <%--<link rel="stylesheet" href="src/css/theme1b.css"/>--%>
     <link id="themeCSS" runat="server" rel="stylesheet" type="text/css" /> 
 
@@ -117,7 +119,8 @@
                             <asp:HiddenField ID="HiddenField_Time2" runat="server" />
                             <asp:HiddenField ID="HiddenField_Time3" runat="server" />
                             <asp:HiddenField ID="HiddenField_Trail" runat="server" />
-                            
+                            <asp:HiddenField ID="HiddenField_Bet_R1" runat="server" />
+                            <div class="combined slower" id="currentBet"></div>
                             <div id="panel1">
                                 <div id="moneyLable">Credits left:&nbsp; 
                                 <span class="cash-sum"> 

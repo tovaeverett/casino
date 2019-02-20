@@ -123,11 +123,13 @@ $('.start').click(function (e) {
     var ClickTime = new Date();
     $("#HiddenField_Time2").val(ClickTime.getTime());
     $(this).prop("disabled", true);
-    slotContent.sound.loop = true;
-    slotContent.sound.play();
-	rouletter.roulette('start');
-	rouletter2.roulette('start');
-	rouletter3.roulette('start');
+    showBet(event, $("#HiddenField_Bet_R1").val(), () => {
+        slotContent.sound.loop = true;
+        slotContent.sound.play();
+	    rouletter.roulette('start');
+	    rouletter2.roulette('start');
+        rouletter3.roulette('start');
+    });
 });
 
 

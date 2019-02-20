@@ -56,6 +56,7 @@ namespace SU_Casino
                 //HiddenField_credit.Value = gamesSssion.gameToPlay.Win_O1.ToString();
                 HiddenField_credit.Value = GetWinAmount(gamesSssion.gameToPlay).ToString();
                 HiddenField_WinLose.Value = HiddenField_Spin1.Value.Equals(HiddenField_Spin2.Value) && HiddenField_Spin1.Value.Equals(HiddenField_Spin3.Value) ? "win" : "lose";
+                HiddenField_Bet_R1.Value = gamesSssion.gameToPlay.Bet_R1.ToString();
                 money = gamesSssion.gameToPlay.Saldo;
                 lblMoney.Text = money.ToString();
                 setCurrentBalance();
