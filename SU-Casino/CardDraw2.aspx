@@ -103,8 +103,8 @@
                                 <asp:HiddenField ID="HiddenField_Time1" runat="server" />
                                 <asp:HiddenField ID="HiddenField_Time2" runat="server" />
                                 <asp:HiddenField ID="HiddenField_Time3" runat="server" />
-                                <asp:HiddenField ID="HiddenField_Bet_R3" runat="server" />
-                                <asp:HiddenField ID="HiddenField_Bet_R4" runat="server" />
+                                <asp:HiddenField ID="HiddenField_Bet_Card1" runat="server" />
+                                <asp:HiddenField ID="HiddenField_Bet_Card2" runat="server" />
                                 <div class="combined slower" id="currentBet"></div>
                                 <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play!" class="hidden" />
                                 <div id="panel1">

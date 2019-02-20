@@ -10,7 +10,7 @@ var card1 = document.querySelector('#betCard1');
 $('#betCard1').one('click', function (event) {
     event.preventDefault();
     if (!disable) {
-        showBet(event, $("#HiddenField_Bet_R3").val(), () => {
+        showBet(event, $("#HiddenField_Bet_Card1").val(), () => {
             card1.classList.toggle('is-flipped');
             cards.sound.play();
             setTimeout(function () { cardClicked(card1); }, 500);
@@ -25,7 +25,7 @@ var card2 = document.querySelector('#betCard2');
 $('#betCard2').one('click', function (event) {
     event.preventDefault();
     if (!disable) {
-        showBet(event, $("#HiddenField_Bet_R4").val(), () => {
+        showBet(event, $("#HiddenField_Bet_Card2").val(), () => {
             card2.classList.toggle('is-flipped');
             cards.sound.play();
             setTimeout(function () { cardClicked(card2); }, 500);

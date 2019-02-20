@@ -69,6 +69,8 @@ namespace SU_Casino
                 HiddenField_game.Value = gamesSssion.gameToPlay.Name;
                 HiddenField_win1.Value = gamesSssion.gameToPlay.Win_O1.ToString();
                 HiddenField_win2.Value = gamesSssion.gameToPlay.Win_O2.ToString();
+                HiddenField_Bet_Card1.Value = gamesSssion.gameToPlay.Bet_R1.ToString();
+                HiddenField_Bet_Card2.Value = gamesSssion.gameToPlay.Bet_R2.ToString();
                 money = gamesSssion.gameToPlay.Saldo;   //Convert.ToInt32(Request["saldo"]);
                 lblMoney.Text = money.ToString();
                 HiddenField_showInfo.Value = "1";
