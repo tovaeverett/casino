@@ -81,8 +81,9 @@ btnRed.click(function () {
     $("#HiddenField_Time2").val(ClickTime.getTime());
     betOption = "bet_R2";
     btnRed.prop("disabled", false);
-    btnBlack.prop("disabled", false);
-    startSpinn(); 
+    btnBlack.prop("disabled", false);    
+    showBet(event, $("#HiddenField_Bet_R2").val(),startSpinn());
+    //startSpinn(); 
 });
 
 btnBlack.click(function () {
@@ -91,7 +92,8 @@ btnBlack.click(function () {
     betOption = "bet_R1";
     btnRed.prop("disabled", false);
     btnBlack.prop("disabled", false)
-    startSpinn();
+    showBet(event, $("#HiddenField_Bet_R1").val(), startSpinn());
+    //startSpinn();
 });
 
 function switchButtons(disable) {

@@ -129,3 +129,28 @@ function sound(src) {
     return this;
 }
 
+function showBet(event, betValue, callback) {
+    const x = event.clientX;
+    const y = event.clientY;
+    document.getElementById("currentBet").innerText = betValue;
+    document.getElementById("currentBet").setAttribute(`style`, `position: fixed; top: ${y - 30}px; left: ${x - 25}px; font-size: 40px;`);
+    animateCss('#currentBet', 'zoomOut', function () {
+        document.getElementById("currentBet").setAttribute(`style`, `display: none;`);
+        if (typeof callback === 'function') callback();
+    });
+}
+
+function animateCss(element, animationName, callback) {
+    const node = document.querySelector(element)
+    node.classList.add('animated', animationName)
+
+    function handleAnimationEnd() {
+        node.classList.remove('animated', animationName)
+        node.removeEventListener('animationend', handleAnimationEnd)
+
+        if (typeof callback === 'function') callback()
+    }
+
+    node.addEventListener('animationend', handleAnimationEnd)
+}
+

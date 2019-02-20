@@ -79,6 +79,7 @@
     <Content Include="Global.asax" />
     <Content Include="OneArmdBandit.aspx" />
     <Content Include="Roulette.aspx" />
+    <Content Include="src\css\animate.css" />
     <Content Include="src\css\bootstrap-responsive.css" />
     <Content Include="src\css\bootstrap.css" />
     <Content Include="src\css\card_game2.css" />
@@ -88,6 +89,7 @@
     <Content Include="src\css\roulette_wheel_base.css" />
     <Content Include="src\css\slot.css" />
     <Content Include="src\css\noTheme.css" />
+    <Content Include="src\css\textShadowBorder.css" />
     <Content Include="src\css\themeBlue.css" />
     <Content Include="src\css\themeRedC.css" />
     <Content Include="src\css\themeRedB.css" />

@@ -97,7 +97,7 @@ namespace SU_Casino.util
             dummy.Name = "Roulette";
             dummy.Condition = "one.one";
             dummy.Sequence = 1;
-            dummy.Trials = 1;
+            dummy.Trials = 10;
             dummy.Saldo = 1000;
             dummy.Bet_R1 = -20; // svart knapp, blått kort. eller rött. Definerar bettinstats på de kortet eller knappen
             dummy.Bet_R2 = -10;  // räd knapp, rött kort. eller blått Definerar bettinstats på de kortet eller knappen.

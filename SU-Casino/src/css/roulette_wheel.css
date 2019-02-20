@@ -76,6 +76,11 @@ body {
     bottom: 5px;
 }
 
+#currentBet {
+    position: fixed;
+}
+
+
 
 *, ::after, ::before {
     box-sizing: content-box;

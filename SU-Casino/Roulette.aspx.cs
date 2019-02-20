@@ -56,6 +56,8 @@ namespace SU_Casino
                 HiddenField_showInfo.Value = "1";                
                 Hiddenfield_text.Value = gamesSssion.GetText(InfoTextType.playRouletteInfo);
                 HiddenField_credit.Value = gamesSssion.gameToPlay.Win_O1.ToString();
+                HiddenField_Bet_R1.Value = gamesSssion.gameToPlay.Bet_R1.ToString();
+                HiddenField_Bet_R2.Value = gamesSssion.gameToPlay.Bet_R2.ToString();
                 setCurrentBalance();
                 gamesSssion.gameToPlay.TrialCount = 1;
             }

@@ -14,6 +14,8 @@
         <link rel="stylesheet" href="src/css/index.css"/>
         <link rel="stylesheet" href="/src/css/roulette_wheel_base.css" />
         <link rel="stylesheet" href="/src/css/roulette_wheel.css" />
+        <link rel="stylesheet" href="/src/css/animate.css" />
+        <link rel="stylesheet" href="/src/css/textShadowBorder.css" />
     </head>
 
     <body id="roulette">
@@ -61,7 +63,10 @@
                             <asp:HiddenField ID="HiddenField_Time1" runat="server" />
                             <asp:HiddenField ID="HiddenField_Time2" runat="server" />
                             <asp:HiddenField ID="HiddenField_Time3" runat="server" />
+                            <asp:HiddenField ID="HiddenField_Bet_R1" runat="server" />
+                            <asp:HiddenField ID="HiddenField_Bet_R2" runat="server" />
                             <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play!" class="hidden" />
+                            <div class="combined slower" id="currentBet"></div>
                             <div id="moneyLable">Credits left:&nbsp; 
                                <span class="cash-sum"> 
                                   <asp:Label ID="lblMoney" runat="server"> </asp:Label>
