@@ -60,6 +60,8 @@ namespace SU_Casino
                 money = gamesSssion.gameToPlay.Saldo;
                 HiddenField_win1.Value = gamesSssion.gameToPlay.Win_O1.ToString();
                 HiddenField_win2.Value = gamesSssion.gameToPlay.Win_O2.ToString();
+                HiddenField_Bet_R3.Value = gamesSssion.gameToPlay.Bet_R3.ToString();
+                HiddenField_Bet_R4.Value = gamesSssion.gameToPlay.Bet_R4.ToString();
                 lblMoney.Text = money.ToString();
                 HiddenField_showInfo.Value = "1";
                 gamesSssion.gameToPlay.TrialCount = 1;

@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="src/css/index.css"/>
     <link rel="stylesheet" href="src/css/card_game.css"/>
     <link rel="stylesheet" href="src/css/card_game2.css"/>
+    <link rel="stylesheet" href="/src/css/animate.css" />
+    <link rel="stylesheet" href="/src/css/textShadowBorder.css" />
    <!-- *****Random themes *****-->
     <!-- behövs den här triggern ??? -->
        <%  var theme = this.HiddenField_theme.Value;
@@ -101,6 +103,9 @@
                                 <asp:HiddenField ID="HiddenField_Time1" runat="server" />
                                 <asp:HiddenField ID="HiddenField_Time2" runat="server" />
                                 <asp:HiddenField ID="HiddenField_Time3" runat="server" />
+                                <asp:HiddenField ID="HiddenField_Bet_R3" runat="server" />
+                                <asp:HiddenField ID="HiddenField_Bet_R4" runat="server" />
+                                <div class="combined slower" id="currentBet"></div>
                                 <asp:Button ID="btnPlay" runat="server" OnClick="btnPlay_Click" Text="Play!" class="hidden" />
                                 <div id="panel1">
                                     <div id="moneyLable">Credits left:&nbsp; 

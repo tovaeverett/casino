@@ -10,9 +10,11 @@ var card1 = document.querySelector('#betCard1');
 $('#betCard1').one('click', function (event) {
     event.preventDefault();
     if (!disable) {
-        card1.classList.toggle('is-flipped');
-        cards.sound.play();
-        setTimeout(function () { cardClicked(card1); }, 500);
+        showBet(event, $("#HiddenField_Bet_R3").val(), () => {
+            card1.classList.toggle('is-flipped');
+            cards.sound.play();
+            setTimeout(function () { cardClicked(card1); }, 500);
+        });
     }
     $(this).prop('disabled', true);
 });
@@ -23,9 +25,11 @@ var card2 = document.querySelector('#betCard2');
 $('#betCard2').one('click', function (event) {
     event.preventDefault();
     if (!disable) {
-        card2.classList.toggle('is-flipped');
-        cards.sound.play();
-        setTimeout(function () { cardClicked(card2); }, 500);
+        showBet(event, $("#HiddenField_Bet_R4").val(), () => {
+            card2.classList.toggle('is-flipped');
+            cards.sound.play();
+            setTimeout(function () { cardClicked(card2); }, 500);
+        });
     }
     $(this).prop('disabled', true);
 });

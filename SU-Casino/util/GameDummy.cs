@@ -28,12 +28,12 @@ namespace SU_Casino.util
             dummy.Name = "Transfer_test";
             dummy.Condition = "one.one";
             dummy.Sequence = 1;
-            dummy.Trials = 3;
+            dummy.Trials = 5;
             dummy.Saldo = 1000;
             dummy.Bet_R1 = 0; // blått kort. eller rött. Definerar bettinstats på de kortet eller knappen
             dummy.Bet_R2 = 0;  // rött kort. eller blått Definerar bettinstats på de kortet eller knappen.
-            dummy.Bet_R3 = 0;
-            dummy.Bet_R4 = 0;
+            dummy.Bet_R3 = -10;
+            dummy.Bet_R4 = -20;
             dummy.Prob_O1 = 0;
             dummy.Prob_O2 = 0;
             dummy.Win_O1 = 0;
