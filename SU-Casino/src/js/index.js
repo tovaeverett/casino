@@ -133,11 +133,21 @@ function showBet(event, betValue, offSetX, offSetY, callback) {
     const x = event.clientX;
     const y = event.clientY;
     document.getElementById("currentBet").innerText = betValue;
-    document.getElementById("currentBet").setAttribute(`style`, `position: fixed; top: ${y - offSetY}px; left: ${x - offSetX}px; font-size: 40px;`);
+    document.getElementById("currentBet").setAttribute(`style`, `font-size: 60px;`);
+    h = $("#currentBet").outerHeight();
+    w = $("#currentBet").outerWidth() / 2;
+    document.getElementById("currentBet").setAttribute(`style`, `position: fixed; top: ${y - h}px; left: ${x - w}px; font-size: 60px;`);
+    console.log(`h:${h}  w:${w}`);
+    animateCss('#currentBet', 'zoomOut', function () {
+        document.getElementById("currentBet").setAttribute(`style`, `display: none;`);        
+    });
+    if (typeof callback === 'function') callback();
+    /*
     animateCss('#currentBet', 'zoomOut', function () {
         document.getElementById("currentBet").setAttribute(`style`, `display: none;`);
         if (typeof callback === 'function') callback();
     });
+    */
 }
 
 function animateCss(element, animationName, callback) {
