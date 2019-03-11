@@ -249,6 +249,7 @@
     </Compile>
     <Compile Include="GameLogic.cs" />
     <Compile Include="helpClass.cs" />
+    <Compile Include="model\ConditionRate.cs" />
     <Compile Include="model\GameName.cs" />
     <Compile Include="model\InfoTextType.cs" />
     <Compile Include="model\SurveyCode.cs" />

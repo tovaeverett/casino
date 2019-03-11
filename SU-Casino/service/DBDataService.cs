@@ -251,6 +251,41 @@ namespace SU_Casino.service
             return (ds, dt.Rows);
         }
 
+        public DataRow[] GetMatrisByProp()
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+            var ds = new DataSet();
+            DataTable dt = new DataTable();
+            DataRow[] rows = null;
+
+            try
+            {
+                var sql = "getMatris";
+                var da = new SqlDataAdapter(sql, con);
+
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                da.Fill(ds, "getMatris");
+                rows = ds.Tables["getMatris"].Select("prop_n <> '' AND prop_n IS NOT NULL");
+                
+
+            }
+            catch (Exception ex)
+            {
+                var log = new EventLog("Error trying to get matris", null, ex);
+
+                Log(log);
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
+
+            return rows;
+        }
+
+
         public string GetText(InfoTextType infoTextType)
         {
             string sqlselectQuery = "select Text from InfoText where Text_Name = " + "'" + infoTextType.ToString() + "'";

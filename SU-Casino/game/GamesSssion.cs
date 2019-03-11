@@ -2,6 +2,7 @@
 using SU_Casino.service;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -36,13 +37,52 @@ namespace SU_Casino.game
 
         public void GetInitialBetingelse()
         {
-            String condition = GetRandomConditionFromConditions(dataService.GetCondition());
+            //String condition = GetRandomConditionFromConditions(dataService.GetCondition());
+            String condition = GetCondition();
             gameToPlay = dataService.GetOrderToPlay(1, condition);
         }
 
         public String GetRandomConditionFromConditions(List<String> conditions)
         {
             return conditions[RandomSingleton.Next(0, conditions.Count())];
+        }
+
+        public String GetCondition() {
+
+            IList<ConditionRate> ConditionRates = GetConditionRates();
+            String condition = "";
+            double random = RandomSingleton.NextDouble();
+            double baseValue = 0.0;
+
+            foreach (ConditionRate conditionRate in ConditionRates) {
+
+                baseValue += conditionRate.prop;
+                if (baseValue >= random) {
+                    condition =  conditionRate.name;
+                    break;
+                }
+            }
+
+            return condition;
+        }
+
+        public IList<ConditionRate> GetConditionRates()
+        {
+            IList<ConditionRate> ConditionRates = new List<ConditionRate>();
+            DataRow[] matris = dataService.GetMatrisByProp();
+            if (matris == null)
+                return ConditionRates;
+
+            
+            foreach (DataRow dataRow in matris)
+            {
+                ConditionRate conditionRate = new ConditionRate();
+                conditionRate.name = dataRow["condition"].ToString();
+                conditionRate.prop = Double.Parse(dataRow["prop_n"].ToString());
+                ConditionRates.Add(conditionRate);
+            }
+
+            return ConditionRates;
         }
 
         public String GetGameUUrl()

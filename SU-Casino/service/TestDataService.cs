@@ -13,6 +13,10 @@ namespace SU_Casino.service
             throw new NotImplementedException();
         }
 
+        public DataRow[] GetMatrisByProp() {
+            throw new NotImplementedException();
+        }
+
         public void DeleteMatris(String rowId)
         {
             throw new NotImplementedException();

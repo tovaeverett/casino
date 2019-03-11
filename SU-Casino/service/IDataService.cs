@@ -32,6 +32,8 @@ namespace SU_Casino.service
 
         (DataSet ds, DataRowCollection rows) GetMatris();
 
+        DataRow[] GetMatrisByProp();
+
         void UpdateMatris(String rowId, String[] paramz);
 
         void GetReport();
