@@ -197,6 +197,8 @@ namespace SU_Casino
                     return "Orange deck";
                 case "2":
                     return "Purple deck";
+                case "0":
+                    return "Don't know";
                 default:
                     return "";
             }

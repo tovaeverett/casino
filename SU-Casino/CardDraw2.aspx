@@ -127,13 +127,13 @@
         <div class="row text-center" >
            
             <div class="winchance-div">
-                 <h2>Which deck gives most profit?</h2>
+                 <h2>Which deck gives the highest win per game?</h2>
                 <br />
                 <ul>
                     <li id="btnHigh" class="winchance-btn">Orange deck</li>
                     <li id="btnLow" class="winchance-btn">Purple deck</li>
-                    <!--li id="btnZero" class="winchance-btn">Zero (E)</!--li>
-                    <li id="btnDontKnow" class="winchance-btn">Don't know (R)</li-->
+                    <!--li id="btnZero" class="winchance-btn">Zero (E)</!--li-->
+                    <li id="btnDontKnow" class="winchance-btn">Don't know</li>
                 </ul>
             </div>
         </div>
