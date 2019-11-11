@@ -1,5 +1,4 @@
-﻿using SU_Casino.model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace SU_Casino
@@ -13,8 +12,8 @@ namespace SU_Casino
         private const string Theme_RED_Version_A = Theme_RED;
         private const string Theme_RED_Version_B = "5";
         private const string Theme_RED_Version_C = "6";
-        private String name;
-        private String condition;
+        private string name;
+        private string condition;
         private int sequence;
         private int trials;
         private int trialCount = 1;
@@ -27,7 +26,7 @@ namespace SU_Casino
         private double prob_O2;
         private int win_O1;
         private int win_O2;
-        private String themeVariant;
+        private string themeVariant;
         private int ifS1probX;
         private int ifS2probX;
         private double perc_S1;
@@ -35,8 +34,12 @@ namespace SU_Casino
         private double perc_S3;
         private double perc_S4;
         private string userid;
-        private String ifS1win, ifS2win, ifS3win, ifS4win;
+        private string ifS1win, ifS2win, ifS3win, ifS4win;
         private string currentTheme;
+
+        private string infoTextType, jackpotTextType, bannerTextType;
+        private int closeToWinStep, jackpotTime, multiplier, spinDelay1, spinDelay2;
+        private Boolean closeToWinColour;
 
         public string Name { get => name; set => name = value; }
         public int Trials { get => trials; set => trials = value; }
@@ -44,7 +47,7 @@ namespace SU_Casino
         public int Saldo { get => saldo; set => saldo = value; }
         public int Bet_R1 { get => bet_R1; set => bet_R1 = value; }
         public int Bet_R2 { get => bet_R2; set => bet_R2 = value; }
-        public int Bet_R3 { get => bet_R3; set => bet_R3 = value;}
+        public int Bet_R3 { get => bet_R3; set => bet_R3 = value; }
         public int Bet_R4 { get => bet_R4; set => bet_R4 = value; }
         public double Prob_O1 { get => prob_O1; set => prob_O1 = value; }
         public double Prob_O2 { get => prob_O2; set => prob_O2 = value; }
@@ -63,14 +66,22 @@ namespace SU_Casino
         public string IfS2win { get => ifS2win; set => ifS2win = value; }
         public string IfS3win { get => ifS3win; set => ifS3win = value; }
         public string IfS4win { get => ifS4win; set => ifS4win = value; }
-           
+
         public string UserId { get => userid; set => userid = value; }
         public string CurrentTheme { get => currentTheme; set => currentTheme = value; }
         public string If_R1 { get; set; }
         public string If_R2 { get; set; }
         public string If_R3 { get; set; }
         public string If_R4 { get; set; }
-        
+        public string InfoTextType { get => infoTextType; set => infoTextType = value; }
+        public string JackpotTextType { get => jackpotTextType; set => jackpotTextType = value; }
+        public string BannerTextType { get => bannerTextType; set => bannerTextType = value; }
+        public int JackpotTime { get => jackpotTime; set => jackpotTime = value; }
+        public int CloseToWinStep { get => closeToWinStep; set => closeToWinStep = value; }
+        public int Multiplier { get => multiplier; set => multiplier = value; }
+        public Boolean CloseToWinColour { get => closeToWinColour; set => closeToWinColour = value; }
+        public int SpinDelay1 { get => spinDelay1; set => spinDelay1 = value; }
+        public int SpinDelay2 { get => spinDelay2; set => spinDelay2 = value; }
 
         /// <summary>
         /// Creates and returns a int array within min and max range values. winningNumber is excluded.
@@ -96,13 +107,13 @@ namespace SU_Casino
         }
 
 
-        public bool didWinDrawCards(String cardPosition)
+        public bool DidWinDrawCards(string cardPosition)
         {
-            return IsWinOrLoseBasedOnPercent(getWinningChanceCardDraw(cardPosition));
+            return IsWinOrLoseBasedOnPercent(GetWinningChanceCardDraw(cardPosition));
         }
-        public bool didWinSlot()
+        public bool DidWinSlot()
         {
-            return IsWinOrLoseBasedOnPercent(getWinningChanceOneArmedBandit());
+            return IsWinOrLoseBasedOnPercent(GetWinningChanceOneArmedBandit());
         }
 
         public bool IsWinOrLoseBasedOnPercent(double winChance)
@@ -111,23 +122,24 @@ namespace SU_Casino
             return winChance >= winningNumber;
         }
 
-        
-        public double getWinningChanceCardDraw(string cardPosition)
+
+        public double GetWinningChanceCardDraw(string cardPosition)
         {
             string probO = "";
-            if (cardPosition.Equals("R1"))
+
+            if (cardPosition.Equals("R1", StringComparison.OrdinalIgnoreCase))
             {
                 probO = If_R1;
             }
-            else if (cardPosition.Equals("R2"))
+            else if (cardPosition.Equals("R2", StringComparison.OrdinalIgnoreCase))
             {
                 probO = If_R2;
             }
-            else if (cardPosition.Equals("R3"))
+            else if (cardPosition.Equals("R3", StringComparison.OrdinalIgnoreCase))
             {
                 probO = If_R3;
             }
-            else if (cardPosition.Equals("R4"))
+            else if (cardPosition.Equals("R4", StringComparison.OrdinalIgnoreCase))
             {
                 probO = If_R4;
             }
@@ -135,7 +147,7 @@ namespace SU_Casino
         }
 
 
-        public double getWinningChanceOneArmedBandit()
+        public double GetWinningChanceOneArmedBandit()
         {
             double prob = 0;
             prob += GetPercentBasedOnProbValueForTheme(Theme_RED, IfS1win);
@@ -149,21 +161,21 @@ namespace SU_Casino
         private double GetPercentBasedOnProbValueForTheme(string theme, string O1orO2)
         {
             double prob = 0;
-            if (CurrentTheme.Equals(theme))
+            if (CurrentTheme.Equals(theme, StringComparison.OrdinalIgnoreCase))
             {
                 prob = GetPercentBasedProbValue(O1orO2);
             }
 
-            return addLogicForProbX(prob);
+            return AddLogicForProbX(prob);
         }
 
-        private double addLogicForProbX(double prob)
+        private double AddLogicForProbX(double prob)
         {
-            if (CurrentTheme.Equals(Theme_RED))
+            if (CurrentTheme.Equals(Theme_RED, StringComparison.OrdinalIgnoreCase))
             {
                 prob *= IfS1probX;
             }
-            if (CurrentTheme.Equals(Theme_BLUE))
+            if (CurrentTheme.Equals(Theme_BLUE, StringComparison.OrdinalIgnoreCase))
             {
                 prob *= IfS2probX;
             }
@@ -171,22 +183,22 @@ namespace SU_Casino
             return prob;
         }
 
-        private double GetPercentBasedProbValue(String O1orO2)
+        private double GetPercentBasedProbValue(string O1orO2)
         {
-            return O1orO2.Equals("O1") ? Prob_O1 : Prob_O2;
+            return O1orO2.Equals("O1", StringComparison.OrdinalIgnoreCase) ? Prob_O1 : Prob_O2;
         }
 
-        public string getRandomThemeBasedOnProcAndVariant()
+        public string GetRandomThemeBasedOnProcAndVariant()
         {
             GameLogic gameLogic = new GameLogic();
-            CurrentTheme = ChangeTemeBasedOnThemeVariant(gameLogic.CalculateCurrentThemeBasedOnPercent(getThemes()));
+            CurrentTheme = ChangeTemeBasedOnThemeVariant(gameLogic.CalculateCurrentThemeBasedOnPercent(GetThemes()));
             return CurrentTheme;
 
         }
 
         private string ChangeTemeBasedOnThemeVariant(string theme)
         {
-            if (theme.Equals(Theme_RED)) 
+            if (theme.Equals(Theme_RED, StringComparison.OrdinalIgnoreCase))
             {
                 if (ThemeVariant == "B")
                     theme = Theme_RED_Version_B;
@@ -199,7 +211,7 @@ namespace SU_Casino
         }
 
 
-        private Dictionary<string, double> getThemes()
+        private Dictionary<string, double> GetThemes()
         {
             Dictionary<string, double> themes = new Dictionary<string, double>();
 

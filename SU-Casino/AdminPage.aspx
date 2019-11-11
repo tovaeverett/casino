@@ -42,7 +42,7 @@
             <br />
             <br />
             <h3>Designmatris</h3>
-            <asp:Button ID="btnAddRow" runat="server" OnClick="AddRow_Click" Text="Add Row" />
+            <asp:Button ID="btnAddRow" runat="server" OnClick="addRow_Click" Text="Add Row" />
             <asp:Button ID="btnResetMatris" runat="server" OnClick="btnResetMatris_Click" Text="Nollställ Matris" Width="212px" />
             <br />
             <br />
@@ -78,9 +78,36 @@
                         </EditItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="name">
-                        <ItemTemplate><%#Eval("name") %></ItemTemplate>
+                        <ItemTemplate>'<%#Eval("name") %>'</ItemTemplate>
                         <EditItemTemplate>
                             <asp:TextBox ID="txtEditName" runat="server" Text='<%#Eval("name") %>'></asp:TextBox>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="info_text">
+                        <ItemTemplate><%#Eval("InfoTextType") %></ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:Label ID="lblInfoTextType" runat="server" Visible="False" Text='<%#Eval("InfoTextType") %>'></asp:Label>
+                            <asp:DropDownList ID="ddlInfoTextType" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DropDownListInfo_SelectedIndexChanged"></asp:DropDownList>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="jackpot_text">
+                        <ItemTemplate><%#Eval("JackpotTextType") %></ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:Label ID="lblJackpotTextType" runat="server" Visible="False" Text='<%#Eval("JackpotTextType") %>'></asp:Label>
+                            <asp:DropDownList ID="ddlJackpotTextType" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DropDownListJackpot_SelectedIndexChanged"></asp:DropDownList>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="jackpot_time">
+                        <ItemTemplate><%#Eval("JackpotTime") %></ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txtEditJackpotTime" runat="server" Text='<%#Eval("JackpotTime") %>'></asp:TextBox>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="banner_text">
+                        <ItemTemplate><%#Eval("BannerTextType") %></ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:Label ID="lblBannerTextType" runat="server" Visible="False" Text='<%#Eval("BannerTextType") %>'></asp:Label>
+                            <asp:DropDownList ID="ddlBannerTextType" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownListBanner_SelectedIndexChanged"></asp:DropDownList>
                         </EditItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="saldo">
@@ -101,7 +128,7 @@
                             <asp:TextBox ID="txtEditperc_S1" runat="server" Text='<%#Eval("perc_S1") %>'></asp:TextBox>
                         </EditItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="S1_variant">
+                    <asp:TemplateField HeaderText="s1_variant">
                         <ItemTemplate><%#Eval("S1_variant") %></ItemTemplate>
                         <EditItemTemplate>
                             <asp:TextBox ID="txtEditS1_variant" runat="server" Text='<%#Eval("S1_variant") %>'></asp:TextBox>
@@ -243,6 +270,36 @@
                         <ItemTemplate><%#Eval("freeze_win") %></ItemTemplate>
                         <EditItemTemplate>
                             <asp:TextBox ID="txtEditFreeze_win" runat="server" Text='<%#Eval("freeze_win") %>'></asp:TextBox>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="step_to_win">
+                        <ItemTemplate><%#Eval("CloseToWinStep") %></ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txtEditCloseToWinStep" runat="server" Text='<%#Eval("CloseToWinStep") %>'></asp:TextBox>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="colour_win">
+                        <ItemTemplate><%#Eval("CloseToWinColour") %></ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txtEditCloseToWinColour" runat="server" Text='<%#Eval("CloseToWinColour") %>'></asp:TextBox>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="multiplier">
+                        <ItemTemplate><%#Eval("Multiplier") %></ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txtEditMultiplier" runat="server" Text='<%#Eval("Multiplier") %>'></asp:TextBox>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="spinn_delay1">
+                        <ItemTemplate><%#Eval("SpinDelay1") %></ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txtEditSpinDelay1" runat="server" Text='<%#Eval("SpinDelay1") %>'></asp:TextBox>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="spinn_delay2">
+                        <ItemTemplate><%#Eval("SpinDelay2") %></ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txtEditSpinDelay2" runat="server" Text='<%#Eval("SpinDelay2") %>'></asp:TextBox>
                         </EditItemTemplate>
                     </asp:TemplateField>
                 </Columns>

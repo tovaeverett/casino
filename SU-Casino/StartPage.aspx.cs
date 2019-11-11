@@ -2,35 +2,32 @@
 using SU_Casino.model;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
-using System.Globalization;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace SU_Casino
 {
     public partial class StartPage : System.Web.UI.Page
     {
-        GamesSssion gamesSssion;
+        GameSession gameSession;
 
-        private void LoadGameSessoin() {
-            if (Session["GamesSssion"] == null)
-                Session["GamesSssion"] = new GamesSssion();
+        private void LoadGameSession()
+        {
+            if (Session["GameSession"] == null)
+                Session["GameSession"] = new GameSession();
 
-            gamesSssion = (GamesSssion)Session["GamesSssion"];
+            gameSession = (GameSession)Session["GameSession"];
         }
 
         protected void Page_Load(object sender, EventArgs e)
-        {            
+        {
 
-            String workerid = Request["workerId"];
+            string workerid = Request["workerId"];
             if (!IsPostBack)
             {
-                if (String.IsNullOrWhiteSpace(workerid))
+                if (string.IsNullOrWhiteSpace(workerid))
                     workerid = Guid.NewGuid().ToString();
 
                 // reset session
@@ -40,16 +37,16 @@ namespace SU_Casino
                 if (Request["workerId"] != null)
                 {
                     hiddenfield_userid.Value = Request["workerId"];
-                }                
+                }
             }
-            if (String.IsNullOrWhiteSpace(hiddenfield_userid.Value))
+            if (string.IsNullOrWhiteSpace(hiddenfield_userid.Value))
                 hiddenfield_userid.Value = workerid;
 
-            LoadGameSessoin();            
-            hiddenfield_text.Value = gamesSssion.GetText(InfoTextType.startPage);            
+            LoadGameSession();
+            hiddenfield_text.Value = gameSession.GetText(AllTextType.startPage);
         }
 
- 
+
         protected void btnPlay_Click(object sender, EventArgs e)
         {
             //Save to db
@@ -58,14 +55,15 @@ namespace SU_Casino
 
             //To get the start credit from DB
             //gameLogic.getInitialBetingelse();
-            gamesSssion.GetInitialBetingelse();
-            gamesSssion.gameToPlay.UserId = hiddenfield_userid.Value;
-            hiddenfield_startCredit.Value = gamesSssion.gameToPlay.Saldo.ToString();
+            gameSession.GetInitialBetingelse();
+
+            gameSession.GameToPlay.UserId = hiddenfield_userid.Value;
+            hiddenfield_startCredit.Value = gameSession.GameToPlay.Saldo.ToString();
         }
         protected void btnStart_Click(object sender, EventArgs e)
-        {            
-            String gameUrl = gamesSssion.GetGameUUrl();
-            if (!String.IsNullOrEmpty(gameUrl))
+        {
+            string gameUrl = gameSession.GetGameUUrl();
+            if (!string.IsNullOrEmpty(gameUrl))
                 HttpContext.Current.Response.Redirect(gameUrl);
         }
 
@@ -94,10 +92,10 @@ namespace SU_Casino
             answers.Add(a12);
             answers.Add(q13.SelectedItem.Value);
             answers.Add(hiddenfield_device.Value);
-            answers.Add(gamesSssion.surveyCode.ToString());
+            answers.Add(gameSession.SurveyCode.ToString());
 
 
-            gamesSssion.SaveQuestions(answers, hiddenfield_userid.Value, hiddenfield_country.Value);
+            gameSession.SaveQuestions(answers, hiddenfield_userid.Value, hiddenfield_country.Value);
         }
 
         protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)

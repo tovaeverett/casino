@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SU_Casino {
-    
-    
-    public partial class AdminPage {
-        
+namespace SU_Casino
+{
+
+
+    public partial class AdminPage
+    {
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// ddlText control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlText;
-        
+
         /// <summary>
         /// txtText control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtText;
-        
+
         /// <summary>
         /// btnText control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnText;
-        
+
         /// <summary>
         /// HiddenField1 control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
-        
+
         /// <summary>
         /// btnAddRow control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddRow;
-        
+
         /// <summary>
         /// btnResetMatris control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnResetMatris;
-        
+
         /// <summary>
         /// gvMatris control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvMatris;
-        
+
         /// <summary>
         /// btnReport control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnReport;
-        
+
         /// <summary>
         /// btnReportQuestions control.
         /// </summary>

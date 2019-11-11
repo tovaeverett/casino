@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.SessionState;
+﻿using SU_Casino.service;
+using System;
 
 namespace SU_Casino
 {
     public class Global : System.Web.HttpApplication
     {
-        Database _database = new Database();
-       protected void Application_Start(object sender, EventArgs e)
+        DBDataService _database = new DBDataService();
+
+        protected void Application_Start(object sender, EventArgs e)
         {
 
         }
@@ -35,9 +32,11 @@ namespace SU_Casino
             // Code that runs when an unhandled error occurs  
             Exception Ex = Server.GetLastError();
             var log = new EventLog("Unhandled error", null, Ex);
+
             _database.Log(log);
-           // Server.ClearError();
-           // Server.Transfer("ErrorPage.aspx");
+
+            // Server.ClearError();
+            // Server.Transfer("ErrorPage.aspx");
         }
 
         protected void Session_End(object sender, EventArgs e)

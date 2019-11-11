@@ -2,33 +2,33 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 
 namespace SU_Casino.service
 {
     public class TestDataService : IDataService
     {
-        public (DataSet ds, DataRowCollection rows) GetMatris() {
-            throw new NotImplementedException();
-        }
-
-        public DataRow[] GetMatrisByProp() {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteMatris(String rowId)
+        public DataTable GetMatrixTable()
         {
             throw new NotImplementedException();
         }
 
-        public List<String> GetCondition()
-        {            
-            List<String> allContidiotns = new List<String> { "one.one", "two.one", "two.two" };
+        public DataRow[] GetMatrisByProp()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteMatris(string rowId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> GetCondition()
+        {
+            List<string> allContidiotns = new List<string> { "one.one", "two.one", "two.two" };
             return allContidiotns;
         }
 
-        public Game GetOrderToPlay(int seq, String condition)
+        public Game GetOrderToPlay(int seq, string condition)
         {
             Game game = new Game();
             game.Saldo = 1000;
@@ -46,13 +46,13 @@ namespace SU_Casino.service
             throw new NotImplementedException();
         }
 
-        public String GetText(InfoTextType infoTextType)
+        public string GetText(AllTextType allTextType)
         {
-            return infoTextType.ToString();
-            
+            return allTextType.ToString();
+
         }
 
-        public List<String> GetTexts()
+        public List<string> GetTexts()
         {
             throw new NotImplementedException();
         }
@@ -72,17 +72,17 @@ namespace SU_Casino.service
             throw new NotImplementedException();
         }
 
-        public void SaveQuestions(List<String> list, String userid, String regionalInfo)
+        public void SaveQuestions(List<string> list, string userid, string regionalInfo)
         {
             // saved
         }
 
-        public void SendFile(String strFilePath, String strFileName)
+        public void SendFile(string strFilePath, string strFileName)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateMatris(String rowId, String[] paramz)
+        public void UpdateMatris(string rowId, string[] paramz)
         {
             throw new NotImplementedException();
         }
@@ -92,7 +92,7 @@ namespace SU_Casino.service
             // update in db
         }
 
-        public void UpdateText(String textName, String infotext)
+        public void UpdateText(string textName, string infotext)
         {
             throw new NotImplementedException();
         }

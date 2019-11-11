@@ -2,74 +2,66 @@
 using SU_Casino.model;
 using SU_Casino.util;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
-using System.Globalization;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace SU_Casino
 {
     public partial class OneArmdBandit : System.Web.UI.Page
     {
         int money;
-        GamesSssion gamesSssion;
+        GameSession gameSession;
 
-        private void LoadGameSessoin()
+        private void LoadGameSession()
         {
-            if (Session["GamesSssion"] == null)
-                Session["GamesSssion"] = new GamesSssion();
+            if (Session["GameSession"] == null)
+                Session["GameSession"] = new GameSession();
 
-            gamesSssion = (GamesSssion)Session["GamesSssion"];
+            gameSession = (GameSession)Session["GameSession"];
         }
 
         private void MoveToNextGame(int cuttrentBalance)
         {
-            gamesSssion.gameToPlay.Saldo = cuttrentBalance;
-            gamesSssion.LoadNextGame();
-            String gameUrl = gamesSssion.GetGameUUrl();
+            gameSession.GameToPlay.Saldo = cuttrentBalance;
+            gameSession.LoadNextGame();
+            string gameUrl = gameSession.GetGameUUrl();
             HttpContext.Current.Response.Redirect(gameUrl);
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadGameSessoin();
-            if (gamesSssion.gameToPlay == null)
+            LoadGameSession();
+            if (gameSession.GameToPlay == null)
             {
-                gamesSssion.gameToPlay = GameDummy.getDummyGame(GameName.Pavlovian_extinct);
+                gameSession.GameToPlay = GameDummy.getDummyGame(GameName.Pavlovian_extinct);
             }
 
             HiddenField_showInfo.Value = "0";
             if (!IsPostBack)
             {
-                if (!String.IsNullOrWhiteSpace(Request["workerId"]))
-                    gamesSssion.gameToPlay.UserId = Request["workerId"];
+                if (!string.IsNullOrWhiteSpace(Request["workerId"]))
+                    gameSession.GameToPlay.UserId = Request["workerId"];
 
                 setTheme();
                 HiddenField_showInfo.Value = "1";
-                Hiddenfield_text.Value = gamesSssion.GetText(InfoTextType.playSlotInfo);
+                Hiddenfield_text.Value = gameSession.GetText(AllTextType.playSlotInfo1);
                 SpinIt();
-                //HiddenField_credit.Value = gamesSssion.gameToPlay.Win_O1.ToString();
-                HiddenField_credit.Value = GetWinAmount(gamesSssion.gameToPlay).ToString();
+                //HiddenField_credit.Value = gameSession.gameToPlay.Win_O1.ToString();
+                HiddenField_credit.Value = GetWinAmount(gameSession.GameToPlay).ToString();
                 HiddenField_WinLose.Value = HiddenField_Spin1.Value.Equals(HiddenField_Spin2.Value) && HiddenField_Spin1.Value.Equals(HiddenField_Spin3.Value) ? "win" : "lose";
-                HiddenField_Bet_R1.Value = gamesSssion.gameToPlay.Bet_R1.ToString();
-                money = gamesSssion.gameToPlay.Saldo;
+                HiddenField_Bet_R1.Value = gameSession.GameToPlay.Bet_R1.ToString();
+                money = gameSession.GameToPlay.Saldo;
                 lblMoney.Text = money.ToString();
                 setCurrentBalance();
-                gamesSssion.gameToPlay.TrialCount = 1;
-                HiddenField_Trail.Value = gamesSssion.gameToPlay.Trials.ToString();
+                gameSession.GameToPlay.TrialCount = 1;
+                HiddenField_Trail.Value = gameSession.GameToPlay.Trials.ToString();
             }
         }
 
         private void SpinIt()
         {
             var firstSpin = randomSlotSpin();
-            
-            if (gamesSssion.gameToPlay.didWinSlot())
+
+            if (gameSession.GameToPlay.DidWinSlot())
             {
                 HiddenField_Spin1.Value = firstSpin.ToString();
                 HiddenField_Spin2.Value = firstSpin.ToString();
@@ -95,9 +87,9 @@ namespace SU_Casino
         protected void btnPlay_Click(object sender, EventArgs e)
         {
             checkForWin();
-         
+
             setTheme();
-            HiddenField_credit.Value = GetWinAmount(gamesSssion.gameToPlay).ToString();
+            HiddenField_credit.Value = GetWinAmount(gameSession.GameToPlay).ToString();
 
             SpinIt();
             if (Convert.ToInt32(HiddenField_Spin1.Value) == Convert.ToInt32(HiddenField_Spin2.Value) && Convert.ToInt32(HiddenField_Spin1.Value) == Convert.ToInt32(HiddenField_Spin3.Value))
@@ -108,17 +100,17 @@ namespace SU_Casino
             {
                 HiddenField_WinLose.Value = "lose";
             }
-            
+
             setCurrentBalance();
 
 
-            if (gamesSssion.gameToPlay.TrialCount > gamesSssion.gameToPlay.Trials)
+            if (gameSession.GameToPlay.TrialCount > gameSession.GameToPlay.Trials)
             {
                 MoveToNextGame(money);
             }
             else
             {
-                int trialsLeft = gamesSssion.gameToPlay.Trials - gamesSssion.gameToPlay.TrialCount;
+                int trialsLeft = gameSession.GameToPlay.Trials - gameSession.GameToPlay.TrialCount;
                 HiddenField_Trail.Value = trialsLeft.ToString();
             }
         }
@@ -131,16 +123,17 @@ namespace SU_Casino
             int winningAmount = 0;
             if (HiddenField_WinLose.Value == "win")
             {
-                //winningAmount = gamesSssion.gameToPlay.Win_O1;
-                winningAmount = GetWinAmount(gamesSssion.gameToPlay);
+                //winningAmount = gameSession.gameToPlay.Win_O1;
+                winningAmount = GetWinAmount(gameSession.GameToPlay);
                 money = Convert.ToInt32(HiddenField_currentBalance.Value) + winningAmount;
             }
-            else {
-                money = Convert.ToInt32(HiddenField_currentBalance.Value) + gamesSssion.gameToPlay.Bet_R1;
+            else
+            {
+                money = Convert.ToInt32(HiddenField_currentBalance.Value) + gameSession.GameToPlay.Bet_R1;
             }
-            
+
             lblMoney.Text = money.ToString();
-            SaveToDB(gamesSssion.gameToPlay.Bet_R1, winningAmount, WinChance);
+            SaveToDB(gameSession.GameToPlay.Bet_R1, winningAmount, WinChance);
         }
         public int randomSlotSpin()
         {
@@ -151,8 +144,8 @@ namespace SU_Casino
 
 
         public void setTheme()
-        {          
-            HiddenField_theme.Value = gamesSssion.gameToPlay.getRandomThemeBasedOnProcAndVariant(); 
+        {
+            HiddenField_theme.Value = gameSession.GameToPlay.GetRandomThemeBasedOnProcAndVariant();
         }
 
         private void setCurrentBalance()
@@ -161,7 +154,7 @@ namespace SU_Casino
         }
 
         //TODO refactor this.
-        private String GetQuestionForWinChanceText(String questionForWinChanceId)
+        private string GetQuestionForWinChanceText(string questionForWinChanceId)
         {
             switch (questionForWinChanceId)
             {
@@ -174,18 +167,19 @@ namespace SU_Casino
                 case "0":
                     return "Don't know";
                 default:
-                    return "";                    
+                    return "";
             }
         }
 
-        public void SaveToDB(int betAmount, int winAmount, String questionForWinChance)
+        public void SaveToDB(int betAmount, int winAmount, string questionForWinChance)
         {
             Playerlog pl = new Playerlog();
-            string themeToSave="";
+            string themeToSave = "";
 
             switch (HiddenField_theme.Value)
             {
-                case "1": themeToSave= "S1A";
+                case "1":
+                    themeToSave = "S1A";
                     break;
                 case "2":
                     themeToSave = "S2";
@@ -203,32 +197,38 @@ namespace SU_Casino
                     themeToSave = "S1C";
                     break;
             }
-            if(themeToSave.Length == 0 )
-                themeToSave = gamesSssion.gameToPlay.Name;
+            if (themeToSave.Length == 0)
+                themeToSave = gameSession.GameToPlay.Name;
 
 
-            pl.userid = gamesSssion.gameToPlay.UserId;
+            pl.userid = gameSession.GameToPlay.UserId;
             pl.balance_in = Convert.ToInt32(HiddenField_currentBalance.Value);
             pl.balance_out = money;
             pl.bet = betAmount;
-            pl.condition = gamesSssion.gameToPlay.Condition;
-            pl.gamename = gamesSssion.gameToPlay.Name;
-            pl.moment = gamesSssion.gameToPlay.Sequence;
+            pl.condition = gameSession.GameToPlay.Condition;
+            pl.gamename = gameSession.GameToPlay.Name;
+            pl.moment = gameSession.GameToPlay.Sequence;
             pl.outcome = winAmount;
             pl.response = "bet_R1";
             pl.stimuli = themeToSave;
             pl.timestamp_begin = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time1.Value)).ToLocalTime();
-            pl.timestamp_O = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time2.Value)).ToLocalTime(); 
-            pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value)).ToLocalTime(); 
-            pl.trial = gamesSssion.gameToPlay.TrialCount++;
+            pl.timestamp_O = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time2.Value)).ToLocalTime();
+            pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value)).ToLocalTime();
+            pl.trial = gameSession.GameToPlay.TrialCount++;
             pl.questionForWinChance = questionForWinChance;
 
-            gamesSssion.UpdatePlayerLog(pl);
+            pl.figure1 = Enum.GetName(typeof(SlotFigure), Convert.ToInt32(HiddenField_Spin1.Value) + 1);
+            pl.figure2 = Enum.GetName(typeof(SlotFigure), Convert.ToInt32(HiddenField_Spin2.Value) + 1);
+            pl.figure3 = Enum.GetName(typeof(SlotFigure), Convert.ToInt32(HiddenField_Spin3.Value) + 1);
+           
+            gameSession.UpdatePlayerLog(pl);
         }
 
-        public int GetWinAmount(Game game) {
+        public int GetWinAmount(Game game)
+        {
 
-            switch (game.CurrentTheme) {
+            switch (game.CurrentTheme)
+            {
                 case "1":
                     return (game.IfS1win.Equals("O1")) ? game.Win_O1 : game.Win_O2;
                 case "2":

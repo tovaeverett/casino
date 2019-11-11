@@ -77,10 +77,10 @@ function initCardGame() {
         card1: $("#HiddenField_card1").val(),
         card2: $("#HiddenField_card2").val(),
         showCard: $("#HiddenField_card3").val(),
-        winChance: "",
         winLose: "",
         sound: cardSound,
-        game: game
+        game: game,
+        WinCard: $("#HiddenField_WinCard").val()
     };
    
     $("#imgCard1").attr("src", baseUrl + cards.card1 + ".png");
@@ -113,6 +113,7 @@ function cardClicked(selectedCard) {
             isWinner = true;
             $("#winCredit").html("+" + $("#HiddenField_win1").val());
         }
+        $("#HiddenField_FlippedCard").val("card1");
     }
     else {
         result = cards.game === 'Instrumental_acq2' ? result + "bet_R4," : result + "bet_R2,";
@@ -120,6 +121,7 @@ function cardClicked(selectedCard) {
             isWinner = true;
             $("#winCredit").html("+" + $("#HiddenField_win2").val());
         }
+        $("#HiddenField_FlippedCard").val("card2");
     }
     if (isWinner) {
         result = result + "win";

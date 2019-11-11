@@ -5,7 +5,7 @@ namespace SU_Casino
     internal class RandomSingleton
     {
         private static Random random = new Random();
-        private static readonly Object padLockRandom = new Object();
+        private static readonly object padLockRandom = new object();
 
         private RandomSingleton() { }
 
@@ -14,7 +14,7 @@ namespace SU_Casino
             lock (padLockRandom)
             {
                 return random.Next(minValue, lowerThenMaxValue);
-            }            
+            }
         }
 
         internal static double NextDouble()

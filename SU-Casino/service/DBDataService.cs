@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SU_Casino.model;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -6,8 +7,6 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Web;
-using SU_Casino.model;
 
 namespace SU_Casino.service
 {
@@ -17,7 +16,7 @@ namespace SU_Casino.service
         {
             string query = "Delete from [matris] WHERE RowId = @rowId";
 
-            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ToString()))
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
 
                 try
@@ -37,114 +36,110 @@ namespace SU_Casino.service
 
                     Log(log);
                 }
-                finally
-                {
-                    connection.Close();
-                    connection.Dispose();
-                }
+
         }
 
         public List<string> GetCondition()
         {
             List<string> list = new List<string>();
-            try
-            {
-                SqlConnection connectionstring = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
-                SqlConnection con = connectionstring;
-                var sql = "getAllCondition";
-                var da = new SqlDataAdapter(sql, con);
-                var ds = new DataSet();
-                DataTable dt = new DataTable();
+            DataTable dt = new DataTable();
 
-                da.SelectCommand.CommandType = CommandType.StoredProcedure;
-                da.Fill(ds, "getAllCondition");
-                dt = ds.Tables["getAllCondition"];
+            string query = "getAllCondition";
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+            using (SqlDataAdapter da = new SqlDataAdapter(query, connection))
 
-                foreach (DataRow dr in dt.Rows)
+                try
                 {
-                    list.Add(dr[0].ToString());
-
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    da.Fill(dt);
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        list.Add(dr[0].ToString());
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                var log = new EventLog($"Error getting conditions", null, ex);
+                catch (Exception ex)
+                {
+                    var log = new EventLog($"Error getting conditions", null, ex);
 
-                Log(log);
-            }
+                    Log(log);
+                }
+
             return list;
         }
 
         public Game GetOrderToPlay(int seq, string condition)
         {
             Game game = new Game();
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+            string query = "getGameToPlay";
 
-            try
-            {
-                var sql = "getGameToPlay";
-                var da = new SqlDataAdapter(sql, con);
-                var ds = new DataSet();
-                DataTable dt = new DataTable();
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+            using (SqlDataAdapter da = new SqlDataAdapter(query, connection))
+            using (DataTable dt = new DataTable())
 
-                da.SelectCommand.CommandType = CommandType.StoredProcedure;
-                da.SelectCommand.Parameters.AddWithValue("@seq", seq);
-                da.SelectCommand.Parameters.AddWithValue("@condition", condition);
-
-                da.Fill(ds, "getGameToPlay");
-                dt = ds.Tables["getGameToPlay"];
-                if (dt.Rows.Count != 0)
+                try
                 {
-                    // TODO: can this be multiple rows? last one wins?
-                    foreach (DataRow dr in dt.Rows)
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    da.SelectCommand.Parameters.AddWithValue("@seq", seq);
+                    da.SelectCommand.Parameters.AddWithValue("@condition", condition);
+
+                    da.Fill(dt);
+
+                    if (dt.Rows.Count != 0)
                     {
+                        // TODO: can this be multiple rows? last one wins?
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            game.Name = GetValueFromColumnWithName(dr, "name");
+                            game.Trials = GetIntValueDefault0(dr, "trials");
+                            game.Saldo = GetIntValueDefault0(dr, "saldo");
+                            game.Bet_R1 = GetIntValueDefault0(dr, "bet_R1");
+                            game.Bet_R2 = GetIntValueDefault0(dr, "bet_R2");
+                            game.Bet_R3 = GetIntValueDefault0(dr, "bet_R3");
+                            game.Bet_R4 = GetIntValueDefault0(dr, "bet_B4");
+                            game.If_R1 = GetValueFromColumnWithName(dr, "If_R1");
+                            game.If_R2 = GetValueFromColumnWithName(dr, "If_R2");
+                            game.If_R3 = GetValueFromColumnWithName(dr, "If_R3");
+                            game.If_R4 = GetValueFromColumnWithName(dr, "If_R4");
+                            game.Prob_O1 = GetDoubleDefault0(dr, "prob_O1");
+                            game.Prob_O2 = GetDoubleDefault0(dr, "prob_O2");
+                            game.Win_O1 = GetIntValueDefault0(dr, "win_O1");
+                            game.Win_O2 = GetIntValueDefault0(dr, "win_O2");
+                            game.IfS1probX = GetIntValueDefault1(dr, "ifS1probX");
+                            game.IfS2probX = GetIntValueDefault1(dr, "ifS2probX");
+                            game.Perc_S1 = GetDoubleDefault0(dr, "perc_S1");
+                            game.Perc_S2 = GetDoubleDefault0(dr, "perc_S2");
+                            game.Perc_S3 = GetDoubleDefault0(dr, "perc_S3");
+                            game.Perc_S4 = GetDoubleDefault0(dr, "perc_S4");
+                            game.ThemeVariant = GetValueFromColumnWithName(dr, "S1_variant");
+                            game.IfS1win = GetValueFromColumnWithName(dr, "ifS1win");
+                            game.IfS2win = GetValueFromColumnWithName(dr, "ifS2win");
+                            game.IfS3win = GetValueFromColumnWithName(dr, "ifS3win");
+                            game.IfS4win = GetValueFromColumnWithName(dr, "ifS4win");
+                            game.InfoTextType = GetValueFromColumnWithName(dr, "InfoTextType");
+                            game.JackpotTextType = GetValueFromColumnWithName(dr, "JackpotTextType");
+                            game.BannerTextType = GetValueFromColumnWithName(dr, "BannerTextType");
+                            game.JackpotTime = GetIntValueDefault0(dr, "JackpotTime");
+                            game.CloseToWinStep = GetIntValueDefault0(dr, "CloseToWinStep");
+                            game.CloseToWinColour = GetBooleanValue(dr, "CloseToWinColour");
+                            game.Multiplier = GetIntValueDefault0(dr, "Multiplier");
+                            game.SpinDelay1 = GetIntValueDefault0(dr, "SpinDelay1");
+                            game.SpinDelay2 = GetIntValueDefault0(dr, "SpinDelay2");
 
-                        game.Name = getValueFromColumnWithName(dr, "name");
-                        game.Trials = getIntValueDefault0(dr, "trials");
-                        game.Saldo = getIntValueDefault0(dr, "saldo");
-                        game.Bet_R1 = getIntValueDefault0(dr, "bet_R1");
-                        game.Bet_R2 = getIntValueDefault0(dr, "bet_R2");
-                        game.Bet_R3 = getIntValueDefault0(dr, "bet_R3");
-                        game.Bet_R4 = getIntValueDefault0(dr, "bet_B4");
-                        game.If_R1 = getValueFromColumnWithName(dr, "If_R1");
-                        game.If_R2 = getValueFromColumnWithName(dr, "If_R2");
-                        game.If_R3 = getValueFromColumnWithName(dr, "If_R3");
-                        game.If_R4 = getValueFromColumnWithName(dr, "If_R4");
-                        game.Prob_O1 = getDoubleDefault0(dr, "prob_O1");
-                        game.Prob_O2 = getDoubleDefault0(dr, "prob_O2");
-                        game.Win_O1 = getIntValueDefault0(dr, "win_O1");
-                        game.Win_O2 = getIntValueDefault0(dr, "win_O2");
-                        game.IfS1probX = getIntValueDefault1(dr, "ifS1probX");
-                        game.IfS2probX = getIntValueDefault1(dr, "ifS2probX");
-                        game.Perc_S1 = getDoubleDefault0(dr, "perc_S1");
-                        game.Perc_S2 = getDoubleDefault0(dr, "perc_S2");
-                        game.Perc_S3 = getDoubleDefault0(dr, "perc_S3");
-                        game.Perc_S4 = getDoubleDefault0(dr, "perc_S4");
-                        game.ThemeVariant = getValueFromColumnWithName(dr, "S1_variant");
-                        game.IfS1win = getValueFromColumnWithName(dr, "ifS1win");
-                        game.IfS2win = getValueFromColumnWithName(dr, "ifS2win");
-                        game.IfS3win = getValueFromColumnWithName(dr, "ifS3win");
-                        game.IfS4win = getValueFromColumnWithName(dr, "ifS4win");
+                            game.Sequence = seq;
+                            game.Condition = condition;
+                        }
 
-                        game.Sequence = seq;
-                        game.Condition = condition;
+                        return game;
                     }
-
-                    return game;
                 }
-            }
-            catch (Exception ex)
-            {
-                var log = new EventLog($"Error getting order to play, seq: {seq}, condition: {condition}", null, ex);
+                catch (Exception ex)
+                {
+                    var log = new EventLog($"Error getting order to play, seq: {seq}, condition: {condition}", null, ex);
 
-                Log(log);
-                throw ex;
-            }
-            finally
-            {
-                con.Close();
-                con.Dispose();
-            }
+                    Log(log);
+                    //throw ex;
+                }
+
             return null;
         }
 
@@ -156,33 +151,40 @@ namespace SU_Casino.service
             string strSeperator = ";";
             StringBuilder sbOutput = new StringBuilder();
 
+            string query = "getQuestionLog";
 
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
-            var sql = "getQuestionLog";
-            var da = new SqlDataAdapter(sql, con);
-            var ds = new DataSet();
-            DataTable dt = new DataTable();
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+            using (SqlDataAdapter da = new SqlDataAdapter(query, connection))
+            using (DataTable dt = new DataTable())
 
-            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                try
+                {
 
-            //da.SelectCommand.Parameters.AddWithValue("@UserId", lblUserId.Text);
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
 
+                    //da.SelectCommand.Parameters.AddWithValue("@UserId", lblUserId.Text);  
 
-            da.Fill(ds, "getQuestionLog");
-            dt = ds.Tables["getQuestionLog"];
-            sbOutput.AppendLine("studyID;q1;q2;q3;q4;q5;q6;q7;q8;q9;q10;age;gambling;average;date;device;country;SurveyCode");
-            foreach (DataRow dr in dt.Rows)
-            {
-                sbOutput.AppendLine(string.Join(strSeperator, dr[0] + strSeperator + dr[1] + strSeperator + dr[2] + strSeperator + dr[3] + strSeperator + dr[4] + strSeperator + dr[5] + strSeperator
-                    + dr[6] + strSeperator + dr[7] + strSeperator + dr[8] + strSeperator + dr[9] + strSeperator + dr[10] + strSeperator + dr[11] + strSeperator + dr[12] + strSeperator + dr[13] + strSeperator
-                    + dr[14] + strSeperator + dr[15].ToString().Replace(';', ':') + strSeperator + dr[16] + strSeperator + dr[17]));
-            }
+                    da.Fill(dt);
+                    sbOutput.AppendLine("studyID;q1;q2;q3;q4;q5;q6;q7;q8;q9;q10;age;gambling;average;date;device;country;SurveyCode");
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        sbOutput.AppendLine(string.Join(strSeperator, dr[0] + strSeperator + dr[1] + strSeperator + dr[2] + strSeperator + dr[3] + strSeperator + dr[4] + strSeperator + dr[5] + strSeperator
+                            + dr[6] + strSeperator + dr[7] + strSeperator + dr[8] + strSeperator + dr[9] + strSeperator + dr[10] + strSeperator + dr[11] + strSeperator + dr[12] + strSeperator + dr[13] + strSeperator
+                            + dr[14] + strSeperator + dr[15].ToString().Replace(';', ':') + strSeperator + dr[16] + strSeperator + dr[17]));
+                    }
 
-            File.WriteAllText(strFilePath, sbOutput.ToString());
-            SendFile(strFilePath, strFileName);
-            // To append more lines to the csv file
-            // File.AppendAllText(strFilePath, sbOutput.ToString());
+                    File.WriteAllText(strFilePath, sbOutput.ToString());
+                    SendFile(strFilePath, strFileName);
+                    // To append more lines to the csv file
+                    // File.AppendAllText(strFilePath, sbOutput.ToString());
+                }
+                catch (Exception ex)
+                {
+                    var log = new EventLog($"Error getting question reports, path: {strFileName}, file: {strFilePath}", null, ex);
 
+                    Log(log);
+                    //throw ex;
+                }
         }
 
         public void GetReport()
@@ -192,242 +194,237 @@ namespace SU_Casino.service
             string strSeperator = ";";
             StringBuilder sbOutput = new StringBuilder();
 
+            string query = "getLog";
 
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
-            var sql = "getLog";
-            var da = new SqlDataAdapter(sql, con);
-            var ds = new DataSet();
-            DataTable dt = new DataTable();
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+            using (SqlDataAdapter da = new SqlDataAdapter(query, connection))
+            using (DataTable dt = new DataTable())
 
-            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
 
-            //da.SelectCommand.Parameters.AddWithValue("@UserId", lblUserId.Text);
+                    //da.SelectCommand.Parameters.AddWithValue("@UserId", lblUserId.Text);
 
+                    da.Fill(dt);
 
-            da.Fill(ds, "getLog");
-            dt = ds.Tables["getLog"];
-            sbOutput.AppendLine("studyID;condition;name;moment;trail;timestamp_begin;timestam_R;timestamp_O;balance_in;response;bet;stimuli;outcome;balance_out;q_win_chance");
-            foreach (DataRow dr in dt.Rows)
-            {
-                sbOutput.AppendLine(string.Join(strSeperator, dr[0] + strSeperator + dr[1] + strSeperator + dr[2] + strSeperator + dr[3] + strSeperator + dr[4] + strSeperator + dr[5] + strSeperator
-                    + dr[6] + strSeperator + dr[7] + strSeperator + dr[8] + strSeperator + dr[9] + strSeperator + dr[10] + strSeperator + dr[11] + strSeperator + dr[12] + strSeperator + dr[13] + strSeperator + dr[14]));
-            }
+                    sbOutput.AppendLine("studyID;condition;name;moment;trail;timestamp_begin;timestam_R;timestamp_O;balance_in;response;bet;stimuli;outcome;balance_out;q_win_chance");
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        sbOutput.AppendLine(string.Join(strSeperator, dr[0] + strSeperator + dr[1] + strSeperator + dr[2] + strSeperator + dr[3] + strSeperator + dr[4] + strSeperator + dr[5] + strSeperator
+                            + dr[6] + strSeperator + dr[7] + strSeperator + dr[8] + strSeperator + dr[9] + strSeperator + dr[10] + strSeperator + dr[11] + strSeperator + dr[12] + strSeperator + dr[13] + strSeperator + dr[14]));
+                    }
 
-            File.WriteAllText(strFilePath, sbOutput.ToString());
-            SendFile(strFilePath, strFileName);
-            // To append more lines to the csv file
-            // File.AppendAllText(strFilePath, sbOutput.ToString());
+                    File.WriteAllText(strFilePath, sbOutput.ToString());
+                    SendFile(strFilePath, strFileName);
+                    // To append more lines to the csv file
+                    // File.AppendAllText(strFilePath, sbOutput.ToString());
+                }
+                catch (Exception ex)
+                {
+                    var log = new EventLog($"Error getting report, path: {strFileName}, file: {strFilePath}", null, ex);
+
+                    Log(log);
+                    //throw ex;
+                }
         }
 
-        public (DataSet ds, DataRowCollection rows) GetMatris()
+        //public (DataSet ds, DataRowCollection rows) GetMatris()
+        public DataTable GetMatrixTable()
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
-            var ds = new DataSet();
             DataTable dt = new DataTable();
+            string query = "getMatris";
 
-            try
-            {
-                var sql = "getMatris";
-                var da = new SqlDataAdapter(sql, con);
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+            using (SqlDataAdapter da = new SqlDataAdapter(query, connection))
 
-                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    da.Fill(dt);
+                }
+                catch (Exception ex)
+                {
+                    var log = new EventLog("Error trying to get matris", null, ex);
 
-                da.Fill(ds, "getMatris");
-                dt = ds.Tables["getMatris"];
+                    Log(log);
+                }
 
-            }
-            catch (Exception ex)
-            {
-                var log = new EventLog("Error trying to get matris", null, ex);
-
-                Log(log);
-            }
-            finally
-            {
-                con.Close();
-                con.Dispose();
-            }
-
-            return (ds, dt.Rows);
+            return dt;
         }
 
         public DataRow[] GetMatrisByProp()
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
-            var ds = new DataSet();
-            DataTable dt = new DataTable();
             DataRow[] rows = null;
+            string query = "getMatris";
 
-            try
-            {
-                var sql = "getMatris";
-                var da = new SqlDataAdapter(sql, con);
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+            using (SqlDataAdapter da = new SqlDataAdapter(query, connection))
+            using (DataTable dt = new DataTable())
 
-                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
 
-                da.Fill(ds, "getMatris");
-                rows = ds.Tables["getMatris"].Select("prop_n <> '' AND prop_n IS NOT NULL");
-                
+                    da.Fill(dt);
+                    rows = dt.Select("prop_n <> '' AND prop_n IS NOT NULL");
+                }
+                catch (Exception ex)
+                {
+                    var log = new EventLog("Error trying to get matris", null, ex);
 
-            }
-            catch (Exception ex)
-            {
-                var log = new EventLog("Error trying to get matris", null, ex);
-
-                Log(log);
-            }
-            finally
-            {
-                con.Close();
-                con.Dispose();
-            }
+                    Log(log);
+                }
 
             return rows;
         }
 
 
-        public string GetText(InfoTextType infoTextType)
+        public string GetText(AllTextType allTextType)
         {
-            string sqlselectQuery = "select Text from InfoText where Text_Name = " + "'" + infoTextType.ToString() + "'";
-            SqlCommand sqlcmd = new SqlCommand();
+            string query = "select Text from InfoText where Text_Name = " + "'" + allTextType.ToString() + "'";
 
-            SqlConnection spContentConn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
-            sqlcmd.Connection = spContentConn;
-            sqlcmd.CommandTimeout = 0;
-            sqlcmd.CommandType = CommandType.Text;
-            sqlcmd.CommandText = sqlselectQuery;
-            try
-            {
-                spContentConn.Open();
-                using (spContentConn)
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+                try
                 {
-                    using (SqlDataReader sdr = sqlcmd.ExecuteReader())
+                    //sqlcmd.Connection = connection;
+                    //sqlcmd.CommandText = sqlselectQuery;
+                    command.CommandTimeout = 0;
+                    command.CommandType = CommandType.Text;
+                    connection.Open();
+
+                    //using (spContentConn)
+                    //{
+                    using (SqlDataReader sdr = command.ExecuteReader())
                     {
                         while (sdr.Read())
                         {
                             return sdr.GetString(0);
                         }
                     }
+                    //}
                 }
-            }
-            catch (Exception ex)
-            {
-                var log = new EventLog("Admin page error", null, ex);
+                catch (Exception ex)
+                {
+                    var log = new EventLog("Admin page error", null, ex);
 
-                Log(log);
-            }
-            finally
-            {
-                spContentConn.Close();
-                spContentConn.Dispose();
-            }
+                    Log(log);
+                }
 
             return "";
         }
 
         public List<string> GetTexts()
         {
-            var texts = new List<string>();
-            string sqlselectQuery = "select Text_Id, Text, Text_Name from InfoText";
-            SqlCommand sqlcmd = new SqlCommand();
+            List<string> list = new List<string>();
+            //var texts = new List<string>();
+            string query = "select Text_Id, Text, Text_Name from InfoText order by Text_Id, Text_Name";
 
-            SqlConnection spContentConn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
-            sqlcmd.Connection = spContentConn;
-            sqlcmd.CommandTimeout = 0;
-            sqlcmd.CommandType = CommandType.Text;
-            sqlcmd.CommandText = sqlselectQuery;
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
 
-            try
-            {
-                spContentConn.Open();
-                using (spContentConn)
+                try
                 {
-                    using (SqlDataReader sdr = sqlcmd.ExecuteReader())
+                    //command.Connection = spContentConn;
+                    //command.CommandText = sqlselectQuery;
+                    command.CommandTimeout = 0;
+                    command.CommandType = CommandType.Text;
+                    connection.Open();
+                    //using (spContentConn)
+                    //{
+                    using (SqlDataReader sdr = command.ExecuteReader())
                     {
                         while (sdr.Read())
                         {
-                            texts.Add(sdr.GetString(2));
+                            list.Add(sdr.GetString(2));
                         }
                     }
+                    //}
                 }
-            }
-            catch (Exception ex)
-            {
-                var log = new EventLog("Admin page error", null, ex);
+                catch (Exception ex)
+                {
+                    var log = new EventLog("Admin page error", null, ex);
 
-                Log(log);
-            }
-            finally
-            {
-                spContentConn.Close();
-                spContentConn.Dispose();
-            }
+                    Log(log);
+                }
 
-            return texts;
+            return list;
         }
 
         public void InsertMatris()
         {
-            using (SqlConnection openCon = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
-            {
-                string saveStaff = "INSERT into matris (prop_n,condition,seq,trials,name,saldo,perc_S0,perc_S1,S1_variant,perc_S2,perc_S3,perc_S4,bet_R1,bet_R2,bet_R3,bet_B4,if_R1,if_R2,if_R3,if_R4,prob_O1,prob_O2,win_O1,win_O2,ifS1win,ifS2win,ifS3win,ifS4win,ifS1probX,ifS2probX,hide,freeze_win)" +
-                    " VALUES (@prop_n,@condition,@seq,@trials,@name,@saldo,@perc_S0,@perc_S1,@S1_variant,@perc_S2,@perc_S3,@perc_S4,@bet_R1,@bet_R2,@bet_R3,@bet_B4,@if_R1,@if_R2,@if_R3,@if_R4,  @prob_O1,@prob_O2,@win_O1,@win_O2,@ifS1win,@ifS2win,@ifS3win,@ifS4win,@ifS1probX,@ifS2probX,@hide,@freeze_win)";
+            string query = "INSERT into matris (prop_n,condition,seq,trials,name,saldo," +
+                "perc_S0,perc_S1,S1_variant,perc_S2,perc_S3,perc_S4,bet_R1,bet_R2,bet_R3,bet_B4," +
+                "if_R1,if_R2,if_R3,if_R4,prob_O1,prob_O2,win_O1,win_O2,ifS1win,ifS2win,ifS3win,ifS4win,ifS1probX,ifS2probX," +
+                "hide,freeze_win," +
+                "CloseToWinStep,CloseToWinColour,InfoTextType,JackpotTextType,JackpotTime,BannerTextType," +
+                "Multiplier,SpinDelay1,SpinDelay2) " +
+                " VALUES (@prop_n,@condition,@seq,@trials,@name,@saldo," +
+                "@perc_S0,@perc_S1,@S1_variant,@perc_S2,@perc_S3,@perc_S4,@bet_R1,@bet_R2,@bet_R3,@bet_B4," +
+                "@if_R1,@if_R2,@if_R3,@if_R4,@prob_O1,@prob_O2,@win_O1,@win_O2,@ifS1win,@ifS2win,@ifS3win,@ifS4win,@ifS1probX,@ifS2probX," +
+                "@hide,@freeze_win," +
+                "@CloseToWinStep,@CloseToWinColour,trim(@InfoTextType),trim(@JackpotTextType),@JackpotTime,trim(@BannerTextType)," +
+                "@Multiplier,@SpinDelay1,@SpinDelay2)";
 
-                using (SqlCommand Save = new SqlCommand(saveStaff))
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+
+                try
                 {
-                    Save.Connection = openCon;
+                    //command.Connection = connection;
+                    command.Parameters.Add(new SqlParameter("@prop_n", ""));
+                    command.Parameters.Add(new SqlParameter("@condition", ""));
+                    command.Parameters.Add(new SqlParameter("@seq", ""));
+                    command.Parameters.Add(new SqlParameter("@trials", ""));
+                    command.Parameters.Add(new SqlParameter("@name", ""));
+                    command.Parameters.Add(new SqlParameter("@saldo", ""));
+                    command.Parameters.Add(new SqlParameter("@perc_S0", ""));
+                    command.Parameters.Add(new SqlParameter("@perc_S1", ""));
+                    command.Parameters.Add(new SqlParameter("@S1_variant", ""));
+                    command.Parameters.Add(new SqlParameter("@perc_S2", ""));
+                    command.Parameters.Add(new SqlParameter("@perc_S3", ""));
+                    command.Parameters.Add(new SqlParameter("@perc_S4", ""));
+                    command.Parameters.Add(new SqlParameter("@bet_R1", ""));
+                    command.Parameters.Add(new SqlParameter("@bet_R2", ""));
+                    command.Parameters.Add(new SqlParameter("@bet_R3", ""));
+                    command.Parameters.Add(new SqlParameter("@bet_B4", ""));
+                    command.Parameters.Add(new SqlParameter("@if_R1", ""));
+                    command.Parameters.Add(new SqlParameter("@if_R2", ""));
+                    command.Parameters.Add(new SqlParameter("@if_R3", ""));
+                    command.Parameters.Add(new SqlParameter("@if_R4", ""));
+                    command.Parameters.Add(new SqlParameter("@prob_O1", ""));
+                    command.Parameters.Add(new SqlParameter("@prob_O2", ""));
+                    command.Parameters.Add(new SqlParameter("@win_O1", ""));
+                    command.Parameters.Add(new SqlParameter("@win_O2", ""));
+                    command.Parameters.Add(new SqlParameter("@ifS1win", ""));
+                    command.Parameters.Add(new SqlParameter("@ifS2win", ""));
+                    command.Parameters.Add(new SqlParameter("@ifS3win", ""));
+                    command.Parameters.Add(new SqlParameter("@ifS4win", ""));
+                    command.Parameters.Add(new SqlParameter("@ifS1probX", ""));
+                    command.Parameters.Add(new SqlParameter("@ifS2probX", ""));
+                    command.Parameters.Add(new SqlParameter("@hide", ""));
+                    command.Parameters.Add(new SqlParameter("@freeze_win", ""));
+                    command.Parameters.Add(new SqlParameter("@InfoTextType", ""));
+                    command.Parameters.Add(new SqlParameter("@JackpotTextType", ""));
+                    command.Parameters.Add(new SqlParameter("@BannerTextType", ""));
+                    command.Parameters.Add(new SqlParameter("@JackpotTime", ""));
+                    command.Parameters.Add(new SqlParameter("@CloseToWinStep", ""));
+                    command.Parameters.Add(new SqlParameter("@CloseToWinColour", ""));
+                    command.Parameters.Add(new SqlParameter("@Multiplier", ""));
+                    command.Parameters.Add(new SqlParameter("@SpinDelay1", ""));
+                    command.Parameters.Add(new SqlParameter("@SpinDelay2", ""));
 
-                    Save.Parameters.Add(new SqlParameter("@prop_n", ""));
-                    Save.Parameters.Add(new SqlParameter("@condition", ""));
-                    Save.Parameters.Add(new SqlParameter("@seq", ""));
-                    Save.Parameters.Add(new SqlParameter("@trials", ""));
-                    Save.Parameters.Add(new SqlParameter("@name", ""));
-                    Save.Parameters.Add(new SqlParameter("@saldo", ""));
-                    Save.Parameters.Add(new SqlParameter("@perc_S0", ""));
-                    Save.Parameters.Add(new SqlParameter("@perc_S1", ""));
-                    Save.Parameters.Add(new SqlParameter("@S1_variant", ""));
-                    Save.Parameters.Add(new SqlParameter("@perc_S2", ""));
-                    Save.Parameters.Add(new SqlParameter("@perc_S3", ""));
-                    Save.Parameters.Add(new SqlParameter("@perc_S4", ""));
-                    Save.Parameters.Add(new SqlParameter("@bet_R1", ""));
-                    Save.Parameters.Add(new SqlParameter("@bet_R2", ""));
-                    Save.Parameters.Add(new SqlParameter("@bet_R3", ""));
-                    Save.Parameters.Add(new SqlParameter("@bet_B4", ""));
-                    Save.Parameters.Add(new SqlParameter("@if_R1", ""));
-                    Save.Parameters.Add(new SqlParameter("@if_R2", ""));
-                    Save.Parameters.Add(new SqlParameter("@if_R3", ""));
-                    Save.Parameters.Add(new SqlParameter("@if_R4", ""));
-                    Save.Parameters.Add(new SqlParameter("@prob_O1", ""));
-                    Save.Parameters.Add(new SqlParameter("@prob_O2", ""));
-                    Save.Parameters.Add(new SqlParameter("@win_O1", ""));
-                    Save.Parameters.Add(new SqlParameter("@win_O2", ""));
-                    Save.Parameters.Add(new SqlParameter("@ifS1win", ""));
-                    Save.Parameters.Add(new SqlParameter("@ifS2win", ""));
-                    Save.Parameters.Add(new SqlParameter("@ifS3win", ""));
-                    Save.Parameters.Add(new SqlParameter("@ifS4win", ""));
-                    Save.Parameters.Add(new SqlParameter("@ifS1probX", ""));
-                    Save.Parameters.Add(new SqlParameter("@ifS2probX", ""));
-                    Save.Parameters.Add(new SqlParameter("@hide", ""));
-                    Save.Parameters.Add(new SqlParameter("@freeze_win", ""));
+                    connection.Open();
 
-                    try
-                    {
-                        openCon.Open();
-
-                        Save.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                        var log = new EventLog("Error trying to login user", null, ex);
-
-                        Log(log);
-                    }
-                    finally
-                    {
-                        openCon.Close();
-                    }
+                    command.ExecuteNonQuery();
                 }
-            }
+                catch (Exception ex)
+                {
+                    var log = new EventLog("Error trying to login user", null, ex);
+
+                    Log(log);
+                }
         }
 
         public void Log(EventLog log)
@@ -436,98 +433,91 @@ namespace SU_Casino.service
             // ... att @userid inte följer med....
             string query = "INSERT into [eventLog] (user_Id,logDate,title,message) VALUES (@userid,@logDate,@title,@message)";
 
-            using (SqlConnection openCon = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
-            using (SqlCommand Save = new SqlCommand(query))
-            {
-                Save.Connection = openCon;
-
-                Save.Parameters.Add(new SqlParameter("@userid", log.userid));
-                Save.Parameters.Add(new SqlParameter("@logDate", DateTime.Now));
-                Save.Parameters.Add(new SqlParameter("@title", log.title));
-                Save.Parameters.Add(new SqlParameter("@message", log.message));
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+            using (SqlCommand command = new SqlCommand(query))
 
                 try
                 {
-                    openCon.Open();
+                    command.Connection = connection;
 
-                    Save.ExecuteNonQuery();
+                    command.Parameters.Add(new SqlParameter("@userid", log.userid));
+                    command.Parameters.Add(new SqlParameter("@logDate", DateTime.Now));
+                    command.Parameters.Add(new SqlParameter("@title", log.title));
+                    command.Parameters.Add(new SqlParameter("@message", log.message));
+
+                    connection.Open();
+
+                    command.ExecuteNonQuery();
                 }
-                finally
+                catch (Exception)
                 {
-                    openCon.Close();
+                    // Where to throw the exception?
                 }
-            }
         }
 
         public void ResetMatris()
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+            string query = "resetMatris";
 
-            try
-            {
-                using (var command = new SqlCommand("resetMatris", con)
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+
+                try
                 {
-                    CommandType = CommandType.StoredProcedure
-                })
-                {
-                    con.Open();
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    connection.Open();
                     command.ExecuteNonQuery();
                 }
+                catch (Exception ex)
+                {
+                    var log = new EventLog("Error trying to get matris", null, ex);
 
-            }
-            catch (Exception ex)
-            {
-                var log = new EventLog("Error trying to get matris", null, ex);
-
-                Log(log);
-            }
-            finally
-            {
-                con.Close();
-                con.Dispose();
-                GetMatris();
-            }
+                    Log(log);
+                }
+                finally
+                {
+                    GetMatrixTable();
+                }
         }
 
         public void SaveQuestions(List<string> list, string userid, string regionalInfo)
         {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("insertQuestionsLog", conn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("userid", userid);
-            cmd.Parameters.AddWithValue("q1", list[0].ToString());
-            cmd.Parameters.AddWithValue("q2", list[1].ToString());
-            cmd.Parameters.AddWithValue("q3", list[2].ToString());
-            cmd.Parameters.AddWithValue("q4", list[3].ToString());
-            cmd.Parameters.AddWithValue("q5", list[4].ToString());
-            cmd.Parameters.AddWithValue("q6", list[5].ToString());
-            cmd.Parameters.AddWithValue("q7", list[6].ToString());
-            cmd.Parameters.AddWithValue("q8", list[7].ToString());
-            cmd.Parameters.AddWithValue("q9", list[8].ToString());
-            cmd.Parameters.AddWithValue("q10", list[9].ToString());
-            cmd.Parameters.AddWithValue("q11", list[10].ToString());
-            cmd.Parameters.AddWithValue("q12", list[11].ToString());
-            cmd.Parameters.AddWithValue("q13", list[12].ToString());
-            cmd.Parameters.AddWithValue("Date", DateTime.Now);
-            cmd.Parameters.AddWithValue("Device", list[13].ToString());
-            cmd.Parameters.AddWithValue("Country", regionalInfo);
-            cmd.Parameters.AddWithValue("SurveyCode", list[14].ToString());
-            try
-            {
-                conn.Open();
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                var log = new EventLog($"Error saving questions for user: {userid}", userid, ex);
+            string query = "insertQuestionsLog";
 
-                Log(log);
-            }
-            finally
-            {
-                conn.Close();
-                conn.Dispose();
-            }
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+                try
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("userid", userid);
+                    command.Parameters.AddWithValue("q1", list[0].ToString());
+                    command.Parameters.AddWithValue("q2", list[1].ToString());
+                    command.Parameters.AddWithValue("q3", list[2].ToString());
+                    command.Parameters.AddWithValue("q4", list[3].ToString());
+                    command.Parameters.AddWithValue("q5", list[4].ToString());
+                    command.Parameters.AddWithValue("q6", list[5].ToString());
+                    command.Parameters.AddWithValue("q7", list[6].ToString());
+                    command.Parameters.AddWithValue("q8", list[7].ToString());
+                    command.Parameters.AddWithValue("q9", list[8].ToString());
+                    command.Parameters.AddWithValue("q10", list[9].ToString());
+                    command.Parameters.AddWithValue("q11", list[10].ToString());
+                    command.Parameters.AddWithValue("q12", list[11].ToString());
+                    command.Parameters.AddWithValue("q13", list[12].ToString());
+                    command.Parameters.AddWithValue("Date", DateTime.Now);
+                    command.Parameters.AddWithValue("Device", list[13].ToString());
+                    command.Parameters.AddWithValue("Country", regionalInfo);
+                    command.Parameters.AddWithValue("SurveyCode", list[14].ToString());
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    var log = new EventLog($"Error saving questions for user: {userid}", userid, ex);
+
+                    Log(log);
+                }
         }
 
         public void SendFile(string strFilePath, string strFileName)
@@ -544,14 +534,25 @@ namespace SU_Casino.service
 
         public void UpdateMatris(string rowId, string[] paramz)
         {
-            string query = "UPDATE [matris] SET prop_n = @prop_n," +
-                " condition = @condition, seq = @seq, trials = @trials, name = @name, saldo = @saldo, perc_S0 = @perc_S0," +
-                " perc_S1 = @perc_S1, S1_variant = @S1_variant, perc_S2 = @perc_S2, perc_S3 = @perc_S3, perc_S4 = @perc_S4, bet_R1 = @bet_R1, bet_R2 = @bet_R2, bet_R3 = @bet_R3, bet_B4 = @bet_B4," +
-                " if_R1 = @if_R1, if_R2 = @if_R2, if_R3 = @if_R3, if_R4 = @if_R4, prob_O1 = @prob_O1, prob_O2 = @prob_O2, win_O1 = @win_O1," +
-                " win_O2 = @win_O2, ifS1win = @ifS1win, ifS2win = @ifS2win, ifS3win = @ifS3win, ifS4win = @ifS4win, ifS1probX = @ifS1probX, ifS2probX = @ifS2probX, hide = @hide, freeze_win = @freeze_win" +
-                " WHERE RowId = @RowID";
+            string query = "UPDATE [matris] SET prop_n = REPLACE(TRIM(@prop_n),',','.'), " +
+                " condition = @condition, seq = @seq, trials = @trials, name = @name, saldo = @saldo, " +
+                " perc_S0 = REPLACE(@perc_S0,',','.'), perc_S1 = REPLACE(@perc_S1,',','.'), " +
+                " perc_S2 = REPLACE(@perc_S2,',','.'), perc_S3 = REPLACE(@perc_S3,',','.'), " +
+                " perc_S4 = REPLACE(@perc_S4,',','.'), " +
+                " bet_R1 = REPLACE(@bet_R1,',','.'), bet_R2 = REPLACE(@bet_R2,',','.'), " +
+                " bet_R3 = REPLACE(@bet_R3,',','.'), bet_B4 = REPLACE(@bet_B4,',','.'), " +
+                " if_R1 = @if_R1, if_R2 = @if_R2, if_R3 = @if_R3, if_R4 = @if_R4, " +
+                " prob_O1 = REPLACE(@prob_O1,',','.'), prob_O2 = REPLACE(@prob_O2,',','.'), " +
+                " win_O1 = @win_O1, win_O2 = @win_O2, S1_variant = @S1_variant, " +
+                " ifS1win = @ifS1win, ifS2win = @ifS2win, ifS3win = @ifS3win, ifS4win = @ifS4win, " +
+                " ifS1probX = @ifS1probX, ifS2probX = @ifS2probX, hide = @hide, freeze_win = @freeze_win, " +
+                " CloseToWinStep = @CloseToWinStep, CloseToWinColour = @CloseToWinColour, " +
+                " InfoTextType = trim(@InfoTextType), JackpotTextType = trim(@JackpotTextType), " +
+                " JackpotTime = @JackpotTime,BannerTextType = trim(@BannerTextType), " +
+                " Multiplier = @Multiplier, SpinDelay1 = @SpinDelay1, SpinDelay2 = @SpinDelay2 " +
+                " WHERE RowId = @RowID ";
 
-            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ToString()))
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
 
                 try
@@ -591,13 +592,20 @@ namespace SU_Casino.service
                     p.Add(new SqlParameter("@ifS2probX", paramz[29]));
                     p.Add(new SqlParameter("@hide", paramz[30]));
                     p.Add(new SqlParameter("@freeze_win", paramz[31]));
-
+                    p.Add(new SqlParameter("@InfoTextType", paramz[32]));
+                    p.Add(new SqlParameter("@JackpotTextType", paramz[33]));
+                    p.Add(new SqlParameter("@BannerTextType", paramz[34]));
+                    p.Add(new SqlParameter("@JackpotTime", paramz[35]));
+                    p.Add(new SqlParameter("@CloseToWinStep", paramz[36]));
+                    p.Add(new SqlParameter("@CloseToWinColour", paramz[37]));
+                    p.Add(new SqlParameter("@Multiplier", paramz[38]));
+                    p.Add(new SqlParameter("@SpinDelay1", paramz[39]));
+                    p.Add(new SqlParameter("@SpinDelay2", paramz[40]));
 
                     connection.Open();
                     GetExample(command, p.ToArray());
                     command.ExecuteNonQuery();
                     command.Parameters.Clear();
-                    GetMatris();
                 }
                 catch (Exception ex)
                 {
@@ -608,95 +616,99 @@ namespace SU_Casino.service
                 }
                 finally
                 {
-                    connection.Close();
-                    connection.Dispose();
+                    GetMatrixTable();
                 }
         }
 
         public void UpdatePlayerLog(Playerlog log)
         {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("insertIntoLog", conn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("userid", log.userid);
-            cmd.Parameters.AddWithValue("condition", log.condition);
-            cmd.Parameters.AddWithValue("gamename", log.gamename);
-            cmd.Parameters.AddWithValue("moment", log.moment);
-            cmd.Parameters.AddWithValue("trial", log.trial);
-            cmd.Parameters.AddWithValue("balance_in", log.balance_in);
-            cmd.Parameters.AddWithValue("balance_out", log.balance_out);
-            cmd.Parameters.AddWithValue("stimuli", log.stimuli);
-            cmd.Parameters.AddWithValue("bet", log.bet);
-            cmd.Parameters.AddWithValue("outcome", log.outcome);
-            cmd.Parameters.AddWithValue("response", log.response);
-            cmd.Parameters.AddWithValue("timestamp_begin", log.timestamp_begin);
-            cmd.Parameters.AddWithValue("timestamp_R", log.timestamp_R);
-            cmd.Parameters.AddWithValue("timestamp_O", log.timestamp_O);
-            cmd.Parameters.AddWithValue("q_win_chance", log.questionForWinChance);
-            try
-            {
-                conn.Open();
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                var evLog = new EventLog($"Exception adding account: {log.userid}", log.userid, ex);
+            string query = "insertIntoLog";
 
-                Log(evLog);
-            }
-            finally
-            {
-                conn.Close();
-            }
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+
+                try
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("userid", log.userid);
+                    command.Parameters.AddWithValue("condition", log.condition);
+                    command.Parameters.AddWithValue("gamename", log.gamename);
+                    command.Parameters.AddWithValue("moment", log.moment);
+                    command.Parameters.AddWithValue("trial", log.trial);
+                    command.Parameters.AddWithValue("balance_in", log.balance_in);
+                    command.Parameters.AddWithValue("balance_out", log.balance_out);
+                    command.Parameters.AddWithValue("stimuli", log.stimuli);
+                    command.Parameters.AddWithValue("bet", log.bet);
+                    command.Parameters.AddWithValue("outcome", log.outcome);
+                    command.Parameters.AddWithValue("response", log.response);
+                    command.Parameters.AddWithValue("timestamp_begin", log.timestamp_begin);
+                    command.Parameters.AddWithValue("timestamp_R", log.timestamp_R);
+                    command.Parameters.AddWithValue("timestamp_O", log.timestamp_O);
+                    command.Parameters.AddWithValue("q_win_chance", log.questionForWinChance);
+                    command.Parameters.AddWithValue("figure_1", log.figure1);
+                    command.Parameters.AddWithValue("figure_2", log.figure2);
+                    command.Parameters.AddWithValue("figure_3", log.figure3);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    var evLog = new EventLog($"Exception adding account: {log.userid}", log.userid, ex);
+
+                    Log(evLog);
+                }
         }
 
         public void UpdateText(string textName, string infotext)
         {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+            string query = "UPDATE InfoText SET Text = @Text" +
+                            " WHERE Text_Name=" + "'" + textName + "'";
+
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+
+                try
                 {
-                    conn.Open();
-                    using (SqlCommand cmd =
-                        new SqlCommand("UPDATE InfoText SET Text=@Text" +
-                            " WHERE Text_Name=" + "'" + textName + "'", conn))
-                    {
-                        cmd.Parameters.AddWithValue("@Text", infotext);
+                    connection.Open();
+                    command.Parameters.AddWithValue("@Text", infotext);
 
+                    int rows = command.ExecuteNonQuery();
 
-                        int rows = cmd.ExecuteNonQuery();
-
-                        //rows number of record got updated
-                    }
+                    //rows number of record got updated
                 }
-            }
-            catch (SqlException ex)
-            {
-                var log = new EventLog("Admin page error", null, ex);
+                catch (SqlException ex)
+                {
+                    var log = new EventLog("Admin page error", null, ex);
 
-                Log(log);
-            }
+                    Log(log);
+                }
         }
 
-        private double getDoubleDefault0(DataRow dr, string ColumnName1)
+        private double GetDoubleDefault0(DataRow dr, string ColumnName1)
         {
-            string value = getValueFromColumnWithName(dr, ColumnName1);
+            string value = GetValueFromColumnWithName(dr, ColumnName1);
             return Convert.ToDouble(value != "" ? value : "0");
         }
 
-        private int getIntValueDefault0(DataRow dr, string ColumnName)
+        private int GetIntValueDefault0(DataRow dr, string ColumnName)
         {
-            string value = getValueFromColumnWithName(dr, ColumnName);
+            string value = GetValueFromColumnWithName(dr, ColumnName);
             return Convert.ToInt32(value != "" ? value : "0");
         }
 
-        private int getIntValueDefault1(DataRow dr, string ColumnName)
+        private int GetIntValueDefault1(DataRow dr, string ColumnName)
         {
-            string value = getValueFromColumnWithName(dr, ColumnName);
+            string value = GetValueFromColumnWithName(dr, ColumnName);
             return Convert.ToInt32(value != "" ? value : "1");
         }
 
-        private string getValueFromColumnWithName(DataRow dr, string columnName)
+        private Boolean GetBooleanValue(DataRow dr, string ColumnName)
+        {
+            return dr[dr.Table.Columns[ColumnName].Ordinal].Equals(true);
+        }
+
+        private string GetValueFromColumnWithName(DataRow dr, string columnName)
         {
             return dr[dr.Table.Columns[columnName].Ordinal].ToString() != "" ? dr[dr.Table.Columns[columnName].Ordinal].ToString() : "";
         }

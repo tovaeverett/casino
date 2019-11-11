@@ -91,6 +91,7 @@
                                 <asp:HiddenField ID="HiddenField_card1" runat="server" Value="5"/>
                                 <asp:HiddenField ID="HiddenField_card2" runat="server" Value="3"/> 
                                 <asp:HiddenField ID="HiddenField_card3" runat="server" Value="3"/> 
+                                <asp:HiddenField ID="HiddenField_FlippedCard" runat="server" Value=""/> 
                                 <asp:HiddenField ID="HiddenField_WinLose" runat="server" />
                                 <asp:HiddenField ID="HiddenField_theme" runat="server" />
                                 <asp:HiddenField ID="HiddenField_showInfo" runat="server" />

@@ -1,10 +1,6 @@
 ﻿using SU_Casino.model;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SU_Casino.service
 {
@@ -14,35 +10,36 @@ namespace SU_Casino.service
 
         void UpdatePlayerLog(Playerlog log);
 
-        String GetText(InfoTextType infoTextType);
+        string GetText(AllTextType allTextType);
 
-        List<String> GetTexts();
+        List<string> GetTexts();
 
-        void UpdateText(String textName, String infotext);
+        void UpdateText(string textName, string infotext);
 
-        List<String> GetCondition();
+        List<string> GetCondition();
 
-        Game GetOrderToPlay(int seq, String condition);
+        Game GetOrderToPlay(int seq, string condition);
 
         //void GetExample(SqlCommand command, params SqlParameter[] p);
 
-        void DeleteMatris(String rowId);
+        void DeleteMatris(string rowId);
 
         void InsertMatris();
 
-        (DataSet ds, DataRowCollection rows) GetMatris();
+        //(DataSet ds, DataRowCollection rows) GetMatris();
+        DataTable GetMatrixTable();
 
         DataRow[] GetMatrisByProp();
 
-        void UpdateMatris(String rowId, String[] paramz);
+        void UpdateMatris(string rowId, string[] paramz);
 
         void GetReport();
 
-        void SendFile(String strFilePath, String strFileName);
+        void SendFile(string strFilePath, string strFileName);
 
         void GetQuestionReports();
 
-        void SaveQuestions(List<String> list, String userid, String regionalInfo);
+        void SaveQuestions(List<string> list, string userid, string regionalInfo);
 
         void ResetMatris();
     }
