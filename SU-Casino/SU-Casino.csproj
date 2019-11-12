@@ -246,7 +246,6 @@
     </Compile>
     <Compile Include="GameLogic.cs" />
     <Compile Include="helpClass.cs" />
-    <Compile Include="model\CardColour.cs" />
     <Compile Include="model\JackpotTextTypeCard.cs" />
     <Compile Include="model\JackpotTextTypeSlot.cs" />
     <Compile Include="model\SlotFigure.cs" />

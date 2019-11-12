@@ -208,11 +208,12 @@ namespace SU_Casino.service
 
                     da.Fill(dt);
 
-                    sbOutput.AppendLine("studyID;condition;name;moment;trail;timestamp_begin;timestam_R;timestamp_O;balance_in;response;bet;stimuli;outcome;balance_out;q_win_chance");
+                    sbOutput.AppendLine("studyID;condition;name;moment;trial;timestamp_begin;timestam_R;timestamp_O;balance_in;response;bet;stimuli;outcome;balance_out;q_win_chance;figure_1;figure_2;figure_3");
                     foreach (DataRow dr in dt.Rows)
                     {
                         sbOutput.AppendLine(string.Join(strSeperator, dr[0] + strSeperator + dr[1] + strSeperator + dr[2] + strSeperator + dr[3] + strSeperator + dr[4] + strSeperator + dr[5] + strSeperator
-                            + dr[6] + strSeperator + dr[7] + strSeperator + dr[8] + strSeperator + dr[9] + strSeperator + dr[10] + strSeperator + dr[11] + strSeperator + dr[12] + strSeperator + dr[13] + strSeperator + dr[14]));
+                            + dr[6] + strSeperator + dr[7] + strSeperator + dr[8] + strSeperator + dr[9] + strSeperator + dr[10] + strSeperator + dr[11] + strSeperator + dr[12] + strSeperator + dr[13] + strSeperator + dr[14]
+                             + strSeperator + dr[15] + strSeperator + dr[16] + strSeperator + dr[17]));
                     }
 
                     File.WriteAllText(strFilePath, sbOutput.ToString());
