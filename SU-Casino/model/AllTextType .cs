@@ -1,0 +1,37 @@
+﻿namespace SU_Casino.model
+{
+    public enum AllTextType
+    {
+        bannerRouletteInfo1,
+        bannerRouletteInfo2,
+        bannerRouletteInfo3,
+        bannerRouletteInfo4,
+        bannerCardInfo1,
+        bannerCardInfo2,
+        bannerCardInfo3,
+        bannerCardInfo4,
+        bannerSlotInfo1,
+        bannerSlotInfo2,
+        bannerSlotInfo3,
+        bannerSlotInfo4,
+        jackpotRouletteInfo,
+        jackpotCardInfo,
+        jackpotSlotInfo,
+        playRouletteInfo1,
+        playRouletteInfo2,
+        playRouletteInfo3,
+        playRouletteInfo4,
+        playCardInfo1,
+        playCardInfo2,
+        playCardInfo3,
+        playCardInfo4,
+        playSlotInfo1,
+        playSlotInfo2,
+        playSlotInfo3,
+        playSlotInfo4,
+        endPage,
+        startPage,
+        playCardWinFreezeInfo,
+        playCardNoSaldoInfo
+    }
+}
