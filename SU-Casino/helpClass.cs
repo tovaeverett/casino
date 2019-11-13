@@ -22,9 +22,6 @@ namespace SU_Casino
         public DateTime timestamp_R { get; set; }
         public DateTime timestamp_O { get; set; }
         public string questionForWinChance { get; set; }
-        public string figure1 { get; set; }
-        public string figure2 { get; set; }
-        public string figure3 { get; set; }
     }
 
     public class EventLog

@@ -144,6 +144,7 @@
 									Number(defaultProperty.originalStopImageNumber) : Math.floor(Math.random() * p.imageCount);
 			p.startCallback();
 			roll();
+			console.log("spinDelay", p.duration);
 			p.slowDownTimer = setTimeout(function(){
 				slowDownSetup();
 			}, p.duration * 1000);

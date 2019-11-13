@@ -32,3 +32,16 @@
     overflow: hidden;
     border:none;
 }
+.multiplyButton {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-image: none;
+    background-color: black;
+    text-indent: 0;
+    color: white;
+    /**/
+    border: 4px solid whitesmoke;
+    /*red Color */
+    /*border: 4px solid rgba(167, 2, 2, 2);*/
+}

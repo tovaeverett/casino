@@ -18,12 +18,11 @@ namespace SU_Casino
             if (Session["GameSession"] == null)
                 Session["GameSession"] = new GameSession();
 
-            gameSession = (GameSession)Session["GameSession"];
+            gameSession = (GameSession) Session["GameSession"];
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             string workerid = Request["workerId"];
             if (!IsPostBack)
             {
@@ -31,7 +30,7 @@ namespace SU_Casino
                     workerid = Guid.NewGuid().ToString();
 
                 // reset session
-                Session["GamesSssion"] = null;
+                Session["GameSession"] = null;
 
                 hiddenfield_showInfo.Value = "0";
                 if (Request["workerId"] != null)
@@ -39,6 +38,7 @@ namespace SU_Casino
                     hiddenfield_userid.Value = Request["workerId"];
                 }
             }
+
             if (string.IsNullOrWhiteSpace(hiddenfield_userid.Value))
                 hiddenfield_userid.Value = workerid;
 
@@ -50,7 +50,8 @@ namespace SU_Casino
         protected void btnPlay_Click(object sender, EventArgs e)
         {
             //Save to db
-            saveQuestions();
+
+          //  saveQuestions();
             hiddenfield_showInfo.Value = "1";
 
             //To get the start credit from DB
@@ -60,6 +61,7 @@ namespace SU_Casino
             gameSession.GameToPlay.UserId = hiddenfield_userid.Value;
             hiddenfield_startCredit.Value = gameSession.GameToPlay.Saldo.ToString();
         }
+
         protected void btnStart_Click(object sender, EventArgs e)
         {
             string gameUrl = gameSession.GetGameUUrl();
@@ -89,6 +91,7 @@ namespace SU_Casino
             {
                 a12 += item.Text + ",";
             }
+
             answers.Add(a12);
             answers.Add(q13.SelectedItem.Value);
             answers.Add(hiddenfield_device.Value);
@@ -100,7 +103,6 @@ namespace SU_Casino
 
         protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
         {
-
         }
     }
 }

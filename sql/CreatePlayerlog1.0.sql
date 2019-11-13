@@ -8,9 +8,6 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-DROP TABLE [dbo].[playerLog]
-GO
-
 CREATE TABLE [dbo].[playerLog](
 	[user_Id] [varchar](50) NULL,
 	[condition] [varchar](50) NULL,

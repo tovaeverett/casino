@@ -216,7 +216,7 @@ namespace SU_Casino
                     }
                 }
 
-                //Find selected jackpottexttype (saved in label from database)
+                //Find selected bannertexttype (saved in label from database)
                 lblJackpotTextType = (gvMatris.Rows[MatrixRowIndex].FindControl("lblJackpotTextType") as Label);
                 ddlJackpotTextType.Items.FindByText(lblJackpotTextType.Text).Selected = true;
             }

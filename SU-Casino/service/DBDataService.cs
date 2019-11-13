@@ -124,7 +124,6 @@ namespace SU_Casino.service
                             game.Multiplier = GetIntValueDefault0(dr, "Multiplier");
                             game.SpinDelay1 = GetIntValueDefault0(dr, "SpinDelay1");
                             game.SpinDelay2 = GetIntValueDefault0(dr, "SpinDelay2");
-
                             game.Sequence = seq;
                             game.Condition = condition;
                         }
@@ -208,12 +207,11 @@ namespace SU_Casino.service
 
                     da.Fill(dt);
 
-                    sbOutput.AppendLine("studyID;condition;name;moment;trial;timestamp_begin;timestam_R;timestamp_O;balance_in;response;bet;stimuli;outcome;balance_out;q_win_chance;figure_1;figure_2;figure_3");
+                    sbOutput.AppendLine("studyID;condition;name;moment;trail;timestamp_begin;timestam_R;timestamp_O;balance_in;response;bet;stimuli;outcome;balance_out;q_win_chance");
                     foreach (DataRow dr in dt.Rows)
                     {
                         sbOutput.AppendLine(string.Join(strSeperator, dr[0] + strSeperator + dr[1] + strSeperator + dr[2] + strSeperator + dr[3] + strSeperator + dr[4] + strSeperator + dr[5] + strSeperator
-                            + dr[6] + strSeperator + dr[7] + strSeperator + dr[8] + strSeperator + dr[9] + strSeperator + dr[10] + strSeperator + dr[11] + strSeperator + dr[12] + strSeperator + dr[13] + strSeperator + dr[14]
-                             + strSeperator + dr[15] + strSeperator + dr[16] + strSeperator + dr[17]));
+                            + dr[6] + strSeperator + dr[7] + strSeperator + dr[8] + strSeperator + dr[9] + strSeperator + dr[10] + strSeperator + dr[11] + strSeperator + dr[12] + strSeperator + dr[13] + strSeperator + dr[14]));
                     }
 
                     File.WriteAllText(strFilePath, sbOutput.ToString());
@@ -646,9 +644,9 @@ namespace SU_Casino.service
                     command.Parameters.AddWithValue("timestamp_R", log.timestamp_R);
                     command.Parameters.AddWithValue("timestamp_O", log.timestamp_O);
                     command.Parameters.AddWithValue("q_win_chance", log.questionForWinChance);
-                    command.Parameters.AddWithValue("figure_1", log.figure1);
-                    command.Parameters.AddWithValue("figure_2", log.figure2);
-                    command.Parameters.AddWithValue("figure_3", log.figure3);
+//                    command.Parameters.AddWithValue("figure_1", log.figure1);
+//                    command.Parameters.AddWithValue("figure_2", log.figure2);
+//                    command.Parameters.AddWithValue("figure_3", log.figure3);
 
                     connection.Open();
                     command.ExecuteNonQuery();

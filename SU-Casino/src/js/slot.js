@@ -16,8 +16,8 @@ $(document).ready(function () {
 
 
 function initSlotGame() {
- /*** Sets the start images from local storage if not the first trail ***/
-    if (localStorage.getItem("images") && localStorage.getItem("images")!== null ) {
+    /*** Sets the start images from local storage if not the first trail ***/
+    if (localStorage.getItem("images") && localStorage.getItem("images") !== null) {
         var images = localStorage.getItem("images").split(',');
         images[0] = Number(images[0]) + 1;
         images[1] = Number(images[1]) + 1;
@@ -25,8 +25,7 @@ function initSlotGame() {
         var src1 = "/src/images/slot/img" + images[0] + ".png";
         var src2 = "/src/images/slot/img" + images[1] + ".png";
         var src3 = "/src/images/slot/img" + images[2] + ".png";
-    }
-    else {
+    } else {
         var src1 = "/src/images/slot/img1.png";
         var src2 = "/src/images/slot/img2.png";
         var src3 = "/src/images/slot/img3.png";
@@ -48,95 +47,164 @@ function initSlotGame() {
         winChance: "",
         sound: slotSound
     };
-
+    
+    let spinDelay1 = Number($("#HiddenField_spin_delay1").val());
+    let spinDelay2 = Number($("#HiddenField_spin_delay2").val());
+    let middleSlotIsLongest = false; 
+    if(spinDelay1 <= 0) {
+        spinDelay1 = 0.75;
+    }   
+    if(spinDelay2 <= 0) {
+        spinDelay2 = 1;
+    }
+    console.log("spinDelay1" , spinDelay1);
+    console.log("spinDelay2" , spinDelay2);
+    if(spinDelay1 > spinDelay2) {
+        middleSlotIsLongest = true; 
+       
+    }
+   
     /**** First  slot animation object ****/
     var optionFirst = {
         speed: 30,
         duration: 0.25,
-        stopImageNumber: slotContent.img1, 
-        startCallback: function () {
-            
+        stopImageNumber: slotContent.img1,
+        startCallback: function () {    
+
         },
         slowDownCallback: function () {
-            
+
         },
         stopCallback: function ($stopElm) {
-           
+
         }
     }
- /**** Second slot animation object ****/
+    /**** Second slot animation object ****/
     var optionSecond = {
         speed: 30,
-        duration: 0.75,
+        duration: spinDelay1,
         stopImageNumber: slotContent.img2,
         startCallback: function () {
-           
+
         },
         slowDownCallback: function () {
-            
+
         },
         stopCallback: function ($stopElm) {
-           
+            if(middleSlotIsLongest) {
+                endSpin();
+            }
         }
+        
     }
- /**** Third slot animation object ****/
+    /**** Third slot animation object ****/
     var optionThird = {
         speed: 30,
-        duration: 1,
+        duration: spinDelay2,
         stopImageNumber: slotContent.img3,
         startCallback: function () {
-           
+
         },
         slowDownCallback: function () {
-           
+
         },
-        /** 
-        checking if it's a win or lose, which card that was selected and saving that with the winchance response to HiddenField_result,
-        example: 1, bet_R1, win
-       **/
+        /**
+         checking if it's a win or lose, which card that was selected and saving that with the winchance response to HiddenField_result,
+         example: 1, bet_R1, win
+         **/
         stopCallback: function ($stopElm) {
-            setTimeout(function () { slotContent.sound.pause(); }, 300);
-            slotContent.result === 'lose' ? $(".lost").show() : $(".winner").show();
-            $("#HiddenField_result").val(slotContent.winChance + ",null," + slotContent.result.toLowerCase());
-            localStorage.setItem("images", slotContent.img1 + ',' + slotContent.img2 + ',' + slotContent.img3);
-         
-            if (slotContent.result === 'lose')
-                setTimeout(function () {
-                    var EndTime = new Date();
-                    $("#HiddenField_Time3").val(EndTime.getTime());
-                    $("#btnPlay").click();
-                }, 1500);
-            else
-               setTimeout(function () { showWinner(); }, 1000);
-            
+            if(!middleSlotIsLongest) {
+                endSpin();
+            }
         }
     }
     rouletter = $('div.roulette1').roulette(optionFirst);
     rouletter2 = $('div.roulette2').roulette(optionSecond);
     rouletter3 = $('div.roulette3').roulette(optionThird);
-
+    initMultiplyButton()
 }
 
+function endSpin() {
+    setTimeout(function () {
+        slotContent.sound.pause();
+    }, 300);
+    slotContent.result === 'lose' ? $(".lost").show() : $(".winner").show();
+    $("#HiddenField_result").val(slotContent.winChance + ",null," + slotContent.result.toLowerCase());
+    localStorage.setItem("images", slotContent.img1 + ',' + slotContent.img2 + ',' + slotContent.img3);
+
+    if (slotContent.result === 'lose')
+        setTimeout(function () {
+            var EndTime = new Date();
+            $("#HiddenField_Time3").val(EndTime.getTime());
+            $("#btnPlay").click();
+
+        }, 1500);
+    else
+        setTimeout(function () {
+            showWinner();
+        }, 1000);
+    setTimeout(function () {
+        $('#multiplier_0').prop("disabled", false);
+    }, 1000);
+}
+
+function initMultiplyButton() {
+    let multiplyValue = $("#HiddenField_Multiply").val();
+    if (multiplyValue) {
+        document.querySelector("#multiplier > tbody > tr > td > label").textContent = "x" + multiplyValue;
+        if ($('#multiplier_0').prop('checked')) {
+            $('#multiplier').css('opacity', '1');
+            $("#winCredit").html("+" + $("#HiddenField_Multiplied_Credit").val());
+        } else {
+            $('#multiplier').css('opacity', '0.4');
+            $("#winCredit").html("+" + $("#HiddenField_credit").val());
+        }
+    } else {
+        $('#multiplier').css('visibility', 'hidden');
+    }
+}
 
 $('.start').click(function (e) {
     e.preventDefault();
+    //Disable Multiply Button during spin 
+    $('#multiplier_0').prop("disabled", true);
     var ClickTime = new Date();
     $("#HiddenField_Time2").val(ClickTime.getTime());
+   
     $(this).prop("disabled", true);
-    showBet(event, $("#HiddenField_Bet_R1").val(), 28, 50, () => {
+    //Set Betvalue conditionally 
+    let betValue = $("#HiddenField_Bet_R1").val()
+    if ($('#multiplier_0').prop('checked')) {
+        betValue = $("#HiddenField_Multiplied_Bet_R1").val()
+    }
+
+    showBet(e, betValue, 28, 50, () => {
         slotContent.sound.loop = true;
         slotContent.sound.play();
-	    rouletter.roulette('start');
-	    rouletter2.roulette('start');
+        rouletter.roulette('start');
+        rouletter2.roulette('start');
         rouletter3.roulette('start');
     });
 });
 
 
+$('.multiplyButton').on("change", function (event) {
+    if ($('#multiplier_0').prop('checked')) {
+        $('#multiplier').css('opacity', '1');
+        //Animation to enhance Multiplier
+        showMultiply(event, "x" + $("#HiddenField_Multiply").val(), this.offsetLeft, this.offsetHeight,  () => {
+        })
+        $("#winCredit").html("+" + $("#HiddenField_Multiplied_Credit").val());
+    } else {
+        $('#multiplier').css('opacity', '0.4');
+        $("#winCredit").html("+" + $("#HiddenField_credit").val());
+    }
+});
 
 $(".winchance-btn").click(function () {
     slotContent.winChance = getWinChance(this.id);
     $("#winchance-container").hide();
+
 });
 
 $(function () {
@@ -147,8 +215,8 @@ $(function () {
         } else if (event.keyCode === 87) {
             slotContent.winChance = "1";
             $("#winchance-container").hide();
-        /*} else if (event.keyCode === 69) {
-            slotContent.winChance = "2";*/
+            /*} else if (event.keyCode === 69) {
+                slotContent.winChance = "2";*/
         } else if (event.keyCode === 82) {
             slotContent.winChance = "3";
             $("#winchance-container").hide();

@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SU_Casino {
-    
-    
-    public partial class OneArmdBandit {
-        
+namespace SU_Casino
+{
+
+
+    public partial class OneArmdBandit
+    {
+
         /// <summary>
         /// themeCSS control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlLink themeCSS;
-        
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -29,7 +31,16 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
+        /// <summary>
+        /// multiplier control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList multiplier;
+
         /// <summary>
         /// btnPlay control.
         /// </summary>
@@ -38,7 +49,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnPlay;
-        
+
         /// <summary>
         /// HiddenField_Spin1 control.
         /// </summary>
@@ -47,7 +58,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_Spin1;
-        
+
         /// <summary>
         /// HiddenField_Spin2 control.
         /// </summary>
@@ -56,7 +67,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_Spin2;
-        
+
         /// <summary>
         /// HiddenField_Spin3 control.
         /// </summary>
@@ -65,7 +76,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_Spin3;
-        
+
         /// <summary>
         /// HiddenField_WinLose control.
         /// </summary>
@@ -74,7 +85,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_WinLose;
-        
+
         /// <summary>
         /// HiddenField_theme control.
         /// </summary>
@@ -83,7 +94,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_theme;
-        
+
         /// <summary>
         /// HiddenField_showInfo control.
         /// </summary>
@@ -92,7 +103,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_showInfo;
-        
+
         /// <summary>
         /// HiddenField_credit control.
         /// </summary>
@@ -101,7 +112,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_credit;
-        
+
         /// <summary>
         /// HiddenField_result control.
         /// </summary>
@@ -110,7 +121,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_result;
-        
+
         /// <summary>
         /// Hiddenfield_text control.
         /// </summary>
@@ -119,7 +130,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField Hiddenfield_text;
-        
+
         /// <summary>
         /// HiddenField_currentBalance control.
         /// </summary>
@@ -128,7 +139,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_currentBalance;
-        
+
         /// <summary>
         /// HiddenField_Time1 control.
         /// </summary>
@@ -137,7 +148,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_Time1;
-        
+
         /// <summary>
         /// HiddenField_Time2 control.
         /// </summary>
@@ -146,7 +157,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_Time2;
-        
+
         /// <summary>
         /// HiddenField_Time3 control.
         /// </summary>
@@ -155,7 +166,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_Time3;
-        
+
         /// <summary>
         /// HiddenField_Trail control.
         /// </summary>
@@ -164,7 +175,7 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_Trail;
-        
+
         /// <summary>
         /// HiddenField_Bet_R1 control.
         /// </summary>
@@ -173,7 +184,52 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField_Bet_R1;
-        
+
+        /// <summary>
+        /// HiddenField_Multiply control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_Multiply;
+
+        /// <summary>
+        /// HiddenField_Multiplied_Bet_R1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_Multiplied_Bet_R1;
+
+        /// <summary>
+        /// HiddenField_Multiplied_Credit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_Multiplied_Credit;
+
+        /// <summary>
+        /// HiddenField_jackpot_text control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_jackpot_text;
+
+        /// <summary>
+        /// HiddenField_jackpot_time control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_jackpot_time;
+
         /// <summary>
         /// lblMoney control.
         /// </summary>
@@ -182,5 +238,30 @@ namespace SU_Casino {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMoney;
+
+        /// <summary>
+        /// Jackpot_Banner control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Jackpot_Banner;
+
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl startInfo;
+        
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl jackpotInfo;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_spin_delay1;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_spin_delay2;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField_CloseToWin;
+        
+        /// <summary>
+        /// bannerText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label bannerText;
     }
 }

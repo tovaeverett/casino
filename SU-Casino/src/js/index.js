@@ -1,18 +1,15 @@
 //Functins for game logic in the application
 
 //**Globals**//
-var backgroundSound;
-var game = $('body')[0].id;
-var theme = "";
+let backgroundSound;
+let game = $('body')[0].id;
+let theme = "";
 
 
-/*
-
-*/
 function gameInit(sentTheme) {
-    var StartTime = new Date();
-    var showInfo = $("#HiddenField_showInfo").val();
-    
+    let StartTime = new Date();
+    let showInfo = $("#HiddenField_showInfo").val();
+    $("#jackpotInfo").hide();
     //Hides messages layers
     $("#message-container").hide();
     $("#winchance-container").hide();
@@ -24,21 +21,21 @@ function gameInit(sentTheme) {
     //Gets the win amount 
     $("#winCredit").html("+" + $("#HiddenField_credit").val());
     theme = sentTheme;
-    
+
     $("#HiddenField_Time1").val(StartTime.getTime());
     console.log(StartTime.getTime());
-   
+
     if (showInfo === '1') {
         $("#startInfo").show();
-    }
-    else {
-        if ( game !== 'roulette' && $("#HiddenField_Trail").val() === '0')
+    } else {
+        if (game !== 'roulette' && $("#HiddenField_Trail").val() === '0')
             $("#winchance-container").show();
+
     }
 
     //Deprecated - Not used but keeping the code if they should want it again //
-    var backgroundSoundSource = "";
-    var baseSoundUrl = "src/sound/background/";
+    let backgroundSoundSource = "";
+    let baseSoundUrl = "src/sound/background/";
     switch (theme) {
         case '1':
             backgroundSoundSource = "bensound-badass.mp3";
@@ -56,9 +53,8 @@ function gameInit(sentTheme) {
             backgroundSoundSource = "bensound-straight.mp3";
     }
 
-   // backgroundSound = sound(baseSoundUrl + backgroundSoundSource);
+    // backgroundSound = sound(baseSoundUrl + backgroundSoundSource);
 }
-
 
 
 function getWinChance(button) {
@@ -75,8 +71,8 @@ function getWinChance(button) {
 }
 
 function showWinner(creditAmount) {
-   // backgroundSound.stop();
-    var winnerSound = new Audio("src/sound/effects/cashoutWinning.mp3");
+    // backgroundSound.stop();
+    let winnerSound = new Audio("src/sound/effects/cashoutWinning.mp3");
     winnerSound.play();
     $("#message-container").fireworks({
         sound: true, // sound effect
@@ -88,15 +84,36 @@ function showWinner(creditAmount) {
     $("#message-container").show();
 }
 
+function showJackpot() {
+
+    // if (!jackpotTextType) {
+    //     return;
+    // }
+    $("#jackpotInfo").show();
+
+  
+    setInterval(function () {
+      console.log(
+          
+      )
+    });
+    // REMOVE TO HAVE ACTUAL TIME
+    // $("body").bgrotate({ delay: 4000, imagedir: "'/src/images/backgrounds/'", images: ["banner-background.png"] });
+    setTimeout(
+        function () {
+            $("#jackpotInfo").hide();
+        }, parseInt(HiddenField_jackpot_time.value) * 1000);
+}
 
 
 //Closing the start information layer
 $('#btnShowInfo').click(function () {
     $("#startInfo").hide();
+    showJackpot();
     if (game !== 'roulette' && $("#HiddenField_Trail").val() === '0')
         $("#winchance-container").show();
     //backgroundSound.play();
- 
+
 });
 
 $("#btnClose").click(function () {
@@ -105,7 +122,7 @@ $("#btnClose").click(function () {
 
 //Closing the win announce layer
 $("#btnCloseWin").click(function () {
-    var EndTime = new Date();
+    let EndTime = new Date();
     $("#HiddenField_Time3").val(EndTime.getTime());
     $("#btnPlay").trigger("click");
     return false;
@@ -130,16 +147,15 @@ function sound(src) {
 }
 
 function showBet(event, betValue, offSetX, offSetY, callback) {
-    const x = event.clientX;
-    const y = event.clientY;
+    let x = event.clientX;
+    let y = event.clientY;
     document.getElementById("currentBet").innerText = betValue;
     document.getElementById("currentBet").setAttribute(`style`, `font-size: 60px;`);
     h = $("#currentBet").outerHeight();
     w = $("#currentBet").outerWidth() / 2;
     document.getElementById("currentBet").setAttribute(`style`, `position: fixed; top: ${y - h}px; left: ${x - w}px; font-size: 60px;`);
-    console.log(`h:${h}  w:${w}`);
     animateCss('#currentBet', 'zoomOut', function () {
-        document.getElementById("currentBet").setAttribute(`style`, `display: none;`);        
+        document.getElementById("currentBet").setAttribute(`style`, `display: none;`);
     });
     if (typeof callback === 'function') callback();
     /*
@@ -148,6 +164,18 @@ function showBet(event, betValue, offSetX, offSetY, callback) {
         if (typeof callback === 'function') callback();
     });
     */
+}
+
+function showMultiply(event, betValue, offSetX, offSetY, callback) {
+    // let h = $("#multiplier").position().top;
+    // let w = $("#multiplier").position().left;
+    document.getElementById("multiplyNumber").innerText = betValue;
+    document.getElementById("multiplyNumber").setAttribute(`style`, `font-size: 22px;`);
+    document.getElementById("multiplyNumber").setAttribute(`style`, `position: absolute; top: ${offSetY - 16}px; left: ${offSetX + 9}px; font-size: 30px;`);
+    animateCss('#multiplyNumber', 'zoomIn', function () {
+        document.getElementById("multiplyNumber").setAttribute(`style`, `display: none;`);
+    });
+    if (typeof callback === 'function') callback();
 }
 
 function animateCss(element, animationName, callback) {
@@ -163,4 +191,5 @@ function animateCss(element, animationName, callback) {
 
     node.addEventListener('animationend', handleAnimationEnd)
 }
+
 

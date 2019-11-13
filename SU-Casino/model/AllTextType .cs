@@ -2,10 +2,6 @@
 {
     public enum AllTextType
     {
-        bannerRouletteInfo1,
-        bannerRouletteInfo2,
-        bannerRouletteInfo3,
-        bannerRouletteInfo4,
         bannerCardInfo1,
         bannerCardInfo2,
         bannerCardInfo3,

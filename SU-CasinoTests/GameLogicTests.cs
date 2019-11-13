@@ -1,6 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SU_Casino;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SU_Casino.Tests
 {
@@ -13,34 +17,34 @@ namespace SU_Casino.Tests
         const string theme_three = "3";
         const string theme_four = "4";
 
-        //[TestMethod()]
-        //public void getRandomConditionFromConditionsTest()
-        //{
-        //    GameLogic gameLogic = new GameLogic();
-        //    List<string> conditions = new List<string>();
-        //    conditions.Add("first");
-        //    conditions.Add("second");
-        //    conditions.Add("third");
-        //    conditions.Add("fouth");
-        //    conditions.Add("fifth");
+        [TestMethod()]
+        public void getRandomConditionFromConditionsTest()
+        {
+            GameLogic gameLogic = new GameLogic();
+            List<string> conditions = new List<string>();
+            conditions.Add("first");
+            conditions.Add("second");
+            conditions.Add("third");
+            conditions.Add("fouth");
+            conditions.Add("fifth");
 
-        //    List<string> result = new List<string>();
-        //    for (int i = 0; i < 100; i++)
-        //    {
-        //        string item = gameLogic.getRandomConditionFromConditions(conditions);
-        //        result.Add(item);
-        //        Assert.IsTrue(conditions.Contains(item));
-        //    }
+            List<string> result = new List<string>();
+            for (int i = 0; i < 100; i++)
+            {
+                string item = gameLogic.getRandomConditionFromConditions(conditions);
+                result.Add(item);
+                Assert.IsTrue(conditions.Contains(item));
+            }
 
-        //    foreach (string condition in conditions)
-        //    {
-        //        Assert.IsTrue(result.Contains(condition));
-        //    }
-        //}
+            foreach (string condition in conditions)
+            {
+                Assert.IsTrue(result.Contains(condition));
+            }
+        }
 
 
         [TestMethod()]
-        public void Test100percentCase()
+        public void test100percentCase()
         {
             Dictionary<string, double> themesToTest = new Dictionary<string, double>();
             GameLogic gameLogic = new GameLogic();
@@ -51,7 +55,7 @@ namespace SU_Casino.Tests
         }
 
         [TestMethod()]
-        public void TestNoThemeIsPicked()
+        public void testNoThemeIsPicked()
         {
             GameLogic gameLogic = new GameLogic();
             Dictionary<string, double> themesToTest = new Dictionary<string, double>();
@@ -60,7 +64,7 @@ namespace SU_Casino.Tests
             Assert.AreEqual(no_theme, theme);
         }
         [TestMethod()]
-        public void TestThatMultipleThemesGetPicked()
+        public void testThatMultipleThemesGetPicked()
         {
             List<string> result;
             GameLogic gameLogic = new GameLogic();
@@ -83,7 +87,7 @@ namespace SU_Casino.Tests
         }
 
         [TestMethod()]
-        public void TestThatThePercentageIsCorrect()
+        public void testThatThePercentageIsCorrect()
         {
             GameLogic gameLogic = new GameLogic();
             Dictionary<string, double> themesToTest = new Dictionary<string, double>();
@@ -94,19 +98,19 @@ namespace SU_Casino.Tests
 
             Dictionary<string, double> themes = new Dictionary<string, double>();
 
-
+            
 
             List<string> result = new List<string>();
             const int iterations = 10000;
             for (int i = 0; i < iterations; i++)
             {
-                result.Add(gameLogic.CalculateCurrentThemeBasedOnPercent(themesToTest));
-            }
+               result.Add(gameLogic.CalculateCurrentThemeBasedOnPercent(themesToTest));
+             }
 
-
+      
             Assert.AreEqual(0.33, (double)result.Where(i => i.Equals(theme_one)).Count() / (double)iterations, 0.03);
-            Assert.AreEqual(0.33, (double)result.Where(i => i.Equals(theme_two)).Count() / (double)iterations, 0.03);
-            Assert.AreEqual(0.34, (double)result.Where(i => i.Equals(theme_three)).Count() / (double)iterations, 0.03);
+            Assert.AreEqual(0.33, (double)result.Where(i => i.Equals(theme_two)).Count() / (double)iterations,  0.03);
+            Assert.AreEqual(0.34, (double)result.Where(i => i.Equals(theme_three)).Count() / (double)iterations,  0.03);
 
         }
     }

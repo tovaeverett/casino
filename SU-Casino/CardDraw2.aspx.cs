@@ -16,9 +16,9 @@ namespace SU_Casino
         private void LoadGameSession()
         {
             if (Session["GameSession"] == null)
-                Session["GamesSssion"] = new GameSession();
+                Session["GameSession"] = new GameSession();
 
-            gameSession = (GameSession)Session["GamesSssion"];
+            gameSession = (GameSession)Session["GameSession"];
         }
 
         private void MoveToNextGame(int cuttrentBalance)

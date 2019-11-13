@@ -7,7 +7,8 @@ GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
+DROP TABLE [dbo].[InfoText]
+GO
 CREATE TABLE [dbo].[InfoText](
 	[Text_Id] [int] NULL,
 	[Text] [text] NULL,

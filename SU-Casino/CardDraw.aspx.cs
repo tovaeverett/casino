@@ -71,6 +71,16 @@ namespace SU_Casino
                 gameSession.GameToPlay.TrialCount = 1;
                 SetCurrentBalance();
                 HiddenField_Trail.Value = gameSession.GameToPlay.Trials.ToString();
+                bannerText.Text = gameSession.GameToPlay.BannerTextType;
+                string bannerType = gameSession.GameToPlay.BannerTextType;
+                if (bannerType == "")
+                {
+                    Jackpot_Banner.Visible = false;
+                }
+                else
+                {
+                    bannerText.Text = gameSession.GetText((AllTextType)Enum.Parse(typeof(AllTextType), bannerType));
+                }
             }
         }
 
@@ -257,25 +267,6 @@ namespace SU_Casino
             pl.timestamp_R = new DateTime(1970, 01, 01).AddMilliseconds(Convert.ToInt64(HiddenField_Time3.Value)).ToLocalTime();
             pl.trial = gameSession.GameToPlay.TrialCount++;
             pl.questionForWinChance = questionForWinChance;
-
-            //Store the card that is flipped
-            switch (HiddenField_FlippedCard.Value)
-            {
-                case "card1":
-                    pl.figure1 = HiddenField_card1.Value;
-                    pl.figure2 = "";
-                    break;
-                case "card2":
-                    pl.figure1 = "";
-                    pl.figure2 = HiddenField_card2.Value;
-                    break;
-                default:
-                    pl.figure1 = "";
-                    pl.figure2 = "";
-                    break;
-            } 
-            //Store the middle card that is shown from start
-            pl.figure3 = HiddenField_card3.Value;
 
             gameSession.UpdatePlayerLog(pl);
         }

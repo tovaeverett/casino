@@ -55,9 +55,9 @@ BEGIN
 		trim(JackpotTextType) as JackpotTextType,
 		JackpotTime,
 		trim(BannerTextType) as BannerTextType,
-		Multiplier,
-		SpinDelay1,
-		SpinDelay2
+		Multiplyer,
+		SpinnDelay1,
+		SpinnDelay2
 	FROM 
 		matris
 	WHERE 

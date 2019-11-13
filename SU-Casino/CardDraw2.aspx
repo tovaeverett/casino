@@ -56,7 +56,6 @@
             <div class="col-xl-8 col-md-8 col-sm-10" id="play-container">
                  <div class="col-md-12 playground-cards">
                      <div class="div-center">
-                         
                             <div class="col-md-3 cardSpan"> </div>
 				             <div class="col-md-3 cardSpan">
  					            <div class="scene scene--card">
@@ -81,12 +80,10 @@
 				                
                             </div>
                       </div>
-                     
                         </div>
                         <!--*** PANEL for buttons and credit***-->
                         <div class="col-md-12 col-sm-12 game-panel">
                             <form id="formCards" runat="server">
-                               
                                 <asp:HiddenField ID="HiddenField_card1" runat="server" Value="5"/>
                                 <asp:HiddenField ID="HiddenField_card2" runat="server" Value="3"/> 
                                 <asp:HiddenField ID="HiddenField_card3" runat="server" Value="3"/> 
@@ -125,7 +122,6 @@
     <!-- Winning chance: Shows before every game. The value are saved to backend in  -->
     <div id="winchance-container" class="container-fluid overlayer">
         <div class="row text-center" >
-           
             <div class="winchance-div">
                  <h2>Which deck gives the highest win per game?</h2>
                 <br />
@@ -156,8 +152,6 @@
                                         <button id="btnShowInfo"class="btn btn-large btn-primary"> Play! </button>
                                     </section>
                                 </div>
-                                
-                            
                         </div>
                     <div class="col-md-2"></div>
             </div>
@@ -171,7 +165,7 @@
                                 <div class="winner">
                                    <img src="src/images/other/wintext.png" class="img-responsive" />
                                     
-                                    <h2><span class="winSpan"> You won <span id="winCredit"></span> !</h2>
+                                    <h2 class="winSpan"> You won <span id="winCredit"></span>!</h2>
                                 </div>
                             <button id="btnCloseWin" class="btn btn-large btn-primary" > Play! </button>
                         </div>
