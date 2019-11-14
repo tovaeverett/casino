@@ -225,7 +225,6 @@
     <Compile Include="CardDraw.aspx.designer.cs">
       <DependentUpon>CardDraw.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Database.cs" />
     <Compile Include="EndPage.aspx.cs">
       <DependentUpon>EndPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -255,7 +254,6 @@
     <Compile Include="model\InfoTextTypeCard.cs" />
     <Compile Include="model\InfoTextTypeRoulette.cs" />
     <Compile Include="model\InfoTextTypeSlot.cs" />
-    <Compile Include="model\JackpotTextType.cs" />
     <Compile Include="model\JackpotTextTypeCard.cs" />
     <Compile Include="model\JackpotTextTypeSlot.cs" />
     <Compile Include="model\SurveyCode.cs" />

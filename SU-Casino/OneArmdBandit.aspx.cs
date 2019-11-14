@@ -101,7 +101,7 @@ namespace SU_Casino
                 HiddenField_jackpot_text.Value =
                     gameSession.GetText((AllTextType) Enum.Parse(typeof(AllTextType), jackpotTextType));
                 int jackpot_time = gameSession.GameToPlay.JackpotTime;
-                if (jackpot_time == null)
+                if (jackpot_time <= 0)
                 {
                     jackpot_time = 3;
                 }
