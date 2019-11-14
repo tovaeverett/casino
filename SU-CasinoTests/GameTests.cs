@@ -11,90 +11,90 @@ namespace SU_Casino.Tests
     [TestClass()]
     public class GameTests
     {
-        [TestMethod()]
-        public void getWinningChanceTest()
-        {
-            Game testgame = new Game();
-            testgame.CurrentTheme = "1";
-            testgame.Prob_O1 = 0.6;
-            testgame.Prob_O2 = 0.4;
-            testgame.IfS1win = "O1";
-            testgame.IfS1probX = 1;
-            Assert.AreEqual(0.6, testgame.getWinningChanceOneArmedBandit(), 0.001);
-            testgame.IfS1win = "O2";
-            Assert.AreEqual(0.4, testgame.getWinningChanceOneArmedBandit(), 0.001);
-            testgame.IfS1probX = 0;
-            Assert.AreEqual(0, testgame.getWinningChanceOneArmedBandit(), 0.001);
+        //[TestMethod()]
+        //public void getWinningChanceTest()
+        //{
+        //    Game testgame = new Game();
+        //    testgame.CurrentTheme = "1";
+        //    testgame.Prob_O1 = 0.6;
+        //    testgame.Prob_O2 = 0.4;
+        //    testgame.IfS1win = "O1";
+        //    testgame.IfS1probX = 1;
+        //    Assert.AreEqual(0.6, testgame.getWinningChanceOneArmedBandit(), 0.001);
+        //    testgame.IfS1win = "O2";
+        //    Assert.AreEqual(0.4, testgame.getWinningChanceOneArmedBandit(), 0.001);
+        //    testgame.IfS1probX = 0;
+        //    Assert.AreEqual(0, testgame.getWinningChanceOneArmedBandit(), 0.001);
 
-            testgame.CurrentTheme = "2";
-            testgame.IfS2win = "O1";
-            testgame.IfS2probX = 1;
-            Assert.AreEqual(0.6, testgame.getWinningChanceOneArmedBandit(), 0.001);
-            testgame.IfS2win = "O2";
-            Assert.AreEqual(0.4, testgame.getWinningChanceOneArmedBandit(), 0.001);
-            testgame.IfS2probX = 0;
-            Assert.AreEqual(0, testgame.getWinningChanceOneArmedBandit(), 0.001);
+        //    testgame.CurrentTheme = "2";
+        //    testgame.IfS2win = "O1";
+        //    testgame.IfS2probX = 1;
+        //    Assert.AreEqual(0.6, testgame.getWinningChanceOneArmedBandit(), 0.001);
+        //    testgame.IfS2win = "O2";
+        //    Assert.AreEqual(0.4, testgame.getWinningChanceOneArmedBandit(), 0.001);
+        //    testgame.IfS2probX = 0;
+        //    Assert.AreEqual(0, testgame.getWinningChanceOneArmedBandit(), 0.001);
 
-            testgame.CurrentTheme = "3";
-            testgame.IfS3win = "O1";
-            Assert.AreEqual(0.6, testgame.getWinningChanceOneArmedBandit(), 0.001);
-            testgame.IfS3win = "O2";
-            Assert.AreEqual(0.4, testgame.getWinningChanceOneArmedBandit(), 0.001);
-
-
-            testgame.CurrentTheme = "4";
-            testgame.IfS4win = "O1";
-            Assert.AreEqual(0.6, testgame.getWinningChanceOneArmedBandit(), 0.001);
-            testgame.IfS4win = "O2";
-            Assert.AreEqual(0.4, testgame.getWinningChanceOneArmedBandit(), 0.001);
+        //    testgame.CurrentTheme = "3";
+        //    testgame.IfS3win = "O1";
+        //    Assert.AreEqual(0.6, testgame.getWinningChanceOneArmedBandit(), 0.001);
+        //    testgame.IfS3win = "O2";
+        //    Assert.AreEqual(0.4, testgame.getWinningChanceOneArmedBandit(), 0.001);
 
 
-        }
+        //    testgame.CurrentTheme = "4";
+        //    testgame.IfS4win = "O1";
+        //    Assert.AreEqual(0.6, testgame.getWinningChanceOneArmedBandit(), 0.001);
+        //    testgame.IfS4win = "O2";
+        //    Assert.AreEqual(0.4, testgame.getWinningChanceOneArmedBandit(), 0.001);
 
 
-        [TestMethod()]
-        public void getWinningChanceCardDrawTest()
-        {
-            Game testgame = new Game();
-            testgame.CurrentTheme = "0";
-            testgame.If_R1 = "O1";
-            testgame.If_R2 = "O2";
-            testgame.Prob_O1 = 0.2;
-            testgame.Prob_O2 = 0.8;
-
-            Assert.AreEqual(0.2, testgame.getWinningChanceCardDraw("R1"), 0.001);
-            testgame.If_R1 = "O2";
-            Assert.AreEqual(0.8, testgame.getWinningChanceCardDraw("R1"), 0.001);
-
-            Assert.AreEqual(0.8, testgame.getWinningChanceCardDraw("R2"), 0.001);
-            testgame.If_R2 = "O1";
-            Assert.AreEqual(0.2, testgame.getWinningChanceCardDraw("R2"), 0.001);
-
-            testgame.If_R3 = "O2";
-            Assert.AreEqual(0.8, testgame.getWinningChanceCardDraw("R3"), 0.001);
-            testgame.If_R3 = "O1";
-            Assert.AreEqual(0.2, testgame.getWinningChanceCardDraw("R3"), 0.001);
+        //}
 
 
-            testgame.CurrentTheme = "1";
-            testgame.IfS1probX = 0;
-            Assert.AreEqual(0, testgame.getWinningChanceCardDraw("R1"), 0.001);
+        //[TestMethod()]
+        //public void getWinningChanceCardDrawTest()
+        //{
+        //    Game testgame = new Game();
+        //    testgame.CurrentTheme = "0";
+        //    testgame.If_R1 = "O1";
+        //    testgame.If_R2 = "O2";
+        //    testgame.Prob_O1 = 0.2;
+        //    testgame.Prob_O2 = 0.8;
+
+        //    Assert.AreEqual(0.2, testgame.getWinningChanceCardDraw("R1"), 0.001);
+        //    testgame.If_R1 = "O2";
+        //    Assert.AreEqual(0.8, testgame.getWinningChanceCardDraw("R1"), 0.001);
+
+        //    Assert.AreEqual(0.8, testgame.getWinningChanceCardDraw("R2"), 0.001);
+        //    testgame.If_R2 = "O1";
+        //    Assert.AreEqual(0.2, testgame.getWinningChanceCardDraw("R2"), 0.001);
+
+        //    testgame.If_R3 = "O2";
+        //    Assert.AreEqual(0.8, testgame.getWinningChanceCardDraw("R3"), 0.001);
+        //    testgame.If_R3 = "O1";
+        //    Assert.AreEqual(0.2, testgame.getWinningChanceCardDraw("R3"), 0.001);
 
 
-            testgame.CurrentTheme = "2";
-            testgame.IfS2probX = 0;
-            Assert.AreEqual(0, testgame.getWinningChanceCardDraw("R1"), 0.001);
-
-            testgame.CurrentTheme = "2";
-            testgame.IfS2probX = 1;
-            Assert.AreEqual(0.8, testgame.getWinningChanceCardDraw("R1"), 0.001);
+        //    testgame.CurrentTheme = "1";
+        //    testgame.IfS1probX = 0;
+        //    Assert.AreEqual(0, testgame.getWinningChanceCardDraw("R1"), 0.001);
 
 
-            testgame.CurrentTheme = "3";
-            testgame.IfS1probX = 0;
-            Assert.AreEqual(0.8, testgame.getWinningChanceCardDraw("R1"), 0.001);
+        //    testgame.CurrentTheme = "2";
+        //    testgame.IfS2probX = 0;
+        //    Assert.AreEqual(0, testgame.getWinningChanceCardDraw("R1"), 0.001);
 
-        }
+        //    testgame.CurrentTheme = "2";
+        //    testgame.IfS2probX = 1;
+        //    Assert.AreEqual(0.8, testgame.getWinningChanceCardDraw("R1"), 0.001);
+
+
+        //    testgame.CurrentTheme = "3";
+        //    testgame.IfS1probX = 0;
+        //    Assert.AreEqual(0.8, testgame.getWinningChanceCardDraw("R1"), 0.001);
+
+        //}
 
         [TestMethod()]
         public void IsWinOrLoseBasedOnPercentTest()

@@ -17,30 +17,30 @@ namespace SU_Casino.Tests
         const string theme_three = "3";
         const string theme_four = "4";
 
-        [TestMethod()]
-        public void getRandomConditionFromConditionsTest()
-        {
-            GameLogic gameLogic = new GameLogic();
-            List<string> conditions = new List<string>();
-            conditions.Add("first");
-            conditions.Add("second");
-            conditions.Add("third");
-            conditions.Add("fouth");
-            conditions.Add("fifth");
+        //[TestMethod()]
+        //public void getRandomConditionFromConditionsTest()
+        //{
+        //    GameLogic gameLogic = new GameLogic();
+        //    List<string> conditions = new List<string>();
+        //    conditions.Add("first");
+        //    conditions.Add("second");
+        //    conditions.Add("third");
+        //    conditions.Add("fouth");
+        //    conditions.Add("fifth");
 
-            List<string> result = new List<string>();
-            for (int i = 0; i < 100; i++)
-            {
-                string item = gameLogic.getRandomConditionFromConditions(conditions);
-                result.Add(item);
-                Assert.IsTrue(conditions.Contains(item));
-            }
+        //    List<string> result = new List<string>();
+        //    for (int i = 0; i < 100; i++)
+        //    {
+        //        string item = gameLogic.getRandomConditionFromConditions(conditions);
+        //        result.Add(item);
+        //        Assert.IsTrue(conditions.Contains(item));
+        //    }
 
-            foreach (string condition in conditions)
-            {
-                Assert.IsTrue(result.Contains(condition));
-            }
-        }
+        //    foreach (string condition in conditions)
+        //    {
+        //        Assert.IsTrue(result.Contains(condition));
+        //    }
+        //}
 
 
         [TestMethod()]
